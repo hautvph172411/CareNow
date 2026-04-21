@@ -1,0 +1,18 @@
+# Dependency directories
+node_modules/
+frontend/node_modules/
+carenow-backend/node_modules/
+
+# Environment files
+.env
+carenow-backend/.env
+frontend/.env
+*.env.local
+
+# IDE and System files
+.DS_Store
+.vscode/
+
+# Build outputs
+frontend/dist/
+frontend/build/
