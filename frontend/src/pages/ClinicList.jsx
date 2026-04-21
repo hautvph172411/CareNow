@@ -90,7 +90,8 @@ export default function ClinicList() {
                 <thead>
                   <tr>
                     <th style={{ width: '5%' }}>ID</th>
-                    <th style={{ width: '25%' }}>Tên</th>
+                    <th style={{ width: '10%' }}>Ảnh</th>
+                    <th style={{ width: '20%' }}>Tên</th>
                     <th style={{ width: '15%' }}>Giấy phép</th>
                     <th style={{ width: '20%' }}>Chuyên khoa</th>
                     <th style={{ width: '10%', textAlign: 'center' }}>Dịch vụ</th>
@@ -102,6 +103,13 @@ export default function ClinicList() {
                   {doctors.map((doctor) => (
                     <tr key={doctor.id} className="specialty-row">
                       <td>{doctor.id}</td>
+                      <td>
+                        {doctor.picture ? (
+                          <img src={doctor.picture} alt="Avatar" style={{ width: 40, height: 40, borderRadius: 4, objectFit: 'cover' }} />
+                        ) : (
+                          <div style={{ width: 40, height: 40, backgroundColor: '#f3f4f6', borderRadius: 4 }}></div>
+                        )}
+                      </td>
                       <td className="name-cell">
                         <span className="specialty-title" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>
                           {doctor.name}

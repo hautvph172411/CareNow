@@ -20,7 +20,7 @@ export default function DoctorTable({ doctors, onEdit, onDelete }) {
               <td>{doctor.name}</td>
               <td>{doctor.address}</td>
               <td>
-                <img src={doctor.images} alt="Clinic" style={{ width: 80, height: 40, objectFit: 'cover', borderRadius: 4 }} />
+                <img src={doctor.picture} alt="Doctor" style={{ width: 80, height: 40, objectFit: 'cover', borderRadius: 4 }} />
               </td>
               <td>
                 <button className="action-btn edit-btn" onClick={() => onEdit(doctor)} title="Chỉnh sửa">

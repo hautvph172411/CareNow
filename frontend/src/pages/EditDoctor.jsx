@@ -148,7 +148,7 @@ export default function EditDoctor() {
       setImagePreview(URL.createObjectURL(file));
       setFormData(prev => ({
         ...prev,
-        picture: `assets/images/${file.name}`
+        picture: `/assets/images/${file.name}`
       }));
     }
   };
@@ -306,7 +306,10 @@ export default function EditDoctor() {
                 )}
                 {/* Nếu đã có picture string nhưng chưa có preview object */}
                 {formData.picture && !imagePreview && (
-                  <p style={{ marginTop: '8px', fontSize: '13px', color: '#64748b' }}>Đường dẫn: {formData.picture}</p>
+                  <div style={{ marginTop: '10px' }}>
+                    <img src={formData.picture} alt="Current" style={{ width: '120px', height: '120px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
+                    <p style={{ marginTop: '8px', fontSize: '13px', color: '#64748b' }}>Đường dẫn: {formData.picture}</p>
+                  </div>
                 )}
               </div>
             </div>

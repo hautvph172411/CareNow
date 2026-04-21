@@ -125,7 +125,7 @@ export default function AddDoctor() {
       setImagePreview(URL.createObjectURL(file));
       setFormData(prev => ({
         ...prev,
-        picture: `assets/images/${file.name}`
+        picture: `/assets/images/${file.name}`
       }));
     }
   };
