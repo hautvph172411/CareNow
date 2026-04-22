@@ -2,17 +2,19 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Sidebar from '../components/Sidebar'
 import Header from '../components/Header'
+import { useAuth } from '../hooks/useAuth'
 
 export default function AdminLayout({ children, pageTitle }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const navigate = useNavigate()
+  const { logout } = useAuth()
 
   const handleMenuClick = () => {
     setSidebarOpen(!sidebarOpen)
   }
 
   const handleLogout = () => {
-    navigate('/login')
+    logout()
   }
 
   return (

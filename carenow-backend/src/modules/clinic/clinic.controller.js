@@ -2,8 +2,8 @@ const clinicService = require('./clinic.service');
 
 exports.getClinics = async (req, res) => {
   try {
-    const data = await clinicService.getClinics();
-    res.json({ success: true, data });
+    const data = await clinicService.getClinics(req.query);
+    res.json({ success: true, ...data });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }

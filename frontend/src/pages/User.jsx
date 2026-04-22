@@ -1,267 +1,146 @@
 import { useState, useEffect } from 'react';
-import { Search, Plus, X } from 'lucide-react';
+import { Search, Plus, Edit2, Trash2, Shield, Briefcase, Mail, Phone, User as UserIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import AdminLayout from '../layouts/AdminLayout';
-import UserTable from '../components/User';   // component UserTable
-import { fetchUsers, createUser, updateUser, deleteUser, toggleUserStatus } from '../api/user.api';
-
-const EMPTY_FORM = {
-  username: '',
-  password: '',
-  role: 0,      // 0 = user, 1 = admin
-  status: 1,
-};
+import { getUsers, deleteUser } from '../api/user.api';
 
 export default function UserPage() {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
-  const [filtered, setFiltered] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
-  const [showModal, setShowModal] = useState(false);
-  const [editingId, setEditingId] = useState(null);
-  const [formData, setFormData] = useState(EMPTY_FORM);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState('');
-
-  // ─── Load ──────────────────────────────────────────────────────────────────
-  useEffect(() => { loadUsers(); }, []);
 
   useEffect(() => {
-    const term = searchTerm.toLowerCase();
-    setFiltered(
-      users.filter((u) => u.username?.toLowerCase().includes(term))
-    );
-  }, [searchTerm, users]);
+    loadUsers();
+  }, []);
 
   const loadUsers = async () => {
     setLoading(true);
     try {
-      const res = await fetchUsers();
-      setUsers(res.data || []);
+      const res = await getUsers();
+      if (res.success) {
+        setUsers(res.data || []);
+      }
     } catch (err) {
-      console.error('Lỗi tải users:', err);
+      console.error('Lỗi tải người dùng:', err);
     } finally {
       setLoading(false);
     }
   };
 
-  // ─── Actions ───────────────────────────────────────────────────────────────
-  const openAdd = () => {
-    setFormData(EMPTY_FORM);
-    setEditingId(null);
-    setError('');
-    setShowModal(true);
-  };
-
-  const openEdit = (user) => {
-    setFormData({
-      username: user.username,
-      password: '',       // không điền lại password
-      role: user.role,
-      status: user.status,
-    });
-    setEditingId(user.id);
-    setError('');
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-    setEditingId(null);
-    setError('');
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!formData.username.trim()) {
-      setError('Tên đăng nhập là bắt buộc');
-      return;
-    }
-    if (!editingId && !formData.password.trim()) {
-      setError('Mật khẩu là bắt buộc khi tạo mới');
-      return;
-    }
-    setSubmitting(true);
-    setError('');
-    try {
-      if (editingId) {
-        const payload = { role: formData.role, status: formData.status };
-        if (formData.password) payload.password = formData.password;
-        await updateUser(editingId, payload);
-        setUsers((prev) =>
-          prev.map((u) => u.id === editingId ? { ...u, ...payload } : u)
-        );
-      } else {
-        await createUser({
-          username: formData.username,
-          password: formData.password,
-          role: formData.role,
-        });
-        await loadUsers(); // reload để lấy id mới từ server
-      }
-      closeModal();
-    } catch (err) {
-      setError(err.response?.data?.message || 'Có lỗi xảy ra');
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
   const handleDelete = async (id) => {
-    if (!window.confirm('Bạn chắc chắn muốn xoá người dùng này?')) return;
+    if (!window.confirm('Bạn chắc chắn muốn xoá tài khoản này?')) return;
     try {
       await deleteUser(id);
-      setUsers((prev) => prev.filter((u) => u.id !== id));
+      setUsers(prev => prev.filter(u => u.id !== id));
     } catch (err) {
-      alert(err.response?.data?.message || 'Xoá thất bại');
+      alert('Xoá thất bại');
     }
   };
 
-  const handleToggleStatus = async (id, newStatus) => {
-    try {
-      await toggleUserStatus(id, newStatus);
-      setUsers((prev) =>
-        prev.map((u) => u.id === id ? { ...u, status: newStatus } : u)
-      );
-    } catch (err) {
-      alert('Cập nhật trạng thái thất bại');
-    }
-  };
+  const filteredUsers = users.filter(user => 
+    user.username?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.display_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.email?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-  // ─── Render ────────────────────────────────────────────────────────────────
   return (
-    <AdminLayout pageTitle="Quản lý người dùng">
-
-      {/* Toolbar */}
+    <AdminLayout pageTitle="Quản lý tài khoản">
       <div className="management-header">
         <div className="search-box">
-          <Search size={18} />
-          <input
-            type="text"
-            placeholder="Tìm theo tên đăng nhập..."
+          <Search size={20} />
+          <input 
+            type="text" 
+            placeholder="Tìm kiếm theo tên đăng nhập, email..." 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
         <button className="btn btn-primary" onClick={() => navigate('/users/add')}>
-          <Plus size={18} />
-          Thêm người dùng
+          <Plus size={20} /> Thêm tài khoản
         </button>
       </div>
 
-      {/* Stats */}
-      <div className="doctor-stats-row">
-        <div className="doctor-stat-chip">
-          Tổng: <strong style={{ marginLeft: 4 }}>{users.length}</strong>
+      <div className="management-section">
+        <div className="stats-summary" style={{ marginBottom: '1rem', color: '#6b7280' }}>
+            Tổng số: <strong>{filteredUsers.length}</strong> tài khoản
         </div>
-        <div className="doctor-stat-chip active">
-          Hoạt động: <strong style={{ marginLeft: 4 }}>{users.filter(u => u.status === 1).length}</strong>
-        </div>
-        <div className="doctor-stat-chip inactive">
-          Khoá: <strong style={{ marginLeft: 4 }}>{users.filter(u => u.status !== 1).length}</strong>
-        </div>
-      </div>
 
-      {/* Table */}
-      {loading ? (
-        <div className="empty-state">
-          <p>Đang tải dữ liệu...</p>
-        </div>
-      ) : (
-        <UserTable
-          users={filtered}
-          onEdit={openEdit}
-          onDelete={handleDelete}
-          onToggleStatus={handleToggleStatus}
-        />
-      )}
-
-      <div className="table-footer">
-        <span>Hiển thị {filtered.length} / {users.length} người dùng</span>
-      </div>
-
-      {/* Modal */}
-      {showModal && (
-        <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h2 className="modal-title">{editingId ? '✏️ Chỉnh sửa người dùng' : '➕ Thêm người dùng mới'}</h2>
-              <button className="modal-close" onClick={closeModal}><X size={20} /></button>
-            </div>
-
-            <form onSubmit={handleSubmit} className="modal-form">
-              {error && <div className="error-text">{error}</div>}
-
-              <div className="form-row">
-
-                {/* Username */}
-                <div className="form-group">
-                  <label>Tên đăng nhập <span style={{color: 'red'}}>*</span></label>
-                  <input
-                    type="text"
-                    className="form-input"
-                    placeholder="VD: nguyenvana"
-                    value={formData.username}
-                    onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                    disabled={!!editingId}  // không đổi username khi edit
-                    required
-                  />
-                </div>
-
-                {/* Password */}
-                <div className="form-group">
-                  <label>
-                    Mật khẩu {editingId && <span style={{ fontWeight: 400, color: '#9ca3af' }}>(để trống nếu không đổi)</span>}
-                    {!editingId && <span style={{color: 'red'}}> *</span>}
-                  </label>
-                  <input
-                    type="password"
-                    className="form-input"
-                    placeholder="••••••••"
-                    value={formData.password}
-                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  />
-                </div>
-
-                {/* Role */}
-                <div className="form-group">
-                  <label>Vai trò</label>
-                  <select
-                    className="form-input"
-                    value={formData.role}
-                    onChange={(e) => setFormData({ ...formData, role: Number(e.target.value) })}
-                  >
-                    <option value={0}>User</option>
-                    <option value={1}>Admin</option>
-                  </select>
-                </div>
-
-                {/* Status */}
-                <div className="form-group">
-                  <label>Trạng thái</label>
-                  <select
-                    className="form-input"
-                    value={formData.status}
-                    onChange={(e) => setFormData({ ...formData, status: Number(e.target.value) })}
-                  >
-                    <option value={1}>Hoạt động</option>
-                    <option value={0}>Khoá</option>
-                  </select>
-                </div>
-
-              </div>
-
-              <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" onClick={closeModal}>Hủy</button>
-                <button type="submit" className="btn btn-primary" disabled={submitting}>
-                  {submitting ? 'Đang xử lý...' : editingId ? 'Cập nhật' : 'Thêm'}
-                </button>
-              </div>
-            </form>
+        {loading ? (
+          <div style={{ textAlign: 'center', padding: '2rem' }}>Đang tải...</div>
+        ) : (
+          <div style={{ overflowX: 'auto' }}>
+            <table className="specialties-table">
+              <thead>
+                <tr>
+                  <th style={{ width: '5%' }}>ID</th>
+                  <th style={{ width: '25%' }}>Người dùng</th>
+                  <th style={{ width: '15%' }}>Loại tài khoản</th>
+                  <th style={{ width: '15%' }}>Vai trò</th>
+                  <th style={{ width: '15%' }}>Liên hệ</th>
+                  <th style={{ width: '10%', textAlign: 'center' }}>Trạng thái</th>
+                  <th style={{ width: '15%', textAlign: 'right' }}>Hành động</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredUsers.map((user) => (
+                  <tr key={user.id} className="specialty-row">
+                    <td>{user.id}</td>
+                    <td>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <div style={{ width: 40, height: 40, borderRadius: '50%', backgroundColor: '#f3f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9ca3af' }}>
+                          <UserIcon size={20} />
+                        </div>
+                        <div>
+                          <div style={{ fontWeight: '600', color: '#1f2937' }}>{user.display_name || user.username}</div>
+                          <div style={{ fontSize: '12px', color: '#6b7280' }}>@{user.username}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      {user.partner_id ? (
+                        <span className="type-badge partner" style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#f59e0b', fontSize: '13px' }}>
+                          <Briefcase size={14} /> Đối tác
+                        </span>
+                      ) : (
+                        <span className="type-badge admin" style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#6366f1', fontSize: '13px' }}>
+                          <Shield size={14} /> Quản trị
+                        </span>
+                      )}
+                    </td>
+                    <td>
+                       <span style={{ fontSize: '13px', padding: '4px 8px', backgroundColor: '#f3f4f6', borderRadius: '4px' }}>
+                          {user.role === 2 ? 'Quản lý / Super' : 'Nhân viên / Sub'}
+                       </span>
+                    </td>
+                    <td>
+                      <div style={{ fontSize: '12px', color: '#6b7280' }}>
+                        {user.email && <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Mail size={12} /> {user.email}</div>}
+                        {user.phone && <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Phone size={12} /> {user.phone}</div>}
+                      </div>
+                    </td>
+                    <td style={{ textAlign: 'center' }}>
+                      <span className={`status-badge ${user.status === 1 ? 'status-active' : 'status-inactive'}`}>
+                        {user.status === 1 ? 'Hoạt động' : user.status === 0 ? 'Ngưng' : 'Đã xóa'}
+                      </span>
+                    </td>
+                    <td className="action-cell">
+                      <div className="action-buttons" style={{ justifyContent: 'flex-end' }}>
+                        <button className="btn-action edit" onClick={() => navigate(`/users/edit/${user.id}`)}>
+                          <Edit2 size={16} />
+                        </button>
+                        <button className="btn-action delete" onClick={() => handleDelete(user.id)}>
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </AdminLayout>
   );
 }

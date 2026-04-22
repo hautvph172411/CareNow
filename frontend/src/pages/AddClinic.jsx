@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ChevronLeft } from 'lucide-react'
 import AdminLayout from '../layouts/AdminLayout'
-import { updateClinicPlace, getClinicPlaceById } from '../api/clinic_place.api'
+import { createClinic } from '../api/clinic.api'
 import { getProvinces, getWardsByProvince } from '../api/location.api'
 import { getSpecialties } from '../api/specialty.api'
 import SearchableSelect from '../components/SearchableSelect'
 import RichTextEditor from '../components/RichTextEditor'
+import { useEffect } from 'react'
 
-export default function EditDoctor() {
+export default function AddDoctor() {
   const navigate = useNavigate()
-  const { id } = useParams()
 
   // Toàn bộ fields tương ứng với tbl_clinic
   const [formData, setFormData] = useState({
@@ -101,29 +101,6 @@ export default function EditDoctor() {
     }
   }, [formData.province_id]);
 
-  useEffect(() => {
-    if (id) {
-      const loadDoctor = async () => {
-        setIsLoading(true);
-        try {
-          const res = await getClinicPlaceById(id);
-          if (res && res.data) {
-            setFormData(res.data);
-            if (res.data.picture) {
-               // Optional: Show preview logic if needed here
-            }
-          }
-        } catch(e) {
-          console.error(e);
-          alert('Không thể tải thông tin bác sĩ');
-        } finally {
-          setIsLoading(false);
-        }
-      };
-      loadDoctor();
-    }
-  }, [id]);
-
   const specialties = [
     'Tim mạch', 'Nhi khoa', 'Sản phụ khoa', 'Ngoại khoa',
     'Nội khoa', 'Tâm thần', 'Phục hồi chức năng', 'Nha khoa'
@@ -195,9 +172,9 @@ export default function EditDoctor() {
         payload[f] = parseInt(payload[f] || 0, 10);
       });
 
-      await updateClinicPlace(id, payload);
+      await createClinic(payload);
 
-      alert('Cập nhật thông tin bác sĩ thành công!')
+      alert('Thêm bác sĩ thành công!')
       navigate('/clinic/admin')
     } catch (error) {
       console.error('Error:', error)
@@ -208,14 +185,14 @@ export default function EditDoctor() {
   }
 
   return (
-    <AdminLayout pageTitle="Chỉnh sửa thông tin bác sĩ">
+    <AdminLayout pageTitle="Thêm bác sĩ mới">
       <div className="form-page-container">
         <div className="form-page-header">
           <button type="button" className="btn-back" onClick={() => navigate('/clinic/admin')}>
             <ChevronLeft size={20} />
             Quay lại
           </button>
-          <h1 className="form-page-title">Sửa thông tin bác sĩ</h1>
+          <h1 className="form-page-title">Thêm bác sĩ mới</h1>
         </div>
 
         <div className="form-page-content">
@@ -306,10 +283,7 @@ export default function EditDoctor() {
                 )}
                 {/* Nếu đã có picture string nhưng chưa có preview object */}
                 {formData.picture && !imagePreview && (
-                  <div style={{ marginTop: '10px' }}>
-                    <img src={formData.picture} alt="Current" style={{ width: '120px', height: '120px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
-                    <p style={{ marginTop: '8px', fontSize: '13px', color: '#64748b' }}>Đường dẫn: {formData.picture}</p>
-                  </div>
+                  <p style={{ marginTop: '8px', fontSize: '13px', color: '#64748b' }}>Đường dẫn: {formData.picture}</p>
                 )}
               </div>
             </div>
@@ -498,7 +472,7 @@ export default function EditDoctor() {
                 Hủy
               </button>
               <button type="submit" className="btn btn-primary" disabled={isLoading}>
-                {isLoading ? 'Đang xử lý...' : 'Cập nhật thông tin'}
+                {isLoading ? 'Đang xử lý...' : 'Thêm bác sĩ'}
               </button>
             </div>
 

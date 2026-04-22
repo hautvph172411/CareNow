@@ -12,4 +12,17 @@ instance.interceptors.request.use((config) => {
   return config;
 });
 
+instance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      localStorage.removeItem("loginTime");
+      window.location.href = "/?expired=true";
+    }
+    return Promise.reject(error);
+  }
+);
+
 export default instance;

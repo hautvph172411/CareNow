@@ -1,53 +1,73 @@
 import { loginAdmin } from "../api/auth.api";
-import { useNavigate } from "react-router-dom";
-
-import React, { useState } from 'react'
-import { Mail, Lock, Eye, EyeOff, ArrowRight, CheckCircle } from 'lucide-react'
-import { Button } from '../components/ui/button'
-import { Input } from '../components/ui/input'
+import { useAuth } from "../hooks/useAuth";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from 'react';
+import { useState } from 'react'
+import { Mail, Lock, Eye, EyeOff, ArrowRight, CheckCircle, AlertCircle } from 'lucide-react'
 import '../styles/login.css'
-
 
 export default function Login() {
   const navigate = useNavigate();
-
+  const location = useLocation();
+  const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [expiredMessage, setExpiredMessage] = useState('')
 
   const [form, setForm] = useState({
     username: "",
     password: "",
-
   });
 
-  const handleLogin = async (e) => {
-  e.preventDefault();
-  setIsLoading(true);
+  // Check for expired session
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const expired = params.get('expired');
+    const reason = params.get('reason');
 
-  try {
-    const res = await loginAdmin(form);
-
-    const { token, user } = res.data;
-
-    // role = 1 là admin trong DB
-    // eslint-disable-next-line eqeqeq
-    if (user.role != 1) {
-      alert("Tài khoản này không có quyền truy cập trang quản trị!");
-      return;
+    if (expired) {
+      if (reason === 'inactive') {
+        setExpiredMessage('Phiên làm việc đã hết hạn do không hoạt động. Vui lòng đăng nhập lại.');
+      } else {
+        setExpiredMessage('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.');
+      }
+      // Clear the query params
+      navigate('/', { replace: true });
     }
+  }, [location, navigate]);
 
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(user));
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setExpiredMessage(''); // Clear any expired message
 
-    navigate("/dashboard");
+    try {
+      const res = await loginAdmin(form);
+      const { token, user } = res.data;
 
-  } catch (error) {
-    console.log(error);
-    alert("Sai tài khoản hoặc mật khẩu");
-  } finally {
-    setIsLoading(false);
-  }
-};
+      // role = 1 là admin trong DB
+      // eslint-disable-next-line eqeqeq
+      /* Tạm thời bỏ check role để test cho nhân viên mới
+      if (user.role != 1) {
+        alert("Tài khoản này không có quyền truy cập trang quản trị!");
+        return;
+      }
+      */
+
+      // Use AuthContext login
+      login(token, user);
+
+      navigate("/dashboard");
+
+    } catch (error) {
+      console.error("Login error:", error);
+      // Hiển thị thông báo lỗi chi tiết từ server gửi về
+      const message = error.response?.data?.message || "Sai tài khoản hoặc mật khẩu";
+      alert(message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
 
   return (
@@ -109,6 +129,14 @@ export default function Login() {
                 <h2 className="login-form-title">Đăng nhập</h2>
                 <p className="login-form-subtitle">Nhập thông tin tài khoản quản trị</p>
               </div>
+
+              {/* Session Expired Alert */}
+              {expiredMessage && (
+                <div className="session-expired-alert">
+                  <AlertCircle size={18} />
+                  <span>{expiredMessage}</span>
+                </div>
+              )}
 
               <form onSubmit={handleLogin} className="login-form">
                 {/* Email Field */}

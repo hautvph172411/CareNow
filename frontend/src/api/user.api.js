@@ -1,18 +1,26 @@
-import axios from "./axios"; // dùng instance chung có Bearer token
+import axios from './axios';
 
-// ── Lấy danh sách users ──────────────────────────────────────────────────────
-export const fetchUsers = () => axios.get("/users");
-export const getUsers   = () => axios.get("/users");
+export const getUsers = async (params = {}) => {
+  const res = await axios.get('/users', { params });
+  return res.data;
+};
 
-// ── Tạo user mới ─────────────────────────────────────────────────────────────
-export const createUser = (data) => axios.post("/users/register", data);
+export const getUserById = async (id) => {
+  const res = await axios.get(`/users/${id}`);
+  return res.data;
+};
 
-// ── Cập nhật user ─────────────────────────────────────────────────────────────
-export const updateUser = (id, data) => axios.put(`/users/${id}`, data);
+export const createUser = async (data) => {
+  const res = await axios.post('/users', data);
+  return res.data;
+};
 
-// ── Xoá user ──────────────────────────────────────────────────────────────────
-export const deleteUser = (id) => axios.delete(`/users/${id}`);
+export const updateUser = async (id, data) => {
+  const res = await axios.put(`/users/${id}`, data);
+  return res.data;
+};
 
-// ── Toggle trạng thái (status: 0 | 1) ────────────────────────────────────────
-export const toggleUserStatus = (id, newStatus) =>
-  axios.put(`/users/${id}`, { status: newStatus });
+export const deleteUser = async (id) => {
+  const res = await axios.delete(`/users/${id}`);
+  return res.data;
+};

@@ -1,73 +1,79 @@
 const repo = require('./user.repository');
 const { hashPassword, comparePassword } = require('../../ultis/hash');
 
-exports.register = async (data) => {
-  const exists = await repo.findByUsername(data.username);
-  if (exists) {
-    throw new Error('Username already exists');
-  }
-
-  // bcrypt tự sinh salt bên trong, không lưu salt riêng nữa
-  const hashedPassword = await hashPassword(data.password);
-
-  return repo.createUser({
-    username: data.username,
-    email: data.email,
-    phone: data.phone,
-    password: hashedPassword,
-    salt: null,              // không dùng nữa, giữ null
-    role: data.role ?? 0,   // 0 = user, 1 = admin
-    status: 1,
-    created_at: Math.floor(Date.now() / 1000)
-  });
+exports.getUsers = async (query) => {
+  return await repo.getAll(query);
 };
 
-exports.login = async (username, password) => {
-  const user = await repo.findByUsername(username);
-  if (!user) {
-    throw new Error('Invalid credentials');
-  }
-
-  const isMatch = await comparePassword(password, user.password);
-  if (!isMatch) {
-    throw new Error('Invalid credentials');
-  }
-
+exports.getUserById = async (id) => {
+  const user = await repo.findById(id);
+  if (!user) throw new Error('User không tồn tại');
+  delete user.password;
+  delete user.salt;
   return user;
 };
 
+exports.createUser = async (data) => {
+  const exists = await repo.findByUsername(data.username);
+  if (exists) throw new Error('Tên đăng nhập đã tồn tại');
+
+  const payload = { ...data };
+  if (payload.password) {
+    payload.password = await hashPassword(payload.password);
+  }
+  
+  if (!payload.created_at) {
+    payload.created_at = Math.floor(Date.now() / 1000);
+  }
+
+  // Remove confirm password if any
+  delete payload.confirmPassword;
+
+  return await repo.createUser(payload);
+};
+
+exports.updateUser = async (id, data) => {
+  const user = await repo.findById(id);
+  if (!user) throw new Error('User không tồn tại');
+
+  const payload = { ...data };
+  
+  // Only hash password if it's being updated
+  if (payload.password) {
+    payload.password = await hashPassword(payload.password);
+  } else {
+    delete payload.password;
+  }
+  
+  delete payload.confirmPassword;
+  payload.updated_at = Math.floor(Date.now() / 1000);
+
+  return await repo.updateUser(id, payload);
+};
 
 exports.deleteUser = async (id) => {
-  const result = await db.query(
-    "DELETE FROM tbl_user WHERE id = $1",
-    [id]
-  );
-
-  if (result.rowCount === 0) {
-    throw new Error("User không tồn tại");
-  }
+  const user = await repo.findById(id);
+  if (!user) throw new Error('User không tồn tại');
+  return await repo.remove(id);
 };
-exports.updateUser = async (id, updatedData) => {
-  const fields = [];
-  const values = [];
-  let index = 1;
 
-  for (const key in updatedData) {
-    fields.push(`${key} = $${index}`);
-    values.push(updatedData[key]);
-    index++;
-  }
-  values.push(id);
+exports.login = async (identifier, password) => {
+  const cleanIdentifier = identifier ? identifier.trim() : '';
+  const user = await repo.findByUsername(cleanIdentifier);
+  if (!user) throw new Error('Sai tài khoản hoặc mật khẩu');
 
-  const query = `UPDATE tbl_user SET ${fields.join(', ')} WHERE id = $${index} RETURNING *`;
+  const isMatch = await comparePassword(password, user.password);
+  if (!isMatch) throw new Error('Sai tài khoản hoặc mật khẩu');
 
-  const result = await db.query(query, values);
-
-  if (result.rowCount === 0) {
-    throw new Error('User không tồn tại');
+  if (user.status === 0) {
+    throw new Error('Tài khoản chưa được kích hoạt, vui lòng liên hệ quản trị viên');
   }
 
-  return result.rows[0];
-}
+  if (user.status === -1) {
+    throw new Error('Tài khoản đã bị xóa khỏi hệ thống');
+  }
 
-exports.getUsers = () => repo.getAllUsers();
+  delete user.password;
+  delete user.salt;
+  return user;
+};

@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { ChevronLeft, Phone, MapPin, Image as ImageIcon, Link as LinkIcon, Settings, Info, CreditCard } from 'lucide-react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { ChevronLeft, Phone, MapPin, Image as ImageIcon, Link as LinkIcon, Settings, Info } from 'lucide-react'
 import AdminLayout from '../layouts/AdminLayout'
-import { createClinicPlace } from '../api/clinic_place.api'
+import { updateClinicPlace, getClinicPlaceById } from '../api/clinic_place.api'
 import { getProvinces, getDistrictsByProvince } from '../api/location.api'
 import RichTextEditor from '../components/RichTextEditor'
 import SearchableSelect from '../components/SearchableSelect'
 import '../styles/ClinicPlaceForm.css'
 
-export default function AddClinicPlace() {
+export default function EditClinicPlace() {
   const navigate = useNavigate()
+  const { id } = useParams()
   const [errors, setErrors] = useState({})
   const [isLoading, setIsLoading] = useState(false)
   const [logoPreview, setLogoPreview] = useState(null)
@@ -50,16 +51,32 @@ export default function AddClinicPlace() {
   })
 
   useEffect(() => {
-    const loadProvinces = async () => {
+    const fetchData = async () => {
       try {
-        const data = await getProvinces();
-        setProvinces(data.map(p => ({ value: p.id, label: p.name })));
+        const provs = await getProvinces();
+        setProvinces(provs.map(p => ({ value: p.id, label: p.name })));
+
+        if (id) {
+          setIsLoading(true);
+          const res = await getClinicPlaceById(id);
+          if (res && res.data) {
+            setFormData({
+                ...res.data,
+                has_insurance: !!res.data.has_insurance,
+                show_children: !!res.data.show_children
+            });
+            if (res.data.logo) setLogoPreview(res.data.logo);
+            if (res.data.images) setImagesPreviews(res.data.images.split(',').filter(i => i));
+          }
+        }
       } catch (e) {
-        console.error('Failed to load provinces', e);
+        console.error(e);
+      } finally {
+        setIsLoading(false);
       }
     };
-    loadProvinces();
-  }, []);
+    fetchData();
+  }, [id]);
 
   useEffect(() => {
     if (formData.province_id) {
@@ -72,8 +89,6 @@ export default function AddClinicPlace() {
         }
       };
       loadDistricts();
-    } else {
-      setDistricts([]);
     }
   }, [formData.province_id]);
 
@@ -113,16 +128,12 @@ export default function AddClinicPlace() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const validateForm = () => {
-    const newErrors = {}
-    if (!formData.name.trim()) newErrors.name = 'Tên cơ sở y tế là bắt buộc'
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!validateForm()) return
+    if (!formData.name.trim()) {
+        setErrors({ name: 'Tên là bắt buộc' });
+        return;
+    }
 
     setIsLoading(true)
     try {
@@ -133,32 +144,30 @@ export default function AddClinicPlace() {
         status: parseInt(formData.status),
         order: parseInt(formData.order) || 99,
         rank: parseInt(formData.rank) || 0,
-        page_type: parseInt(formData.page_type),
-        self_supported: parseInt(formData.self_supported),
         has_insurance: formData.has_insurance ? 1 : 0,
         show_children: formData.show_children ? 1 : 0,
-        created_at: Math.floor(Date.now() / 1000)
+        updated_at: Math.floor(Date.now() / 1000)
       };
 
-      await createClinicPlace(payload);
-      alert('Thêm cơ sở y tế thành công!')
+      await updateClinicPlace(id, payload);
+      alert('Cập nhật thành công!')
       navigate('/clinic-place/admin')
     } catch (error) {
-      console.error('Error:', error)
-      alert(error.response?.data?.message || 'Có lỗi xảy ra!')
+      console.error(error)
+      alert('Có lỗi xảy ra!')
     } finally {
       setIsLoading(false)
     }
   }
 
   return (
-    <AdminLayout pageTitle="Thêm cơ sở y tế mới">
+    <AdminLayout pageTitle="Chỉnh sửa cơ sở y tế">
       <div className="form-page-container">
         <div className="form-page-header">
           <button type="button" className="btn-back" onClick={() => navigate('/clinic-place/admin')}>
             <ChevronLeft size={20} /> Quay lại
           </button>
-          <h1 className="form-page-title">Thêm cơ sở y tế mới</h1>
+          <h1 className="form-page-title">Chỉnh sửa cơ sở y tế</h1>
         </div>
 
         <div className="form-page-content">
@@ -170,7 +179,7 @@ export default function AddClinicPlace() {
               <div className="form-grid">
                 <div className="form-group full-width">
                   <label>Tên cơ sở y tế *</label>
-                  <input type="text" name="name" value={formData.name} onChange={handleChange} className={errors.name ? 'form-input error' : 'form-input'} placeholder="Nhập tên chính thức..." />
+                  <input type="text" name="name" value={formData.name} onChange={handleChange} className={errors.name ? 'form-input error' : 'form-input'} />
                   {errors.name && <span className="form-error">{errors.name}</span>}
                 </div>
                 <div className="form-group">
@@ -190,11 +199,11 @@ export default function AddClinicPlace() {
                 </div>
                 <div className="form-group">
                    <label>URL (Slug)</label>
-                   <input type="text" name="url" value={formData.url} onChange={handleChange} className="form-input" placeholder="benh-vien-cho-ray..." />
+                   <input type="text" name="url" value={formData.url} onChange={handleChange} className="form-input" />
                 </div>
                 <div className="form-group full-width">
                    <label>Mô tả ngắn (description)</label>
-                   <textarea name="description" value={formData.description} onChange={handleChange} className="form-input" rows={2} placeholder="Mô tả ngắn hiển thị ở danh sách..." />
+                   <textarea name="description" value={formData.description} onChange={handleChange} className="form-input" rows={2} />
                 </div>
               </div>
             </div>
@@ -269,18 +278,6 @@ export default function AddClinicPlace() {
               <h2 className="form-section-title"><Settings size={18} /> Cấu hình & SEO</h2>
               <div className="form-grid">
                 <div className="form-group">
-                  <label>ID Đối tác</label>
-                  <input type="number" name="partner_id" value={formData.partner_id || ''} onChange={handleChange} className="form-input" />
-                </div>
-                <div className="form-group">
-                  <label>ID Cơ sở cha</label>
-                  <input type="number" name="parent_id" value={formData.parent_id || ''} onChange={handleChange} className="form-input" />
-                </div>
-                <div className="form-group">
-                  <label>Tiêu đề SEO</label>
-                  <input type="text" name="title" value={formData.title} onChange={handleChange} className="form-input" />
-                </div>
-                <div className="form-group">
                   <label>Thứ tự (Order)</label>
                   <input type="number" name="order" value={formData.order} onChange={handleChange} className="form-input" />
                 </div>
@@ -289,53 +286,22 @@ export default function AddClinicPlace() {
                   <input type="number" name="rank" value={formData.rank} onChange={handleChange} className="form-input" />
                 </div>
                 <div className="form-group">
-                  <label>Ghi chú Admin</label>
-                  <textarea name="admin_note" value={formData.admin_note} onChange={handleChange} className="form-input" rows={2} />
-                </div>
-                <div className="form-group full-width">
-                  <label>Metadata (JSON string)</label>
-                  <textarea name="metadata" value={formData.metadata} onChange={handleChange} className="form-input" rows={2} placeholder='{"key": "value"}' />
-                </div>
-              </div>
-            </div>
-
-            {/* Section 6: Nút tùy chỉnh & Trạng thái */}
-            <div className="form-section">
-              <h2 className="form-section-title"><LinkIcon size={18} /> Tùy chọn & Trạng thái</h2>
-              <div className="form-grid">
-                <div className="form-group">
-                  <label>Text nút tùy chỉnh</label>
-                  <input type="text" name="custom_button_text" value={formData.custom_button_text} onChange={handleChange} className="form-input" />
-                </div>
-                <div className="form-group">
-                  <label>Link nút tùy chỉnh</label>
-                  <input type="text" name="custom_button_link" value={formData.custom_button_link} onChange={handleChange} className="form-input" />
-                </div>
-                <div className="form-group">
-                  <label className="checkbox-label">
-                     <input type="checkbox" name="has_insurance" checked={formData.has_insurance} onChange={handleChange} />
-                     <span> Có bảo hiểm y tế</span>
-                  </label>
-                </div>
-                <div className="form-group">
-                  <label className="checkbox-label">
-                     <input type="checkbox" name="show_children" checked={formData.show_children} onChange={handleChange} />
-                     <span> Hiển thị cơ sở con</span>
-                  </label>
-                </div>
-                <div className="form-group">
                   <label>Trạng thái</label>
                   <select name="status" value={formData.status} onChange={handleChange} className="form-input">
                     <option value={1}>Hoạt động</option>
                     <option value={0}>Tạm dừng</option>
                   </select>
                 </div>
+                <div className="form-group full-width">
+                  <label>Metadata (JSON string)</label>
+                  <textarea name="metadata" value={formData.metadata} onChange={handleChange} className="form-input" rows={2} />
+                </div>
               </div>
             </div>
 
             <div className="form-actions">
               <button type="button" className="btn btn-secondary" onClick={() => navigate('/clinic-place/admin')}>Hủy bỏ</button>
-              <button type="submit" className="btn btn-primary" disabled={isLoading}>{isLoading ? 'Đang lưu...' : 'Thêm cơ sở'}</button>
+              <button type="submit" className="btn btn-primary" disabled={isLoading}>{isLoading ? 'Đang lưu...' : 'Lưu cập nhật'}</button>
             </div>
           </form>
         </div>

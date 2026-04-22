@@ -9,6 +9,15 @@ exports.getProvinces = async (req, res) => {
   }
 };
 
+exports.getDistrictsByProvince = async (req, res) => {
+  try {
+    const data = await repo.getDistrictsByProvince(req.params.provinceId);
+    res.json({ success: true, data });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
 exports.getWardsByProvince = async (req, res) => {
   try {
     const data = await repo.getWardsByProvince(req.params.provinceId);

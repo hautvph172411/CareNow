@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Plus, Edit2, Trash2, Eye } from 'lucide-react';
 import AdminLayout from '../layouts/AdminLayout';
-import { getClinicPlaces, deleteClinicPlace } from '../api/clinic_place.api';
+import { getClinics, deleteClinic } from '../api/clinic.api';
 import Pagination from '../components/Pagination';
 
 export default function ClinicList() {
@@ -17,12 +17,17 @@ export default function ClinicList() {
   const fetchDoctors = async (page = 1, keyword = '') => {
     setIsLoading(true);
     try {
-      const res = await getClinicPlaces({ page, limit: ITEMS_PER_PAGE, keyword });
+      const res = await getClinics({ page, limit: ITEMS_PER_PAGE, keyword });
+      // API trả về { success: true, data: [...], pagination: { totalPages, ... } }
       if (res && res.data) {
         setDoctors(res.data);
         if (res.pagination) {
           setTotalPages(res.pagination.totalPages || 1);
         }
+      } else if (Array.isArray(res)) {
+        // Fallback cho API cũ trả về array trực tiếp
+        setDoctors(res);
+        setTotalPages(1);
       }
     } catch (error) {
       console.error('Failed to fetch doctors:', error);
@@ -52,7 +57,7 @@ export default function ClinicList() {
   const handleDelete = async (id) => {
     if (window.confirm('Bạn chắc chắn muốn xóa bác sĩ này? Hành động này không thể hoàn tác!')) {
       try {
-        await deleteClinicPlace(id);
+        await deleteClinic(id);
         setDoctors(doctors.filter(d => d.id !== id));
         alert('Đã xóa bác sĩ thành công!');
       } catch (error) {
@@ -167,11 +172,11 @@ export default function ClinicList() {
             )}
 
             {totalPages > 1 && (
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={setCurrentPage}
-              />
+               <Pagination
+                 currentPage={currentPage}
+                 totalPages={totalPages}
+                 onPageChange={setCurrentPage}
+               />
             )}
           </>
         )}

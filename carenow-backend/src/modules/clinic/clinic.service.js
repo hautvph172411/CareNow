@@ -1,7 +1,24 @@
 const clinicRepo = require('./clinic.repository');
 
-exports.getClinics = async () => {
-  return await clinicRepo.getAll();
+exports.getClinics = async (query = {}) => {
+  const page = parseInt(query.page, 10) || 1;
+  const limit = parseInt(query.limit, 10) || 20;
+  const offset = (page - 1) * limit;
+
+  const [data, total] = await Promise.all([
+    clinicRepo.getAll({ ...query, limit, offset }),
+    clinicRepo.count(query)
+  ]);
+
+  return {
+    data,
+    pagination: {
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit)
+    }
+  };
 };
 
 exports.createClinic = async (data) => {

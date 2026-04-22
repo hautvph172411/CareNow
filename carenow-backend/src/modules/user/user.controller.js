@@ -1,65 +1,85 @@
 const service = require('./user.service');
 const jwt = require('jsonwebtoken');
 
-
-exports.register = async (req, res) => {
-  try {
-    const user = await service.register(req.body);
-    res.json(user);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-};
-exports.deleteUser = async (req, res) => {
-  try {
-    const userId = req.params.id;
-    await service.deleteUser(userId);
-    res.json({ message: 'Xoá user thành công' });
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-}
-exports.updateUser = async (req, res) => {
-  try {
-    const userId = req.params.id;
-    const updatedData = req.body;
-    const updatedUser = await service.updateUser(userId, updatedData);
-    res.json(updatedUser);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-};
-
 exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await service.login(username, password);
 
     const token = jwt.sign(
-      {
-        id: user.id,
-        username: user.username,
-        role: user.role
-      },
+      { id: user.id, username: user.username, role: user.role },
       process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES }
+      { expiresIn: process.env.JWT_EXPIRES || '8h' }
     );
 
     res.json({
-      token,
-      user: {
-        id: user.id,
-        username: user.username,
-        role: user.role
+      success: true,
+      data: {
+        token,
+        user: {
+          id: user.id,
+          username: user.username,
+          display_name: user.display_name,
+          role: user.role,
+          avatar: user.avatar
+        }
       }
     });
-
   } catch (err) {
-    res.status(401).json({ message: err.message });
+    res.status(401).json({ success: false, message: err.message });
+  }
+};
+
+exports.register = async (req, res) => {
+  try {
+    const data = await service.createUser(req.body);
+    res.status(201).json({ success: true, data, message: 'Đăng ký thành công' });
+  } catch (err) {
+    res.status(400).json({ success: false, message: err.message });
   }
 };
 
 exports.getUsers = async (req, res) => {
-  const users = await service.getUsers();
-  res.json(users);
+  try {
+    const data = await service.getUsers(req.query);
+    res.json({ success: true, data });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+exports.getUserById = async (req, res) => {
+  try {
+    const data = await service.getUserById(req.params.id);
+    res.json({ success: true, data });
+  } catch (err) {
+    res.status(404).json({ success: false, message: err.message });
+  }
+};
+
+exports.createUser = async (req, res) => {
+  try {
+    const data = await service.createUser(req.body);
+    res.status(201).json({ success: true, data, message: 'Thêm người dùng thành công' });
+  } catch (err) {
+    res.status(400).json({ success: false, message: err.message });
+  }
+};
+
+exports.updateUser = async (req, res) => {
+  try {
+    const data = await service.updateUser(req.params.id, req.body);
+    res.json({ success: true, data, message: 'Cập nhật thành công' });
+  } catch (err) {
+    res.status(400).json({ success: false, message: err.message });
+  }
+};
+
+exports.deleteUser = async (req, res) => {
+  try {
+    await service.deleteUser(req.params.id);
+    res.json({ success: true, message: 'Xóa người dùng thành công' });
+  } catch (err) {
+    res.status(400).json({ success: false, message: err.message });
+  }
 };

@@ -1,8 +1,8 @@
 import axios from './axios';
 
-export const getClinics = async () => {
-  const res = await axios.get('/clinic');
-  return res.data?.data || [];
+export const getClinics = async (params = {}) => {
+  const res = await axios.get('/clinic', { params });
+  return res.data;
 };
 
 export const getClinicById = async (id) => {
