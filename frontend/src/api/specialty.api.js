@@ -1,32 +1,26 @@
-import axios from 'axios';
-
-const API_URL = 'http://localhost:3000/api/specialties';
+import axios from './axios';
 
 export const getSpecialties = async (params = {}) => {
-  return await axios.get(API_URL, { params });
+  const res = await axios.get('/specialties', { params });
+  return res.data;
 };
 
 export const getSpecialtyById = async (id) => {
-  return await axios.get(`${API_URL}/${id}`);
+  const res = await axios.get(`/specialties/${id}`);
+  return res.data;
 };
 
 export const createSpecialty = async (data) => {
-  const token = localStorage.getItem('token');
-  return await axios.post(API_URL, data, {
-    headers: { Authorization: `Bearer ${token}` }
-  });
+  const res = await axios.post('/specialties', data);
+  return res.data;
 };
 
 export const updateSpecialty = async (id, data) => {
-  const token = localStorage.getItem('token');
-  return await axios.put(`${API_URL}/${id}`, data, {
-    headers: { Authorization: `Bearer ${token}` }
-  });
+  const res = await axios.put(`/specialties/${id}`, data);
+  return res.data;
 };
 
 export const deleteSpecialty = async (id) => {
-  const token = localStorage.getItem('token');
-  return await axios.delete(`${API_URL}/${id}`, {
-    headers: { Authorization: `Bearer ${token}` }
-  });
+  const res = await axios.delete(`/specialties/${id}`);
+  return res.data;
 };

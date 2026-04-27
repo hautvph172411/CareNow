@@ -7,6 +7,7 @@ import { getProvinces, getWardsByProvince } from '../api/location.api'
 import { getSpecialties } from '../api/specialty.api'
 import SearchableSelect from '../components/SearchableSelect'
 import RichTextEditor from '../components/RichTextEditor'
+import ImageUpload from '../components/ImageUpload'
 
 export default function EditDoctor() {
   const navigate = useNavigate()
@@ -56,7 +57,6 @@ export default function EditDoctor() {
 
   const [errors, setErrors] = useState({})
   const [isLoading, setIsLoading] = useState(false)
-  const [imagePreview, setImagePreview] = useState(null)
 
   const [provinces, setProvinces] = useState([])
   const [wards, setWards] = useState([])
@@ -74,8 +74,8 @@ export default function EditDoctor() {
     const loadSpecialties = async () => {
       try {
         const sp = await getSpecialties({ status: 1, limit: 100 });
-        if (sp && sp.data && sp.data.data) {
-          setSpecialtyOptions(sp.data.data.map(s => ({ value: s.id, label: s.name })));
+        if (sp && Array.isArray(sp.data)) {
+          setSpecialtyOptions(sp.data.map(s => ({ value: s.id, label: s.name })));
         }
       } catch (e) {
         console.error('Failed to load specialties', e);
@@ -142,16 +142,6 @@ export default function EditDoctor() {
       .replace(/-+/g, '-'); // Remove consecutive hyphens
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImagePreview(URL.createObjectURL(file));
-      setFormData(prev => ({
-        ...prev,
-        picture: `/assets/images/${file.name}`
-      }));
-    }
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -297,20 +287,11 @@ export default function EditDoctor() {
             <div className="form-section">
               <h2 className="form-section-title">Ảnh bác sĩ</h2>
               <div className="form-group full-width">
-                <label>Ảnh đại diện (picture) - Tạm thời lưu dạng folder nội bộ</label>
-                <input type="file" accept="image/*" onChange={handleImageChange} className="form-input" style={{ padding: '0.5rem' }} />
-                {imagePreview && (
-                  <div style={{ marginTop: '10px' }}>
-                    <img src={imagePreview} alt="Preview" style={{ width: '120px', height: '120px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
-                  </div>
-                )}
-                {/* Nếu đã có picture string nhưng chưa có preview object */}
-                {formData.picture && !imagePreview && (
-                  <div style={{ marginTop: '10px' }}>
-                    <img src={formData.picture} alt="Current" style={{ width: '120px', height: '120px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
-                    <p style={{ marginTop: '8px', fontSize: '13px', color: '#64748b' }}>Đường dẫn: {formData.picture}</p>
-                  </div>
-                )}
+                <ImageUpload
+                  label="Ảnh đại diện"
+                  value={formData.picture}
+                  onChange={(url) => setFormData(prev => ({ ...prev, picture: url }))}
+                />
               </div>
             </div>
 

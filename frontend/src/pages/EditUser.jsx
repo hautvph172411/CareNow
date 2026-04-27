@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ChevronLeft, User as UserIcon, Camera } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 import AdminLayout from '../layouts/AdminLayout';
 import { getUserById, updateUser } from '../api/user.api';
 import { getPartners } from '../api/partner.api';
 import { getAuthItems, getUserAssignments, assignToUser } from '../api/auth_item.api';
 import SearchableSelect from '../components/SearchableSelect';
+import ImageUpload from '../components/ImageUpload';
 import '../styles/UserForm.css';
 
 export default function EditUser() {
@@ -15,7 +16,6 @@ export default function EditUser() {
   const [userType, setUserType] = useState('admin');
   const [partners, setPartners] = useState([]);
   const [roleOptions, setRoleOptions] = useState([]);
-  const [avatarPreview, setAvatarPreview] = useState(null);
 
   const [formData, setFormData] = useState({
     username: '',
@@ -51,7 +51,6 @@ export default function EditUser() {
             role_name: assignRes.success && assignRes.data.length > 0 ? assignRes.data[0] : ''
           });
           setUserType(user.partner_id ? 'partner' : 'admin');
-          if (user.avatar) setAvatarPreview(user.avatar);
         }
 
         if (partnersRes.success) {
@@ -71,14 +70,6 @@ export default function EditUser() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleAvatarChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setAvatarPreview(URL.createObjectURL(file));
-      setFormData(prev => ({ ...prev, avatar: `/assets/images/${file.name}` }));
-    }
   };
 
   const handleSubmit = async (e) => {
@@ -173,12 +164,11 @@ export default function EditUser() {
                 </div>
                 <div className="form-group">
                     <label>Ảnh đại diện</label>
-                    <div className="avatar-upload-box">
-                        <input type="file" id="av-edit" hidden onChange={handleAvatarChange} />
-                        <label htmlFor="av-edit" className="avatar-preview">
-                            {avatarPreview ? <img src={avatarPreview} alt="Avatar" /> : <UserIcon size={24} />}
-                        </label>
-                    </div>
+                    <ImageUpload
+                      variant="avatar"
+                      value={formData.avatar}
+                      onChange={(url) => setFormData(prev => ({ ...prev, avatar: url }))}
+                    />
                 </div>
               </div>
             </div>

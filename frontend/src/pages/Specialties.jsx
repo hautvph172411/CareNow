@@ -21,9 +21,9 @@ export default function Specialties() {
         try {
             const res = await getSpecialties({ page, limit, keyword: searchTerm });
             if (res && res.data) {
-                setSpecialties(res.data.data);
-                if (res.data.pagination) {
-                    setTotalPages(res.data.pagination.totalPages);
+                setSpecialties(res.data);
+                if (res.pagination) {
+                    setTotalPages(res.pagination.totalPages);
                 }
             }
         } catch (error) {
@@ -87,7 +87,7 @@ export default function Specialties() {
                         onChange={(e) => handleSearch(e.target.value)}
                     />
                 </div>
-                <button className="btn-primary" onClick={() => navigate('/specialisies/admin/add')}>
+                <button className="btn-primary" onClick={() => navigate('/specialties/admin/add')}>
                     <Plus size={20} />
                     Thêm chuyên khoa
                 </button>
@@ -130,14 +130,14 @@ export default function Specialties() {
                                                 <div className="action-buttons">
                                                     <button
                                                         className="btn-icon"
-                                                        onClick={() => navigate(`/specialisies/admin/edit/${specialty.id}`)}
+                                                        onClick={() => navigate(`/specialties/admin/edit/${specialty.id}`)}
                                                         title="Xem chi tiết"
                                                     >
                                                         <Eye size={16} />
                                                     </button>
                                                     <button
                                                         className="btn-action edit"
-                                                        onClick={() => navigate(`/specialisies/admin/edit/${specialty.id}`)}
+                                                        onClick={() => navigate(`/specialties/admin/edit/${specialty.id}`)}
                                                         title="Chỉnh sửa"
                                                     >
                                                         <Edit2 size={16} />

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import AdminLayout from '../layouts/AdminLayout'
 import RichTextEditor from '../components/RichTextEditor'
+import ImageUpload from '../components/ImageUpload'
 import { updateSpecialty, getSpecialtyById } from '../api/specialty.api'
 
 export default function EditSpecialty() {
@@ -23,7 +24,6 @@ export default function EditSpecialty() {
     })
     const [errors, setErrors] = useState({})
     const [submitted, setSubmitted] = useState(false)
-    const [imagePreview, setImagePreview] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
@@ -80,17 +80,6 @@ export default function EditSpecialty() {
         }
     }
 
-    const handleImageChange = (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        setImagePreview(URL.createObjectURL(file));
-        setFormData(prev => ({
-          ...prev,
-          picture: `assets/images/${file.name}`
-        }));
-      }
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         const newErrors = validateForm()
@@ -108,7 +97,7 @@ export default function EditSpecialty() {
 
             await updateSpecialty(id, payload);
             alert('Cập nhật chuyên khoa thành công!');
-            navigate('/specialisies/admin');
+            navigate('/specialties/admin');
         } catch (error) {
             console.error('Error:', error);
             alert('Có lỗi xảy ra khi lưu chuyên khoa');
@@ -123,7 +112,7 @@ export default function EditSpecialty() {
         <AdminLayout pageTitle="Quản lý Chuyên Khoa">
             <div className="form-page-container">
                 <div className="form-page-header">
-                    <button className="btn-back" onClick={() => navigate('/specialisies/admin')}>
+                    <button className="btn-back" onClick={() => navigate('/specialties/admin')}>
                         <ArrowLeft size={20} />
                         Quay lại
                     </button>
@@ -219,16 +208,11 @@ export default function EditSpecialty() {
                         <div className="form-section">
                             <h3 className="form-section-title">Hình ảnh</h3>
                             <div className="form-group full-width">
-                                <label>Ảnh (picture) - Tạm thời lưu dạng nội bộ</label>
-                                <input type="file" accept="image/*" onChange={handleImageChange} className="form-input" style={{ padding: '0.5rem' }} />
-                                {imagePreview && (
-                                    <div style={{ marginTop: '10px' }}>
-                                        <img src={imagePreview} alt="Preview" style={{ width: '120px', height: '120px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
-                                    </div>
-                                )}
-                                {formData.picture && !imagePreview && (
-                                    <p style={{ marginTop: '8px', fontSize: '13px', color: '#64748b' }}>Đường dẫn: {formData.picture}</p>
-                                )}
+                                <ImageUpload
+                                    label="Ảnh chuyên khoa"
+                                    value={formData.picture}
+                                    onChange={(url) => setFormData(prev => ({ ...prev, picture: url }))}
+                                />
                             </div>
                         </div>
 
@@ -293,7 +277,7 @@ export default function EditSpecialty() {
                             <button
                                 type="button"
                                 className="btn btn-secondary"
-                                onClick={() => navigate('/specialisies/admin')}
+                                onClick={() => navigate('/specialties/admin')}
                             >
                                 Hủy bỏ
                             </button>

@@ -1,5 +1,5 @@
 const repo = require('./user.repository');
-const { hashPassword, comparePassword } = require('../../ultis/hash');
+const { hashPassword, comparePassword } = require('../../utils/hash');
 
 exports.getUsers = async (query) => {
   return await repo.getAll(query);

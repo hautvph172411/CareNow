@@ -18,10 +18,19 @@ exports.createItem = async (req, res) => {
     }
 };
 
+exports.updateItem = async (req, res) => {
+    try {
+        const data = await service.updateItem(req.params.name, req.body);
+        res.json({ success: true, data, message: 'Cập nhật thành công' });
+    } catch (err) {
+        res.status(400).json({ success: false, message: err.message });
+    }
+};
+
 exports.deleteItem = async (req, res) => {
     try {
         await service.deleteItem(req.params.name);
-        res.json({ success: true });
+        res.json({ success: true, message: 'Xóa thành công' });
     } catch (err) {
         res.status(400).json({ success: false, message: err.message });
     }
@@ -29,17 +38,38 @@ exports.deleteItem = async (req, res) => {
 
 exports.assignToUser = async (req, res) => {
     try {
-        const { userId, items } = req.body; // items is array of names
-        await service.syncUserAssignments(userId, items);
+        const { userId, items } = req.body;
+        await service.syncUserAssignments(userId, items || []);
         res.json({ success: true, message: 'Phân quyền thành công' });
     } catch (err) {
         res.status(400).json({ success: false, message: err.message });
     }
 };
 
-exports.getUserPermissions = async (req, res) => {
+exports.getUserAssignments = async (req, res) => {
     try {
         const data = await service.getUserItems(req.params.userId);
+        res.json({ success: true, data });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    }
+};
+
+exports.getUserPermissions = async (req, res) => {
+    try {
+        const data = await service.getUserPermissions(req.params.userId);
+        res.json({ success: true, data });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    }
+};
+
+exports.getMyPermissions = async (req, res) => {
+    try {
+        if (!req.user || !req.user.id) {
+            return res.status(401).json({ success: false, message: 'Chưa đăng nhập' });
+        }
+        const data = await service.getUserPermissions(req.user.id);
         res.json({ success: true, data });
     } catch (err) {
         res.status(500).json({ success: false, message: err.message });
@@ -57,19 +87,27 @@ exports.getItemChildren = async (req, res) => {
 
 exports.setItemChildren = async (req, res) => {
     try {
-        const { children } = req.body; // Array of names
+        const { children } = req.body;
         const parentName = req.params.name;
-        
-        // Remove all current children then add new ones
-        const current = await service.getItemChildren(parentName);
-        for (const child of current) {
-            await service.removeChild(parentName, child.name);
-        }
-        for (const childName of children) {
-            await service.addChild(parentName, childName);
-        }
-        
+        await service.syncChildren(parentName, children || []);
         res.json({ success: true, message: 'Cập nhật phân quyền thành công' });
+    } catch (err) {
+        res.status(400).json({ success: false, message: err.message });
+    }
+};
+
+/**
+ * Upsert toàn bộ feature catalog từ frontend vào DB dưới dạng permission (type=2).
+ * Body: { features: [{ name, description }] }
+ */
+exports.syncFeatures = async (req, res) => {
+    try {
+        const { features } = req.body;
+        if (!Array.isArray(features)) {
+            return res.status(400).json({ success: false, message: 'features phải là mảng' });
+        }
+        const data = await service.syncFeatures(features);
+        res.json({ success: true, data, message: `Đồng bộ ${data.length} quyền` });
     } catch (err) {
         res.status(400).json({ success: false, message: err.message });
     }

@@ -6,6 +6,8 @@ import './styles/globals.css'
 import './styles/login.css'
 import './styles/management.css'
 import './styles/dashboard.css'
+import './styles/modal.css'
+import './styles/image-upload.css'
 
 function App() {
   return (

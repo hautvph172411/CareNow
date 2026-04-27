@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, Shield, Camera } from 'lucide-react';
+import { ChevronLeft, Shield } from 'lucide-react';
 import AdminLayout from '../layouts/AdminLayout';
 import { createUser } from '../api/user.api';
 import { getAuthItems, assignToUser } from '../api/auth_item.api';
 import SearchableSelect from '../components/SearchableSelect';
+import ImageUpload from '../components/ImageUpload';
 import '../styles/UserForm.css';
 
 export default function AddAdminUser() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [avatarPreview, setAvatarPreview] = useState(null);
   const [roleOptions, setRoleOptions] = useState([]);
 
   const [formData, setFormData] = useState({
@@ -51,14 +51,6 @@ export default function AddAdminUser() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleAvatarChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setAvatarPreview(URL.createObjectURL(file));
-      setFormData(prev => ({ ...prev, avatar: `/assets/images/${file.name}` }));
-    }
   };
 
   const handleSubmit = async (e) => {
@@ -148,12 +140,11 @@ export default function AddAdminUser() {
                 </div>
                 <div className="form-group">
                   <label>Ảnh đại diện</label>
-                  <div className="avatar-upload-box">
-                    <input type="file" id="av" hidden onChange={handleAvatarChange} />
-                    <label htmlFor="av" className="avatar-preview">
-                      {avatarPreview ? <img src={avatarPreview} alt="Avatar" /> : <Camera size={24} />}
-                    </label>
-                  </div>
+                  <ImageUpload
+                    variant="avatar"
+                    value={formData.avatar}
+                    onChange={(url) => setFormData(prev => ({ ...prev, avatar: url }))}
+                  />
                 </div>
               </div>
             </div>

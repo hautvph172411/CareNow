@@ -43,7 +43,12 @@ export default function Login() {
 
     try {
       const res = await loginAdmin(form);
-      const { token, user } = res.data;
+      // Backend trả { success, data: { token, user } } -> phải bóc lớp data
+      const payload = res.data?.data || res.data;
+      const { token, user } = payload;
+      if (!token || !user) {
+        throw new Error('Phản hồi đăng nhập không hợp lệ');
+      }
 
       // role = 1 là admin trong DB
       // eslint-disable-next-line eqeqeq
@@ -57,7 +62,9 @@ export default function Login() {
       // Use AuthContext login
       login(token, user);
 
-      navigate("/dashboard");
+      // Mọi user đều vào /welcome trước - từ đó sẽ thấy các chức năng được cấp quyền.
+      // User có quyền view_dashboard có thể bấm thẻ "Bảng điều khiển" hoặc dùng sidebar.
+      navigate("/welcome");
 
     } catch (error) {
       console.error("Login error:", error);

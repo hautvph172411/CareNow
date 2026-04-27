@@ -8,5 +8,6 @@ router.use('/users', require('../modules/user/user.router'));
 router.use('/specialties', require('../modules/specialty/specialty.router'));
 router.use('/partner', require('../modules/partner/partner.routes'));
 router.use('/auth', require('../modules/auth/auth_item.router'));
+router.use('/upload', require('../modules/upload/upload.router'));
 
 module.exports = router;

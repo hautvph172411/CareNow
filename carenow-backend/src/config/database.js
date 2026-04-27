@@ -9,10 +9,11 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
 });
 
-// 🔥 TEST KẾT NỐI NGAY
+// Smoke-test connection on startup (cheap query)
 (async () => {
   try {
-    const res = await pool.query('select * from tbl_clinic ');
+    await pool.query('SELECT 1');
+    console.log('✅ PostgreSQL connected');
   } catch (err) {
     console.error('❌ PostgreSQL connection error:', err.message);
   }
