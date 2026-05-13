@@ -10,8 +10,13 @@ exports.getAll = async (query = {}) => {
     values.push(`%${query.keyword}%`);
     idx++;
   }
+  if (query.status !== undefined && query.status !== '' && query.status !== null) {
+    q += ` AND status = $${idx}`;
+    values.push(query.status);
+    idx++;
+  }
 
-  q += ' ORDER BY rank ASC, id DESC';
+  q += ' ORDER BY rank DESC NULLS LAST, created_time ASC NULLS LAST, id ASC';
 
   if (query.limit) {
     q += ` LIMIT $${idx}`;
@@ -36,6 +41,11 @@ exports.count = async (query = {}) => {
   if (query.keyword) {
     q += ` AND (name ILIKE $${idx} OR short_name ILIKE $${idx} OR address ILIKE $${idx})`;
     values.push(`%${query.keyword}%`);
+    idx++;
+  }
+  if (query.status !== undefined && query.status !== '' && query.status !== null) {
+    q += ` AND status = $${idx}`;
+    values.push(query.status);
     idx++;
   }
 

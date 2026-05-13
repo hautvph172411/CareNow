@@ -24,3 +24,8 @@ export const deleteClinicPlace = async (id) => {
   const res = await axios.delete(`/clinic_place/${id}`);
   return res.data;
 };
+
+export const getClinicPlaceParentOptions = async (params = {}) => {
+  const res = await axios.get('/clinic_place/parent-options', { params });
+  return res.data;
+};

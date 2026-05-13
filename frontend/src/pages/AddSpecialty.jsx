@@ -1,13 +1,15 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import AdminLayout from '../layouts/AdminLayout'
 import RichTextEditor from '../components/RichTextEditor'
 import ImageUpload from '../components/ImageUpload'
 import { createSpecialty } from '../api/specialty.api'
+import { getServices } from '../api/service.api'
 
 export default function AddSpecialty() {
     const navigate = useNavigate()
+    const [services, setServices] = useState([])
     const [formData, setFormData] = useState({
         name: '',
         url: '',
@@ -17,12 +19,23 @@ export default function AddSpecialty() {
         content: '',
         picture: '',
         parent_id: 0,
+        service_id: '',
         status: 1,
-        type: 1,
         rank: 0,
     })
     const [errors, setErrors] = useState({})
     const [submitted, setSubmitted] = useState(false)
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const res = await getServices({ status: 1, limit: 200 });
+                if (res?.data) setServices(res.data);
+            } catch (e) {
+                console.error('Lỗi tải danh sách dịch vụ', e);
+            }
+        })();
+    }, []);
 
     const generateSlug = (text) => {
         if (!text) return '';
@@ -70,8 +83,8 @@ export default function AddSpecialty() {
             const payload = { ...formData };
             payload.parent_id = parseInt(payload.parent_id, 10) || 0;
             payload.status = parseInt(payload.status, 10);
-            payload.type = parseInt(payload.type, 10);
             payload.rank = parseInt(payload.rank, 10) || 0;
+            payload.service_id = payload.service_id === '' ? null : parseInt(payload.service_id, 10);
 
             await createSpecialty(payload);
             alert('Thêm chuyên khoa thành công!');
@@ -165,15 +178,17 @@ export default function AddSpecialty() {
                                 </div>
 
                                 <div className="form-group">
-                                    <label>Loại (type)</label>
+                                    <label>Dịch vụ (service)</label>
                                     <select
-                                        name="type"
-                                        value={formData.type}
+                                        name="service_id"
+                                        value={formData.service_id}
                                         onChange={handleChange}
                                         className="form-input"
                                     >
-                                        <option value={1}>Thường</option>
-                                        <option value={2}>Đặc biệt</option>
+                                        <option value="">-- Chưa thuộc dịch vụ nào --</option>
+                                        {services.map(s => (
+                                            <option key={s.id} value={s.id}>{s.name}</option>
+                                        ))}
                                     </select>
                                 </div>
 

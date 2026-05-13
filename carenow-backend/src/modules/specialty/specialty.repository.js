@@ -15,23 +15,33 @@ const create = async (payload) => {
 };
 
 const findAll = async (query = {}) => {
-  let q = 'SELECT * FROM tbl_clinic_specialist WHERE 1=1';
+  let q = `
+    SELECT cs.*, s.name AS service_name
+    FROM tbl_clinic_specialist cs
+    LEFT JOIN tbl_service s ON s.id = cs.service_id
+    WHERE 1=1
+  `;
   const values = [];
   let count = 1;
 
   if (query.status !== undefined) {
-    q += ` AND status = $${count}`;
+    q += ` AND cs.status = $${count}`;
     values.push(query.status);
     count++;
   }
+  if (query.service_id !== undefined && query.service_id !== '') {
+    q += ` AND cs.service_id = $${count}`;
+    values.push(query.service_id);
+    count++;
+  }
   if (query.keyword) {
-    q += ` AND (name ILIKE $${count} OR description ILIKE $${count})`;
+    q += ` AND (cs.name ILIKE $${count} OR cs.description ILIKE $${count})`;
     values.push(`%${query.keyword}%`);
     count++;
   }
 
-  q += ' ORDER BY rank ASC, id DESC';
-  
+  q += ' ORDER BY cs.rank DESC NULLS LAST, cs.id ASC';
+
   if (query.limit) {
     q += ` LIMIT $${count}`;
     values.push(query.limit);
@@ -48,7 +58,12 @@ const findAll = async (query = {}) => {
 };
 
 const findById = async (id) => {
-  const query = 'SELECT * FROM tbl_clinic_specialist WHERE id = $1';
+  const query = `
+    SELECT cs.*, s.name AS service_name
+    FROM tbl_clinic_specialist cs
+    LEFT JOIN tbl_service s ON s.id = cs.service_id
+    WHERE cs.id = $1
+  `;
   const result = await pool.query(query, [id]);
   return result.rows[0];
 };
@@ -87,6 +102,11 @@ const count = async (query = {}) => {
   if (query.status !== undefined) {
     q += ` AND status = $${countParam}`;
     values.push(query.status);
+    countParam++;
+  }
+  if (query.service_id !== undefined && query.service_id !== '') {
+    q += ` AND service_id = $${countParam}`;
+    values.push(query.service_id);
     countParam++;
   }
   if (query.keyword) {

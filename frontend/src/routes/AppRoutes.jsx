@@ -10,6 +10,23 @@ import EditClinicPlace from "../pages/EditClinicPlace";
 import Specialties from "../pages/Specialties";
 import AddSpecialty from "../pages/AddSpecialty";
 import EditSpecialty from "../pages/EditSpecialty";
+import Services from "../pages/Services";
+import AddService from "../pages/AddService";
+import EditService from "../pages/EditService";
+import AppointmentSchedule from "../pages/AppointmentSchedule";
+import AddAppointmentScheduleBlock from "../pages/AddAppointmentScheduleBlock";
+import EditAppointmentScheduleBlock from "../pages/EditAppointmentScheduleBlock";
+import Appointments from "../pages/Appointments";
+import BlogCategories from "../pages/BlogCategories";
+import BlogCategoryEditor from "../pages/BlogCategoryEditor";
+import BlogPublic from "../pages/BlogPublic";
+import BlogPublicEditor from "../pages/BlogPublicEditor";
+import ClinicReasons from "../pages/ClinicReasons";
+import ClinicReasonEditor from "../pages/ClinicReasonEditor";
+import PricePackages from "../pages/PricePackages";
+import PricePackageEditor from "../pages/PricePackageEditor";
+import InsurancePackages from "../pages/InsurancePackages";
+import InsurancePackageEditor from "../pages/InsurancePackageEditor";
 import PartnerList from "../pages/PartnerList";
 import AddPartner from "../pages/AddPartner";
 import EditPartner from "../pages/EditPartner";
@@ -117,6 +134,78 @@ export default function AppRoutes() {
       } />
       <Route path="/specialties/admin/edit/:id" element={
         <PermissionRoute permission="manage_specialty"><EditSpecialty /></PermissionRoute>
+      } />
+
+      {/* Dịch vụ */}
+      <Route path="/services/admin" element={
+        <PermissionRoute permission="manage_service"><Services /></PermissionRoute>
+      } />
+      <Route path="/services/admin/add" element={
+        <PermissionRoute permission="manage_service"><AddService /></PermissionRoute>
+      } />
+      <Route path="/services/admin/edit/:id" element={
+        <PermissionRoute permission="manage_service"><EditService /></PermissionRoute>
+      } />
+
+      <Route path="/appointment-schedule" element={
+        <PermissionRoute permission="manage_appointment_schedule"><AppointmentSchedule /></PermissionRoute>
+      } />
+      <Route path="/appointment-schedule/blocks/add" element={
+        <PermissionRoute permission="manage_appointment_schedule"><AddAppointmentScheduleBlock /></PermissionRoute>
+      } />
+      <Route path="/appointment-schedule/blocks/edit/:id" element={
+        <PermissionRoute permission="manage_appointment_schedule"><EditAppointmentScheduleBlock /></PermissionRoute>
+      } />
+      <Route path="/appointments/admin" element={
+        <PermissionRoute permission="manage_appointment"><Appointments /></PermissionRoute>
+      } />
+
+      {/* Cẩm nang */}
+      <Route path="/blog-public/admin" element={
+        <PermissionRoute permission="manage_blog"><BlogPublic /></PermissionRoute>
+      } />
+      <Route path="/blog-public/admin/add" element={
+        <PermissionRoute permission="manage_blog"><BlogPublicEditor /></PermissionRoute>
+      } />
+      <Route path="/blog-public/admin/edit/:id" element={
+        <PermissionRoute permission="manage_blog"><BlogPublicEditor /></PermissionRoute>
+      } />
+      <Route path="/blog-categories/admin" element={
+        <PermissionRoute permission="manage_blog_category"><BlogCategories /></PermissionRoute>
+      } />
+      <Route path="/blog-categories/admin/add" element={
+        <PermissionRoute permission="manage_blog_category"><BlogCategoryEditor /></PermissionRoute>
+      } />
+      <Route path="/blog-categories/admin/edit/:id" element={
+        <PermissionRoute permission="manage_blog_category"><BlogCategoryEditor /></PermissionRoute>
+      } />
+      <Route path="/clinic-reasons/admin" element={
+        <PermissionRoute permission="manage_clinic_reason"><ClinicReasons /></PermissionRoute>
+      } />
+      <Route path="/clinic-reasons/admin/add" element={
+        <PermissionRoute permission="manage_clinic_reason"><ClinicReasonEditor /></PermissionRoute>
+      } />
+      <Route path="/clinic-reasons/admin/edit/:id" element={
+        <PermissionRoute permission="manage_clinic_reason"><ClinicReasonEditor /></PermissionRoute>
+      } />
+
+      <Route path="/appointment-schedule/price-packages" element={
+        <PermissionRoute permission="manage_appointment_schedule"><PricePackages /></PermissionRoute>
+      } />
+      <Route path="/appointment-schedule/price-packages/add" element={
+        <PermissionRoute permission="manage_appointment_schedule"><PricePackageEditor /></PermissionRoute>
+      } />
+      <Route path="/appointment-schedule/price-packages/edit/:id" element={
+        <PermissionRoute permission="manage_appointment_schedule"><PricePackageEditor /></PermissionRoute>
+      } />
+      <Route path="/appointment-schedule/insurance-packages" element={
+        <PermissionRoute permission="manage_appointment_schedule"><InsurancePackages /></PermissionRoute>
+      } />
+      <Route path="/appointment-schedule/insurance-packages/add" element={
+        <PermissionRoute permission="manage_appointment_schedule"><InsurancePackageEditor /></PermissionRoute>
+      } />
+      <Route path="/appointment-schedule/insurance-packages/edit/:id" element={
+        <PermissionRoute permission="manage_appointment_schedule"><InsurancePackageEditor /></PermissionRoute>
       } />
 
       <Route path="*" element={<Navigate to="/" replace />} />

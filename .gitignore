@@ -2,6 +2,7 @@
 node_modules/
 frontend/node_modules/
 carenow-backend/node_modules/
+carenow-client/node_modules/
 
 # Environment files
 .env

@@ -1,9 +1,8 @@
 const express = require('express');
-const router = express.Router();
-const controller = require('./location.controller');
+const router  = express.Router();
+const ctrl    = require('./location.controller');
 
-router.get('/provinces', controller.getProvinces);
-router.get('/districts/:provinceId', controller.getDistrictsByProvince);
-router.get('/wards/:provinceId', controller.getWardsByProvince);
+router.get('/provinces', ctrl.getProvinces);
+router.get('/wards',     ctrl.getWards);      // ?province_id=X
 
 module.exports = router;

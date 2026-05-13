@@ -9,6 +9,15 @@ exports.getClinicPlaces = async (req, res) => {
   }
 };
 
+exports.getClinicPlaceParentOptions = async (req, res) => {
+  try {
+    const data = await service.listParentOptions(req.query);
+    res.json({ success: true, data });
+  } catch (err) {
+    res.status(400).json({ success: false, message: err.message });
+  }
+};
+
 exports.getClinicPlaceById = async (req, res) => {
   try {
     const data = await service.getClinicPlaceById(req.params.id);

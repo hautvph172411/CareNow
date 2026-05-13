@@ -3,12 +3,15 @@ import { Search, Plus, Edit2, Trash2, Eye } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import AdminLayout from '../layouts/AdminLayout'
 import { getSpecialties, deleteSpecialty, updateSpecialty } from '../api/specialty.api'
+import { getServices } from '../api/service.api'
 import Pagination from '../components/Pagination'
 
 export default function Specialties() {
     const navigate = useNavigate()
     const [specialties, setSpecialties] = useState([])
+    const [services, setServices] = useState([])
     const [searchTerm, setSearchTerm] = useState('')
+    const [serviceFilter, setServiceFilter] = useState('')
     const [isLoading, setIsLoading] = useState(true)
 
     // Pagination
@@ -19,7 +22,9 @@ export default function Specialties() {
     const fetchSpecialties = async (page = 1) => {
         setIsLoading(true);
         try {
-            const res = await getSpecialties({ page, limit, keyword: searchTerm });
+            const params = { page, limit, keyword: searchTerm };
+            if (serviceFilter !== '') params.service_id = serviceFilter;
+            const res = await getSpecialties(params);
             if (res && res.data) {
                 setSpecialties(res.data);
                 if (res.pagination) {
@@ -34,13 +39,25 @@ export default function Specialties() {
         }
     };
 
+    // Load services 1 lần
+    useEffect(() => {
+        (async () => {
+            try {
+                const res = await getServices({ status: 1, limit: 200 });
+                if (res?.data) setServices(res.data);
+            } catch (e) {
+                console.error('Lỗi tải danh sách dịch vụ', e);
+            }
+        })();
+    }, []);
+
     useEffect(() => {
         const debounce = setTimeout(() => {
             fetchSpecialties(1);
             setCurrentPage(1);
         }, 500);
         return () => clearTimeout(debounce);
-    }, [searchTerm]);
+    }, [searchTerm, serviceFilter]);
 
     useEffect(() => {
         if (searchTerm === '') {
@@ -87,6 +104,23 @@ export default function Specialties() {
                         onChange={(e) => handleSearch(e.target.value)}
                     />
                 </div>
+                <select
+                    value={serviceFilter}
+                    onChange={(e) => setServiceFilter(e.target.value)}
+                    style={{
+                        padding: '0.6rem 0.8rem',
+                        border: '1px solid #cbd5e1',
+                        borderRadius: 6,
+                        fontSize: 14,
+                        background: '#fff',
+                        minWidth: 200,
+                    }}
+                >
+                    <option value="">Tất cả dịch vụ</option>
+                    {services.map(s => (
+                        <option key={s.id} value={s.id}>{s.name}</option>
+                    ))}
+                </select>
                 <button className="btn-primary" onClick={() => navigate('/specialties/admin/add')}>
                     <Plus size={20} />
                     Thêm chuyên khoa
@@ -102,10 +136,11 @@ export default function Specialties() {
                             <table className="specialties-table">
                                 <thead>
                                     <tr>
-                                        <th style={{ width: '10%' }}>ID</th>
-                                        <th style={{ width: '50%' }}>Tên Chuyên Khoa</th>
-                                        <th style={{ width: '15%', textAlign: 'center' }}>Trạng Thái</th>
-                                        <th style={{ width: '25%', textAlign: 'center' }}>Hành Động</th>
+                                        <th style={{ width: '8%' }}>ID</th>
+                                        <th style={{ width: '40%' }}>Tên Chuyên Khoa</th>
+                                        <th style={{ width: '22%' }}>Dịch vụ</th>
+                                        <th style={{ width: '12%', textAlign: 'center' }}>Trạng Thái</th>
+                                        <th style={{ width: '18%', textAlign: 'center' }}>Hành Động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -116,6 +151,23 @@ export default function Specialties() {
                                                 <span className="specialty-title" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>
                                                     {specialty.name}
                                                 </span>
+                                            </td>
+                                            <td>
+                                                {specialty.service_name ? (
+                                                    <span style={{
+                                                        display: 'inline-block',
+                                                        padding: '2px 8px',
+                                                        background: '#eff6ff',
+                                                        color: '#2563eb',
+                                                        borderRadius: 4,
+                                                        fontSize: 12,
+                                                        fontWeight: 500,
+                                                    }}>
+                                                        {specialty.service_name}
+                                                    </span>
+                                                ) : (
+                                                    <span style={{ color: '#94a3b8', fontSize: 12 }}>—</span>
+                                                )}
                                             </td>
                                             <td className="status-cell">
                                                 <span

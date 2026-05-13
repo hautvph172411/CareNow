@@ -3,7 +3,8 @@ import { useState } from "react";
 import {
   Home, Users, LogOut,
   Activity, Handshake, Shield, Briefcase,
-  Lock, ChevronDown, ChevronRight, Zap, Sparkles, Building2
+  Lock, ChevronDown, ChevronLeft, ChevronRight, Zap, Sparkles, Building2, Layers, CalendarClock, CalendarCheck,
+  BookOpen, Tags, Stethoscope,
 } from 'lucide-react';
 import { useAuth } from "../hooks/useAuth";
 
@@ -15,7 +16,13 @@ import { useAuth } from "../hooks/useAuth";
 const MAIN_MENU = [
   { icon: Sparkles,   label: 'Trang chủ',       to: '/welcome',              permission: null },
   { icon: Home,       label: 'Bảng điều khiển', to: '/dashboard',            permission: 'view_dashboard' },
-  { icon: Activity,   label: 'Chuyên khoa',     to: '/specialties/admin',   permission: 'manage_specialty' },
+  { icon: Layers,     label: 'Dịch vụ',         to: '/services/admin',       permission: 'manage_service' },
+  { icon: CalendarClock, label: 'Lịch hẹn',     to: '/appointment-schedule', permission: 'manage_appointment_schedule' },
+  { icon: CalendarCheck, label: 'Đơn đặt khám', to: '/appointments/admin',   permission: 'manage_appointment' },
+  { icon: BookOpen,  label: 'Bài cẩm nang',     to: '/blog-public/admin',    permission: 'manage_blog' },
+  { icon: Tags,      label: 'Danh mục cẩm nang', to: '/blog-categories/admin', permission: 'manage_blog_category' },
+  { icon: Stethoscope, label: 'Lý do khám',      to: '/clinic-reasons/admin', permission: 'manage_clinic_reason' },
+  { icon: Activity,   label: 'Chuyên khoa',     to: '/specialties/admin',    permission: 'manage_specialty' },
   { icon: Users,      label: 'Bác sĩ',          to: '/clinic/admin',         permission: 'manage_clinic' },
   { icon: Building2,  label: 'Nơi khám',        to: '/clinic-place/admin',   permission: 'manage_clinic_place' },
   { icon: Handshake,  label: 'Đối tác',         to: '/partner/admin',        permission: 'manage_partner' },
@@ -31,7 +38,7 @@ const USER_MENU = [
   { icon: Briefcase, label: 'TK Đối tác',  to: '/users/partner', permission: 'manage_partner_user' },
 ];
 
-export default function Sidebar({ isOpen, onClose }) {
+export default function Sidebar({ isOpen, isCollapsed = false, onClose, onToggleCollapse }) {
   const location = useLocation();
   const { logout, hasPermission, isAuthenticated } = useAuth();
   const [isAuthOpen, setIsAuthOpen] = useState(location.pathname.startsWith('/auth'));
@@ -51,7 +58,16 @@ export default function Sidebar({ isOpen, onClose }) {
     <>
       {isOpen && <div className="sidebar-overlay" onClick={onClose}></div>}
 
-      <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
+      <aside className={`sidebar ${isOpen ? 'open' : ''} ${isCollapsed ? 'collapsed' : ''}`}>
+        <button
+          type="button"
+          className="sidebar-collapse-toggle"
+          onClick={onToggleCollapse}
+          title={isCollapsed ? 'Mở rộng sidebar' : 'Thu gọn sidebar'}
+          aria-label={isCollapsed ? 'Mở rộng sidebar' : 'Thu gọn sidebar'}
+        >
+          {isCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
+        </button>
         <div className="sidebar-header">
           <div className="sidebar-logo">BC</div>
           <h1 className="sidebar-brand">CareNow</h1>

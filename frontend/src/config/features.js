@@ -30,11 +30,63 @@ export const FEATURES = [
 
   // ===== Danh mục =====
   {
+    name: 'manage_service',
+    label: 'Dịch vụ',
+    description: 'Quản lý dịch vụ (gom nhóm chuyên khoa)',
+    group: 'catalog',
+    urls: ['/services/admin', '/services/admin/add', '/services/admin/edit/:id'],
+  },
+  {
     name: 'manage_specialty',
     label: 'Chuyên khoa',
     description: 'Quản lý chuyên khoa (xem, thêm, sửa, xóa)',
     group: 'catalog',
     urls: ['/specialties/admin', '/specialties/admin/add', '/specialties/admin/edit/:id'],
+  },
+  {
+    name: 'manage_appointment_schedule',
+    label: 'Lịch hẹn',
+    description: 'Cấu hình khung lịch bác sĩ, nơi khám, ngày nghỉ',
+    group: 'catalog',
+    urls: [
+      '/appointment-schedule',
+      '/appointment-schedule/blocks/add',
+      '/appointment-schedule/blocks/edit/:id',
+      '/appointment-schedule/price-packages',
+      '/appointment-schedule/price-packages/add',
+      '/appointment-schedule/price-packages/edit/:id',
+      '/appointment-schedule/insurance-packages',
+      '/appointment-schedule/insurance-packages/add',
+      '/appointment-schedule/insurance-packages/edit/:id',
+    ],
+  },
+  {
+    name: 'manage_appointment',
+    label: 'Đơn đặt khám',
+    description: 'Xem và cập nhật trạng thái đơn đặt khám từ CareNow Client',
+    group: 'catalog',
+    urls: ['/appointments/admin'],
+  },
+  {
+    name: 'manage_blog',
+    label: 'Bài cẩm nang',
+    description: 'Quản lý bài viết cẩm nang y tế',
+    group: 'catalog',
+    urls: ['/blog-public/admin', '/blog-public/admin/add', '/blog-public/admin/edit/:id'],
+  },
+  {
+    name: 'manage_blog_category',
+    label: 'Danh mục cẩm nang',
+    description: 'Quản lý danh mục cẩm nang y tế',
+    group: 'catalog',
+    urls: ['/blog-categories/admin', '/blog-categories/admin/add', '/blog-categories/admin/edit/:id'],
+  },
+  {
+    name: 'manage_clinic_reason',
+    label: 'Lý do khám',
+    description: 'Quản lý lý do khám và danh sách bác sĩ liên quan',
+    group: 'catalog',
+    urls: ['/clinic-reasons/admin', '/clinic-reasons/admin/add', '/clinic-reasons/admin/edit/:id'],
   },
   {
     name: 'manage_clinic',

@@ -4,7 +4,8 @@ const controller = require('./clinic_place.controller');
 const auth = require('../middlewares/auth');
 const roleCheck = require('../middlewares/role');
 
-router.get('/',    controller.getClinicPlaces);
+router.get('/', controller.getClinicPlaces);
+router.get('/parent-options', controller.getClinicPlaceParentOptions);
 router.get('/:id', controller.getClinicPlaceById);
 router.post('/',   auth, roleCheck(1), controller.createClinicPlace);
 router.put('/:id', auth, roleCheck(1), controller.updateClinicPlace);

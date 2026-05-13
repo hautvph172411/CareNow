@@ -78,6 +78,76 @@
   font-weight: 500;
 }
 
+.place-kind-rules {
+  margin: 8px 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.8rem;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+.place-kind-rules li {
+  margin-bottom: 4px;
+}
+
+/* Nhiều khối nội dung trang CSYT */
+.clinic-place-page-content-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.clinic-place-content-block {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem 1rem 0.75rem;
+  background: #fafafa;
+}
+
+.clinic-place-content-block__title {
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.clinic-place-content-block__actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.clinic-place-content-block__add {
+  margin-top: 0.5rem;
+}
+
+.btn-text-danger {
+  background: none;
+  border: none;
+  color: #dc2626;
+  cursor: pointer;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.btn-text-danger:hover {
+  text-decoration: underline;
+}
+
+.btn-outline {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  color: #334155;
+}
+
+.btn-outline:hover {
+  background: #f1f5f9;
+}
+
 small {
   display: block;
   margin-top: 4px;

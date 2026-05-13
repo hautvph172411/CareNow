@@ -3,26 +3,21 @@ const repo = require('./location.repository');
 exports.getProvinces = async (req, res) => {
   try {
     const data = await repo.getProvinces();
-    res.json({ success: true, data });
+    res.json({ message: 'Success', data });
   } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
+    res.status(500).json({ message: err.message });
   }
 };
 
-exports.getDistrictsByProvince = async (req, res) => {
+exports.getWards = async (req, res) => {
   try {
-    const data = await repo.getDistrictsByProvince(req.params.provinceId);
-    res.json({ success: true, data });
+    const { province_id } = req.query;
+    if (!province_id) {
+      return res.status(400).json({ message: 'province_id là bắt buộc' });
+    }
+    const data = await repo.getWardsByProvince(province_id);
+    res.json({ message: 'Success', data });
   } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
-  }
-};
-
-exports.getWardsByProvince = async (req, res) => {
-  try {
-    const data = await repo.getWardsByProvince(req.params.provinceId);
-    res.json({ success: true, data });
-  } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
+    res.status(500).json({ message: err.message });
   }
 };

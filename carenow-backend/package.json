@@ -4,7 +4,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "import:clinic-place": "node scripts/import_clinic_place_from_csv.js",
+    "import:clinic": "node scripts/import_clinic_from_bookingcare_csv.js",
+    "seed:schedule": "node scripts/seed_schedule_from_clinic_graph.js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +19,7 @@
     "cors": "^2.8.6",
     "dotenv": "^17.2.4",
     "express": "^5.2.1",
+    "google-auth-library": "^10.6.2",
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.1.1",
     "multer-storage-cloudinary": "^4.0.0",
