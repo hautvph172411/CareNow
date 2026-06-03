@@ -113,18 +113,18 @@ const getAppointmentById = async (id, requesterId, isAdmin) => {
   if (!appt) throw new Error('NOT_FOUND');
 
   // Chỉ owner hoặc admin được xem
-  if (!isAdmin && appt.patient_id !== requesterId) {
+  if (!isAdmin && Number(appt.patient_id) !== Number(requesterId)) {
     throw new Error('FORBIDDEN');
   }
   return formatAppointment(appt);
 };
 
 /* ── Bệnh nhân hủy lịch ─────────────────────────────────────────────────── */
-const cancelAppointment = async (id, requesterId, isAdmin) => {
+const cancelAppointment = async (id, requesterId, isAdmin, cancelReason = '') => {
   const appt = await repository.findById(id);
   if (!appt) throw new Error('NOT_FOUND');
 
-  if (!isAdmin && appt.patient_id !== requesterId) {
+  if (!isAdmin && Number(appt.patient_id) !== Number(requesterId)) {
     throw new Error('FORBIDDEN');
   }
   if ([3, 4, 5].includes(appt.status)) {
@@ -133,7 +133,18 @@ const cancelAppointment = async (id, requesterId, isAdmin) => {
     });
   }
 
-  const updated = await repository.cancel(id);
+  const reason = String(cancelReason || '').trim();
+  if (!isAdmin && !reason) {
+    throw Object.assign(new Error('BAD_INPUT'), { detail: 'Vui lòng nhập lý do hủy lịch.' });
+  }
+  const marker = reason
+    ? `[CANCEL_REASON][PATIENT][${new Date().toLocaleString('vi-VN')}] ${reason}`
+    : null;
+  const adminNotes = marker ? [appt.admin_notes, marker].filter(Boolean).join('\n') : appt.admin_notes;
+  const updated = await repository.updateStatus(id, 4, {
+    cancelled_at: new Date(),
+    ...(marker ? { admin_notes: adminNotes } : {}),
+  });
   return formatAppointment(updated);
 };
 
@@ -211,6 +222,15 @@ const deleteAppointment = async (id) => {
   return formatAppointment(deleted);
 };
 
+/* ── Nhận lại các lịch guest vào bệnh nhân sau khi đăng nhập ─────────────── */
+const claimLocalAppointments = async (patientId, bookingCodes = []) => {
+  if (!patientId) {
+    throw Object.assign(new Error('BAD_INPUT'), { detail: 'patientId là bắt buộc' });
+  }
+  const appts = await repository.claimGuestBookings({ patientId, bookingCodes });
+  return appts.map(formatAppointment);
+};
+
 /* ── Format row → response object ────────────────────────────────────────── */
 function formatAppointment(row) {
   if (!row) return null;
@@ -223,6 +243,7 @@ function formatAppointment(row) {
 module.exports = {
   createAppointment,
   getMyAppointments,
+  claimLocalAppointments,
   getAllAppointments,
   getAppointmentById,
   cancelAppointment,

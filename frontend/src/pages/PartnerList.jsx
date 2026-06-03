@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Plus, Edit2, Trash2, Eye, Building2, Phone, Mail } from 'lucide-react';
+import { Search, Plus, Edit2, Trash2, Eye, Building2, Phone, Mail, Filter } from 'lucide-react';
 import AdminLayout from '../layouts/AdminLayout';
 import { getPartners, deletePartner } from '../api/partner.api';
 import Pagination from '../components/Pagination';
@@ -9,6 +9,8 @@ export default function PartnerList() {
   const navigate = useNavigate();
   const [partners, setPartners] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showSearch, setShowSearch] = useState(false);
+  const [filterStatus, setFilterStatus] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -39,7 +41,7 @@ export default function PartnerList() {
       fetchPartners(1, searchTerm);
     }, 500);
     return () => clearTimeout(timer);
-  }, [searchTerm]);
+  }, [searchTerm, filterStatus]);
 
   useEffect(() => {
     fetchPartners(currentPage, searchTerm);
@@ -53,7 +55,7 @@ export default function PartnerList() {
         alert('Đã xóa đối tác thành công!');
       } catch (error) {
         console.error('Delete failed:', error);
-        alert('Xóa thất bại!');
+        alert(error.response?.data?.message || 'Xóa thất bại!');
       }
     }
   };
@@ -61,19 +63,42 @@ export default function PartnerList() {
   return (
     <AdminLayout pageTitle="Quản lý đối tác">
       <div className="management-header">
-        <div className="search-box">
-          <Search size={20} />
-          <input
-            type="text"
-            placeholder="Tìm kiếm đối tác..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+        <div style={{ flex: 1 }}></div>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <button className="btn btn-secondary" onClick={() => setShowSearch(!showSearch)} style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <Filter size={18} /> Bộ lọc
+          </button>
+          <button className="btn btn-primary" onClick={() => navigate('/partner/admin/add')}>
+            <Plus size={20} />
+            Thêm đối tác
+          </button>
         </div>
-        <button className="btn btn-primary" onClick={() => navigate('/partner/admin/add')}>
-          <Plus size={20} />
-          Thêm đối tác
-        </button>
+      </div>
+
+      <div className={`filter-section ${showSearch ? 'show' : ''}`}>
+        <div className="filter-container">
+          
+          <select 
+            className="form-input" 
+            style={{ width: '180px', margin: 0 }}
+            value={filterStatus}
+            onChange={(e) => setFilterStatus(e.target.value)}
+          >
+            <option value="">Tất cả trạng thái</option>
+            <option value="1">Đang hoạt động</option>
+            <option value="0">Ngưng hoạt động</option>
+          </select>
+
+          <div className="search-box" style={{ margin: 0, flex: 1, minWidth: '250px' }}>
+            <Search size={20} />
+            <input
+              type="text"
+              placeholder="Tìm kiếm đối tác..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+        </div>
       </div>
 
       <div className="management-section">

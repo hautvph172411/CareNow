@@ -5,6 +5,11 @@ import {
   CheckCircle, TrendingUp, Shield, Zap, X, Phone, Heart, Stethoscope,
 } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import DoctorPriceInsuranceInfo, {
+  buildFinanceSelectionPayload,
+  getDefaultInsurancePackageId,
+  getDefaultPricePackageId,
+} from "../components/DoctorPriceInsuranceInfo";
 import { getSpecialtyById, getClinics } from "../api/catalog.api";
 import { createAppointment } from "../api/appointment.api";
 import { htmlToPlain } from "../utils/htmlToPlain";
@@ -18,45 +23,93 @@ function stripHtml(s) {
   return String(s).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 }
 
-/** Card bác sĩ với SchedulePicker riêng */
 function DoctorScheduleCard({ doctor, onBook, viewPath }) {
   const [selDate, setSelDate] = useState("");
   const [selTime, setSelTime] = useState("");
+  const [selectedPricePackageId, setSelectedPricePackageId] = useState("");
+  const [selectedInsurancePackageId, setSelectedInsurancePackageId] = useState("");
+  const isWork = doctor.is_work !== 0;
+  const hasFinance =
+    doctor.price_min ||
+    doctor.price_summary?.min ||
+    (Array.isArray(doctor.insurance_summary?.items) && doctor.insurance_summary.items.length > 0);
+
+  useEffect(() => {
+    setSelectedPricePackageId(getDefaultPricePackageId(doctor.price_summary));
+    setSelectedInsurancePackageId(getDefaultInsurancePackageId(doctor.insurance_summary));
+  }, [doctor.id, doctor.price_summary, doctor.insurance_summary]);
 
   return (
     <>
-      <div className="mb-4">
-        <h4 className="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
-          <Calendar className="size-4 text-blue-600" /> Chọn lịch khám
-        </h4>
-        <SchedulePicker
-          clinicId={doctor?.id}
-          selectedDate={selDate}
-          selectedTime={selTime}
-          onSelect={(date, time) => { setSelDate(date); setSelTime(time); }}
-          compact
-        />
-      </div>
-
-      {selDate && selTime && (
-        <div className="mb-4 bg-green-50 rounded-xl p-3 border border-green-200">
-          <div className="text-xs text-gray-600 mb-1">Lịch đã chọn</div>
-          <div className="font-semibold text-green-700 text-sm">
-            {new Date(selDate + "T00:00:00").toLocaleDateString("vi-VN", {
-              weekday: "short", day: "numeric", month: "short",
-            })} — {selTime}
-          </div>
+      {hasFinance && (
+        <div className="mb-4 border-y border-gray-200 py-2">
+          <DoctorPriceInsuranceInfo
+            priceSummary={doctor.price_summary}
+            insuranceSummary={doctor.insurance_summary}
+            legacyPriceMin={doctor.price_min}
+            defaultExpanded={false}
+            selectable
+            selectedPricePackageId={selectedPricePackageId}
+            selectedInsurancePackageId={selectedInsurancePackageId}
+            onSelectPricePackage={setSelectedPricePackageId}
+            onSelectInsurancePackage={setSelectedInsurancePackageId}
+            radioGroupName={`specialty-doctor-${doctor.id}`}
+          />
         </div>
+      )}
+      
+      {!isWork ? (
+         <div className="mb-4 text-sm text-red-600 font-medium bg-red-50 p-4 rounded-xl border border-red-100 text-center">
+            Bác sĩ đang tạm ngưng nhận lịch khám.
+         </div>
+      ) : (
+        <>
+          <div className="mb-4">
+            <h4 className="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
+              <Calendar className="size-4 text-blue-600" /> Chọn lịch khám
+            </h4>
+            <SchedulePicker
+              clinicId={doctor?.id}
+              selectedDate={selDate}
+              selectedTime={selTime}
+              onSelect={(date, time) => { setSelDate(date); setSelTime(time); }}
+              compact
+            />
+          </div>
+
+          {selDate && selTime && (
+            <div className="mb-4 bg-green-50 rounded-xl p-3 border border-green-200">
+              <div className="text-xs text-gray-600 mb-1">Lịch đã chọn</div>
+              <div className="font-semibold text-green-700 text-sm">
+                {new Date(selDate + "T00:00:00").toLocaleDateString("vi-VN", {
+                  weekday: "short", day: "numeric", month: "short",
+                })} — {selTime}
+              </div>
+            </div>
+          )}
+        </>
       )}
 
       <div className="flex gap-3">
-        <button
-          onClick={() => onBook(doctor, selDate, selTime)}
-          className="flex-1 flex items-center justify-center gap-2 text-white py-3 rounded-xl font-semibold transition-all hover:opacity-90 text-sm"
-          style={{ backgroundColor: "#3498db" }}
-        >
-          <Calendar className="size-4" /> Đặt lịch ngay
-        </button>
+        {isWork ? (
+          <button
+            onClick={() => onBook(doctor, selDate, selTime, {
+              pricePackageId: selectedPricePackageId,
+              insurancePackageId: selectedInsurancePackageId,
+            })}
+            className="flex-1 flex items-center justify-center gap-2 text-white py-3 rounded-xl font-semibold transition-all hover:opacity-90 text-sm"
+            style={{ backgroundColor: "#3498db" }}
+          >
+            <Calendar className="size-4" /> Đặt lịch ngay
+          </button>
+        ) : (
+          <button
+            disabled
+            className="flex-1 flex items-center justify-center gap-2 text-gray-500 bg-gray-200 py-3 rounded-xl font-semibold cursor-not-allowed text-sm"
+          >
+            <Calendar className="size-4" /> Tạm ngưng
+          </button>
+        )}
         <Link
           to={viewPath}
           className="flex-1 flex items-center justify-center gap-2 border-2 border-gray-200 text-gray-700 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-colors text-sm"
@@ -82,6 +135,7 @@ export function SpecialtyDetail() {
   const [selectedTime, setSelectedTime] = useState("");
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [selectedFinance, setSelectedFinance] = useState({ pricePackageId: "", insurancePackageId: "" });
   const [bookingSubmitting, setBookingSubmitting] = useState(false);
   const [bookingError, setBookingError] = useState("");
   const [successData, setSuccessData] = useState(null);
@@ -102,7 +156,7 @@ export function SpecialtyDetail() {
 
         // try to fetch related clinics
         try {
-          const res = await getClinics({ specialist_id: parsed.id, limit: 10 });
+          const res = await getClinics({ specialist_id: parsed.id, sort_context: 'specialty', limit: 10 });
           const list = res?.data ?? (Array.isArray(res) ? res : []);
           if (!cancelled) setDoctors(list.slice(0, 10));
         } catch {
@@ -150,11 +204,16 @@ export function SpecialtyDetail() {
   const desc = stripHtml(row.description);
   const serviceLabel = row.service_name ? `Nhóm: ${row.service_name}` : "";
 
-  const handleBooking = (doctor, date, time) => {
+  const handleBooking = (doctor, date, time, finance = {}) => {
     if (!date || !time) { alert("Vui lòng chọn ngày và giờ khám!"); return; }
     setSelectedDoctor(doctor);
+    setSelectedFinance({
+      pricePackageId: finance.pricePackageId || getDefaultPricePackageId(doctor.price_summary),
+      insurancePackageId: finance.insurancePackageId || getDefaultInsurancePackageId(doctor.insurance_summary),
+    });
     setSelectedDate(date);
     setSelectedTime(time);
+    setBookingError("");
     setShowBookingModal(true);
   };
 
@@ -178,6 +237,12 @@ export function SpecialtyDetail() {
         clinic_id: selectedDoctor?.id,
         specialist_id: row.id,
         service_id: row.service_id || undefined,
+        ...buildFinanceSelectionPayload({
+          priceSummary: selectedDoctor?.price_summary,
+          insuranceSummary: selectedDoctor?.insurance_summary,
+          pricePackageId: selectedFinance.pricePackageId,
+          insurancePackageId: selectedFinance.insurancePackageId,
+        }),
       });
       const appt = res.data;
       setShowBookingModal(false);
@@ -279,26 +344,38 @@ export function SpecialtyDetail() {
                   {doctors.map((doctor) => {
                     const docName = [doctor.title, doctor.name].filter(Boolean).join(" ").trim() || doctor.name;
                     return (
-                      <div key={doctor.id} className="border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition-all">
-                        <div className="md:flex">
-                          <div className="md:w-56 h-56 md:h-auto relative bg-gray-100 shrink-0">
+                      <div key={doctor.id} className="border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition-all bg-white">
+                        <div className="md:flex items-start">
+                          <Link
+                            to={buildDoctorPath(doctor)}
+                            className="block w-24 h-24 md:w-32 md:h-32 rounded-full border-2 border-gray-100 relative bg-gray-50 shrink-0 overflow-hidden mx-auto mt-5 md:mx-6 md:mt-6 shadow-sm group"
+                          >
                             <ImageWithFallback
                               src={doctor.picture || "https://images.unsplash.com/photo-1622902046580-2b47f47f5471?w=400&q=80"}
                               alt={docName}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                             />
-                            <div className="absolute bottom-3 right-3 bg-white rounded-xl px-2.5 py-1 flex items-center gap-1 shadow-lg">
-                              <Star className="size-3 fill-yellow-400 text-yellow-400" />
-                              <span className="text-xs font-bold text-gray-800">4.8</span>
-                            </div>
-                          </div>
-                          <div className="flex-1 p-6">
-                            <div className="mb-4">
-                              <h3 className="text-xl font-bold text-gray-800 mb-1">{docName}</h3>
-                              <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+                          </Link>
+                          
+                          <div className="flex-1 p-5 md:pl-0">
+                            <div className="mb-3 text-center md:text-left">
+                              <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-1">
+                                <Link to={buildDoctorPath(doctor)} className="hover:text-[#3498db] transition-colors">
+                                  {docName}
+                                </Link>
+                              </h3>
+                              
+                              <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 text-sm text-gray-600 mb-2">
+                                {doctor.sponsor === 1 && (
+                                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-red-100 text-red-600">Nổi bật</span>
+                                )}
+                                <div className="flex items-center gap-1 bg-yellow-50 px-2 py-0.5 rounded-full">
+                                  <Star className="size-3.5 fill-yellow-400 text-yellow-400" />
+                                  <span className="text-xs font-bold text-gray-800">4.8</span>
+                                </div>
                                 {doctor.address && (
-                                  <div className="flex items-center gap-1.5">
-                                    <MapPin className="size-4 text-gray-400" /> {doctor.address}
+                                  <div className="flex items-center gap-1">
+                                    <MapPin className="size-3.5 text-gray-400" /> <span className="line-clamp-1">{doctor.address}</span>
                                   </div>
                                 )}
                               </div>

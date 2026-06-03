@@ -1,3 +1,5 @@
+import parse from "html-react-parser";
+import DOMPurify from "dompurify";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
 import {
@@ -6,6 +8,11 @@ import {
   Wifi, Car, Coffee, X,
 } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import DoctorPriceInsuranceInfo, {
+  buildFinanceSelectionPayload,
+  getDefaultInsurancePackageId,
+  getDefaultPricePackageId,
+} from "../components/DoctorPriceInsuranceInfo";
 import { getClinicPlaceById, getClinics } from "../api/catalog.api";
 import { createAppointment } from "../api/appointment.api";
 import { htmlToPlain } from "../utils/htmlToPlain";
@@ -14,10 +21,20 @@ import { SchedulePicker } from "../components/SchedulePicker";
 import BookingLocationSelects from "../components/BookingLocationSelects";
 import BookingSuccessScreen from "../components/BookingSuccessScreen";
 
-function stripHtml(s) {
-  if (!s) return "";
-  return String(s).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+function sanitizeCmsHtml(html) {
+  return DOMPurify.sanitize(html || "", {
+    ALLOWED_TAGS: [
+      "p", "br", "strong", "b", "em", "i", "u", "s", "span", "div",
+      "h1", "h2", "h3", "h4", "h5", "h6",
+      "ul", "ol", "li", "blockquote", "pre", "code",
+      "a", "img", "table", "thead", "tbody", "tr", "th", "td",
+      "figure", "figcaption",
+    ],
+    ALLOWED_ATTR: ["href", "src", "alt", "title", "class", "style", "target", "rel", "colspan", "rowspan", "id"],
+    ALLOW_DATA_ATTR: false,
+  });
 }
+
 
 function parseImages(raw) {
   if (raw == null || raw === "") return [];
@@ -42,9 +59,37 @@ const FACILITIES = [
 function DoctorScheduleCard({ doctor, onBook, viewPath }) {
   const [selDate, setSelDate] = useState("");
   const [selTime, setSelTime] = useState("");
+  const [selectedPricePackageId, setSelectedPricePackageId] = useState("");
+  const [selectedInsurancePackageId, setSelectedInsurancePackageId] = useState("");
+  const hasFinance =
+    doctor.price_min ||
+    doctor.price_summary?.min ||
+    (Array.isArray(doctor.insurance_summary?.items) && doctor.insurance_summary.items.length > 0);
+
+  useEffect(() => {
+    setSelectedPricePackageId(getDefaultPricePackageId(doctor.price_summary));
+    setSelectedInsurancePackageId(getDefaultInsurancePackageId(doctor.insurance_summary));
+  }, [doctor.id, doctor.price_summary, doctor.insurance_summary]);
 
   return (
     <>
+      {hasFinance && (
+        <div className="mb-4 border-y border-gray-200 py-2">
+          <DoctorPriceInsuranceInfo
+            priceSummary={doctor.price_summary}
+            insuranceSummary={doctor.insurance_summary}
+            legacyPriceMin={doctor.price_min}
+            defaultExpanded={false}
+            selectable
+            selectedPricePackageId={selectedPricePackageId}
+            selectedInsurancePackageId={selectedInsurancePackageId}
+            onSelectPricePackage={setSelectedPricePackageId}
+            onSelectInsurancePackage={setSelectedInsurancePackageId}
+            radioGroupName={`place-doctor-${doctor.id}`}
+          />
+        </div>
+      )}
+
       <div className="mb-4">
         <h4 className="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
           <Calendar className="size-4 text-blue-600" /> Chọn lịch khám
@@ -71,7 +116,10 @@ function DoctorScheduleCard({ doctor, onBook, viewPath }) {
 
       <div className="flex gap-3">
         <button
-          onClick={() => onBook(doctor, selDate, selTime)}
+          onClick={() => onBook(doctor, selDate, selTime, {
+            pricePackageId: selectedPricePackageId,
+            insurancePackageId: selectedInsurancePackageId,
+          })}
           className="flex-1 flex items-center justify-center gap-2 text-white py-3 rounded-xl font-semibold hover:opacity-90 transition-all text-sm"
           style={{ backgroundColor: "#3498db" }}
         >
@@ -94,7 +142,7 @@ export function PlaceDetail() {
   const location = useLocation();
   const parsed = useMemo(() => parseCatalogSlugRef(slugRef), [slugRef]);
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => Boolean(parsed?.id));
   const [row, setRow] = useState(null);
   const [doctors, setDoctors] = useState([]);
 
@@ -102,6 +150,7 @@ export function PlaceDetail() {
   const [selectedTime, setSelectedTime] = useState("");
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [selectedFinance, setSelectedFinance] = useState({ pricePackageId: "", insurancePackageId: "" });
   const [bookingSubmitting, setBookingSubmitting] = useState(false);
   const [bookingError, setBookingError] = useState("");
   const [successData, setSuccessData] = useState(null);
@@ -111,7 +160,7 @@ export function PlaceDetail() {
   });
 
   useEffect(() => {
-    if (!parsed?.id) { setLoading(false); setRow(null); return; }
+    if (!parsed?.id) return;
     let cancelled = false;
     (async () => {
       setLoading(true);
@@ -122,7 +171,7 @@ export function PlaceDetail() {
 
         // try to fetch related clinics by place_id
         try {
-          const res = await getClinics({ place_id: parsed.id, limit: 10 });
+          const res = await getClinics({ place_id: parsed.id, sort_context: 'place', limit: 10 });
           const list = res?.data ?? (Array.isArray(res) ? res : []);
           if (!cancelled) setDoctors(list.slice(0, 10));
         } catch {
@@ -144,8 +193,6 @@ export function PlaceDetail() {
   }, [row, location.pathname, navigate]);
 
   const images = useMemo(() => (row ? parseImages(row.images) : []), [row]);
-  const detailPlain = useMemo(() => (row?.description_detail ? htmlToPlain(row.description_detail) : ""), [row]);
-  const guidePlain  = useMemo(() => (row?.patient_guide ? htmlToPlain(row.patient_guide) : ""), [row]);
   const descPlain   = useMemo(() => (row?.description ? htmlToPlain(row.description) : ""), [row]);
 
   if (!parsed?.id) {
@@ -173,11 +220,16 @@ export function PlaceDetail() {
   const displayName = row.display_name || row.name;
   const phone = row.phone || "";
 
-  const handleBooking = (doctor, date, time) => {
+  const handleBooking = (doctor, date, time, finance = {}) => {
     if (!date || !time) { alert("Vui lòng chọn ngày và giờ khám!"); return; }
     setSelectedDoctor(doctor);
+    setSelectedFinance({
+      pricePackageId: finance.pricePackageId || getDefaultPricePackageId(doctor.price_summary),
+      insurancePackageId: finance.insurancePackageId || getDefaultInsurancePackageId(doctor.insurance_summary),
+    });
     setSelectedDate(date);
     setSelectedTime(time);
+    setBookingError("");
     setShowBookingModal(true);
   };
 
@@ -200,6 +252,12 @@ export function PlaceDetail() {
         appt_time: selectedTime,
         clinic_id: selectedDoctor?.id,
         clinic_place_id: row.id,
+        ...buildFinanceSelectionPayload({
+          priceSummary: selectedDoctor?.price_summary,
+          insuranceSummary: selectedDoctor?.insurance_summary,
+          pricePackageId: selectedFinance.pricePackageId,
+          insurancePackageId: selectedFinance.insurancePackageId,
+        }),
       });
       const appt = res.data;
       setShowBookingModal(false);
@@ -234,13 +292,20 @@ export function PlaceDetail() {
       </button>
 
       {/* Breadcrumbs */}
-      <div className="container mx-auto px-4 pt-2 pb-1 flex items-center gap-1.5 text-xs text-gray-400 flex-wrap">
-        <Link to="/" className="hover:text-blue-500 transition-colors">Trang chủ</Link>
-        <span>/</span>
-        <span className="hover:text-blue-500 cursor-pointer">Nơi khám</span>
-        <span>/</span>
+      <nav
+        className="container mx-auto px-4 pt-2 pb-1 flex items-center gap-1.5 text-xs text-gray-400 flex-wrap"
+        aria-label="Breadcrumb"
+      >
+        <Link to="/" className="hover:text-[#3498db] transition-colors">
+          Trang chủ
+        </Link>
+        <span aria-hidden>/</span>
+        <Link to="/" className="hover:text-[#3498db] transition-colors">
+          Cơ sở y tế
+        </Link>
+        <span aria-hidden>/</span>
         <span className="text-gray-600 font-medium truncate max-w-xs">{displayName}</span>
-      </div>
+      </nav>
 
       <div className="container mx-auto px-4 py-6">
         <div className="grid lg:grid-cols-3 gap-8">
@@ -249,15 +314,15 @@ export function PlaceDetail() {
 
             {/* Header card with image */}
             <div className="bg-white rounded-2xl overflow-hidden shadow-md">
-              <div className="h-72 relative bg-gray-100">
+              <div className="relative bg-gray-100 w-full overflow-hidden">
                 {images[0] ? (
-                  <ImageWithFallback src={images[0]} alt={displayName} className="w-full h-full object-cover" />
+                  <ImageWithFallback src={images[0]} alt={displayName} className="w-full h-auto max-h-72 md:max-h-80 object-cover block" />
                 ) : row.logo ? (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100">
+                  <div className="w-full h-72 md:h-80 flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100">
                     <ImageWithFallback src={row.logo} alt={displayName} className="max-h-40 max-w-xs object-contain" />
                   </div>
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, #e8f4fd, #bfdbfe)" }}>
+                  <div className="w-full h-72 md:h-80 flex items-center justify-center" style={{ background: "linear-gradient(135deg, #e8f4fd, #bfdbfe)" }}>
                     <Building2 className="size-20 text-blue-300" />
                   </div>
                 )}
@@ -338,18 +403,22 @@ export function PlaceDetail() {
             )}
 
             {/* Detail description */}
-            {detailPlain && (
+            {row.description_detail && row.description_detail.trim() && (
               <div className="bg-white rounded-2xl p-8 shadow-md">
                 <h2 className="text-xl font-bold text-gray-800 mb-4">Giới thiệu chi tiết</h2>
-                <p className="text-sm leading-relaxed text-gray-600 whitespace-pre-wrap">{detailPlain}</p>
+                <div className="blog-client-article-body text-sm leading-relaxed text-gray-600">
+                  {parse(sanitizeCmsHtml(row.description_detail))}
+                </div>
               </div>
             )}
 
             {/* Patient guide */}
-            {guidePlain && (
+            {row.patient_guide && row.patient_guide.trim() && (
               <div className="bg-white rounded-2xl p-8 shadow-md border border-blue-100">
                 <h2 className="text-xl font-bold text-gray-800 mb-4">Hướng dẫn bệnh nhân</h2>
-                <p className="text-sm leading-relaxed text-gray-600 whitespace-pre-wrap">{guidePlain}</p>
+                <div className="blog-client-article-body text-sm leading-relaxed text-gray-600">
+                  {parse(sanitizeCmsHtml(row.patient_guide))}
+                </div>
               </div>
             )}
 
@@ -364,27 +433,41 @@ export function PlaceDetail() {
                   {doctors.map((doctor) => {
                     const docName = [doctor.title, doctor.name].filter(Boolean).join(" ").trim() || doctor.name;
                     return (
-                      <div key={doctor.id} className="border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition-all">
-                        <div className="md:flex">
-                          <div className="md:w-56 h-56 md:h-auto relative bg-gray-100 shrink-0">
+                      <div key={doctor.id} className="border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition-all bg-white">
+                        <div className="md:flex items-start">
+                          <Link
+                            to={buildDoctorPath(doctor)}
+                            className="block w-24 h-24 md:w-32 md:h-32 rounded-full border-2 border-gray-100 relative bg-gray-50 shrink-0 overflow-hidden mx-auto mt-5 md:mx-6 md:mt-6 shadow-sm group"
+                          >
                             <ImageWithFallback
                               src={doctor.picture || "https://images.unsplash.com/photo-1622902046580-2b47f47f5471?w=400&q=80"}
                               alt={docName}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                             />
-                            <div className="absolute bottom-3 right-3 bg-white rounded-xl px-2.5 py-1 flex items-center gap-1 shadow-lg">
-                              <Star className="size-3 fill-yellow-400 text-yellow-400" />
-                              <span className="text-xs font-bold text-gray-800">4.8</span>
-                            </div>
-                          </div>
-                          <div className="flex-1 p-6">
-                            <div className="mb-4">
-                              <h3 className="text-xl font-bold text-gray-800 mb-2">{docName}</h3>
-                              {doctor.address && (
-                                <div className="flex items-center gap-1.5 text-sm text-gray-600">
-                                  <MapPin className="size-4 text-gray-400" /> {doctor.address}
+                          </Link>
+                          
+                          <div className="flex-1 p-5 md:pl-0">
+                            <div className="mb-3 text-center md:text-left">
+                              <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-1">
+                                <Link to={buildDoctorPath(doctor)} className="hover:text-[#3498db] transition-colors">
+                                  {docName}
+                                </Link>
+                              </h3>
+                              
+                              <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 text-sm text-gray-600 mb-2">
+                                {doctor.sponsor === 1 && (
+                                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-red-100 text-red-600">Nổi bật</span>
+                                )}
+                                <div className="flex items-center gap-1 bg-yellow-50 px-2 py-0.5 rounded-full">
+                                  <Star className="size-3.5 fill-yellow-400 text-yellow-400" />
+                                  <span className="text-xs font-bold text-gray-800">4.8</span>
                                 </div>
-                              )}
+                                {doctor.address && (
+                                  <div className="flex items-center gap-1">
+                                    <MapPin className="size-3.5 text-gray-400" /> <span className="line-clamp-1">{doctor.address}</span>
+                                  </div>
+                                )}
+                              </div>
                             </div>
 
                             <DoctorScheduleCard

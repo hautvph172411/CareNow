@@ -16,6 +16,12 @@ import {
 } from "../api/catalog.api";
 import { SchedulePicker } from "../components/SchedulePicker";
 import BookingLocationSelects from "../components/BookingLocationSelects";
+import DoctorPriceInsuranceInfo, {
+  buildFinanceSelectionPayload,
+  getDefaultInsurancePackageId,
+  getDefaultPricePackageId,
+} from "../components/DoctorPriceInsuranceInfo";
+import { ConsultationForm } from "../components/ConsultationForm";
 
 /* Fallback slots khi không có clinicId */
 const FALLBACK_SLOTS = [
@@ -145,7 +151,7 @@ export function Booking() {
     provinceId: provinceIdParam || "",
     wardId: wardIdParam || "",
     address: addressParam || "",
-    notes: notesParam || "",
+    notes: "",
   }));
   const [forRelative,  setForRelative]  = useState(false);  // đặt cho người thân
   const [profile,      setProfile]      = useState(null);   // tbl_patient data
@@ -155,6 +161,8 @@ export function Booking() {
   const [submitting,   setSubmitting]   = useState(false);
   const [submitError,  setSubmitError]  = useState("");
   const [successData,  setSuccessData]  = useState(null);
+  const [selectedPricePackageId, setSelectedPricePackageId] = useState("");
+  const [selectedInsurancePackageId, setSelectedInsurancePackageId] = useState("");
   const [bookingContext, setBookingContext] = useState({
     clinic: null,
     specialty: null,
@@ -168,6 +176,9 @@ export function Booking() {
         name: [bookingContext.clinic.title, bookingContext.clinic.name].filter(Boolean).join(" "),
         specialty: bookingContext.specialty?.name || "Bác sĩ / phòng khám đã chọn",
         experience: bookingContext.clinic.experience || "",
+        price_min: bookingContext.clinic.price_min,
+        price_summary: bookingContext.clinic.price_summary,
+        insurance_summary: bookingContext.clinic.insurance_summary,
       }];
     }
     return [
@@ -192,11 +203,26 @@ export function Booking() {
     return parts.length ? `Đặt lịch từ: ${parts.join(", ")}.` : "";
   }, [bookingContext, clinicIdParam, specialtyIdParam, placeIdParam]);
 
+  const selectedDoctor = useMemo(
+    () => doctors.find((doctor) => String(doctor.id) === String(formData.doctor)) || null,
+    [doctors, formData.doctor]
+  );
+
+  useEffect(() => {
+    setSelectedPricePackageId(getDefaultPricePackageId(selectedDoctor?.price_summary));
+    setSelectedInsurancePackageId(getDefaultInsurancePackageId(selectedDoctor?.insurance_summary));
+  }, [selectedDoctor?.id, selectedDoctor?.price_summary, selectedDoctor?.insurance_summary]);
+
   useEffect(() => {
     let cancelled = false;
     (async () => {
       const [clinic, specialty, place] = await Promise.all([
-        clinicIdParam ? getClinicById(clinicIdParam).catch(() => null) : Promise.resolve(null),
+        clinicIdParam
+          ? getClinicById(
+              clinicIdParam,
+              placeIdParam ? { place_id: placeIdParam } : {}
+            ).catch(() => null)
+          : Promise.resolve(null),
         specialtyIdParam ? getSpecialtyById(specialtyIdParam).catch(() => null) : Promise.resolve(null),
         placeIdParam ? getClinicPlaceById(placeIdParam).catch(() => null) : Promise.resolve(null),
       ]);
@@ -295,6 +321,12 @@ export function Booking() {
           ? Number(serviceIdParam)
           : (bookingContext.specialty?.service_id ? Number(bookingContext.specialty.service_id) : undefined),
         clinic_place_id: placeIdParam     ? Number(placeIdParam)     : undefined,
+        ...buildFinanceSelectionPayload({
+          priceSummary: selectedDoctor?.price_summary,
+          insuranceSummary: selectedDoctor?.insurance_summary,
+          pricePackageId: selectedPricePackageId,
+          insurancePackageId: selectedInsurancePackageId,
+        }),
       };
 
       const res = await createAppointment(payload);
@@ -345,6 +377,18 @@ export function Booking() {
   const set = (key) => (e) => setFormData((f) => ({ ...f, [key]: e.target.value }));
 
   /* ── Render ─────────────────────────────────────────────────────────────── */
+  const isConsultationMode = !clinicIdParam && !specialtyIdParam && !serviceIdParam && !placeIdParam;
+
+  if (isConsultationMode) {
+    return (
+      <div className="py-12 bg-gray-50 min-h-[calc(100vh-200px)]">
+        <div className="container mx-auto px-4">
+          <ConsultationForm />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -468,6 +512,25 @@ export function Booking() {
                     </label>
                   ))}
                 </div>
+
+                {selectedDoctor && (
+                  selectedDoctor.price_min ||
+                  selectedDoctor.price_summary?.min ||
+                  (Array.isArray(selectedDoctor.insurance_summary?.items) && selectedDoctor.insurance_summary.items.length > 0)
+                ) && (
+                  <div className="mt-5 border-y border-gray-200 py-2">
+                    <DoctorPriceInsuranceInfo
+                      priceSummary={selectedDoctor.price_summary}
+                      insuranceSummary={selectedDoctor.insurance_summary}
+                      legacyPriceMin={selectedDoctor.price_min}
+                      selectable
+                      selectedPricePackageId={selectedPricePackageId}
+                      selectedInsurancePackageId={selectedInsurancePackageId}
+                      onSelectPricePackage={setSelectedPricePackageId}
+                      onSelectInsurancePackage={setSelectedInsurancePackageId}
+                    />
+                  </div>
+                )}
 
                 <div className="flex gap-4 mt-6">
                   <button onClick={() => setCurrentStep(1)} className="flex-1 bg-gray-200 text-gray-800 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors">Quay lại</button>
@@ -651,7 +714,7 @@ export function Booking() {
                   </div>
                   <div className="flex items-center gap-2">
                     <User className="size-4 text-blue-400" />
-                    <span>{doctors.find((d) => d.id === formData.doctor)?.name || "—"}</span>
+                    <span>{selectedDoctor?.name || "—"}</span>
                   </div>
                 </div>
 

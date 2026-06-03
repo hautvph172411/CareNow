@@ -4,8 +4,8 @@
 
 .appointments-hero {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: flex-end;
   gap: 1rem;
   margin-bottom: 1rem;
 }
@@ -87,6 +87,7 @@
 }
 
 .appointments-table-shell {
+  width: 100%;
   padding: 1rem;
   border: 1px solid var(--gray-200);
   border-radius: 0.75rem;
@@ -95,7 +96,8 @@
 }
 
 .appointments-card {
-  min-width: 980px;
+  width: 100%;
+  min-width: 0;
   overflow: hidden;
   border: 1px solid var(--gray-200);
   border-radius: 0.75rem;
@@ -105,13 +107,14 @@
 .appointments-table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: auto;
 }
 
 .appointments-table th,
 .appointments-table td {
-  padding: 1rem;
+  padding: 0.875rem;
   text-align: left;
-  vertical-align: middle;
+  vertical-align: top;
   border-bottom: 1px solid var(--gray-200);
   font-size: 0.9rem;
 }
@@ -167,11 +170,15 @@
 
 .appointments-actions {
   display: flex;
-  gap: 0.9rem;
-  white-space: nowrap;
+  gap: 0.65rem;
+  white-space: normal;
+  flex-wrap: wrap;
 }
 
 .appointments-action-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   color: var(--primary);
   font-weight: 700;
   transition: color 0.2s ease;
@@ -195,6 +202,59 @@
   padding: 2rem;
   text-align: center;
   color: var(--gray-600);
+}
+
+.appointments-status-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+  min-width: 240px;
+}
+
+.appointments-status-actions .form-input {
+  min-width: 190px;
+}
+
+.appointments-admin-status-select {
+  width: 220px;
+  max-width: 220px;
+  white-space: nowrap;
+}
+
+.status-chip {
+  border: 1px solid var(--gray-200);
+  border-radius: 999px;
+  padding: 0.18rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #fff;
+  color: var(--gray-700);
+  cursor: pointer;
+}
+
+.status-chip.pending {
+  border-color: #fcd34d;
+  color: #92400e;
+  background: #fffbeb;
+}
+
+.status-chip.confirmed {
+  border-color: #93c5fd;
+  color: #1d4ed8;
+  background: #eff6ff;
+}
+
+.status-chip.done {
+  border-color: #86efac;
+  color: #166534;
+  background: #f0fdf4;
+}
+
+.status-chip.cancel {
+  border-color: #fca5a5;
+  color: #991b1b;
+  background: #fef2f2;
 }
 
 .appointments-crud-modal {

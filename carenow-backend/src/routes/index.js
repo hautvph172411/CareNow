@@ -24,4 +24,16 @@ router.use('/patient', require('../modules/patient/patient.router'));
 // Lịch hẹn khám bệnh (public booking + patient view + admin manage)
 router.use('/appointments', require('../modules/appointment/appointment.router'));
 
+// Liên hệ hợp tác (Partner Contact)
+router.use('/partner-contacts', require('../modules/partner_contact/partner_contact.router'));
+
+// Tư vấn thêm (Consultation Requests)
+router.use('/consultations', require('../modules/consultation/consultation.router'));
+
+// Cài đặt hệ thống (Settings)
+router.use('/settings', require('../modules/settings/settings.router'));
+
+// Dashboard thống kê
+router.use('/dashboard', require('../modules/dashboard/dashboard.router'));
+
 module.exports = router;

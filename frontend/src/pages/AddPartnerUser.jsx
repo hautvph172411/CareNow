@@ -18,7 +18,7 @@ export default function AddPartnerUser() {
     username: '',
     display_name: '',
     partner_id: '',
-    role_name: '', // Lưu Vai trò chọn từ DB
+    partner_role: 'staff',
     status: 1,
     phone: '',
     email: '',
@@ -31,23 +31,9 @@ export default function AddPartnerUser() {
   useEffect(() => {
     const loadInitialData = async () => {
       try {
-        const [pRes, rRes] = await Promise.all([
-          getPartners({ status: 1 }),
-          getAuthItems()
-        ]);
-        
+        const pRes = await getPartners({ status: 1 });
         if (pRes.success) {
           setPartners(pRes.data.map(p => ({ value: p.id, label: p.name })));
-        }
-
-        if (rRes.success) {
-          const roles = rRes.data
-            .filter(i => i.type === 1)
-            .map(r => ({ value: r.name, label: r.name }));
-          setRoleOptions(roles);
-          if (roles.length > 0) {
-            setFormData(prev => ({ ...prev, role_name: roles[0].value }));
-          }
         }
       } catch (err) {
         console.error(err);
@@ -65,29 +51,23 @@ export default function AddPartnerUser() {
     e.preventDefault();
     if (!formData.partner_id) {
       setErrors({ partner_id: 'Vui lòng chọn đối tác' });
+      alert("Vui lòng kiểm tra lại các thông tin bắt buộc!");
       return;
     }
     if (formData.password !== formData.confirmPassword) {
         setErrors({ confirmPassword: 'Mật khẩu xác nhận không khớp' });
-        return;
+      alert("Vui lòng kiểm tra lại các thông tin bắt buộc!");
+      return;
     }
 
     setIsLoading(true);
     try {
       const payload = { ...formData };
-      const selectedRole = payload.role_name;
-
       if (!payload.username) payload.username = payload.email || payload.phone;
-      
       payload.role = 2; // Quyền Đối tác
-
       delete payload.confirmPassword;
-      delete payload.role_name;
 
-      const userRes = await createUser(payload);
-      if (userRes.success && selectedRole) {
-        await assignToUser(userRes.data.id, [selectedRole]);
-      }
+      await createUser(payload);
       alert('Thêm tài khoản đối tác thành công!');
       navigate('/users/partner');
     } catch (err) {
@@ -123,12 +103,11 @@ export default function AddPartnerUser() {
                   {errors.partner_id && <span className="form-error">{errors.partner_id}</span>}
                 </div>
                 <div className="form-group">
-                  <label>Quyền hạn (Vai trò) *</label>
-                  <SearchableSelect 
-                    options={roleOptions}
-                    value={formData.role_name}
-                    onChange={(val) => setFormData(p => ({ ...p, role_name: val }))}
-                  />
+                  <label>Phân quyền *</label>
+                  <select name="partner_role" value={formData.partner_role} onChange={handleChange} className="form-input">
+                    <option value="staff">Nhân viên (Chỉ xem/xử lý lịch)</option>
+                    <option value="manager">Quản lý (Toàn quyền đối tác)</option>
+                  </select>
                 </div>
                 <div className="form-group">
                   <label>Trạng thái</label>

@@ -2,10 +2,15 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
 import {
   Star, MapPin, Clock, Calendar, Award, GraduationCap,
-  Phone, Video, ChevronLeft, CheckCircle, Users,
+  Phone, ChevronLeft, CheckCircle, Users,
   Shield, Heart, X,
 } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import DoctorPriceInsuranceInfo, {
+  buildFinanceSelectionPayload,
+  getDefaultInsurancePackageId,
+  getDefaultPricePackageId,
+} from "../components/DoctorPriceInsuranceInfo";
 import { getClinicById, getSpecialtyById } from "../api/catalog.api";
 import { createAppointment } from "../api/appointment.api";
 import { htmlToPlain } from "../utils/htmlToPlain";
@@ -49,6 +54,8 @@ export function DoctorDetail() {
 
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
+  const [selectedPricePackageId, setSelectedPricePackageId] = useState("");
+  const [selectedInsurancePackageId, setSelectedInsurancePackageId] = useState("");
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [bookingSubmitting, setBookingSubmitting] = useState(false);
   const [bookingError, setBookingError] = useState("");
@@ -92,6 +99,11 @@ export function DoctorDetail() {
     if (location.pathname !== canonical) navigate(canonical, { replace: true });
   }, [row, location.pathname, navigate]);
 
+  useEffect(() => {
+    setSelectedPricePackageId(getDefaultPricePackageId(row?.price_summary));
+    setSelectedInsurancePackageId(getDefaultInsurancePackageId(row?.insurance_summary));
+  }, [row?.id, row?.price_summary, row?.insurance_summary]);
+
   const contentPlain = useMemo(() => (row?.content ? htmlToPlain(row.content) : ""), [row]);
 
   if (!parsed?.id) {
@@ -122,8 +134,15 @@ export function DoctorDetail() {
   const degree = row.title || "";
   const specialty = specialtyForCrumb?.name || "";
 
-  const handleBooking = () => {
+  const isWork = row.is_work !== 0;
+  const paymentMethodMap = { 0: "Tiền mặt", 1: "Thẻ / Chuyển khoản", 2: "Tiền mặt, Thẻ, Chuyển khoản" };
+  const paymentMethod = row.payment_method !== undefined ? paymentMethodMap[row.payment_method] : null;
+  const showPhone = row.show_phone === 1;
+
+  const handleBooking = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
     if (!selectedDate || !selectedTime) { alert("Vui lòng chọn ngày và giờ khám!"); return; }
+    setBookingError("");
     setShowBookingModal(true);
   };
 
@@ -146,6 +165,12 @@ export function DoctorDetail() {
         appt_time: selectedTime,
         clinic_id: row.id,
         specialist_id: specialtyForCrumb?.id,
+        ...buildFinanceSelectionPayload({
+          priceSummary: row.price_summary,
+          insuranceSummary: row.insurance_summary,
+          pricePackageId: selectedPricePackageId,
+          insurancePackageId: selectedInsurancePackageId,
+        }),
       });
       const appt = res.data;
       setShowBookingModal(false);
@@ -183,11 +208,7 @@ export function DoctorDetail() {
       <div className="container mx-auto px-4 pt-2 pb-1 flex items-center gap-1.5 text-xs text-gray-400 flex-wrap">
         <Link to="/" className="hover:text-blue-500 transition-colors">Trang chủ</Link>
         <span>/</span>
-        {specialtyForCrumb ? (
-          <Link to={buildSpecialtyPath(specialtyForCrumb)} className="hover:text-blue-500 transition-colors">{specialtyForCrumb.name}</Link>
-        ) : (
-          <Link to="/dich-vu" className="hover:text-blue-500 transition-colors">Chuyên khoa</Link>
-        )}
+        <Link to="/dich-vu" className="hover:text-blue-500 transition-colors">Chuyên khoa</Link>
         <span>/</span>
         <span className="text-gray-600 font-medium truncate max-w-xs">{fullName}</span>
       </div>
@@ -204,8 +225,13 @@ export function DoctorDetail() {
                   <ImageWithFallback
                     src={row.picture || "https://images.unsplash.com/photo-1622902046580-2b47f47f5471?w=400&q=80"}
                     alt={fullName}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                   />
+                  {row.sponsor === 1 && (
+                    <div className="absolute top-3 left-3 text-white text-xs font-semibold px-2.5 py-1 rounded-full bg-red-600 shadow-md">
+                      Nổi bật
+                    </div>
+                  )}
                   <div className="absolute bottom-3 right-3 bg-white rounded-xl px-2.5 py-1 flex items-center gap-1 shadow-lg">
                     <Star className="size-3 fill-yellow-400 text-yellow-400" />
                     <span className="text-xs font-bold text-gray-800">4.8</span>
@@ -302,62 +328,86 @@ export function DoctorDetail() {
           {/* ── Right sticky panel (1/3) ── */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-2xl p-6 shadow-md sticky top-6">
-              <div className="text-center mb-6 pb-6 border-b border-gray-100">
-                <div className="text-sm text-gray-500 mb-1">Phí khám</div>
-                <div className="text-2xl font-bold" style={{ color: "#3498db" }}>Liên hệ</div>
-              </div>
-
-              {/* Schedule — thật từ DB */}
-              <div className="mb-6">
-                <h3 className="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
-                  <Calendar className="size-4 text-blue-600" />
-                  Chọn lịch khám
-                </h3>
-                <SchedulePicker
-                  clinicId={row?.id}
-                  selectedDate={selectedDate}
-                  selectedTime={selectedTime}
-                  onSelect={(date, time) => {
-                    setSelectedDate(date);
-                    setSelectedTime(time);
-                  }}
-                  compact
-                />
-              </div>
-
-              {selectedDate && selectedTime && (
-                <div className="mb-4 bg-green-50 rounded-xl p-3 border border-green-200">
-                  <div className="text-xs text-gray-600 mb-1">Lịch đã chọn</div>
-                  <div className="font-semibold text-green-700">
-                    {new Date(selectedDate + "T00:00:00").toLocaleDateString("vi-VN", {
-                      weekday: "short", day: "numeric", month: "short",
-                    })} — {selectedTime}
-                  </div>
+              {!isWork ? (
+                <div className="mb-6 p-4 text-center text-red-600 bg-red-50 border border-red-100 rounded-xl font-medium">
+                  Bác sĩ đang tạm ngưng nhận lịch khám.
                 </div>
+              ) : (
+                <>
+                  <div className="mb-6">
+                    <h3 className="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
+                      <Calendar className="size-4 text-blue-600" />
+                      Chọn lịch khám
+                    </h3>
+                    <SchedulePicker
+                      clinicId={row?.id}
+                      selectedDate={selectedDate}
+                      selectedTime={selectedTime}
+                      onSelect={(date, time) => {
+                        setSelectedDate(date);
+                        setSelectedTime(time);
+                      }}
+                      compact
+                    />
+                  </div>
+
+                  {selectedDate && selectedTime && (
+                    <div className="mb-4 bg-green-50 rounded-xl p-3 border border-green-200">
+                      <div className="text-xs text-gray-600 mb-1">Lịch đã chọn</div>
+                      <div className="font-semibold text-green-700">
+                        {new Date(selectedDate + "T00:00:00").toLocaleDateString("vi-VN", {
+                          weekday: "short", day: "numeric", month: "short",
+                        })} — {selectedTime}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="mb-6 pb-6 border-b border-gray-100">
+                    <div className="border-y border-gray-200 py-2 text-left">
+                      <DoctorPriceInsuranceInfo
+                        priceSummary={row.price_summary}
+                        insuranceSummary={row.insurance_summary}
+                        legacyPriceMin={row.price_min}
+                        defaultExpanded={false}
+                        selectable
+                        selectedPricePackageId={selectedPricePackageId}
+                        selectedInsurancePackageId={selectedInsurancePackageId}
+                        onSelectPricePackage={setSelectedPricePackageId}
+                        onSelectInsurancePackage={setSelectedInsurancePackageId}
+                      />
+                      {!row.price_summary?.min && !row.price_min && (
+                        <div className="py-2 text-base leading-relaxed">
+                          <span className="font-bold uppercase tracking-normal text-gray-600">Giá khám:</span>{" "}
+                          <span className="font-medium text-gray-900">Liên hệ</span>
+                        </div>
+                      )}
+                    </div>
+                    {paymentMethod && (
+                      <div className="text-xs text-gray-500 mt-2">Thanh toán: {paymentMethod}</div>
+                    )}
+                  </div>
+
+                  {/* Action buttons */}
+                  <div className="space-y-3 mb-6">
+                    <button
+                      onClick={handleBooking}
+                      className="w-full flex items-center justify-center gap-2 text-white py-3.5 rounded-xl font-semibold transition-all hover:opacity-90"
+                      style={{ backgroundColor: "#3498db" }}
+                    >
+                      <Calendar className="size-5" /> Đặt lịch khám ngay
+                    </button>
+                  </div>
+                </>
               )}
 
-              {/* Action buttons */}
-              <div className="space-y-3">
-                <button
-                  onClick={handleBooking}
-                  className="w-full flex items-center justify-center gap-2 text-white py-3.5 rounded-xl font-semibold transition-all hover:opacity-90"
-                  style={{ backgroundColor: "#3498db" }}
-                >
-                  <Calendar className="size-5" /> Đặt lịch khám ngay
-                </button>
-                <Link
-                  to={`/dat-lich?clinicId=${encodeURIComponent(row.id)}`}
-                  className="w-full flex items-center justify-center gap-2 bg-green-600 text-white py-3.5 rounded-xl font-semibold hover:bg-green-700 transition-colors"
-                >
-                  <Video className="size-5" /> Khám từ xa (Online)
-                </Link>
+              {showPhone && (
                 <a
                   href="tel:19002345"
                   className="w-full flex items-center justify-center gap-2 bg-white border-2 border-gray-200 text-gray-700 py-3.5 rounded-xl font-semibold hover:bg-gray-50 transition-colors"
                 >
                   <Phone className="size-5" /> Gọi 1900-2345
                 </a>
-              </div>
+              )}
 
               <div className="mt-6 pt-6 border-t border-gray-100 space-y-3 text-sm text-gray-600">
                 <div className="flex items-center gap-2"><Shield className="size-4 text-green-600" /><span>Miễn phí đặt lịch</span></div>

@@ -37,7 +37,8 @@ const cancelAppointment = async (req, res) => {
   try {
     const patientId = req.patient?.id ?? null;
     const isAdmin   = req.user?.role === 1;  // admin route dùng req.user
-    const appt = await service.cancelAppointment(req.params.id, patientId, isAdmin);
+    const cancelReason = req.body?.cancel_reason;
+    const appt = await service.cancelAppointment(req.params.id, patientId, isAdmin, cancelReason);
     return res.status(200).json({ message: 'Đã hủy lịch hẹn', data: appt });
   } catch (err) {
     return handleError(res, err);
@@ -97,9 +98,22 @@ const deleteAppointment = async (req, res) => {
   }
 };
 
+/* ── POST /appointments/claim-local — liên kết lịch hẹn guest vào tài khoản bệnh nhân ── */
+const claimLocalAppointments = async (req, res) => {
+  try {
+    const patientId = req.patient.id;
+    const bookingCodes = req.body.booking_codes || req.body.bookingCodes || [];
+    const result = await service.claimLocalAppointments(patientId, bookingCodes);
+    return res.status(200).json({ message: 'Liên kết lịch hẹn thành công', data: result });
+  } catch (err) {
+    return handleError(res, err);
+  }
+};
+
 module.exports = {
   createAppointment,
   getMyAppointments,
+  claimLocalAppointments,
   cancelAppointment,
   getAllAppointments,
   getAppointmentById,

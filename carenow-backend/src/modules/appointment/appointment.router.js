@@ -12,6 +12,7 @@ router.post('/', softAuth, controller.createAppointment);
 
 /* ── Routes yêu cầu đăng nhập bệnh nhân ──────────────────────────────────── */
 router.get('/my',         authClient, controller.getMyAppointments);
+router.post('/claim-local', authClient, controller.claimLocalAppointments);
 router.patch('/:id/cancel', authClient, controller.cancelAppointment);
 router.get('/:id',        authClient, controller.getAppointmentById);
 

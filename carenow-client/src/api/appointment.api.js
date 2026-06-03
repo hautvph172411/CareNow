@@ -40,8 +40,8 @@ export async function getMyAppointments(params = {}) {
  *
  * @param {number|string} id
  */
-export async function cancelAppointment(id) {
-  const { data: res } = await axios.patch(`/appointments/${id}/cancel`);
+export async function cancelAppointment(id, cancel_reason) {
+  const { data: res } = await axios.patch(`/appointments/${id}/cancel`, { cancel_reason });
   return res; // { message, data: appointment }
 }
 

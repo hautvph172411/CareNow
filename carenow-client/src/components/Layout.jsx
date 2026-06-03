@@ -3,9 +3,11 @@ import { useState } from "react";
 import {
   Calendar, Heart, BookOpen, ClipboardList, Stethoscope,
   Menu, X, Phone, Mail, MapPin, Facebook, Youtube,
-  User, LogOut, LogIn,
+  User, Users, LogOut, LogIn,
 } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
+import { getAllSettings } from "../api/settings.api";
+import { useEffect } from "react";
 
 export function Layout() {
   const location = useLocation();
@@ -13,6 +15,19 @@ export function Layout() {
   const { isAuthenticated, user, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [siteLogo, setSiteLogo] = useState('');
+  const [siteName, setSiteName] = useState('CareNow');
+
+  useEffect(() => {
+    getAllSettings()
+      .then(res => {
+        if (res.success && res.data) {
+          if (res.data.site_logo) setSiteLogo(res.data.site_logo);
+          if (res.data.site_name) setSiteName(res.data.site_name);
+        }
+      })
+      .catch(err => console.error("Error fetching settings:", err));
+  }, []);
 
   const isActive = (path) => {
     if (path === "/") return location.pathname === "/";
@@ -31,6 +46,7 @@ export function Layout() {
     { to: "/dat-lich", label: "Đặt lịch", icon: Calendar },
     { to: "/lich-cua-toi", label: "Lịch của tôi", icon: ClipboardList },
     { to: "/cam-nang-y-te", label: "Cẩm nang Y tế", icon: BookOpen },
+    { to: "/hop-tac", label: "Hợp tác", icon: Users },
   ];
 
   return (
@@ -41,17 +57,17 @@ export function Layout() {
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5">
               <Phone className="size-3.5" />
-              Hotline: <strong>1900-2345</strong>
+              Hotline: <strong>0922632691</strong>
             </span>
             <span className="flex items-center gap-1.5">
               <Mail className="size-3.5" />
-              support@carenow.vn
+             hautvph17241@carenow.vn
             </span>
           </div>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5">
               <MapPin className="size-3.5" />
-              123 Nguyễn Huệ, Q.1, TP.HCM
+              SN 03 Tổ 17 khu 2A Phường Hà Tu, Tỉnh Quảng Ninh
             </span>
           </div>
         </div>
@@ -62,14 +78,18 @@ export function Layout() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-3">
             <Link to="/" className="flex items-center gap-3">
-              <div
-                className="flex items-center justify-center size-10 rounded-xl text-white"
-                style={{ backgroundColor: "#3498db" }}
-              >
-                <Stethoscope className="size-6" />
-              </div>
+              {siteLogo ? (
+                <img src={siteLogo} alt="Logo" className="h-10 w-auto object-contain" />
+              ) : (
+                <div
+                  className="flex items-center justify-center size-10 rounded-xl text-white"
+                  style={{ backgroundColor: "#3498db" }}
+                >
+                  <Stethoscope className="size-6" />
+                </div>
+              )}
               <div>
-                <h1 className="text-xl font-semibold" style={{ color: "#3498db" }}>CareNow</h1>
+                <h1 className="text-xl font-semibold" style={{ color: "#3498db" }}>{siteName}</h1>
                 <p className="text-xs text-gray-500">Đặt lịch khám nhanh chóng</p>
               </div>
             </Link>
@@ -256,11 +276,15 @@ export function Layout() {
             {/* Brand */}
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="flex items-center justify-center size-10 rounded-xl bg-white/10">
-                  <Stethoscope className="size-6 text-white" />
-                </div>
+                {siteLogo ? (
+                  <img src={siteLogo} alt="Logo" className="h-10 w-auto object-contain brightness-0 invert" />
+                ) : (
+                  <div className="flex items-center justify-center size-10 rounded-xl bg-white/10">
+                    <Stethoscope className="size-6 text-white" />
+                  </div>
+                )}
                 <div>
-                  <div className="text-lg font-semibold">CareNow</div>
+                  <div className="text-lg font-semibold">{siteName}</div>
                   <div className="text-xs opacity-70">Chăm sóc sức khỏe</div>
                 </div>
               </div>
@@ -285,6 +309,7 @@ export function Layout() {
                 <li><Link to="/dich-vu" className="hover:opacity-100 transition-opacity hover:text-blue-300">Khám Tổng quát</Link></li>
                 <li><Link to="/dich-vu" className="hover:opacity-100 transition-opacity hover:text-blue-300">Khám Nha khoa</Link></li>
                 <li><Link to="/dat-lich" className="hover:opacity-100 transition-opacity hover:text-blue-300">Đặt lịch khám</Link></li>
+                <li><Link to="/hop-tac" className="hover:opacity-100 transition-opacity hover:text-blue-300">Hợp tác với chúng tôi</Link></li>
               </ul>
             </div>
 
@@ -294,15 +319,15 @@ export function Layout() {
               <ul className="space-y-3 text-sm opacity-75">
                 <li className="flex items-start gap-2">
                   <Phone className="size-4 mt-0.5 shrink-0" />
-                  <span>Hotline: <strong className="text-white">1900-2345</strong></span>
+                  <span>Hotline: <strong className="text-white">0922632691</strong></span>
                 </li>
                 <li className="flex items-start gap-2">
                   <Mail className="size-4 mt-0.5 shrink-0" />
-                  <span>support@carenow.vn</span>
+                  <span>hautvph17241@carenow.vn</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <MapPin className="size-4 mt-0.5 shrink-0" />
-                  <span>123 Nguyễn Huệ, Q.1, TP.HCM</span>
+                  <span>SN 03 Tổ 17 khu 2A Phường Hà Tu, Tỉnh Quảng Ninh</span>
                 </li>
               </ul>
             </div>
@@ -323,7 +348,7 @@ export function Layout() {
           </div>
 
           <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs opacity-50">
-            <span>© 2026 CareNow. Bản quyền thuộc về CareNow.</span>
+            <span>© 2026 {siteName}. Bản quyền thuộc về {siteName}.</span>
             <div className="flex gap-4">
               <a href="#" className="hover:opacity-100">Chính sách bảo mật</a>
               <a href="#" className="hover:opacity-100">Điều khoản sử dụng</a>

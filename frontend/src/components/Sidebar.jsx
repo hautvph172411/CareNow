@@ -1,12 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Home, Users, LogOut,
   Activity, Handshake, Shield, Briefcase,
   Lock, ChevronDown, ChevronLeft, ChevronRight, Zap, Sparkles, Building2, Layers, CalendarClock, CalendarCheck,
-  BookOpen, Tags, Stethoscope,
+  BookOpen, Tags, Stethoscope, Settings as SettingsIcon, MessageSquare
 } from 'lucide-react';
 import { useAuth } from "../hooks/useAuth";
+import { getAllSettings } from "../api/settings.api";
+import { getUnreadConsultationsCount } from "../api/consultation.api";
 
 /**
  * Mỗi item gắn với 1 permission name (đồng bộ với src/config/features.js).
@@ -15,7 +17,7 @@ import { useAuth } from "../hooks/useAuth";
  */
 const MAIN_MENU = [
   { icon: Sparkles,   label: 'Trang chủ',       to: '/welcome',              permission: null },
-  { icon: Home,       label: 'Bảng điều khiển', to: '/dashboard',            permission: 'view_dashboard' },
+  { icon: Home,       label: 'Thống kê',        to: '/dashboard',            permission: 'view_dashboard' },
   { icon: Layers,     label: 'Dịch vụ',         to: '/services/admin',       permission: 'manage_service' },
   { icon: CalendarClock, label: 'Lịch hẹn',     to: '/appointment-schedule', permission: 'manage_appointment_schedule' },
   { icon: CalendarCheck, label: 'Đơn đặt khám', to: '/appointments/admin',   permission: 'manage_appointment' },
@@ -26,6 +28,8 @@ const MAIN_MENU = [
   { icon: Users,      label: 'Bác sĩ',          to: '/clinic/admin',         permission: 'manage_clinic' },
   { icon: Building2,  label: 'Nơi khám',        to: '/clinic-place/admin',   permission: 'manage_clinic_place' },
   { icon: Handshake,  label: 'Đối tác',         to: '/partner/admin',        permission: 'manage_partner' },
+  { icon: Handshake,  label: 'Liên hệ Hợp tác',  to: '/hop-tac-lien-he',      permission: 'manage_partner' },
+  { icon: MessageSquare, label: 'Tư vấn thêm',   to: '/tu-van-them',          permission: 'manage_appointment', isConsultation: true },
 ];
 
 const AUTH_SUB_MENU = [
@@ -42,6 +46,40 @@ export default function Sidebar({ isOpen, isCollapsed = false, onClose, onToggle
   const location = useLocation();
   const { logout, hasPermission, isAuthenticated } = useAuth();
   const [isAuthOpen, setIsAuthOpen] = useState(location.pathname.startsWith('/auth'));
+  const [siteLogo, setSiteLogo] = useState('');
+  const [siteName, setSiteName] = useState('CareNow');
+  const [unreadConsultations, setUnreadConsultations] = useState(0);
+
+  useEffect(() => {
+    getAllSettings()
+      .then(res => {
+        if (res.success && res.data) {
+          if (res.data.site_logo) setSiteLogo(res.data.site_logo);
+          if (res.data.site_name) setSiteName(res.data.site_name);
+        }
+      })
+      .catch(err => console.error("Error fetching settings:", err));
+  }, []);
+
+  useEffect(() => {
+    if (!isAuthenticated || !hasPermission('manage_appointment')) return;
+
+    const fetchCount = () => {
+      getUnreadConsultationsCount().then(res => {
+        if (res && res.count !== undefined) {
+          setUnreadConsultations(res.count);
+        }
+      }).catch(err => console.error("Error fetching unread consultations count:", err));
+    };
+
+    fetchCount();
+    window.addEventListener('consultations_updated', fetchCount);
+    const interval = setInterval(fetchCount, 60000); // Tự động làm mới mỗi 1 phút
+    return () => {
+      window.removeEventListener('consultations_updated', fetchCount);
+      clearInterval(interval);
+    };
+  }, [isAuthenticated, hasPermission]);
 
   // Helper: hiển thị item nếu không yêu cầu quyền, HOẶC user có quyền, HOẶC đang dev bypass.
   const canShow = (permission) => !permission || !isAuthenticated || hasPermission(permission);
@@ -69,8 +107,12 @@ export default function Sidebar({ isOpen, isCollapsed = false, onClose, onToggle
           {isCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
         </button>
         <div className="sidebar-header">
-          <div className="sidebar-logo">BC</div>
-          <h1 className="sidebar-brand">CareNow</h1>
+          {siteLogo ? (
+            <img src={siteLogo} alt="Logo" className="sidebar-logo-img" style={{ maxHeight: '40px', maxWidth: '100%', objectFit: 'contain' }} />
+          ) : (
+            <div className="sidebar-logo">BC</div>
+          )}
+          {!isCollapsed && <h1 className="sidebar-brand">{siteName}</h1>}
         </div>
 
         <nav className="sidebar-menu">
@@ -80,7 +122,7 @@ export default function Sidebar({ isOpen, isCollapsed = false, onClose, onToggle
             return (
               <Link key={idx} to={item.to} className={`sidebar-menu-item ${isActive ? 'active' : ''}`}>
                 <Icon size={20} />
-                <span>{item.label}</span>
+                <span className="flex-1">{item.label}</span>
               </Link>
             );
           })}
@@ -134,6 +176,12 @@ export default function Sidebar({ isOpen, isCollapsed = false, onClose, onToggle
               })}
             </>
           )}
+
+          <div className="sidebar-divider">HỆ THỐNG</div>
+          <Link to="/settings" className={`sidebar-menu-item ${location.pathname === '/settings' ? 'active' : ''}`}>
+            <SettingsIcon size={20} />
+            <span>Cài đặt</span>
+          </Link>
         </nav>
 
         <div className="sidebar-footer">

@@ -1,0 +1,1291 @@
+{
+  "isIos": false,
+  "cookies": {},
+  "data": {
+    "data": {
+      "service": {
+        "id": 11,
+        "name": "Bài viết",
+        "url": "bai-viet",
+        "type": 11,
+        "description": "",
+        "image": "",
+        "content": "",
+        "backgroundImage": ""
+      },
+      "news": [
+        {
+          "id": 7386,
+          "title": "Phẫu thuật lão thị tại Bệnh viện Mắt Quốc tế DND",
+          "picture": "https://cdn.bookingcare.vn/fo/2026/05/12/152236-phau-thuat-lao-thi-benh-vien-mat-quoc-te-dnd.png",
+          "pictureCaption": "Phẫu thuật lão thị tại Bệnh viện Mắt Quốc tế DND - Ảnh: bookingcare.vn",
+          "pictureAlt": "Phẫu thuật lão thị tại Bệnh viện Mắt Quốc tế DND",
+          "pictureShow": 1,
+          "summary": "Sau tuổi 40, nhiều người bắt đầu gặp tình trạng lão thị, khó nhìn gần và phải phụ thuộc kính. Tại Bệnh viện Mắt Quốc tế DND, phẫu thuật lão thị bằng laser đang mở ra thêm lựa chọn điều trị, giúp cải thiện khả năng nhìn và giảm phụ thuộc kính.",
+          "url": "phau-thuat-lao-thi-tai-benh-vien-mat-quoc-te-dnd"
+        },
+        {
+          "id": 7387,
+          "title": "Phẫu thuật khúc xạ tại Bệnh viện Mắt Quốc tế DND",
+          "picture": "https://cdn.bookingcare.vn/fo/2026/05/12/161007-phau-thuat-khuc-xa-benh-vien-mat-quoc-te-dnd.png",
+          "pictureCaption": "Phẫu thuật khúc xạ tại Bệnh viện Mắt Quốc tế DND - Ảnh: bookingcare.vn",
+          "pictureAlt": "Phẫu thuật khúc xạ tại Bệnh viện Mắt Quốc tế DND",
+          "pictureShow": 1,
+          "summary": "Phẫu thuật khúc xạ tại Bệnh viện Mắt Quốc tế DND có gì nổi bật? Cập nhật các phương pháp mổ cận hiện đại, quy trình khám chuyên sâu, chi phí phẫu thuật và ưu đãi mới nhất tại DND.",
+          "url": "phau-thuat-khuc-xa-tai-benh-vien-mat-quoc-te-dnd"
+        },
+        {
+          "id": 7382,
+          "title": "Đặt khám Sản phụ khoa cùng top bác sĩ giỏi tại Hà Nội",
+          "picture": "",
+          "pictureCaption": "",
+          "pictureAlt": "",
+          "pictureShow": 0,
+          "summary": "Chăm sóc sức khỏe sinh sản, theo dõi thai kỳ và khám bệnh phụ khoa là nhu cầu quan trọng của nhiều phụ nữ.\r\nTuy nhiên, việc tìm bác sĩ phù hợp với tình trạng và nhu cầu khám không phải lúc nào cũng dễ dàng.",
+          "url": "dat-kham-san-phu-khoa-cung-top-bac-si-gioi-tai-ha-noi"
+        },
+        {
+          "id": 7381,
+          "title": "Review top 4 địa chỉ mổ cận Femto Pro uy tín tại TP.HCM",
+          "picture": "https://cdn.bookingcare.vn/fo/2026/04/14/111355-dia-chi-mo-can-femto-pro-tphcm.png",
+          "pictureCaption": "Địa chỉ mổ cận Femto Pro uy tín tại TP.HCM - Ảnh: BookingCare",
+          "pictureAlt": "Địa chỉ mổ cận Femto Pro uy tín tại TP.HCM",
+          "pictureShow": 1,
+          "summary": "Nếu bạn đang tìm địa chỉ mổ cận Femto Pro uy tín tại TPHCM, đừng bỏ qua bài viết này. BookingCare review thông tin chi tiết về phẫu thuật xóa cận Femto Pro tại các đơn vị có tiếng như Mắt Quốc tế DND, Mắt Sài Gòn, Mắt Việt - Nga,...",
+          "url": "review-top-4-dia-chi-mo-can-femto-pro-uy-tin-tai-tphcm"
+        },
+        {
+          "id": 7380,
+          "title": "Review Top địa chỉ mổ cận SmartSight uy tín tại TP.HCM",
+          "picture": "https://cdn.bookingcare.vn/fo/2026/04/14/104902-mo-can-smartsight-o-dau-tot-tphcm.png",
+          "pictureCaption": "Review top địa chỉ mổ cận phương pháp SmartSight tại TP.HCM - Ảnh: BookingCare",
+          "pictureAlt": "Review top địa chỉ mổ cận phương pháp SmartSight tại TP.HCM",
+          "pictureShow": 1,
+          "summary": "Mổ cận SmartSight ở đâu tốt tại TP.HCM? Review top địa chỉ uy tín, bác sĩ giỏi, công nghệ mới và chi phí thực tế giúp bạn dễ dàng lựa chọn.\r\n",
+          "url": "review-top-dia-chi-mo-can-smartsight-uy-tin-tai-tphcm"
+        },
+        {
+          "id": 7378,
+          "title": "Khám sàn chậu ở đâu tốt TP.HCM?",
+          "picture": "https://cdn.bookingcare.vn/fo/2026/04/07/163348-kham-san-chau-o-dau-tphcm.png",
+          "pictureCaption": "Danh sách bệnh viện khám sàn chậu uy tín tại TP.HCM - Ảnh: BookingCare",
+          "pictureAlt": "Khám sàn chậu ở đâu uy tín TP.HCM",
+          "pictureShow": 1,
+          "summary": "Khám sàn chậu, đặc biệt là khám sàn chậu sau sinh giúp kiểm tra sự tổn thương sau sinh, phát hiện sớm các bệnh lý như sa tạng chậu, tiểu không kiểm soát,,... Tại TP.HCM chị em có thể tham khảo thăm khám sàn chậu tại các bệnh viện dưới đây.",
+          "url": "kham-san-chau-o-dau-tot-tphcm"
+        },
+        {
+          "id": 7379,
+          "title": "Thu hẹp âm đạo ở đâu? Top 3 địa chỉ uy tín tại TP.HCM",
+          "picture": "https://cdn.bookingcare.vn/fo/2026/04/07/180402-thu-hep-am-dao-o-dau-tphcm.png",
+          "pictureCaption": "Thu hẹp âm đạo ở đâu uy tín tại TP.HCM? - Ảnh: BookingCare",
+          "pictureAlt": "Thu hẹp âm đạo ở đâu uy tín tại TP.HCM? ",
+          "pictureShow": 1,
+          "summary": "Dịch vụ thu hẹp âm đạo hay tạo hình thẩm mỹ tầng sinh môn được nhiều chị em quan tâm, đặc biệt là sau quá trình sinh nở.Tại TP.HCM, chị em có thể tham khảo thực hiện thu hẹp âm đạo tại một số địa chỉ dưới đây. ",
+          "url": "thu-hep-am-dao-o-dau-top-3-dia-chi-uy-tin-tai-tphcm"
+        },
+        {
+          "id": 7377,
+          "title": "Top 6 bác sĩ Da liễu giỏi chuyên điều trị Viêm da cơ địa TP.HCM",
+          "picture": "https://cdn.bookingcare.vn/fo/2026/03/29/195545-bac-si-dieu-tri-viem-da-co-dia-tphcm.png",
+          "pictureCaption": "Điểm danh các bác sĩ điều trị Viêm da cơ địa uy tín tại TP.HCM - Ảnh: BookingCare",
+          "pictureAlt": "Bác sĩ trị Viêm da cơ địa TP.HCM",
+          "pictureShow": 1,
+          "summary": "Xem ngay danh sách 6 bác sĩ da liễu giỏi tại TP.HCM chuyên điều trị viêm da cơ địa hiệu quả, giàu kinh nghiệm, được nhiều bệnh nhân đánh giá cao.",
+          "url": "top-6-bac-si-da-lieu-gioi-chuyen-dieu-tri-viem-da-co-dia-tphcm"
+        },
+        {
+          "id": 3138,
+          "title": "9 Địa chỉ trồng răng uy tín tại TPHCM (phần 2)",
+          "picture": "https://cdn.bookingcare.vn/fo/2023/02/13/012040-review--nha-khoa-trong-rang-implant--uy-tin-tai-tp-hcm-phan-2.jpg",
+          "pictureCaption": "Top địa chỉ trồng răng uy tín tại TPHCM (phần 2) - Ảnh: BookingCare",
+          "pictureAlt": "10 Địa chỉ trồng răng uy tín tại TPHCM (phần 2)",
+          "pictureShow": 1,
+          "summary": "Tiếp nối phần 1, bài viết này là danh sách phần 2 tổng hợp top 9 nha khoa trồng răng implant uy tín tại TP.HCM với thông tin review chi tiết về đội ngũ bác sĩ trồng răng giỏi, ưu điểm nổi bật và bảng giá tham khảo.",
+          "url": "9-dia-chi-trong-rang-uy-tin-tai-tphcm-phan-2"
+        },
+        {
+          "id": 2725,
+          "title": "Trồng răng Implant tại TPHCM giá bao nhiêu 2026? So sánh 9 nha khoa ",
+          "picture": "https://cdn.bookingcare.vn/fo/2024/02/15/140302-trong-rang-implant-bao-nhieu-tien.png",
+          "pictureCaption": "Trồng răng Implant giá bao nhiêu tại các nha khoa TPHCM? - Ảnh: BookingCare",
+          "pictureAlt": "Trồng răng Implant giá bao nhiêu tại TPHCM?",
+          "pictureShow": 1,
+          "summary": "Giá trồng răng Implant tại TP.HCM dao động từ 10 - 55 triệu/răng, toàn hàm từ 100 triệu. Xem bảng giá chi tiết từng loại trụ (Straumann, Nobel, Dentium…) và so sánh 10 nha khoa uy tín (Dr. Care, Worldwide, Lạc Việt,...)",
+          "url": "trong-rang-implant-tai-tphcm-gia-bao-nhieu-2026-so-sanh-9-nha-khoa"
+        },
+        {
+          "id": 2553,
+          "title": "Làm răng sứ ở đâu tốt TP.HCM? Top 6 nha khoa bọc răng sứ tốt và uy tín",
+          "picture": "https://cdn.bookingcare.vn/fo/2024/03/01/095802-dia-chi-boc-rang-su-tham-my-uy-tin-hcm.png",
+          "pictureCaption": "Làm răng sứ ở đâu tốt tại TPHCM? - Ảnh: BookingCare",
+          "pictureAlt": "Làm răng sứ ở đâu tốt tại TPHCM? ",
+          "pictureShow": 1,
+          "summary": "Làm răng sứ ở đâu tốt TP.HCM? Tổng hợp 7 nha khoa bọc răng sứ uy tín 2026, thông tin bác sĩ, công nghệ, bảo hành và review thực tế giúp bạn chọn nha khoa phù hợp. ",
+          "url": "lam-rang-su-o-dau-tot-tphcm-top-6-nha-khoa-boc-rang-su-tot-va-uy-tin"
+        },
+        {
+          "id": 7376,
+          "title": "Phòng khám Tâm thần Bác sĩ Uân - Phòng khám tâm thần uy tín Hà Nội",
+          "picture": "https://cdn.bookingcare.vn/fo/2026/01/28/140224-phong-kham-tam-than-bs-uan-3.png",
+          "pictureCaption": "Review Phòng khám Tâm thần Bác sĩ Uân - Địa chỉ khám tâm thần uy tín tại Hà Nội - Ảnh: BookingCare\r\n",
+          "pictureAlt": "Review Phòng khám Tâm thần Bác sĩ Uân",
+          "pictureShow": 1,
+          "summary": "Phòng khám Tâm thần Bác sĩ Uân cung cấp dịch vụ thăm khám và điều trị sức khỏe tâm thần chuyên sâu tại Hà Nội. Quy trình khám chữa bệnh được tiến hành bởi đội ngũ bác sĩ trình độ cao, chú trọng vào hiệu quả điều trị, cam kết bảo mật, riêng tư.",
+          "url": "phong-kham-tam-than-bac-si-uan--phong-kham-tam-than-uy-tin-ha-noi"
+        }
+      ],
+      "highlights": [
+        {
+          "id": 2980,
+          "title": "7 địa chỉ niềng răng trả góp uy tín, chính sách hấp dẫn tại TP.HCM",
+          "picture": "https://cdn.bookingcare.vn/fo/2024/03/04/170056-nha-khoa-nieng-rang-tra-gop-tphcm.png",
+          "pictureCaption": "Danh sách nha khoa niềng răng trả góp có chính sách trả hấp dẫn tại TP.HCM - Ảnh: BookingCare",
+          "pictureAlt": "Danh sách địa chỉ nha khoa niềng răng trả góp có chính sách hấp dẫn tại TP.HCM",
+          "pictureShow": 1,
+          "summary": "Niềng răng trả góp ở đâu đảm bảo hiệu quả, minh bạch, rõ ràng? Hãy cùng BookingCare tham khảo ngay một số địa chỉ niềng răng trả góp uy tín tại TP.HCM có chính sách trả góp hấp dẫn, minh bạch trong bài viết sau.",
+          "url": "7-dia-chi-nieng-rang-tra-gop-uy-tin-chinh-sach-hap-dan-tai-tphcm"
+        },
+        {
+          "id": 32,
+          "title": "9 bác sĩ Thần kinh giỏi và nhiều kinh nghiệm ở Hà Nội (Phần 1) ",
+          "picture": "https://cdn.bookingcare.vn/fo/2024/06/17/152042-bac-si-than-kinh-gioi-ha-noi.png",
+          "pictureCaption": "Bác sĩ Thần kinh giỏi và nhiều kinh nghiệm ở Hà Nội - Ảnh minh họa: BookingCare",
+          "pictureAlt": "Bác sĩ Thần kinh giỏi tại Hà Nội",
+          "pictureShow": 1,
+          "summary": "BookingCare gợi ý tới bạn đọc danh sách bác sĩ Thần kinh giỏi tại Hà Nội bao gồm: thông tin chi tiết về lịch khám, kinh nghiệm đi khám để bạn đọc dễ dàng đặt trước, thăm khám hiệu quả.",
+          "url": "9-bac-si-than-kinh-gioi-va-nhieu-kinh-nghiem-o-ha-noi-phan-1"
+        },
+        {
+          "id": 21,
+          "title": "7 bác sĩ Cơ xương khớp giỏi tại Hà Nội (phần 1)",
+          "picture": "https://cdn.bookingcare.vn/fo/2024/07/08/154843-bac-si-xuong-khop-gioi-ha-noi.png",
+          "pictureCaption": "Bác sĩ Xương khớp giỏi ở Hà Nội (phần 1) - Ảnh: BookingCare",
+          "pictureAlt": "Bác sĩ Xương khớp giỏi ở Hà Nội (phần 1)",
+          "pictureShow": 1,
+          "summary": "BookingCare gợi ý 7 bác sĩ cơ xương khớp giỏi tại Hà Nội nhiều kinh nghiệm để bệnh nhân và người nhà tham khảo gồm các thông tin: Thế mạnh chuyên sâu, lịch khám, giá khám, cách đặt hẹn trước.",
+          "url": "7-bac-si-co-xuong-khop-gioi-tai-ha-noi-phan-1"
+        },
+        {
+          "id": 22,
+          "title": "9 bệnh viện, phòng khám Cơ xương khớp uy tín ở Hà Nội (Phần 1)",
+          "picture": "https://cdn.bookingcare.vn/fo/2024/07/09/110230-kham-co-xuong-khop-o-dau-ha-noi.png",
+          "pictureCaption": "Địa chỉ khám Cơ xương khớp uy tín tại Hà Nội - Ảnh: BookingCare",
+          "pictureAlt": "địa chỉ khám chữa Cơ xương khớp uy tín ở Hà Nội",
+          "pictureShow": 1,
+          "summary": "BookingCare giới thiệu tới bạn đọc danh sách bệnh viện, phòng khám xương khớp uy tín tại Hà Nội với tiêu chí có đội ngũ bác sĩ nhiều năm kinh nghiệm, có các trang thiết bị cần thiết để thăm khám bệnh hiệu quả,...",
+          "url": "9-benh-vien-phong-kham-co-xuong-khop-uy-tin-o-ha-noi-phan-1"
+        },
+        {
+          "id": 2920,
+          "title": "Review Top 9 địa chỉ điều trị nám da uy tín tại TP.HCM",
+          "picture": "https://cdn.bookingcare.vn/fo/2022/11/03/085519-dieu-tri-nam-da-o-dau.png",
+          "pictureCaption": "Địa chỉ điều trị nám da uy tín tại TP.HCM? - Ảnh: BookingCare",
+          "pictureAlt": "Điều trị nám da ở đâu uy tín TP.HCM",
+          "pictureShow": 1,
+          "summary": "Nám da để lâu càng khó diều trị, làm giảm tự tin ngoại hình. Vậy tại TP.HCM điều trị nám da ở đâu uy tín, an toàn? BookingCare review 9 bệnh viện, phòng khám Da liễu dưới đây. ",
+          "url": "review-top-9-dia-chi-dieu-tri-nam-da-uy-tin-tai-tphcm"
+        },
+        {
+          "id": 3051,
+          "title": "7 địa chỉ niềng răng trả góp cho sinh viên uy tín, giá hợp lý Hà Nội",
+          "picture": "https://cdn.bookingcare.vn/fo/2024/03/17/111302-nha-khoa-nieng-rang-tra-gop-sinh-vien.png",
+          "pictureCaption": "Nha khoa niềng răng trả góp cho sinh viên tại Hà Nội - Ảnh: BookingCare",
+          "pictureAlt": " phòng nha niềng răng trả góp cho sinh viên tại Hà Nội",
+          "pictureShow": 1,
+          "summary": "Niềng răng trả góp thông thường cần trả trước 10 - 20 triệu đồng với niềng mắc cài, thủ tục trả trước cũng rất đơn giản. Tùy theo địa chỉ nha khoa mà chính sách có thể khác nhau.",
+          "url": "7-dia-chi-nieng-rang-tra-gop-cho-sinh-vien-uy-tin-gia-hop-ly-ha-noi"
+        },
+        {
+          "id": 6832,
+          "title": "Nhận ngay ưu đãi kép dịch vụ điều trị da tại Phòng khám Da liễu Hà Nội",
+          "picture": "https://cdn.bookingcare.vn/fo/2024/11/04/164452-file-km-t11.png",
+          "pictureCaption": "Ưu đãi tại Phòng khám Da liễu Hà Nội duy nhất khi đặt lịch qua BookingCare - Ảnh: BookingCare",
+          "pictureAlt": "Thông tin chương trình ưu đãi điều trị da liễu",
+          "pictureShow": 1,
+          "summary": "Da xinh Say hi - BookingCare hợp tác với Phòng khám Da liễu Hà Nội gửi đến khách hàng ưu đãi các dịch vụ điều trị da với chi phí tốt nhất. ",
+          "url": "nhan-ngay-uu-dai-kep-dich-vu-dieu-tri-da-tai-phong-kham-da-lieu-ha-noi"
+        },
+        {
+          "id": 6826,
+          "title": "BookingCare ra mắt Trợ lý AI - Bước tiến mới trong chăm sóc sức khỏe với trí tuệ nhân tạo",
+          "picture": "https://cdn.bookingcare.vn/fo/2024/09/25/211305-ra-mat-tro-ly-ai-bookingcare.png",
+          "pictureCaption": "BookingCare ra mắt Trợ lý AI - Bước tiến mới trong chăm sóc sức khỏe với trí tuệ nhân tạo - Ảnh: BookingCare",
+          "pictureAlt": "BookingCare ra mắt trợ lý AI",
+          "pictureShow": 1,
+          "summary": "BookingCare ra mắt Trợ lý AI, một sản phẩm tiên phong trong việc hỗ trợ hỏi đáp thông tin và kết nối dịch vụ y tế chăm sóc sức khỏe đầu tiên tại Việt Nam.",
+          "url": "bookingcare-ra-mat-tro-ly-ai--buoc-tien-moi-trong-cham-soc-suc-khoe-voi-tri-tue-nhan-tao"
+        },
+        {
+          "id": 20,
+          "title": "7 bác sĩ khám chữa Tim mạch giỏi tại Hà Nội (Phần 1)",
+          "picture": "https://cdn.bookingcare.vn/fo/2024/06/26/174040-bac-si-khoa-tim-mach-ha-noi.png",
+          "pictureCaption": "Danh sách Bác sĩ Tim mạch giỏi ở Hà Nội (phần 1) - Ảnh: BookingCare ",
+          "pictureAlt": "Danh sách bác sĩ chuyên khoa Tim mạch giỏi tại Hà Nội (phần 1)",
+          "pictureShow": 1,
+          "summary": "Nội dung tổng hợp danh sách các bác sĩ chuyên khoa tim mạch giỏi, có nhiều kinh nghiệm thăm khám tại Hà Nội, cùng với các thông tin về địa chỉ thăm khám hiện tại của các bác sĩ để bạn đọc thuận tiện lựa chọn bác sĩ khám.",
+          "url": "7-bac-si-kham-chua-tim-mach-gioi-tai-ha-noi-phan-1"
+        },
+        {
+          "id": 6091,
+          "title": "Trị nám bằng laser bao nhiêu tiền? Bảng giá tại 6 địa chỉ uy tín TPHCM",
+          "picture": "https://cdn.bookingcare.vn/fo/2024/03/15/091645-tri-nam-bang-laser-bao-nhieu-tien.png",
+          "pictureCaption": "Chi phí bắn laser trị nám tại 6 địa chỉ uy tín ở TP.HCM - Ảnh: BookingCare",
+          "pictureAlt": "Trị nám bằng laser bao nhiêu tiền",
+          "pictureShow": 1,
+          "summary": "Bài viết dưới đây giải đáp thắc mắc cho chị em về câu hỏi: “Trị nám bằng laser bao nhiêu tiền?” cùng với bảng giá thực hiện dịch vụ trị nám bằng laser tại 6 địa chỉ uy tín ở TP.HCM.",
+          "url": "tri-nam-bang-laser-bao-nhieu-tien-bang-gia-tai-6-dia-chi-uy-tin-tphcm"
+        }
+      ],
+      "categories": [
+        {
+          "id": 1,
+          "name": "Đi khám thông minh",
+          "url": "di-kham-thong-minh",
+          "image": "https://cdn.bookingcare.vn/fo/2021/08/20/122413-bookingcarecover2021.jpg",
+          "description": "Bạn có biết một lựa chọn khác để đi khám thông minh hơn? Nên tìm hiểu về bác sĩ và địa chỉ uy tín trước khi đi khám.",
+          "type": 1
+        },
+        {
+          "id": 9,
+          "name": "Cơ xương khớp",
+          "url": "co-xuong-khop",
+          "image": "https://cdn.bookingcare.vn/fo/2022/12/26/233027-co-xuong-khop.jpg",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý Cơ Xương Khớp.",
+          "type": 1,
+          "specialistIds": [
+            "46",
+            "73",
+            "1"
+          ]
+        },
+        {
+          "id": 10,
+          "name": "Thần kinh",
+          "url": "than-kinh",
+          "image": "https://cdn.bookingcare.vn/fo/2022/12/26/233045-than-kinh.jpg",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý Thần kinh ",
+          "type": 1,
+          "specialistIds": [
+            "56",
+            "8",
+            "7",
+            "71",
+            "18"
+          ]
+        },
+        {
+          "id": 11,
+          "name": "Tim mạch",
+          "url": "benh-tim-mach",
+          "image": "https://cdn.bookingcare.vn/fo/2022/12/26/233101-tim-mach.jpg",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý Tim mạch ",
+          "type": 1,
+          "specialistIds": [
+            "52",
+            "3"
+          ]
+        },
+        {
+          "id": 12,
+          "name": "Tiêu hóa",
+          "url": "benh-tieu-hoa",
+          "image": "https://cdn.bookingcare.vn/fo/2022/12/26/233120-tieu-hoa.jpg",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý Tiêu hóa ",
+          "type": 1,
+          "specialistIds": [
+            "48",
+            "9",
+            "90",
+            "22"
+          ]
+        },
+        {
+          "id": 13,
+          "name": "Cột sống",
+          "url": "benh-cot-song",
+          "image": "https://cdn.bookingcare.vn/fo/2022/12/26/233205-cot-song.jpg",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý Cột sống ",
+          "type": 1,
+          "specialistIds": [
+            "46",
+            "8",
+            "7",
+            "1"
+          ]
+        },
+        {
+          "id": 22,
+          "name": "Tai Mũi Họng",
+          "url": "tai-mui-hong",
+          "image": "https://cdn.bookingcare.vn/fo/2022/12/26/233226-tai-mui-hong.jpg",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý Tai Mũi Họng ",
+          "type": 1,
+          "specialistIds": [
+            "54",
+            "100",
+            "4"
+          ]
+        },
+        {
+          "id": 24,
+          "name": "Bệnh dạ dày",
+          "url": "benh-da-day",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý Dạ dày. ",
+          "type": 1,
+          "specialistIds": [
+            "48",
+            "9",
+            "90",
+            "22"
+          ]
+        },
+        {
+          "id": 25,
+          "name": "Cộng hưởng từ (MRI)",
+          "url": "cong-huong-tu-mri",
+          "image": "",
+          "description": "Tổng hợp thông tin, chia sẻ khái niệm và kinh nghiệm đi chụp Cộng hưởng từ ở địa chỉ uy tín.",
+          "type": 1,
+          "specialistIds": [
+            "1",
+            "71",
+            "18",
+            "22",
+            "3"
+          ]
+        },
+        {
+          "id": 26,
+          "name": "Bệnh đại tràng",
+          "url": "benh-dai-trang",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý Đại tràng. ",
+          "type": 1,
+          "specialistIds": [
+            "48",
+            "9",
+            "90",
+            "22"
+          ]
+        },
+        {
+          "id": 28,
+          "name": "Bệnh Tâm thần",
+          "url": "benh-tam-than",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các chứng bệnh Tâm thần. ",
+          "type": 1,
+          "specialistIds": [
+            "27",
+            "45",
+            "66"
+          ]
+        },
+        {
+          "id": 29,
+          "name": "Thoát vị đĩa đệm",
+          "url": "thoat-vi-dia-dem",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý Thoát vị đĩa đệm. ",
+          "type": 1,
+          "specialistIds": [
+            "46",
+            "7",
+            "1",
+            "24"
+          ]
+        },
+        {
+          "id": 30,
+          "name": "Chụp PET CT",
+          "url": "chup-pet-ct",
+          "image": "",
+          "description": "Tổng hợp thông tin, chia sẻ kinh nghiệm về chụp PET/CT nên biết.",
+          "type": 1,
+          "specialistIds": [
+            "83",
+            "84",
+            "15",
+            "93"
+          ]
+        },
+        {
+          "id": 31,
+          "name": "Viêm gan",
+          "url": "viem-gan",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý Viêm gan. ",
+          "type": 1,
+          "specialistIds": [
+            "48",
+            "22"
+          ]
+        },
+        {
+          "id": 33,
+          "name": "Nội Soi Tiêu Hóa",
+          "url": "noi-soi-tieu-hoa",
+          "image": "",
+          "description": "Tổng hợp thông tin, chia sẻ kinh nghiệm cũng như qui trình và chuẩn bị để nội soi an toàn.",
+          "type": 1,
+          "specialistIds": [
+            "48",
+            "90",
+            "22"
+          ]
+        },
+        {
+          "id": 34,
+          "name": "Bệnh Giấc ngủ",
+          "url": "benh-giac-ngu",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các rối loạn giấc ngủ. ",
+          "type": 1,
+          "specialistIds": [
+            "56",
+            "27",
+            "45",
+            "18",
+            "66"
+          ]
+        },
+        {
+          "id": 35,
+          "name": "Đau đầu",
+          "url": "dau-dau",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý đau đầu. ",
+          "type": 1,
+          "specialistIds": [
+            "56",
+            "27",
+            "45",
+            "18"
+          ]
+        },
+        {
+          "id": 37,
+          "name": "Chụp CT-Scan",
+          "url": "chup-ct-scan",
+          "image": "",
+          "description": "Tổng quan và kinh nghiệm đi chụp cắt lớp vi tính.",
+          "type": 1,
+          "specialistIds": [
+            "1",
+            "18",
+            "15"
+          ]
+        },
+        {
+          "id": 38,
+          "name": "Sản phụ khoa",
+          "url": "san-phu-khoa",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các bệnh Sản phụ khoa. ",
+          "type": 1,
+          "specialistIds": [
+            "19"
+          ]
+        },
+        {
+          "id": 40,
+          "name": "Viêm Mũi Xoang",
+          "url": "viem-mui-xoang",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý Mũi xoang. ",
+          "type": 1,
+          "specialistIds": [
+            "54",
+            "100",
+            "4"
+          ]
+        },
+        {
+          "id": 42,
+          "name": "Nhi Khoa",
+          "url": "nhi-khoa",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu hiệu quả các bệnh lý thường gặp ở trẻ em. ",
+          "type": 1,
+          "specialistIds": [
+            "53",
+            "5"
+          ]
+        },
+        {
+          "id": 43,
+          "name": "Bệnh Da liễu",
+          "url": "benh-da-lieu",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các bệnh Da liễu. ",
+          "type": 1,
+          "specialistIds": [
+            "44",
+            "11",
+            "72"
+          ]
+        },
+        {
+          "id": 44,
+          "name": "Thần kinh thực vật",
+          "url": "than-kinh-thuc-vat",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh Rối loạn thần kinh thực vật. ",
+          "type": 1,
+          "specialistIds": [
+            "56",
+            "71",
+            "18"
+          ]
+        },
+        {
+          "id": 45,
+          "name": "Rối loạn tiền đình",
+          "url": "roi-loan-tien-dinh",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh Rối loạn tiền đình. ",
+          "type": 1,
+          "specialistIds": [
+            "56",
+            "18"
+          ]
+        },
+        {
+          "id": 46,
+          "name": "Zona thần kinh",
+          "url": "zona-than-kinh",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh Zona thần kinh. ",
+          "type": 1,
+          "specialistIds": [
+            "44",
+            "11"
+          ]
+        },
+        {
+          "id": 48,
+          "name": "Trầm Cảm",
+          "url": "tram-cam",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh Trầm cảm. ",
+          "type": 1,
+          "specialistIds": [
+            "27",
+            "45",
+            "66",
+            "65"
+          ]
+        },
+        {
+          "id": 49,
+          "name": "Hậu môn Trực tràng",
+          "url": "hau-mon-truc-trang",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý Hậu môn trực tràng. ",
+          "type": 1,
+          "specialistIds": [
+            "9",
+            "22"
+          ]
+        },
+        {
+          "id": 51,
+          "name": "Trào ngược dạ dày",
+          "url": "trao-nguoc-da-day",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý Trào ngược dạ dày thực quản. ",
+          "type": 1,
+          "specialistIds": [
+            "48",
+            "9",
+            "90",
+            "22"
+          ]
+        },
+        {
+          "id": 52,
+          "name": "Viêm đại tràng",
+          "url": "viem-dai-trang",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh Viêm đại tràng. ",
+          "type": 1,
+          "specialistIds": [
+            "48",
+            "9",
+            "22"
+          ]
+        },
+        {
+          "id": 53,
+          "name": "Gan nhiễm mỡ",
+          "url": "gan-nhiem-mo",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh Gan nhiễm mỡ. ",
+          "type": 1,
+          "specialistIds": [
+            "28",
+            "96"
+          ]
+        },
+        {
+          "id": 54,
+          "name": "Huyết áp thấp",
+          "url": "huyet-ap-thap",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh Huyết áp thấp. ",
+          "type": 1,
+          "specialistIds": [
+            "52",
+            "3"
+          ]
+        },
+        {
+          "id": 55,
+          "name": "Siêu âm thai",
+          "url": "sieu-am-thai",
+          "image": "",
+          "description": "Nơi chia sẻ kiến thức và kinh nghiệm về siêu âm thai và theo dõi thai kỳ cho các mẹ bầu. Siêu âm thai ở đâu tốt và một số bác sĩ nổi tiếng.",
+          "type": 1,
+          "specialistIds": [
+            "51",
+            "19"
+          ]
+        },
+        {
+          "id": 56,
+          "name": "Hen - Dị ứng - Miễn dịch ",
+          "url": "hen--di-ung--mien-dich-",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các bệnh lý Hen - Dị ứng - Miễn dịch. ",
+          "type": 1,
+          "specialistIds": [
+            "43"
+          ]
+        },
+        {
+          "id": 57,
+          "name": "Nam học",
+          "url": "nam-hoc",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các bệnh Nam khoa. ",
+          "type": 1,
+          "specialistIds": [
+            "26",
+            "99",
+            "67"
+          ]
+        },
+        {
+          "id": 59,
+          "name": "Bệnh Hô hấp",
+          "url": "benh-ho-hap",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các bệnh lý Hô hấp. ",
+          "type": 1,
+          "specialistIds": [
+            "43"
+          ]
+        },
+        {
+          "id": 60,
+          "name": "Tai Mũi Họng Trẻ em",
+          "url": "tai-mui-hong-tre-em",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các bệnh Tai Mũi Họng trẻ em. ",
+          "type": 1,
+          "specialistIds": [
+            "54",
+            "100",
+            "4"
+          ]
+        },
+        {
+          "id": 61,
+          "name": "Thận - Tiết niệu",
+          "url": "than-tiet-nieu",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý Thận - Tiết niệu. ",
+          "type": 1,
+          "specialistIds": [
+            "98",
+            "32"
+          ]
+        },
+        {
+          "id": 62,
+          "name": "Nội tiết ",
+          "url": "noi-tiet-",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các bệnh Nội tiết - Đái tháo đường. ",
+          "type": 1,
+          "specialistIds": [
+            "21"
+          ]
+        },
+        {
+          "id": 63,
+          "name": "Trị Liệu - PH Chức Năng ",
+          "url": "tri-lieu--ph-chuc-nang-",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và phục hồi khả năng của cơ thể bằng Vật lý trị liệu - Phục hồi chức năng. ",
+          "type": 1,
+          "specialistIds": [
+            "46",
+            "73",
+            "1"
+          ]
+        },
+        {
+          "id": 64,
+          "name": "Chuyên khoa Mắt",
+          "url": "chuyen-khoa-mat",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa Mắt giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các bệnh Nhãn khoa (Mắt).",
+          "type": 1,
+          "specialistIds": [
+            "29",
+            "102"
+          ]
+        },
+        {
+          "id": 65,
+          "name": "Khám Tổng quát",
+          "url": "kham-tong-quat",
+          "image": "",
+          "description": "Nơi chia sẻ những kiến thức, kinh nghiệm về các gói khám sức khỏe tổng quát, khám ở đâu và khám hết bao nhiêu tiền. ",
+          "type": 1,
+          "specialistIds": [
+            "31"
+          ]
+        },
+        {
+          "id": 67,
+          "name": "Gan - Mật",
+          "url": "gan-mat",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các bệnh về Gan, mật (gan nhiễm mỡ, xơ gan...).",
+          "type": 1,
+          "specialistIds": [
+            "28",
+            "96",
+            "22"
+          ]
+        },
+        {
+          "id": 68,
+          "name": "Chấn thương Chỉnh hình ",
+          "url": "chan-thuong-chinh-hinh-",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các vấn đề liên quan đến Chấn thương Chỉnh hình. ",
+          "type": 1,
+          "specialistIds": [
+            "46",
+            "73",
+            "1"
+          ]
+        },
+        {
+          "id": 69,
+          "name": "Nha khoa ",
+          "url": "nha-khoa-",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các vấn đề về Nha khoa (Răng).",
+          "type": 1,
+          "specialistIds": [
+            "33",
+            "109",
+            "110"
+          ]
+        },
+        {
+          "id": 72,
+          "name": "Ung bướu ",
+          "url": "ung-buou-",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám, tầm soát và điều trị các bệnh lý Ung bướu. ",
+          "type": 1,
+          "specialistIds": [
+            "83",
+            "15",
+            "93"
+          ]
+        },
+        {
+          "id": 73,
+          "name": "Nội thần kinh",
+          "url": "noi-than-kinh",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý Nội Thần kinh. ",
+          "type": 1,
+          "specialistIds": [
+            "56",
+            "18"
+          ]
+        },
+        {
+          "id": 74,
+          "name": "Ngoại thần kinh",
+          "url": "ngoai-than-kinh",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý về Ngoại Thần kinh. ",
+          "type": 1,
+          "specialistIds": [
+            "71",
+            "18"
+          ]
+        },
+        {
+          "id": 75,
+          "name": "Vô sinh - Hiếm muộn",
+          "url": "vo-sinh--hiem-muon",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các vấn đề về Vô sinh - Hiếm muộn. ",
+          "type": 1,
+          "specialistIds": [
+            "51",
+            "26",
+            "19",
+            "67"
+          ]
+        },
+        {
+          "id": 76,
+          "name": "Tim mạch Nhi ",
+          "url": "tim-mach-nhi",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý Tim mạch ở trẻ em. ",
+          "type": 1,
+          "specialistIds": [
+            "53",
+            "5",
+            "3"
+          ]
+        },
+        {
+          "id": 77,
+          "name": "Thần kinh nhi",
+          "url": "than-kinh-nhi",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các bệnh lý Thần kinh ở trẻ em. ",
+          "type": 1,
+          "specialistIds": [
+            "56",
+            "18"
+          ]
+        },
+        {
+          "id": 78,
+          "name": "Tiêu hóa nhi",
+          "url": "tieu-hoa-nhi",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý Tiêu hóa ở trẻ em. ",
+          "type": 1,
+          "specialistIds": [
+            "53",
+            "5",
+            "22"
+          ]
+        },
+        {
+          "id": 79,
+          "name": "Hô hấp trẻ em",
+          "url": "ho-hap-tre-em",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh lý Hô hấp ở trẻ em. ",
+          "type": 1,
+          "specialistIds": [
+            "53",
+            "43",
+            "5"
+          ]
+        },
+        {
+          "id": 81,
+          "name": "Mắt trẻ em",
+          "url": "mat-tre-em",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các bệnh về Mắt ở trẻ em. ",
+          "type": 1,
+          "specialistIds": [
+            "29",
+            "5"
+          ]
+        },
+        {
+          "id": 82,
+          "name": "Dị ứng - Miễn dịch trẻ em",
+          "url": "di-ung--mien-dich-tre-em",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các bệnh Dị ứng - Miễn dịch ở trẻ em. ",
+          "type": 1,
+          "specialistIds": [
+            "95",
+            "36",
+            "5",
+            "92"
+          ]
+        },
+        {
+          "id": 83,
+          "name": "Nội tiết trẻ em ",
+          "url": "noi-tiet-tre-em-",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các bệnh Nội tiết ở trẻ em. ",
+          "type": 1,
+          "specialistIds": [
+            "53",
+            "5"
+          ]
+        },
+        {
+          "id": 84,
+          "name": "Truyền nhiễm trẻ em ",
+          "url": "truyen-nhiem-tre-em-",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả các bệnh Truyền nhiễm ở trẻ em. ",
+          "type": 1,
+          "specialistIds": [
+            "53",
+            "5"
+          ]
+        },
+        {
+          "id": 85,
+          "name": "Viêm Amidan",
+          "url": "viem-amidan",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh viêm Amidan. ",
+          "type": 1,
+          "specialistIds": [
+            "54",
+            "100",
+            "4"
+          ]
+        },
+        {
+          "id": 86,
+          "name": "Viêm V.A",
+          "url": "viem-va",
+          "image": "",
+          "description": "Tổng hợp danh sách bác sĩ chuyên khoa giỏi, địa chỉ uy tín, kinh nghiệm đi khám và điều trị hiệu quả bệnh viêm V.A.",
+          "type": 1,
+          "specialistIds": [
+            "54",
+            "100",
+            "4"
+          ]
+        },
+        {
+          "id": 88,
+          "name": "Y học cổ truyền ",
+          "url": "y-hoc-co-truyen-",
+          "image": "",
+          "description": "Tổng hợp các bài viết chia sẻ kinh nghiệm về bệnh và cách điều trị bằng Y học cổ truyền.",
+          "type": 1,
+          "specialistIds": [
+            "73",
+            "1",
+            "19",
+            "22"
+          ]
+        },
+        {
+          "id": 89,
+          "name": "Châm cứu ",
+          "url": "cham-cuu-",
+          "image": "",
+          "description": "Các bài viết chia sẻ kinh nghiệm khám chữa bệnh bằng phương pháp châm cứu, cấy chỉ, điện châm, thủy châm... ",
+          "type": 1,
+          "specialistIds": [
+            "56",
+            "18"
+          ]
+        },
+        {
+          "id": 90,
+          "name": "Lão khoa ",
+          "url": "lao-khoa-",
+          "image": "",
+          "description": "Tổng hợp các bài viết chia sẻ kinh nghiệm đi khám và điều trị các bệnh lý về chuyên khoa Lão khoa. ",
+          "type": 1,
+          "specialistIds": [
+            "78",
+            "17"
+          ]
+        },
+        {
+          "id": 91,
+          "name": "Trị liệu Thần kinh Cột sống",
+          "url": "tri-lieu-than-kinh-cot-song",
+          "image": "",
+          "description": "Nơi chia sẻ những thông tin hữu ích về phương pháp Trị liệu Thần kinh cột sống không dùng thuốc. ",
+          "type": 1,
+          "specialistIds": [
+            "46",
+            "73",
+            "1",
+            "24"
+          ]
+        },
+        {
+          "id": 92,
+          "name": "Lưu ý khi đi khám ",
+          "url": "luu-y-khi-di-kham-",
+          "image": null,
+          "description": "Chia sẻ một số lưu ý, những điều cần nhớ trước khi đi khám các chuyên khoa để quá trình thăm khám, chẩn đoán được chính xác và hiệu quả hơn. ",
+          "type": 1
+        },
+        {
+          "id": 93,
+          "name": "Chân dung Bác sĩ",
+          "url": "chan-dung-bac-si",
+          "image": null,
+          "description": "Những tâm sự, câu chuyện thực tế được các bác sĩ chia sẻ, những kinh nghiệm hữu ích mà BookingCare muốn mang đến người bệnh. ",
+          "type": 1
+        },
+        {
+          "id": 94,
+          "name": "Bài viết TP.HCM",
+          "url": "bai-viet-tphcm",
+          "image": null,
+          "description": "",
+          "type": 1
+        },
+        {
+          "id": 95,
+          "name": "Bác sĩ online",
+          "url": "bac-si-online",
+          "image": "",
+          "description": "Bác sĩ online tư vấn khám chữa bệnh trực tuyến thông qua cuộc gọi Video",
+          "type": 1
+        },
+        {
+          "id": 96,
+          "name": "Xét nghiệm Y học",
+          "url": "xet-nghiem-y-hoc",
+          "image": "",
+          "description": "Giới thiệu các địa chỉ, đơn vị chuyên về xét nghiệm y học uy tín và danh mục các xét nghiệm thường gặp, chuyên sâu trong lĩnh vực xét nghiệm y học để bạn đọc tham khảo, lựa chọn khi cần.",
+          "type": 1,
+          "specialistIds": [
+            "115",
+            "92"
+          ]
+        },
+        {
+          "id": 97,
+          "name": "Sức khỏe tinh thần",
+          "url": "suc-khoe-tinh-than",
+          "image": "",
+          "description": "Chia sẻ thông tin chung, kinh nghiệm đi khám các rối loạn tâm lý, tâm thần",
+          "type": 1,
+          "specialistIds": [
+            "27",
+            "45",
+            "66",
+            "65"
+          ]
+        },
+        {
+          "id": 98,
+          "name": "Review khám chữa bệnh",
+          "url": "review-kham-chua-benh",
+          "image": "",
+          "description": "Các bài viết review Bệnh viện, Phòng khám, review Bác sĩ để bệnh nhân tham khảo trước khi đi khám. ",
+          "type": 1,
+          "specialistIds": [
+            "1",
+            "11",
+            "17",
+            "22",
+            "3"
+          ]
+        },
+        {
+          "id": 100,
+          "name": "Dịch vụ phẫu thuật",
+          "url": "dich-vu-phau-thuat",
+          "image": "",
+          "description": "Giơi thiệu danh sách các bác sĩ, chuyên gia, bệnh viện, cơ sở y tế chuyên khoa uy tín về các dịch vụ ngoại khoa, phẫu thuật, can thiệp.",
+          "type": 1,
+          "specialistIds": [
+            "101",
+            "102",
+            "99",
+            "100"
+          ]
+        },
+        {
+          "id": 101,
+          "name": "Sản phẩm Y tế",
+          "url": "san-pham-y-te",
+          "image": null,
+          "description": "Thông tin, review về các sản phẩm y tế đảm bảo chất lượng tốt",
+          "type": 1
+        },
+        {
+          "id": 102,
+          "name": "Da liễu Thẩm mỹ",
+          "url": "da-lieu-tham-my",
+          "image": "",
+          "description": "Tổng hợp thông tin các địa chỉ thẩm mỹ da liễu uy tín, an toàn với đội ngũ bác sĩ chuyên khoa được đào tạo, có nhiều kinh nghiệm trong thăm khám và điều trị",
+          "type": 1,
+          "specialistIds": [
+            "11",
+            "72"
+          ]
+        },
+        {
+          "id": 103,
+          "name": "Xét nghiệm TPHCM",
+          "url": "xet-nghiem-tphcm",
+          "image": "",
+          "description": "Tổng hợp thông tin các địa chỉ xét nghiệm uy tín TPHCM",
+          "type": 1,
+          "specialistIds": [
+            "115",
+            "92"
+          ]
+        },
+        {
+          "id": 104,
+          "name": "Xét nghiệm Hà Nội",
+          "url": "xet-nghiem-ha-noi",
+          "image": "",
+          "description": "Tổng hợp thông tin các địa chỉ cung cấp dịch vụ xét nghiệm uy tín tại Hà Nội",
+          "type": 1,
+          "specialistIds": [
+            "92"
+          ]
+        },
+        {
+          "id": 106,
+          "name": "Chương trình khuyến mãi",
+          "url": "chuong-trinh-khuyen-mai",
+          "image": "",
+          "description": "Chương trình khuyến mãi theo tháng của các bệnh viện, phòng khám để bạn đọc có thể cập nhật nhanh chóng và đến thăm khám để được hưởng quyền lợi.",
+          "type": 1
+        },
+        {
+          "id": 116,
+          "name": "English",
+          "url": "english",
+          "image": "",
+          "description": "Content for foreigners who find reputation health facilities in Vietnam",
+          "type": 1
+        },
+        {
+          "id": 417,
+          "name": "Niềng răng",
+          "url": "nieng-rang",
+          "image": "",
+          "description": "",
+          "type": 1
+        },
+        {
+          "id": 418,
+          "name": "Bọc răng sứ",
+          "url": "boc-rang-su",
+          "image": "",
+          "description": "",
+          "type": 1,
+          "specialistIds": null
+        },
+        {
+          "id": 419,
+          "name": "Trồng răng Implant ",
+          "url": "trong-rang-implant-",
+          "image": "",
+          "description": "",
+          "type": 1,
+          "specialistIds": null
+        },
+        {
+          "id": 420,
+          "name": "Nhổ răng khôn",
+          "url": "nho-rang-khon",
+          "image": "",
+          "description": "",
+          "type": 1,
+          "specialistIds": null
+        },
+        {
+          "id": 692,
+          "name": "Thể dục thẩm mỹ",
+          "url": "the-duc-tham-my",
+          "image": "",
+          "description": "",
+          "type": 1
+        },
+        {
+          "id": 693,
+          "name": "Thẩm mỹ Mắt",
+          "url": "tham-my-mat",
+          "image": "",
+          "description": "",
+          "type": 1
+        },
+        {
+          "id": 694,
+          "name": "Thẩm mỹ Mũi",
+          "url": "tham-my-mui",
+          "image": "",
+          "description": "",
+          "type": 1
+        },
+        {
+          "id": 695,
+          "name": "Thẩm mỹ vòng 1",
+          "url": "tham-my-vong-1",
+          "image": "",
+          "description": "",
+          "type": 1
+        },
+        {
+          "id": 696,
+          "name": "Phẫu thuật thẩm mỹ",
+          "url": "phau-thuat-tham-my",
+          "image": "",
+          "description": "",
+          "type": 1
+        },
+        {
+          "id": 697,
+          "name": "Thẩm mỹ khuôn mặt",
+          "url": "tham-my-khuon-mat",
+          "image": "",
+          "description": "",
+          "type": 1
+        },
+        {
+          "id": 698,
+          "name": "Spa",
+          "url": "spa",
+          "image": "",
+          "description": "",
+          "type": 1
+        },
+        {
+          "id": 209,
+          "name": "Chạy bộ & Leo Núi",
+          "url": "chay-bo-leo-nui",
+          "image": "https://cdn.bookingcare.vn/fo/2023/10/23/182437-trekking-leo-nui-2.jpg",
+          "description": "Nơi chia sẻ về hành trình Chạy bộ, trải nghiệm Leo núi đầy thử thách và thú vị cùng đội ngũ BookingCare",
+          "type": 1
+        }
+      ],
+      "eats": [],
+      "eatCtas": {}
+    },
+    "stat": {
+      "pageId": 11,
+      "pageModule": "service"
+    },
+    "seo": {
+      "title": "Bài viết",
+      "description": "",
+      "canonical": "https://bookingcare.vn/cam-nang"
+    }
+  }
+}

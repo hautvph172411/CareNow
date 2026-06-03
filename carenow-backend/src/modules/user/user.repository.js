@@ -60,6 +60,13 @@ exports.getAll = async (query = {}) => {
     idx++;
   }
 
+
+  if (query.status !== undefined && query.status !== '') {
+    q += ` AND status = $${idx}`;
+    values.push(query.status);
+    idx++;
+  }
+
   if (query.keyword) {
     q += ` AND (username ILIKE $${idx} OR display_name ILIKE $${idx} OR email ILIKE $${idx})`;
     values.push(`%${query.keyword}%`);
@@ -74,8 +81,51 @@ exports.getAll = async (query = {}) => {
 
   q += ' ORDER BY id DESC';
 
+  if (query.limit) {
+    q += ` LIMIT $${idx}`;
+    values.push(parseInt(query.limit, 10));
+    idx++;
+  }
+  if (query.offset !== undefined) {
+    q += ` OFFSET $${idx}`;
+    values.push(parseInt(query.offset, 10));
+    idx++;
+  }
+
   const result = await db.query(q, values);
   return result.rows;
+};
+
+exports.countAll = async (query = {}) => {
+  let q = 'SELECT COUNT(*) FROM tbl_user WHERE status != -1';
+  const values = [];
+  let idx = 1;
+
+  if (query.role) {
+    q += ` AND role = $${idx}`;
+    values.push(query.role);
+    idx++;
+  }
+
+  if (query.status !== undefined && query.status !== '') {
+    q += ` AND status = $${idx}`;
+    values.push(query.status);
+    idx++;
+  }
+
+  if (query.keyword) {
+    q += ` AND (username ILIKE $${idx} OR display_name ILIKE $${idx} OR email ILIKE $${idx})`;
+    values.push(`%${query.keyword}%`);
+    idx++;
+  }
+  if (query.type === 'admin') {
+    q += ` AND partner_id IS NULL`;
+  } else if (query.type === 'partner') {
+    q += ` AND partner_id IS NOT NULL`;
+  }
+
+  const result = await db.query(q, values);
+  return parseInt(result.rows[0].count, 10);
 };
 
 exports.remove = async (id) => {

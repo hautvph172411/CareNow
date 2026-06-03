@@ -1,25 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Plus, Edit2, Trash2, Eye, MapPin, Phone } from 'lucide-react';
+import { Search, Plus, Edit2, Trash2, Eye, MapPin, Phone, Filter } from 'lucide-react';
 import AdminLayout from '../layouts/AdminLayout';
 import { getClinicPlaces, deleteClinicPlace } from '../api/clinic_place.api';
+import { getPartners } from '../api/partner.api';
 import Pagination from '../components/Pagination';
+import SearchableSelect from '../components/SearchableSelect';
 
 export default function ClinicPlaceList() {
   const navigate = useNavigate();
   const [clinics, setClinics] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showSearch, setShowSearch] = useState(false);
+  const [filterPartner, setFilterPartner] = useState('');
+  const [filterStatus, setFilterStatus] = useState('');
+  const [partners, setPartners] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalItems, setTotalItems] = useState(0);
   const ITEMS_PER_PAGE = 20;
 
-  const fetchClinics = async (page = 1, keyword = '') => {
+  useEffect(() => {
+    getPartners({ limit: 1000 }).then(res => setPartners(res.data || [])).catch(console.error);
+  }, []);
+
+  const fetchClinics = async () => {
     setIsLoading(true);
     try {
-      const res = await getClinicPlaces({ page, limit: ITEMS_PER_PAGE, keyword });
-      console.log('API Response:', res);
+      const params = {
+        page: currentPage, 
+        limit: ITEMS_PER_PAGE, 
+        keyword: searchTerm
+      };
+      if (filterStatus !== '') params.status = filterStatus;
+      if (filterPartner !== '') params.partner_id = filterPartner;
+
+      const res = await getClinicPlaces(params);
       if (res.success) {
         setClinics(res.data || []);
         if (res.pagination) {
@@ -34,19 +51,17 @@ export default function ClinicPlaceList() {
     }
   };
 
-  // Debounce tìm kiếm
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCurrentPage(1);
-      fetchClinics(1, searchTerm);
+      fetchClinics();
     }, 500);
     return () => clearTimeout(timer);
-  }, [searchTerm]);
+  }, [searchTerm, filterStatus, filterPartner, currentPage]);
 
-  // Chuyển trang
-  useEffect(() => {
-    fetchClinics(currentPage, searchTerm);
-  }, [currentPage]);
+  const handleFilterChange = (setter, value) => {
+    setter(value);
+    setCurrentPage(1);
+  };
 
   const handleDelete = async (id) => {
     if (window.confirm('Bạn chắc chắn muốn xóa cơ sở y tế này? Hành động này không thể hoàn tác!')) {
@@ -72,19 +87,50 @@ export default function ClinicPlaceList() {
   return (
     <AdminLayout pageTitle="Quản lý cơ sở y tế">
       <div className="management-header">
-        <div className="search-box">
-          <Search size={20} />
-          <input
-            type="text"
-            placeholder="Tìm kiếm theo tên, địa chỉ..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+        <div style={{ flex: 1 }}></div>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <button className="btn btn-secondary" onClick={() => setShowSearch(!showSearch)} style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <Filter size={18} /> Bộ lọc
+          </button>
+          <button className="btn btn-primary" onClick={() => navigate('/clinic-place/admin/add')}>
+            <Plus size={20} />
+            Thêm cơ sở y tế
+          </button>
         </div>
-        <button className="btn btn-primary" onClick={() => navigate('/clinic-place/admin/add')}>
-          <Plus size={20} />
-          Thêm cơ sở y tế
-        </button>
+      </div>
+
+      <div className={`filter-section ${showSearch ? 'show' : ''}`}>
+        <div className="filter-container">
+          <div style={{ width: '180px', margin: 0, zIndex: 10 }}>
+            <SearchableSelect
+              options={[{ value: '', label: 'Tất cả đối tác' }, ...partners.map(p => ({ value: p.id, label: p.name }))]}
+              value={filterPartner !== '' ? parseInt(filterPartner, 10) : ''}
+              onChange={(val) => handleFilterChange(setFilterPartner, val === '' ? '' : String(val))}
+              placeholder="Tất cả đối tác"
+            />
+          </div>
+
+          <select 
+            className="form-input" 
+            style={{ width: '180px', margin: 0 }}
+            value={filterStatus}
+            onChange={(e) => handleFilterChange(setFilterStatus, e.target.value)}
+          >
+            <option value="">Tất cả trạng thái</option>
+            <option value="1">Đang hoạt động</option>
+            <option value="0">Ngưng hoạt động</option>
+          </select>
+
+          <div className="search-box" style={{ margin: 0, flex: 1, minWidth: '250px' }}>
+            <Search size={20} />
+            <input
+              type="text"
+              placeholder="Tìm kiếm theo tên, địa chỉ..."
+              value={searchTerm}
+              onChange={(e) => handleFilterChange(setSearchTerm, e.target.value)}
+            />
+          </div>
+        </div>
       </div>
 
       <div className="management-section">
@@ -103,10 +149,11 @@ export default function ClinicPlaceList() {
                     <th style={{ width: '5%' }}>ID</th>
                     <th style={{ width: '10%' }}>Logo</th>
                     <th style={{ width: '20%' }}>Tên cơ sở</th>
-                    <th style={{ width: '15%' }}>Điện thoại</th>
-                    <th style={{ width: '20%' }}>Địa chỉ</th>
-                    <th style={{ width: '8%', textAlign: 'center' }}>Thứ tự</th>
-                    <th style={{ width: '10%', textAlign: 'center' }}>Trạng thái</th>
+                    <th style={{ width: '15%' }}>Đối tác</th>
+                    <th style={{ width: '12%' }}>Điện thoại</th>
+                    <th style={{ width: '18%' }}>Địa chỉ</th>
+                    <th style={{ width: '6%', textAlign: 'center' }}>Thứ tự</th>
+                    <th style={{ width: '8%', textAlign: 'center' }}>Trạng thái</th>
                     <th style={{ width: '12%', textAlign: 'center' }}>Hành động</th>
                   </tr>
                 </thead>
@@ -131,6 +178,15 @@ export default function ClinicPlaceList() {
                           <div style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px' }}>
                             {clinic.short_name}
                           </div>
+                        )}
+                      </td>
+                      <td style={{ fontSize: '13px' }}>
+                        {clinic.partner_name ? (
+                          <span style={{ fontWeight: '500', color: '#b45309' }}>
+                            {clinic.partner_short_name || clinic.partner_name}
+                          </span>
+                        ) : (
+                          <span style={{ color: '#9ca3af' }}>Không có</span>
                         )}
                       </td>
                       <td style={{ whiteSpace: 'nowrap' }}>

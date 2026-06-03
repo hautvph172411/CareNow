@@ -1,0 +1,133 @@
+{
+  "id": 303,
+  "name": "Phòng khám Da liễu Táo Đỏ",
+  "provinceId": 79,
+  "address": "30/1A Ngô Thời Nhiệm, Phường Xuân Hòa, Thành phố Hồ Chí Minh",
+  "addressDisplay": 1,
+  "addressShort": "Phường Xuân Hòa, Thành phố Hồ Chí Minh",
+  "info": [
+    {
+      "id": 0,
+      "title": "Đặt lịch khám"
+    },
+    {
+      "id": 1,
+      "title": "GIỚI THIỆU CHUNG",
+      "content": "<p>Ph&ograve;ng Kh&aacute;m Chuy&ecirc;n khoa Da Liễu T&aacute;o Đỏ (Red Apple Dermatology Clinic) được th&agrave;nh lập v&agrave;o năm 2011 với hơn 15 năm hoạt động v&agrave; ph&aacute;t triển, ph&ograve;ng kh&aacute;m đ&atilde; gặt h&aacute;i được rất nhiều th&agrave;nh c&ocirc;ng trong lĩnh vực kh&aacute;m, điều trị c&aacute;c bệnh l&yacute; về da v&agrave; chăm s&oacute;c da thẩm mỹ.&nbsp;Ph&ograve;ng kh&aacute;m với đội ngũ b&aacute;c sĩ&nbsp;chuy&ecirc;n khoa da liễu, nhiều kinh nghiệm, l&agrave;m việc nhiều năm tại Bệnh Viện Da Liễu TP.HCM v&agrave; Bệnh viện Đại học Y Dược TP.HCM</p>\r\n<p><strong>Đội ngũ b&aacute;c sĩ giỏi, gi&agrave;u kinh nghiệm kh&aacute;m v&agrave; điều trị c&aacute;c bệnh l&yacute; về da v&agrave; chăm s&oacute;c da thẩm mỹ.</strong></p>\r\n<ul>\r\n<li>B&aacute;c sĩ Chuy&ecirc;n khoa II Trần Thị Ho&agrave;i Hương - Nguy&ecirc;n Ph&oacute; trưởng khoa L&acirc;m s&agrave;ng 1 Bệnh viện Da Liễu TP.HCM, Trưởng Khoa Dinh Dưỡng Bệnh viện Da Liễu TP.HCM</li>\r\n</ul>\r\n<p><strong>Hệ thống trang thiết bị hiện đại hỗ trợ qu&aacute; tr&igrave;nh kh&aacute;m, điều trị bệnh da liễu v&agrave; chăm s&oacute;c da thẩm mỹ.</strong></p>\r\n<ul>\r\n<li>Sử dụng phương ph&aacute;p Laser &aacute;nh s&aacute;ng Photosilk</li>\r\n<li>M&aacute;y laser Co2 fractional</li>\r\n<li>M&aacute;y triệt l&ocirc;ng</li>\r\n</ul>\r\n<p><strong>Địa chỉ:</strong> 30/1A Ng&ocirc; Thời Nhiệm, Phường Xu&acirc;n H&ograve;a, Th&agrave;nh phố Hồ Ch&iacute; Minh</p>\r\n<p><strong>Thời gian l&agrave;m việc:</strong>&nbsp;</p>\r\n<ul>\r\n<li>Thứ 2 đến Thứ 7</li>\r\n<li>08h00 đến 21h00 (nhận kh&aacute;ch đến 20h30)</li>\r\n</ul>\r\n<p><strong>H&igrave;nh thức thanh to&aacute;n:&nbsp;</strong></p>\r\n<ul>\r\n<li>Thanh to&aacute;n tiền mặt, quẹt thẻ v&agrave; chuyển khoản</li>\r\n</ul>"
+    },
+    {
+      "id": 2,
+      "title": "THẾ MẠNH CHUYÊN MÔN",
+      "content": "<p>Ph&ograve;ng kh&aacute;m Chuy&ecirc;n khoa Da Liễu T&aacute;o Đỏ nhận kh&aacute;m v&agrave; điều trị:</p>\r\n<ul>\r\n<li>Điều trị bệnh ngo&agrave;i da, ch&agrave;m, vi&ecirc;m da cơ địa, tổ đỉa, vi&ecirc;m nang l&ocirc;ng, dị ứng, nấm da, bệnh da b&oacute;ng nước</li>\r\n<li>Nhiễm tr&ugrave;ng da, ngứa, rụng t&oacute;c, mụn trứng c&aacute; v&agrave; phối hợp ni-tơ lỏng trong điều trị da...</li>\r\n<li>Trị mụn theo phương ph&aacute;p mới, h&uacute;t mụn thẩm mỹ kh&ocirc;ng để sẹo, kết hợp laser &aacute;nh s&aacute;ng xanh</li>\r\n<li>Điều trị c&aacute;c bệnh l&ocirc;ng, t&oacute;c, m&oacute;ng...</li>\r\n<li>Lăn kim trị mụn, laser Co2 Fractional</li>\r\n<li>Mụn trứng c&aacute;, da nhờn, th&acirc;m, sẹo&hellip;</li>\r\n<li>C&aacute;c bệnh về da kh&aacute;c</li>\r\n</ul>"
+    },
+    {
+      "id": 3,
+      "title": "TRANG THIẾT BỊ",
+      "content": "<p>Ph&ograve;ng kh&aacute;m&nbsp;Chuy&ecirc;n khoa Da Liễu T&aacute;o Đỏ được trang bị c&aacute;c thiết bị hiện đại hỗ trợ qu&aacute; tr&igrave;nh kh&aacute;m bệnh da liễu v&agrave; chăm s&oacute;c da thẩm mỹ như:&nbsp;</p>\r\n<ul>\r\n<li>Sử dụng phương ph&aacute;p Laser &aacute;nh s&aacute;ng Photosilk</li>\r\n<li>M&aacute;y laser Co2 fractional</li>\r\n<li>M&aacute;y triệt l&ocirc;ng</li>\r\n</ul>\r\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" data-src=\"https://cdn.bookingcare.vn/fo/2022/05/17/090505-1-anh-may-tao-do.jpg\" data-srcset=\"https://cdn.bookingcare.vn/fo/w384/2022/05/17/090505-1-anh-may-tao-do.jpg 384w, https://cdn.bookingcare.vn/fo/w640/2022/05/17/090505-1-anh-may-tao-do.jpg 640w, https://cdn.bookingcare.vn/fo/w750/2022/05/17/090505-1-anh-may-tao-do.jpg 750w, https://cdn.bookingcare.vn/fo/w828/2022/05/17/090505-1-anh-may-tao-do.jpg 828w, https://cdn.bookingcare.vn/fo/w1080/2022/05/17/090505-1-anh-may-tao-do.jpg 1080w, https://cdn.bookingcare.vn/fo/w1200/2022/05/17/090505-1-anh-may-tao-do.jpg 1200w\" src=\"https://cdn.bookingcare.vn/image/loading.svg\" alt=\"\" class=\"lazyload\"/></p>\r\n<p style=\"text-align: center;\">M&aacute;y triệt l&ocirc;ng - Ảnh: Ph&ograve;ng kh&aacute;m cung cấp</p>\r\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" data-src=\"https://cdn.bookingcare.vn/fo/2022/05/17/090518-2-anh-may-tao-do.jpg\" data-srcset=\"https://cdn.bookingcare.vn/fo/w384/2022/05/17/090518-2-anh-may-tao-do.jpg 384w, https://cdn.bookingcare.vn/fo/w640/2022/05/17/090518-2-anh-may-tao-do.jpg 640w, https://cdn.bookingcare.vn/fo/w750/2022/05/17/090518-2-anh-may-tao-do.jpg 750w, https://cdn.bookingcare.vn/fo/w828/2022/05/17/090518-2-anh-may-tao-do.jpg 828w, https://cdn.bookingcare.vn/fo/w1080/2022/05/17/090518-2-anh-may-tao-do.jpg 1080w, https://cdn.bookingcare.vn/fo/w1200/2022/05/17/090518-2-anh-may-tao-do.jpg 1200w\" src=\"https://cdn.bookingcare.vn/image/loading.svg\" alt=\"\" class=\"lazyload\"/></p>\r\n<p style=\"text-align: center;\">Kh&aacute;ch h&agrave;ng trải nghiệm dịch vụ tại ph&ograve;ng kh&aacute;m - Ảnh: Ph&ograve;ng kh&aacute;m cung cấp</p>"
+    },
+    {
+      "id": 4,
+      "title": "VỊ TRÍ",
+      "content": "<p>Ph&ograve;ng kh&aacute;m Chuy&ecirc;n khoa Da liễu T&aacute;o Đỏ nằm tại 30/1A Ng&ocirc; Thời Nhiệm, Phường Xu&acirc;n H&ograve;a, Th&agrave;nh phố Hồ Ch&iacute; Minh (Đối diện bệnh viện Da liễu TP.HCM)</p>\r\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" data-src=\"https://cdn.bookingcare.vn/fo/2022/05/17/091952-1-vi-tri-tao-do.png\" data-srcset=\"https://cdn.bookingcare.vn/fo/w384/2022/05/17/091952-1-vi-tri-tao-do.png 384w, https://cdn.bookingcare.vn/fo/w640/2022/05/17/091952-1-vi-tri-tao-do.png 640w, https://cdn.bookingcare.vn/fo/w750/2022/05/17/091952-1-vi-tri-tao-do.png 750w, https://cdn.bookingcare.vn/fo/w828/2022/05/17/091952-1-vi-tri-tao-do.png 828w, https://cdn.bookingcare.vn/fo/w1080/2022/05/17/091952-1-vi-tri-tao-do.png 1080w, https://cdn.bookingcare.vn/fo/w1200/2022/05/17/091952-1-vi-tri-tao-do.png 1200w\" src=\"https://cdn.bookingcare.vn/image/loading.svg\" alt=\"\" class=\"lazyload\"/></p>"
+    }
+  ],
+  "longitude": "106.68679247154286",
+  "latitude": "10.777861846213792",
+  "partnerId": 267,
+  "parentId": null,
+  "showChildren": 0,
+  "createdAt": 303,
+  "image": "https://cdn.bookingcare.vn/fo/2025/05/06/105433-tao-do.png",
+  "title": "Phòng khám Da liễu Táo Đỏ",
+  "url": "phong-kham-da-lieu-tao-do",
+  "logo": "https://cdn.bookingcare.vn/fo/2022/05/16/143813-logo-pk-tao-do.png",
+  "pageType": 1,
+  "customButtonText": "",
+  "customButtonLink": "",
+  "metadata": {
+    "custom_button_cta": "",
+    "promotion": {
+      "start_date": "",
+      "end_date": "",
+      "content": ""
+    },
+    "view": "1",
+    "features": [
+      "booking_many_people"
+    ],
+    "newPromotion": [],
+    "images": [
+      "2022/05/16/143813-logo-pk-tao-do.png",
+      "/./files/blog/2022/05/17/091952-1-vi-tri-tao-do.png",
+      "/./files/blog/2022/05/17/090505-1-anh-may-tao-do.jpg",
+      "/./files/blog/2022/05/17/090518-2-anh-may-tao-do.jpg"
+    ]
+  },
+  "selfSupported": 0,
+  "clinics": [
+    {
+      "title": "Tất cả",
+      "image": "https://cdn.bookingcare.vn/fo/2023/01/31/141500-tatca.png",
+      "selectedImage": "https://cdn.bookingcare.vn/fo/2023/01/31/141500-tatcaselected.png",
+      "type": 0
+    },
+    {
+      "title": "Bác sĩ",
+      "image": "https://cdn.bookingcare.vn/fo/2023/01/31/141333-bacsi.png",
+      "selectedImage": "https://cdn.bookingcare.vn/fo/2023/01/31/141412-bacsiselected.png",
+      "type": 1,
+      "data": [
+        {
+          "id": 3509,
+          "name": "Khám da liễu tại Phòng khám Da liễu Táo Đỏ",
+          "url": "kham-da-lieu-tai-phong-kham-da-lieu-tao-do",
+          "picture": "https://cdn.bookingcare.vn/fo/2023/04/11/112852-logo-da-lieu-tao-do.jpg",
+          "title": "Khám da liễu tại Phòng khám Da liễu Táo Đỏ",
+          "description": "",
+          "status": 1,
+          "isWork": 1,
+          "service": 1,
+          "selfSupported": 0,
+          "specialists": [
+            {
+              "id": 11,
+              "name": "Da liễu"
+            },
+            {
+              "id": 72,
+              "name": "Da liễu thẩm mỹ"
+            }
+          ]
+        },
+        {
+          "id": 4141,
+          "name": "BSCKI Dương Duy Khương",
+          "url": "bscki-duong-duy-khuong",
+          "picture": "https://cdn.bookingcare.vn/fo/2024/03/04/143901-anh-man-hinh-2024-03-04-luc-143852.png",
+          "title": "BSCKI Dương Duy Khương",
+          "description": "",
+          "status": 1,
+          "isWork": 1,
+          "service": 1,
+          "selfSupported": 0,
+          "specialists": [
+            {
+              "id": 11,
+              "name": "Da liễu"
+            },
+            {
+              "id": 72,
+              "name": "Da liễu thẩm mỹ"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "schemaEnabled": true,
+  "provinceName": "Thành phố Hồ Chí Minh",
+  "view": 1,
+  "quickConsultation": false,
+  "showHotline": false,
+  "aiPartnerId": 36
+}

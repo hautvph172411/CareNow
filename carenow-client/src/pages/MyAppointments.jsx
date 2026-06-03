@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Calendar, User, MapPin, FileText, X,
   Clock, Building2, Stethoscope, AlertCircle,
@@ -7,6 +7,7 @@ import {
   CheckCircle, Info,
 } from "lucide-react";
 import { getMyAppointments, cancelAppointment } from "../api/appointment.api";
+import { getProvinces, getWards } from "../api/catalog.api";
 import { useAuth } from "../contexts/AuthContext";
 
 /* ── Helpers ────────────────────────────────────────────────────────────────── */
@@ -26,6 +27,44 @@ function formatDate(dateStr) {
   return new Date(dateStr).toLocaleDateString("vi-VN", {
     weekday: "short", year: "numeric", month: "short", day: "numeric",
   });
+}
+
+function extractCancelReason(adminNotes = "") {
+  if (!adminNotes) return "";
+  const lines = String(adminNotes).split("\n").reverse();
+  const found = lines.find((line) => line.includes("[CANCEL_REASON]"));
+  return found ? found.replace(/^.*\]\s*/, "").trim() : "";
+}
+
+function parseBookingMeta(noteText = "", patientAddress = "") {
+  const text = String(noteText || "");
+  const provinceMatch = text.match(/Tỉnh\/Thành ID:\s*(\d+)/i);
+  const wardMatch = text.match(/Xã\/Phường ID:\s*(\d+)/i);
+  const provinceId = provinceMatch ? String(provinceMatch[1]) : "";
+  const wardId = wardMatch ? String(wardMatch[1]) : "";
+
+  const lines = text.split("\n").map((x) => x.trim()).filter(Boolean);
+  let reason = lines.find(
+    (line) =>
+      !/^Người đi cùng:/i.test(line) &&
+      !/^Tỉnh\/Thành ID:/i.test(line) &&
+      !/^Xã\/Phường ID:/i.test(line)
+  ) || "";
+
+  if (!reason && text) {
+    reason = text
+      .replace(/Tỉnh\/Thành ID:\s*\d+/gi, "")
+      .replace(/Xã\/Phường ID:\s*\d+/gi, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  const detailAddress = String(patientAddress || "").trim();
+  if (detailAddress && reason.endsWith(detailAddress)) {
+    reason = reason.slice(0, reason.length - detailAddress.length).trim();
+  }
+
+  return { reason, provinceId, wardId, detailAddress };
 }
 
 /* Đọc/ghi localStorage bookings */
@@ -65,9 +104,12 @@ function Skeleton() {
 }
 
 /* ── Card lịch hẹn ──────────────────────────────────────────────────────────── */
-function AppointmentCard({ appt, onCancel, cancelling, isLocal }) {
-  const navigate = useNavigate();
+function AppointmentCard({ appt, onCancel, cancelling, isLocal, onViewDetails }) {
   const cfg = STATUS_CONFIG[appt.status] || STATUS_CONFIG[1];
+  const [showCancelForm, setShowCancelForm] = useState(false);
+  const [cancelReason, setCancelReason] = useState("");
+  const isCancelled = [4, 5].includes(Number(appt.status)) || Boolean(appt.cancelled_at);
+  const parsedMeta = parseBookingMeta(appt.patient_notes, appt.patient_address);
 
   return (
     <div
@@ -153,18 +195,18 @@ function AppointmentCard({ appt, onCancel, cancelling, isLocal }) {
       </div>
 
       {/* Ghi chú */}
-      {appt.patient_notes && (
+      {parsedMeta.reason && (
         <div className="flex items-start gap-2 text-xs text-gray-600 bg-blue-50 px-3 py-2 rounded-xl border border-blue-100 mb-3">
           <Info className="size-3.5 shrink-0 mt-0.5" style={{ color: "#3498db" }} />
-          {appt.patient_notes}
+          {parsedMeta.reason}
         </div>
       )}
 
       {/* Nút hành động */}
-      {isUpcoming(appt.status) && (
+      {isUpcoming(appt.status) && !isCancelled && (
         <div className="flex gap-2 pt-3 border-t border-gray-50">
           <button
-            onClick={() => navigate(`/dat-lich?booking=${appt.booking_code}`)}
+            onClick={() => onViewDetails?.(appt)}
             className="flex-1 text-white py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-all flex items-center justify-center gap-1"
             style={{ backgroundColor: "#3498db" }}
           >
@@ -172,7 +214,7 @@ function AppointmentCard({ appt, onCancel, cancelling, isLocal }) {
           </button>
           {!isLocal && onCancel && (
             <button
-              onClick={() => onCancel(appt.id)}
+              onClick={() => setShowCancelForm((v) => !v)}
               disabled={cancelling === appt.id}
               className="px-4 py-2 border border-red-300 text-red-500 rounded-xl hover:bg-red-50 transition-colors flex items-center gap-1.5 text-sm disabled:opacity-50"
             >
@@ -183,19 +225,78 @@ function AppointmentCard({ appt, onCancel, cancelling, isLocal }) {
         </div>
       )}
 
-      {appt.status === 3 && (
+      {isCancelled && (
+        <div className="flex gap-2 pt-3 border-t border-gray-50">
+          <button
+            type="button"
+            disabled
+            className="flex-1 py-2 rounded-xl text-sm font-semibold bg-gray-100 text-gray-400 cursor-not-allowed"
+            title="Lịch đã hủy, không thể xem chi tiết"
+          >
+            Xem chi tiết
+          </button>
+          <button
+            type="button"
+            disabled
+            className="px-4 py-2 rounded-xl text-sm border border-gray-200 text-gray-400 cursor-not-allowed"
+            title="Lịch đã hủy, không thể hủy lại"
+          >
+            Hủy
+          </button>
+        </div>
+      )}
+
+      {showCancelForm && isUpcoming(appt.status) && !isLocal && !isCancelled && (
+        <div className="mt-3 p-3 rounded-xl border border-red-100 bg-red-50">
+          <p className="text-sm font-semibold text-red-700 mb-2">Lý do hủy lịch *</p>
+          <textarea
+            className="w-full rounded-lg border border-red-200 p-2 text-sm"
+            rows={3}
+            placeholder="Vui lòng nhập lý do hủy lịch..."
+            value={cancelReason}
+            onChange={(e) => setCancelReason(e.target.value)}
+          />
+          <div className="mt-2 flex gap-2">
+            <button
+              onClick={() => onCancel(appt.id, cancelReason, () => setShowCancelForm(false))}
+              disabled={cancelling === appt.id}
+              className="px-3 py-2 rounded-lg bg-red-600 text-white text-sm font-semibold disabled:opacity-60"
+            >
+              Gửi yêu cầu hủy
+            </button>
+            <button
+              onClick={() => setShowCancelForm(false)}
+              className="px-3 py-2 rounded-lg border border-gray-300 text-sm"
+            >
+              Đóng
+            </button>
+          </div>
+        </div>
+      )}
+
+      {Number(appt.status) === 3 && (
         <div className="pt-3 border-t border-gray-50">
-          <button className="w-full bg-gray-100 text-gray-700 py-2 rounded-xl text-sm font-semibold hover:bg-gray-200 transition-colors">
-            Xem kết quả khám
+          <button
+            type="button"
+            onClick={() => onViewDetails?.(appt)}
+            className="w-full text-white py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-all flex items-center justify-center gap-1"
+            style={{ backgroundColor: "#3498db" }}
+          >
+            Xem chi tiết <ChevronRight className="size-4" />
           </button>
         </div>
       )}
 
       {(appt.status === 4 || appt.status === 5) && appt.cancelled_at && (
-        <p className="mt-2 text-[11px] text-gray-400 flex items-center gap-1">
-          <Clock className="size-3" />
-          Đã hủy: {new Date(appt.cancelled_at).toLocaleString("vi-VN")}
-        </p>
+        <div className="mt-2 text-[11px] text-gray-400">
+          <p className="flex items-center gap-1">
+            <Clock className="size-3" />
+            Đã hủy: {new Date(appt.cancelled_at).toLocaleString("vi-VN")}
+          </p>
+          {extractCancelReason(appt.admin_notes) && (
+            <p className="mt-1"><strong>Lý do bệnh nhân gửi:</strong> {extractCancelReason(appt.admin_notes)}</p>
+          )}
+        </div>
       )}
     </div>
   );
@@ -238,6 +339,9 @@ export function MyAppointments() {
   const [error,      setError]      = useState("");
   const [activeTab,  setActiveTab]  = useState("upcoming");
   const [cancelling, setCancelling] = useState(null);
+  const [detailAppt, setDetailAppt] = useState(null);
+  const [detailProvinceName, setDetailProvinceName] = useState("");
+  const [detailWardName, setDetailWardName] = useState("");
 
   /* ── Load localStorage ngay khi mount ──────────────────────────────────── */
   useEffect(() => {
@@ -276,11 +380,14 @@ export function MyAppointments() {
   useEffect(() => { fetchFromApi(); }, [fetchFromApi]);
 
   /* ── Hủy lịch ───────────────────────────────────────────────────────────── */
-  const handleCancel = async (id) => {
-    if (!window.confirm("Bạn có chắc muốn hủy lịch này?")) return;
+  const handleCancel = async (id, reason = "", onDone) => {
+    if (!String(reason || "").trim()) {
+      alert("Vui lòng nhập lý do hủy lịch.");
+      return;
+    }
     setCancelling(id);
     try {
-      await cancelAppointment(id);
+      await cancelAppointment(id, reason);
       setApiAppts((prev) =>
         prev.map((a) => a.id === id
           ? { ...a, status: 4, cancelled_at: new Date().toISOString() }
@@ -293,8 +400,10 @@ export function MyAppointments() {
       );
       saveLocalBookings(updated);
       setLocalAppts(updated);
+      if (onDone) onDone();
+      await fetchFromApi();
     } catch (err) {
-      alert(err?.response?.data?.message || "Hủy thất bại, thử lại.");
+      alert(err?.response?.data?.message || err?.message || "Hủy thất bại, thử lại.");
     } finally {
       setCancelling(null);
     }
@@ -321,6 +430,37 @@ export function MyAppointments() {
   const upcoming = allAppts.filter((a) => isUpcoming(a.status));
   const history  = allAppts.filter((a) => !isUpcoming(a.status));
   const shown    = activeTab === "upcoming" ? upcoming : history;
+  const detailMeta = parseBookingMeta(detailAppt?.patient_notes, detailAppt?.patient_address);
+  const detailAddressDisplay = [
+    detailMeta.detailAddress,
+    detailWardName,
+    detailProvinceName,
+  ].filter(Boolean).join(", ");
+
+  useEffect(() => {
+    let cancelled = false;
+    const loadLocationNames = async () => {
+      setDetailProvinceName("");
+      setDetailWardName("");
+      const { provinceId, wardId } = parseBookingMeta(detailAppt?.patient_notes, detailAppt?.patient_address);
+      if (!provinceId) return;
+      try {
+        const provinces = await getProvinces();
+        if (cancelled) return;
+        const province = (provinces || []).find((p) => String(p.id) === String(provinceId));
+        setDetailProvinceName(province?.name || "");
+        if (!wardId) return;
+        const wards = await getWards(provinceId);
+        if (cancelled) return;
+        const ward = (wards || []).find((w) => String(w.id) === String(wardId));
+        setDetailWardName(ward?.name || "");
+      } catch {
+        // ignore
+      }
+    };
+    if (detailAppt) loadLocationNames();
+    return () => { cancelled = true; };
+  }, [detailAppt]);
 
   return (
     <div className="py-10 bg-gray-50 min-h-screen">
@@ -428,6 +568,7 @@ export function MyAppointments() {
                       onCancel={handleCancel}
                       cancelling={cancelling}
                       isLocal={!!appt._isLocal}
+                      onViewDetails={(a) => setDetailAppt(a)}
                     />
                     {/* Nút xóa local */}
                     {appt._isLocal && (
@@ -462,6 +603,31 @@ export function MyAppointments() {
           </div>
         )}
       </div>
+
+      {detailAppt && (
+        <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4">
+          <div className="w-full max-w-xl rounded-2xl bg-white shadow-xl">
+            <div className="px-5 py-4 border-b flex items-center justify-between">
+              <h3 className="text-lg font-bold text-gray-800">Chi tiết lịch khám</h3>
+              <button onClick={() => setDetailAppt(null)} className="text-gray-400 hover:text-gray-600">
+                <X className="size-5" />
+              </button>
+            </div>
+            <div className="p-5 space-y-3 text-sm text-gray-700">
+              <p><strong>Mã lịch:</strong> {detailAppt.booking_code || "—"}</p>
+              <p><strong>Bệnh nhân:</strong> {detailAppt.patient_name || "—"}</p>
+              <p><strong>Số điện thoại:</strong> {detailAppt.patient_phone || "—"}</p>
+              <p><strong>Ngày khám:</strong> {formatDate(detailAppt.appt_date)}</p>
+              <p><strong>Giờ khám:</strong> {detailAppt.appt_time ? String(detailAppt.appt_time).slice(0, 5) : "—"}</p>
+              <p><strong>Bác sĩ khám:</strong> {detailAppt.specialist_name || "—"}</p>
+              <p><strong>Nơi khám:</strong> {detailAppt.place_name || detailAppt.clinic_name || "—"}</p>
+              <p><strong>Địa chỉ nơi khám:</strong> {detailAppt.place_address || "—"}</p>
+              <p><strong>Lý do khám:</strong> {detailMeta.reason || "—"}</p>
+              <p><strong>Địa chỉ:</strong> {detailAddressDisplay || "—"}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

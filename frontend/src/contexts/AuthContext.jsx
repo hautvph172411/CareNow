@@ -6,8 +6,7 @@ export const AuthContext = createContext();
 
 // Timeout constants - tạm thời để 1 năm (session gần như không hết hạn trong dev)
 const TOKEN_LIFETIME = 365 * 24 * 60 * 60 * 1000;
-const INACTIVE_TIMEOUT = 365 * 24 * 60 * 60 * 1000;
-const WARNING_BEFORE_LOGOUT = 1000;
+const INACTIVE_TIMEOUT = 20 * 24 * 60 * 60 * 1000; // 20 ngày (tránh tràn số 32-bit của setTimeout)
 
 // Role tên (string) được xem là super admin - luôn có full quyền
 const SUPER_ADMIN_ROLES = ['super_admin'];
@@ -15,15 +14,12 @@ const SUPER_ADMIN_ROLES = ['super_admin'];
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [showWarning, setShowWarning] = useState(false);
   const [permissions, setPermissions] = useState([]);
   const [permissionsLoaded, setPermissionsLoaded] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
   const tokenExpiryRef = useRef(null);
-  const inactiveTimerRef = useRef(null);
-  const warningTimerRef = useRef(null);
 
   const getTokenExpiry = useCallback((token) => {
     try {
@@ -36,13 +32,7 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
-  const clearAllTimers = useCallback(() => {
-    if (inactiveTimerRef.current) clearTimeout(inactiveTimerRef.current);
-    if (warningTimerRef.current) clearTimeout(warningTimerRef.current);
-  }, []);
-
   const logout = useCallback((reason = "manual") => {
-    clearAllTimers();
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     localStorage.removeItem("loginTime");
@@ -50,14 +40,13 @@ export function AuthProvider({ children }) {
     setIsAuthenticated(false);
     setPermissions([]);
     setPermissionsLoaded(false);
-    setShowWarning(false);
 
     if (reason !== "manual") {
       navigate("/?expired=true&reason=" + reason, { replace: true });
     } else {
       navigate("/", { replace: true });
     }
-  }, [navigate, clearAllTimers]);
+  }, [navigate]);
 
   const checkToken = useCallback(() => {
     const token = localStorage.getItem("token");
@@ -66,23 +55,6 @@ export function AuthProvider({ children }) {
     if (!expiry) return false;
     return true;
   }, [getTokenExpiry]);
-
-  const resetInactivityTimer = useCallback(() => {
-    if (!isAuthenticated) return;
-    clearAllTimers();
-    warningTimerRef.current = setTimeout(() => {
-      setShowWarning(true);
-    }, INACTIVE_TIMEOUT - WARNING_BEFORE_LOGOUT);
-    inactiveTimerRef.current = setTimeout(() => {
-      logout("inactive");
-    }, INACTIVE_TIMEOUT);
-  }, [isAuthenticated, logout, clearAllTimers]);
-
-  const handleActivity = useCallback(() => {
-    if (isAuthenticated && checkToken()) {
-      resetInactivityTimer();
-    }
-  }, [isAuthenticated, checkToken, resetInactivityTimer]);
 
   // Nạp permissions của user từ backend
   const loadPermissions = useCallback(async (userData) => {
@@ -115,14 +87,7 @@ export function AuthProvider({ children }) {
     setIsAuthenticated(true);
     setPermissionsLoaded(false);
     loadPermissions(userData);
-
-    resetInactivityTimer();
-  }, [resetInactivityTimer, loadPermissions]);
-
-  const extendSession = useCallback(() => {
-    setShowWarning(false);
-    resetInactivityTimer();
-  }, [resetInactivityTimer]);
+  }, [loadPermissions]);
 
   // Khởi tạo state khi mount lần đầu
   useEffect(() => {
@@ -142,7 +107,6 @@ export function AuthProvider({ children }) {
       setUser(userData);
       setIsAuthenticated(true);
       loadPermissions(userData);
-      resetInactivityTimer();
 
       const expiry = getTokenExpiry(token);
       if (expiry) {
@@ -161,24 +125,12 @@ export function AuthProvider({ children }) {
     }
 
     return () => {
-      clearAllTimers();
       if (tokenExpiryRef.current) clearTimeout(tokenExpiryRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (!isAuthenticated) return;
-    const events = ["mousedown", "keydown", "touchstart", "scroll"];
-    events.forEach((event) => {
-      window.addEventListener(event, handleActivity);
-    });
-    return () => {
-      events.forEach((event) => {
-        window.removeEventListener(event, handleActivity);
-      });
-    };
-  }, [isAuthenticated, handleActivity]);
+
 
   /**
    * Kiểm tra user có quyền `name` không.
@@ -198,18 +150,25 @@ export function AuthProvider({ children }) {
     if (user) loadPermissions(user);
   }, [user, loadPermissions]);
 
+  const updateUserSession = useCallback((newUserData) => {
+    setUser(prev => {
+      const updatedUser = { ...prev, ...newUserData };
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      return updatedUser;
+    });
+  }, []);
+
   const value = {
     user,
     isAuthenticated,
-    showWarning,
     permissions,
     permissionsLoaded,
     login,
     logout,
-    extendSession,
     checkToken,
     hasPermission,
     refreshPermissions,
+    updateUserSession,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

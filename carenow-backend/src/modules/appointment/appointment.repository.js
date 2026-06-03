@@ -107,6 +107,11 @@ exports.getAll = async (query = {}) => {
     q += ` AND a.specialist_id = $${idx++}`;
     values.push(query.specialist_id);
   }
+  if (query.partner_id) {
+    q += ` AND (cp.partner_id = $${idx} OR $${idx} = ANY(STRING_TO_ARRAY(c.partner_ids, ',')))`;
+    values.push(query.partner_id);
+    idx++;
+  }
 
   q += ' ORDER BY a.appt_date DESC, a.appt_time ASC, a.id DESC';
 
@@ -125,7 +130,13 @@ exports.getAll = async (query = {}) => {
 
 /* ── Đếm (để phân trang admin) ────────────────────────────────────────────── */
 exports.count = async (query = {}) => {
-  let q = 'SELECT COUNT(*) FROM tbl_appointment a WHERE 1=1';
+  let q = `
+    SELECT COUNT(*) 
+    FROM tbl_appointment a
+    LEFT JOIN tbl_clinic c ON c.id = a.clinic_id
+    LEFT JOIN tbl_clinic_place cp ON cp.id = a.clinic_place_id
+    WHERE 1=1
+  `;
   const values = [];
   let idx = 1;
 
@@ -169,6 +180,11 @@ exports.count = async (query = {}) => {
   if (query.specialist_id) {
     q += ` AND a.specialist_id = $${idx++}`;
     values.push(query.specialist_id);
+  }
+  if (query.partner_id) {
+    q += ` AND (cp.partner_id = $${idx} OR $${idx} = ANY(STRING_TO_ARRAY(c.partner_ids, ',')))`;
+    values.push(query.partner_id);
+    idx++;
   }
 
   const { rows } = await pool.query(q, values);
@@ -222,6 +238,25 @@ exports.getByPatientId = async (patientId, query = {}) => {
   return rows;
 };
 
+/* ── Nhận lại các lịch guest vào bệnh nhân sau khi đăng nhập ─────────────── */
+exports.claimGuestBookings = async ({ patientId, bookingCodes = [] }) => {
+  if (!patientId || !Array.isArray(bookingCodes) || bookingCodes.length === 0) return [];
+  const cleanCodes = [...new Set(bookingCodes.map((c) => String(c || '').trim()).filter(Boolean))];
+  if (cleanCodes.length === 0) return [];
+
+  const { rows } = await pool.query(
+    `
+    UPDATE tbl_appointment a
+    SET patient_id = $1
+    WHERE a.patient_id IS NULL
+      AND a.booking_code = ANY($2::text[])
+    RETURNING *
+    `,
+    [patientId, cleanCodes]
+  );
+  return rows;
+};
+
 /* ── Lấy chi tiết 1 lịch hẹn ─────────────────────────────────────────────── */
 exports.findById = async (id) => {
   const { rows } = await pool.query(
@@ -236,7 +271,9 @@ exports.findById = async (id) => {
       cs.picture AS specialist_picture,
       sv.name   AS service_name,
       pp.name   AS price_package_name,
-      ip.name   AS insurance_package_name
+      ip.name   AS insurance_package_name,
+      cp.partner_id AS place_partner_id,
+      c.partner_ids AS clinic_partner_ids
     FROM tbl_appointment a
     LEFT JOIN tbl_clinic            c  ON c.id  = a.clinic_id
     LEFT JOIN tbl_clinic_place      cp ON cp.id = a.clinic_place_id

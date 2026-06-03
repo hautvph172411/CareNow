@@ -61,6 +61,13 @@ export const FEATURES = [
     ],
   },
   {
+    name: 'toggle_all_doctors_schedule',
+    label: 'Tắt/Bật hàng loạt lịch bác sĩ',
+    description: 'Quyền đặc biệt cho phép bật/tắt toàn bộ lịch của tất cả bác sĩ trong một ngày',
+    group: 'catalog',
+    urls: [], // Không dùng để route, chỉ dùng để check nút bấm
+  },
+  {
     name: 'manage_appointment',
     label: 'Đơn đặt khám',
     description: 'Xem và cập nhật trạng thái đơn đặt khám từ CareNow Client',
@@ -108,6 +115,13 @@ export const FEATURES = [
     description: 'Quản lý đối tác',
     group: 'catalog',
     urls: ['/partner/admin', '/partner/admin/add', '/partner/admin/edit/:id'],
+  },
+  {
+    name: 'manage_partner_portal',
+    label: 'Cổng đối tác',
+    description: 'Dành cho đối tác quản lý lịch và cuộc hẹn',
+    group: 'catalog',
+    urls: ['/partner-portal/appointments', '/partner-portal/schedule'],
   },
 
   // ===== Người dùng =====

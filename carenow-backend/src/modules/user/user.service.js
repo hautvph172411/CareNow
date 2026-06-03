@@ -2,7 +2,25 @@ const repo = require('./user.repository');
 const { hashPassword, comparePassword } = require('../../utils/hash');
 
 exports.getUsers = async (query) => {
-  return await repo.getAll(query);
+  const page  = parseInt(query.page,  10) || 1;
+  const limit = parseInt(query.limit, 10) || 50;
+  const offset = (page - 1) * limit;
+
+  const [data, total] = await Promise.all([
+    repo.getAll({ ...query, limit, offset }),
+    repo.countAll(query),
+  ]);
+
+  return {
+    success: true,
+    data,
+    pagination: {
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
+    },
+  };
 };
 
 exports.getUserById = async (id) => {

@@ -1,0 +1,139 @@
+const pool = require('../../config/database');
+
+const create = async (payload) => {
+  const fields = Object.keys(payload);
+  const values = Object.values(payload);
+  const placeholders = fields.map((_, i) => `$${i + 1}`).join(', ');
+
+  const query = `
+    INSERT INTO tbl_clinic_specialist (${fields.join(', ')})
+    VALUES (${placeholders})
+    RETURNING *;
+  `;
+  const result = await pool.query(query, values);
+  return result.rows[0];
+};
+
+const findAll = async (query = {}) => {
+  let q = `
+    SELECT cs.*, s.name AS service_name
+    FROM tbl_clinic_specialist cs
+    LEFT JOIN tbl_service s ON s.id = cs.service_id
+    WHERE 1=1
+  `;
+  const values = [];
+  let count = 1;
+
+  if (query.status !== undefined) {
+    q += ` AND cs.status = $${count}`;
+    values.push(query.status);
+    count++;
+  }
+  if (query.service_id !== undefined && query.service_id !== '') {
+    q += ` AND cs.service_id = $${count}`;
+    values.push(query.service_id);
+    count++;
+  }
+  if (query.keyword) {
+    q += ` AND (cs.name ILIKE $${count} OR cs.description ILIKE $${count})`;
+    values.push(`%${query.keyword}%`);
+    count++;
+  }
+
+  q += ' ORDER BY cs.rank DESC NULLS LAST, cs.id ASC';
+
+  if (query.limit) {
+    q += ` LIMIT $${count}`;
+    values.push(query.limit);
+    count++;
+  }
+  if (query.offset) {
+    q += ` OFFSET $${count}`;
+    values.push(query.offset);
+    count++;
+  }
+
+  const result = await pool.query(q, values);
+  return result.rows;
+};
+
+const findById = async (id) => {
+  const query = `
+    SELECT cs.*, s.name AS service_name
+    FROM tbl_clinic_specialist cs
+    LEFT JOIN tbl_service s ON s.id = cs.service_id
+    WHERE cs.id = $1
+  `;
+  const result = await pool.query(query, [id]);
+  return result.rows[0];
+};
+
+const update = async (id, payload) => {
+  const fields = Object.keys(payload);
+  const values = Object.values(payload);
+  
+  if (fields.length === 0) return null;
+
+  const setClause = fields.map((key, index) => `${key} = $${index + 1}`).join(', ');
+  values.push(id);
+
+  const query = `
+    UPDATE tbl_clinic_specialist
+    SET ${setClause}
+    WHERE id = $${values.length}
+    RETURNING *;
+  `;
+
+  const result = await pool.query(query, values);
+  return result.rows[0];
+};
+
+const remove = async (id) => {
+  const query = 'DELETE FROM tbl_clinic_specialist WHERE id = $1 RETURNING *';
+  const result = await pool.query(query, [id]);
+  return result.rows[0];
+};
+
+/** Đếm số bác sĩ đang được gán chuyên khoa có id này */
+const countClinicsUsing = async (specialtyId) => {
+  const r = await pool.query(
+    `SELECT COUNT(*) FROM tbl_clinic WHERE $1::text = ANY(STRING_TO_ARRAY(specialist_ids, ','))`,
+    [String(specialtyId)]
+  );
+  return parseInt(r.rows[0].count, 10);
+};
+
+const count = async (query = {}) => {
+  let q = 'SELECT COUNT(*) FROM tbl_clinic_specialist WHERE 1=1';
+  const values = [];
+  let countParam = 1;
+
+  if (query.status !== undefined) {
+    q += ` AND status = $${countParam}`;
+    values.push(query.status);
+    countParam++;
+  }
+  if (query.service_id !== undefined && query.service_id !== '') {
+    q += ` AND service_id = $${countParam}`;
+    values.push(query.service_id);
+    countParam++;
+  }
+  if (query.keyword) {
+    q += ` AND (name ILIKE $${countParam} OR description ILIKE $${countParam})`;
+    values.push(`%${query.keyword}%`);
+    countParam++;
+  }
+
+  const result = await pool.query(q, values);
+  return parseInt(result.rows[0].count, 10);
+};
+
+module.exports = {
+  create,
+  findAll,
+  findById,
+  update,
+  remove,
+  count,
+  countClinicsUsing,
+};

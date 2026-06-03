@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Calendar,
   Users,
@@ -38,7 +38,11 @@ import {
   IconSurgery,
 } from "../components/MedicalServiceIcons";
 import { Pagination } from "../components/Pagination";
+import DoctorPriceInsuranceInfo from "../components/DoctorPriceInsuranceInfo";
 import { getClinics, getClinicPlaces, getServices, getSpecialties } from "../api/catalog.api";
+import { getBlogPublicList } from "../api/blogPublic.api";
+import { getBlogCategories } from "../api/blogCategory.api";
+import { htmlToPlain } from "../utils/htmlToPlain";
 import {
   buildDoctorPath,
   buildPlacePath,
@@ -102,248 +106,19 @@ const LOC_BADGE_ROTATION = [
   { badge: "Hệ thống", badgeColor: "#3498db" },
 ];
 
-const ALL_ARTICLES = [
-  {
-    id: "1",
-    title: "10 dấu hiệu cảnh báo bệnh tim mạch không nên bỏ qua",
-    category: "Tim mạch",
-    catColor: "#fee2e2",
-    catText: "#dc2626",
-    readTime: "5 phút",
-    date: "28/04/2026",
-    emoji: "❤️",
-    bgFrom: "#ffecd2",
-    bgTo: "#fcb69f",
-  },
-  {
-    id: "2",
-    title: "Chế độ dinh dưỡng cân bằng cho người trưởng thành 30–50 tuổi",
-    category: "Dinh dưỡng",
-    catColor: "#d1fae5",
-    catText: "#059669",
-    readTime: "7 phút",
-    date: "25/04/2026",
-    emoji: "🥗",
-    bgFrom: "#a8edea",
-    bgTo: "#fed6e3",
-  },
-  {
-    id: "3",
-    title: "Cách quản lý stress hiệu quả trong cuộc sống hiện đại",
-    category: "Tâm lý",
-    catColor: "#ede9fe",
-    catText: "#7c3aed",
-    readTime: "6 phút",
-    date: "22/04/2026",
-    emoji: "🧘",
-    bgFrom: "#d299c2",
-    bgTo: "#fef9d7",
-  },
-  {
-    id: "4",
-    title: "Tầm soát ung thư: Ai nên làm và làm khi nào?",
-    category: "Ung bướu",
-    catColor: "#f5f3ff",
-    catText: "#6d28d9",
-    readTime: "8 phút",
-    date: "20/04/2026",
-    emoji: "🔬",
-    bgFrom: "#c3cfe2",
-    bgTo: "#f5f7fa",
-  },
-  {
-    id: "5",
-    title: "Vaccine cần tiêm cho người lớn – Danh sách đầy đủ 2026",
-    category: "Phòng bệnh",
-    catColor: "#d1fae5",
-    catText: "#059669",
-    readTime: "6 phút",
-    date: "18/04/2026",
-    emoji: "💉",
-    bgFrom: "#b8f0e6",
-    bgTo: "#c2f0e8",
-  },
-  {
-    id: "6",
-    title: "Huyết áp cao: Thay đổi lối sống để kiểm soát hiệu quả",
-    category: "Tim mạch",
-    catColor: "#fee2e2",
-    catText: "#dc2626",
-    readTime: "5 phút",
-    date: "16/04/2026",
-    emoji: "📊",
-    bgFrom: "#ffecd2",
-    bgTo: "#fcb69f",
-  },
-  {
-    id: "7",
-    title: "Bí quyết ngủ đủ giấc và cải thiện chất lượng giấc ngủ",
-    category: "Sức khỏe",
-    catColor: "#eff6ff",
-    catText: "#1d4ed8",
-    readTime: "4 phút",
-    date: "14/04/2026",
-    emoji: "😴",
-    bgFrom: "#a1c4fd",
-    bgTo: "#c2e9fb",
-  },
-  {
-    id: "8",
-    title: "Tiểu đường type 2: Phát hiện sớm và phòng ngừa biến chứng",
-    category: "Nội tiết",
-    catColor: "#fef3c7",
-    catText: "#d97706",
-    readTime: "9 phút",
-    date: "12/04/2026",
-    emoji: "🩸",
-    bgFrom: "#ffecd2",
-    bgTo: "#a18cd1",
-  },
-  {
-    id: "9",
-    title: "5 bài tập yoga tốt cho xương khớp người trung niên",
-    category: "Vận động",
-    catColor: "#dbeafe",
-    catText: "#2563eb",
-    readTime: "5 phút",
-    date: "10/04/2026",
-    emoji: "🏃",
-    bgFrom: "#c2e9fb",
-    bgTo: "#a1c4fd",
-  },
-  {
-    id: "10",
-    title: "Chăm sóc mắt đúng cách khi làm việc màn hình cả ngày",
-    category: "Mắt",
-    catColor: "#ecfdf5",
-    catText: "#059669",
-    readTime: "4 phút",
-    date: "08/04/2026",
-    emoji: "👁️",
-    bgFrom: "#c1dfc4",
-    bgTo: "#deecdd",
-  },
-  {
-    id: "11",
-    title: "Phụ nữ mang thai cần lưu ý gì trong 3 tháng đầu?",
-    category: "Phụ sản",
-    catColor: "#fdf2f8",
-    catText: "#be185d",
-    readTime: "7 phút",
-    date: "06/04/2026",
-    emoji: "🤰",
-    bgFrom: "#fbc2eb",
-    bgTo: "#a6c1ee",
-  },
-  {
-    id: "12",
-    title: "Loãng xương ở người trung niên – Nhận biết và điều trị",
-    category: "Xương khớp",
-    catColor: "#dbeafe",
-    catText: "#2563eb",
-    readTime: "6 phút",
-    date: "04/04/2026",
-    emoji: "🦴",
-    bgFrom: "#c1dfc4",
-    bgTo: "#e0f7fa",
-  },
-  {
-    id: "13",
-    title: "Sức khỏe răng miệng ảnh hưởng đến tim mạch như thế nào?",
-    category: "Nha khoa",
-    catColor: "#ccfbf1",
-    catText: "#0d9488",
-    readTime: "5 phút",
-    date: "02/04/2026",
-    emoji: "🦷",
-    bgFrom: "#b2fefa",
-    bgTo: "#0ed2f7",
-  },
-  {
-    id: "14",
-    title: "Dấu hiệu suy giảm chức năng gan – Khi nào cần đi khám?",
-    category: "Tiêu hóa",
-    catColor: "#ecfdf5",
-    catText: "#16a34a",
-    readTime: "6 phút",
-    date: "30/03/2026",
-    emoji: "🫁",
-    bgFrom: "#d4fc79",
-    bgTo: "#96e6a1",
-  },
-  {
-    id: "15",
-    title: "Khám sức khỏe định kỳ: Tại sao không nên bỏ qua?",
-    category: "Tổng quát",
-    catColor: "#d1fae5",
-    catText: "#059669",
-    readTime: "4 phút",
-    date: "28/03/2026",
-    emoji: "🏥",
-    bgFrom: "#e0f7fa",
-    bgTo: "#b2fefa",
-  },
-  {
-    id: "16",
-    title: "Ung thư cổ tử cung: HPV vaccine và xét nghiệm PAP smear",
-    category: "Phụ sản",
-    catColor: "#fdf2f8",
-    catText: "#be185d",
-    readTime: "8 phút",
-    date: "26/03/2026",
-    emoji: "🎗️",
-    bgFrom: "#fbc2eb",
-    bgTo: "#f5f7fa",
-  },
-  {
-    id: "17",
-    title: "Đau đầu mãn tính – Nguyên nhân và giải pháp điều trị",
-    category: "Thần kinh",
-    catColor: "#ede9fe",
-    catText: "#7c3aed",
-    readTime: "5 phút",
-    date: "24/03/2026",
-    emoji: "🧠",
-    bgFrom: "#d299c2",
-    bgTo: "#fef9d7",
-  },
-  {
-    id: "18",
-    title: "Chế độ tập luyện an toàn cho người bệnh tim",
-    category: "Tim mạch",
-    catColor: "#fee2e2",
-    catText: "#dc2626",
-    readTime: "6 phút",
-    date: "22/03/2026",
-    emoji: "💪",
-    bgFrom: "#ffecd2",
-    bgTo: "#fcb69f",
-  },
-  {
-    id: "19",
-    title: "Hội chứng ruột kích thích – Ăn uống và điều trị",
-    category: "Tiêu hóa",
-    catColor: "#ecfdf5",
-    catText: "#16a34a",
-    readTime: "7 phút",
-    date: "20/03/2026",
-    emoji: "🥦",
-    bgFrom: "#a8edea",
-    bgTo: "#fed6e3",
-  },
-  {
-    id: "20",
-    title: "Trầm cảm sau sinh và cách hỗ trợ người thân",
-    category: "Tâm lý",
-    catColor: "#ede9fe",
-    catText: "#7c3aed",
-    readTime: "6 phút",
-    date: "18/03/2026",
-    emoji: "💛",
-    bgFrom: "#ffeaa7",
-    bgTo: "#dfe6e9",
-  },
+/** Gradient khi bài không có ảnh đại diện */
+const ARTICLE_FALLBACK_GRADIENTS = [
+  { bgFrom: "#ffecd2", bgTo: "#fcb69f" },
+  { bgFrom: "#a8edea", bgTo: "#fed6e3" },
+  { bgFrom: "#d299c2", bgTo: "#fef9d7" },
+  { bgFrom: "#c3cfe2", bgTo: "#f5f7fa" },
+  { bgFrom: "#a1c4fd", bgTo: "#c2e9fb" },
+  { bgFrom: "#c1dfc4", bgTo: "#deecdd" },
+  { bgFrom: "#fbc2eb", bgTo: "#a6c1ee" },
+  { bgFrom: "#d4fc79", bgTo: "#96e6a1" },
 ];
+
+const ARTICLE_EMOJI_FALLBACK = ["📚", "🏥", "💚", "🩺", "📋", "💊", "🌿", "❤️", "🔬", "🧘"];
 
 const PROCESS_STEPS = [
   {
@@ -429,7 +204,9 @@ function buildDoctors(clinics, specById) {
   return clinics.map((c, i) => {
     const ids = parseIds(c.specialist_ids);
     const sp = ids.length ? specById.get(ids[0]) : null;
-    const tag = DOCTOR_TAG_ROTATION[i % DOCTOR_TAG_ROTATION.length];
+    const tag = c.sponsor === 1 
+      ? { tag: "Nổi bật", tagColor: "#e11d48" } 
+      : DOCTOR_TAG_ROTATION[i % DOCTOR_TAG_ROTATION.length];
     const summary = stripHtml(c.summary);
     const exp =
       summary.length > 90 ? `${summary.slice(0, 90)}…` : summary || "Bác sĩ CareNow";
@@ -447,6 +224,11 @@ function buildDoctors(clinics, specById) {
       image: c.picture || PLACEHOLDER_DOCTOR,
       tag: tag.tag,
       tagColor: tag.tagColor,
+      isWork: c.is_work !== 0,
+      priceMin: c.price_min ? `${Number(c.price_min).toLocaleString('vi-VN')}đ` : null,
+      legacyPriceMin: c.price_min,
+      priceSummary: c.price_summary,
+      insuranceSummary: c.insurance_summary,
       next: "Đặt lịch",
     };
   });
@@ -473,7 +255,45 @@ function buildLocations(places) {
   });
 }
 
+function formatEpochVN(sec) {
+  if (sec == null || sec === "") return "";
+  const n = Number(sec);
+  if (Number.isNaN(n)) return "";
+  return new Date(n * 1000).toLocaleDateString("vi-VN", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+}
+
+function buildGuideCards(rows, categoryById) {
+  return rows.map((row, i) => {
+    const plain = htmlToPlain(row.summary || row.content || "");
+    const words = plain.split(/\s+/).filter(Boolean).length;
+    const readMin = Math.max(1, Math.ceil(words / 200));
+    const ids = parseIds(row.categories);
+    const catName = ids.length ? categoryById.get(ids[0])?.name : null;
+    const pal = SPEC_PALETTE[i % SPEC_PALETTE.length];
+    const grad = ARTICLE_FALLBACK_GRADIENTS[i % ARTICLE_FALLBACK_GRADIENTS.length];
+    return {
+      id: row.id,
+      title: row.title,
+      picture: row.picture || "",
+      category: catName || row.reason_name || row.tag || "Cẩm nang",
+      catColor: pal.color,
+      catText: pal.iconColor,
+      readTime: `${readMin} phút`,
+      date: formatEpochVN(row.published_time || row.updated_time || row.created_time),
+      emoji: ARTICLE_EMOJI_FALLBACK[i % ARTICLE_EMOJI_FALLBACK.length],
+      bgFrom: grad.bgFrom,
+      bgTo: grad.bgTo,
+    };
+  });
+}
+
 export function Home() {
+  const navigate = useNavigate();
+  const [searchKeyword, setSearchKeyword] = useState("");
   const [docPage, setDocPage] = useState(1);
   const [specPage, setSpecPage] = useState(1);
   const [artPage, setArtPage] = useState(1);
@@ -483,6 +303,7 @@ export function Home() {
   const [specialties, setSpecialties] = useState([]);
   const [doctorCards, setDoctorCards] = useState([]);
   const [locationCards, setLocationCards] = useState([]);
+  const [guideArticles, setGuideArticles] = useState([]);
   const [loadError, setLoadError] = useState(null);
 
   useEffect(() => {
@@ -492,7 +313,7 @@ export function Home() {
         const [svcRes, specRes, clinRes, placeRes] = await Promise.all([
           getServices({ status: 1, limit: 50, page: 1 }),
           getSpecialties({ status: 1, limit: 500, page: 1 }),
-          getClinics({ status: 1, limit: 500, page: 1 }),
+          getClinics({ status: 1, limit: 500, page: 1, show_in_root_place: 1 }),
           getClinicPlaces({ status: 1, limit: 500, page: 1 }),
         ]);
         if (cancelled) return;
@@ -509,6 +330,20 @@ export function Home() {
         setDoctorCards(buildDoctors(clinics, specById));
         setLocationCards(buildLocations(places));
         setLoadError(null);
+
+        try {
+          const [blogRes, catBlogRes] = await Promise.all([
+            getBlogPublicList({ status: 1, limit: 120, page: 1 }),
+            getBlogCategories({ status: 1, limit: 300, page: 1 }),
+          ]);
+          const blogRows = extractRows(blogRes);
+          const catBlogRows = extractRows(catBlogRes);
+          const categoryById = new Map(catBlogRows.map((c) => [c.id, c]));
+          setGuideArticles(buildGuideCards(blogRows, categoryById));
+        } catch (blogErr) {
+          console.error(blogErr);
+          setGuideArticles([]);
+        }
       } catch (e) {
         if (!cancelled) {
           console.error(e);
@@ -517,6 +352,7 @@ export function Home() {
           setSpecialties([]);
           setDoctorCards([]);
           setLocationCards([]);
+          setGuideArticles([]);
         }
       }
     })();
@@ -530,8 +366,23 @@ export function Home() {
 
   const specSlice = paginate(specialties, specPage);
   const doctorSlice = paginate(doctorCards, docPage);
-  const artSlice = paginate(ALL_ARTICLES, artPage);
+  const artSlice = paginate(guideArticles, artPage);
   const locSlice = paginate(locationCards, locPage);
+  const getDoctorDetailPath = (doctor) =>
+    buildDoctorPath({
+      id: doctor.id,
+      name: doctor.name,
+      title: doctor.title,
+      url: doctor.url,
+    });
+  const getPlaceDetailPath = (loc) =>
+    buildPlacePath({
+      id: loc.id,
+      url: loc.url,
+      name: loc.rawName,
+      display_name: loc.display_name,
+      short_name: loc.short_name,
+    });
 
   const stats = useMemo(() => {
     const nDoc = doctorCards.length;
@@ -602,23 +453,33 @@ export function Home() {
                 </strong>{" "}
                 chuyên khoa. Đặt lịch trong vài phút, không xếp hàng chờ đợi.
               </p>
-              <div className="bg-white rounded-2xl p-2 flex gap-2 shadow-2xl mb-5">
+              <form 
+                className="bg-white rounded-2xl p-2 flex gap-2 shadow-2xl mb-5"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (searchKeyword.trim()) {
+                    navigate(`/tim-kiem?q=${encodeURIComponent(searchKeyword.trim())}`);
+                  }
+                }}
+              >
                 <div className="flex-1 flex items-center gap-3 px-4">
                   <Search className="size-5 text-gray-400 shrink-0" />
                   <input
                     type="text"
+                    value={searchKeyword}
+                    onChange={(e) => setSearchKeyword(e.target.value)}
                     placeholder="Tìm bác sĩ, chuyên khoa, dịch vụ..."
                     className="w-full text-gray-700 outline-none text-sm bg-transparent"
                   />
                 </div>
-                <Link
-                  to="/dat-lich"
+                <button
+                  type="submit"
                   className="text-white px-6 py-3 rounded-xl text-sm font-semibold transition-all hover:opacity-90 whitespace-nowrap"
                   style={{ backgroundColor: "#3498db" }}
                 >
                   Tìm & Đặt lịch
-                </Link>
-              </div>
+                </button>
+              </form>
               <div className="flex flex-wrap gap-2 mb-5">
                 <span className="text-sm text-blue-200 mr-1">Tìm nhanh:</span>
                 {["Tim mạch", "Nhi khoa", "Da liễu", "Nha khoa", "Khám từ xa"].map((s) => (
@@ -870,21 +731,17 @@ export function Home() {
             {doctorSlice.map((doctor) => (
               <div
                 key={doctor.id}
-                className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl transition-all group hover:-translate-y-1"
+                className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl transition-all group hover:-translate-y-1 cursor-pointer"
+                onClick={() => navigate(getDoctorDetailPath(doctor))}
               >
                 <Link
-                  to={buildDoctorPath({
-                    id: doctor.id,
-                    name: doctor.name,
-                    title: doctor.title,
-                    url: doctor.url,
-                  })}
+                  to={getDoctorDetailPath(doctor)}
                   className="block relative h-52 overflow-hidden bg-gray-100"
                 >
                   <ImageWithFallback
                     src={doctor.image}
                     alt={doctor.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
                   <div
                     className="absolute top-3 left-3 text-white text-xs font-semibold px-2.5 py-1 rounded-full"
@@ -902,12 +759,7 @@ export function Home() {
                 </Link>
                 <div className="p-5">
                   <Link
-                    to={buildDoctorPath({
-                      id: doctor.id,
-                      name: doctor.name,
-                      title: doctor.title,
-                      url: doctor.url,
-                    })}
+                    to={getDoctorDetailPath(doctor)}
                     className="font-bold text-gray-800 mb-1 leading-snug text-sm block hover:text-blue-600 transition-colors"
                   >
                     {doctor.name}
@@ -927,18 +779,42 @@ export function Home() {
                       <Clock className="size-3 text-gray-400 shrink-0" />
                       {doctor.exp}
                     </p>
-                    <p className="text-xs flex items-center gap-1.5 font-medium" style={{ color: "#27ae60" }}>
-                      <span className="size-2 rounded-full bg-green-400 animate-pulse" />
-                      Đặt lịch: {doctor.next}
+                    <DoctorPriceInsuranceInfo
+                      priceSummary={doctor.priceSummary}
+                      insuranceSummary={doctor.insuranceSummary}
+                      legacyPriceMin={doctor.legacyPriceMin}
+                      compact
+                    />
+                    <p className="text-xs flex items-center gap-1.5 font-medium" style={{ color: doctor.isWork ? "#27ae60" : "#95a5a6" }}>
+                      {doctor.isWork ? (
+                        <>
+                          <span className="size-2 rounded-full bg-green-400 animate-pulse" />
+                          Đặt lịch: {doctor.next}
+                        </>
+                      ) : (
+                        <>
+                          <span className="size-2 rounded-full bg-gray-400" />
+                          Tạm ngưng nhận lịch
+                        </>
+                      )}
                     </p>
                   </div>
-                  <Link
-                    to={`/dat-lich?clinicId=${encodeURIComponent(doctor.id)}`}
-                    className="w-full flex items-center justify-center gap-2 text-white py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
-                    style={{ backgroundColor: "#3498db" }}
-                  >
-                    <Calendar className="size-4" /> Đặt lịch khám
-                  </Link>
+                  {doctor.isWork ? (
+                    <Link
+                      to={getDoctorDetailPath(doctor)}
+                      onClick={(e) => e.stopPropagation()}
+                      className="w-full flex items-center justify-center gap-2 text-white py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
+                      style={{ backgroundColor: "#3498db" }}
+                    >
+                      <Calendar className="size-4" /> Đặt lịch khám
+                    </Link>
+                  ) : (
+                    <div
+                      className="w-full flex items-center justify-center gap-2 text-gray-500 py-2.5 rounded-xl text-sm font-semibold bg-gray-100 cursor-not-allowed"
+                    >
+                      <Calendar className="size-4" /> Tạm ngưng
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -975,16 +851,18 @@ export function Home() {
             {locSlice.map((loc) => (
               <div
                 key={loc.id}
-                className="group bg-white rounded-2xl border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all p-5"
+                className="group bg-white rounded-2xl border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all p-5 cursor-pointer"
+                onClick={() => navigate(getPlaceDetailPath(loc))}
               >
                 <div className="flex items-start justify-between mb-3 gap-2">
                   <div className="flex items-start gap-3 flex-1 min-w-0">
-                    <div
-                      className="size-10 rounded-xl flex items-center justify-center shrink-0 mt-0.5"
+                    <Link
+                      to={getPlaceDetailPath(loc)}
+                      className="size-10 rounded-xl flex items-center justify-center shrink-0 mt-0.5 hover:scale-105 transition-transform"
                       style={{ backgroundColor: "#e8f4fd" }}
                     >
                       <Building2 className="size-5" style={{ color: "#3498db" }} />
-                    </div>
+                    </Link>
                     <div className="min-w-0">
                       <Link
                         to={buildPlacePath({
@@ -1037,7 +915,8 @@ export function Home() {
                 </div>
 
                 <Link
-                  to={`/dat-lich?placeId=${encodeURIComponent(loc.id)}`}
+                  to={getPlaceDetailPath(loc)}
+                  onClick={(e) => e.stopPropagation()}
                   className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90"
                   style={{ backgroundColor: "#3498db" }}
                 >
@@ -1126,7 +1005,8 @@ export function Home() {
               <p className="text-gray-500 mt-1">Thông tin sức khỏe tin cậy từ chuyên gia CareNow</p>
             </div>
             <span className="hidden md:inline-flex items-center gap-1.5 text-xs text-gray-400 bg-white px-3 py-1.5 rounded-full border border-gray-100">
-              <BookOpen className="size-3.5" /> {ALL_ARTICLES.length} bài viết
+              <BookOpen className="size-3.5" />{" "}
+              {guideArticles.length ? `${guideArticles.length} bài viết` : "Đang cập nhật"}
             </span>
           </div>
 
@@ -1134,26 +1014,36 @@ export function Home() {
             {artSlice.map((article) => (
               <Link
                 key={article.id}
-                to="/cam-nang-y-te"
+                to={`/cam-nang-y-te/bai/${article.id}`}
                 className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl transition-all hover:-translate-y-1"
               >
-                <div
-                  className="h-36 flex items-center justify-center text-5xl"
-                  style={{
-                    background: `linear-gradient(135deg,${article.bgFrom},${article.bgTo})`,
-                  }}
-                >
-                  {article.emoji}
-                </div>
+                {article.picture ? (
+                  <div className="h-36 relative overflow-hidden bg-gray-100">
+                    <ImageWithFallback
+                      src={article.picture}
+                      alt={article.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                ) : (
+                  <div
+                    className="h-36 flex items-center justify-center text-5xl"
+                    style={{
+                      background: `linear-gradient(135deg,${article.bgFrom},${article.bgTo})`,
+                    }}
+                  >
+                    {article.emoji}
+                  </div>
+                )}
                 <div className="p-5">
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center justify-between mb-3 gap-2">
                     <span
-                      className="text-xs font-semibold px-3 py-1 rounded-full"
+                      className="text-xs font-semibold px-3 py-1 rounded-full truncate max-w-[70%]"
                       style={{ backgroundColor: article.catColor, color: article.catText }}
                     >
                       {article.category}
                     </span>
-                    <span className="text-xs text-gray-400">{article.date}</span>
+                    <span className="text-xs text-gray-400 shrink-0">{article.date || "—"}</span>
                   </div>
                   <h3 className="font-bold text-gray-800 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors leading-snug">
                     {article.title}
@@ -1175,13 +1065,22 @@ export function Home() {
             ))}
           </div>
 
-          <Pagination
-            currentPage={artPage}
-            totalPages={totalPages(ALL_ARTICLES)}
-            onPageChange={setArtPage}
-            totalItems={ALL_ARTICLES.length}
-            itemsPerPage={PER_PAGE}
-          />
+          {guideArticles.length === 0 ? (
+            <p className="text-center text-gray-500 py-8 text-sm">
+              Chưa có bài cẩm nang nào được xuất bản.{" "}
+              <Link to="/cam-nang-y-te" className="text-[#3498db] font-medium hover:underline">
+                Xem trang cẩm nang
+              </Link>
+            </p>
+          ) : (
+            <Pagination
+              currentPage={artPage}
+              totalPages={totalPages(guideArticles)}
+              onPageChange={setArtPage}
+              totalItems={guideArticles.length}
+              itemsPerPage={PER_PAGE}
+            />
+          )}
         </div>
       </section>
 

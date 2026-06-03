@@ -31,18 +31,29 @@ export function generateSlotsFromBlock(block) {
  * Lấy tất cả slots của một ngày cụ thể từ danh sách blocks của clinic
  * Trả về: { morning: [...], afternoon: [...], evening: [...], all: [...] }
  */
-export function getSlotsForDate(blocks, date) {
+export function getSlotsForDate(blocks, overrides = [], date) {
   const d   = date instanceof Date ? date : new Date(date);
   const dow = d.getDay(); // 0=CN ... 6=T7
+  const dateStr = toISODate(d);
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
+
+  const dayOverrides = overrides.filter((o) => o.override_date === dateStr && o.is_closed);
+  const isFullDayOff = dayOverrides.some((o) => o.session_type === null);
+
+  if (isFullDayOff) {
+    return { morning: [], afternoon: [], evening: [], all: [] };
+  }
+
+  const offSessions = new Set(dayOverrides.map((o) => o.session_type).filter((s) => s !== null));
 
   const dayBlocks = blocks.filter((b) => {
     if (Number(b.day_of_week) !== dow) return false;
     if (Number(b.status) !== 1)        return false;
     if (b.valid_from && new Date(b.valid_from) > d) return false;
     if (b.valid_to   && new Date(b.valid_to)   < d) return false;
+    if (offSessions.has(b.session_type)) return false;
     return true;
   });
 
@@ -77,13 +88,25 @@ export function getSlotsForDate(blocks, date) {
   };
 }
 
-/** Tập ngày nào trong tuần có lịch (Set of 0-6) */
+/** Tập ngày nào trong tuần có lịch (Set of 0-6) - Chỉ dùng cho logic cũ nếu cần */
 export function getActiveDaysOfWeek(blocks) {
   return new Set(
     blocks
       .filter((b) => Number(b.status) === 1)
       .map((b) => Number(b.day_of_week))
   );
+}
+
+/** Tập các ngày có lịch khám khả dụng (Set of ISO Dates) */
+export function getActiveDates(blocks, overrides = [], daysArray) {
+  const activeDates = new Set();
+  for (const d of daysArray) {
+    const slots = getSlotsForDate(blocks, overrides, d);
+    if (slots.all.length > 0) {
+      activeDates.add(toISODate(d));
+    }
+  }
+  return activeDates;
 }
 
 /** Sinh 14 ngày kế từ hôm nay */
@@ -102,7 +125,10 @@ export function getNext14Days() {
 /** Format Date → "YYYY-MM-DD" cho API */
 export function toISODate(date) {
   const d = date instanceof Date ? date : new Date(date);
-  return d.toISOString().split('T')[0];
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}`;
 }
 
 /** Format Date → "05/05" hiển thị */

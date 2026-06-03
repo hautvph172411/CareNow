@@ -1,33 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Plus, Edit2, Trash2, Eye } from 'lucide-react';
+import { Search, Plus, Edit2, Trash2, Eye, Filter } from 'lucide-react';
 import AdminLayout from '../layouts/AdminLayout';
 import { getClinics, deleteClinic } from '../api/clinic.api';
+import { getClinicPlaces } from '../api/clinic_place.api';
+import { getSpecialties } from '../api/specialty.api';
 import Pagination from '../components/Pagination';
+import SearchableSelect from '../components/SearchableSelect';
 
 export default function ClinicList() {
   const navigate = useNavigate();
   const [doctors, setDoctors] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showSearch, setShowSearch] = useState(false);
+  const [filterStatus, setFilterStatus] = useState('');
+  const [filterPlace, setFilterPlace] = useState('');
+  const [filterSpecialty, setFilterSpecialty] = useState('');
+  const [filterLicense, setFilterLicense] = useState('');
+  const [places, setPlaces] = useState([]);
+  const [specialties, setSpecialties] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [totalDoctors, setTotalDoctors] = useState(0);
   const ITEMS_PER_PAGE = 20;
 
-  const fetchDoctors = async (page = 1, keyword = '') => {
+  useEffect(() => {
+    getClinicPlaces({ limit: 1000 }).then(res => setPlaces(res.data || [])).catch(console.error);
+    getSpecialties({ limit: 1000 }).then(res => setSpecialties(res.data || [])).catch(console.error);
+  }, []);
+
+  const fetchDoctors = async () => {
     setIsLoading(true);
     try {
-      const res = await getClinics({ page, limit: ITEMS_PER_PAGE, keyword });
-      // API trả về { success: true, data: [...], pagination: { totalPages, ... } }
+      const params = {
+        page: currentPage,
+        limit: ITEMS_PER_PAGE,
+        keyword: searchTerm
+      };
+      if (filterStatus !== '') params.status = filterStatus;
+      if (filterPlace !== '') params.place_id = filterPlace;
+      if (filterSpecialty !== '') params.specialist_id = filterSpecialty;
+      if (filterLicense !== '') params.license = filterLicense;
+
+      const res = await getClinics(params);
       if (res && res.data) {
         setDoctors(res.data);
         if (res.pagination) {
           setTotalPages(res.pagination.totalPages || 1);
+          setTotalDoctors(res.pagination.total || 0);
         }
       } else if (Array.isArray(res)) {
-        // Fallback cho API cũ trả về array trực tiếp
         setDoctors(res);
         setTotalPages(1);
+        setTotalDoctors(res.length);
       }
     } catch (error) {
       console.error('Failed to fetch doctors:', error);
@@ -36,19 +62,17 @@ export default function ClinicList() {
     }
   };
 
-  // Debounce tìm kiếm
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCurrentPage(1);
-      fetchDoctors(1, searchTerm);
+      fetchDoctors();
     }, 500);
     return () => clearTimeout(timer);
-  }, [searchTerm]);
+  }, [searchTerm, filterStatus, filterPlace, filterSpecialty, filterLicense, currentPage]);
 
-  // Chuyển trang
-  useEffect(() => {
-    fetchDoctors(currentPage, searchTerm);
-  }, [currentPage]);
+  const handleFilterChange = (setter, value) => {
+    setter(value);
+    setCurrentPage(1);
+  };
 
   const handleEdit = (doctor) => {
     navigate(`/clinic/admin/edit/${doctor.id}`);
@@ -70,22 +94,78 @@ export default function ClinicList() {
   return (
     <AdminLayout pageTitle="Quản lý bác sĩ">
       <div className="management-header">
-        <div className="search-box">
-          <Search size={20} />
-          <input
-            type="text"
-            placeholder="Tìm kiếm theo tên hoặc địa chỉ..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+        <div style={{ flex: 1 }}></div>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <button className="btn btn-secondary" onClick={() => setShowSearch(!showSearch)} style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <Filter size={18} /> Bộ lọc
+          </button>
+          <button className="btn btn-primary" onClick={() => navigate('/clinic/admin/add')}>
+            <Plus size={20} />
+            Thêm bác sĩ
+          </button>
         </div>
-        <button className="btn btn-primary" onClick={() => navigate('/clinic/admin/add')}>
-          <Plus size={20} />
-          Thêm bác sĩ
-        </button>
+      </div>
+
+      <div className={`filter-section ${showSearch ? 'show' : ''}`}>
+        <div className="filter-container" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+          
+          <div style={{ width: '180px', margin: 0, zIndex: 12 }}>
+            <SearchableSelect
+              options={[{ value: '', label: 'Tất cả nơi khám' }, ...places.map(p => ({ value: p.id, label: p.name }))]}
+              value={filterPlace !== '' ? parseInt(filterPlace, 10) : ''}
+              onChange={(val) => handleFilterChange(setFilterPlace, val === '' ? '' : String(val))}
+              placeholder="Tất cả nơi khám"
+            />
+          </div>
+
+          <div style={{ width: '180px', margin: 0, zIndex: 11 }}>
+            <SearchableSelect
+              options={[{ value: '', label: 'Tất cả chuyên khoa' }, ...specialties.map(p => ({ value: p.id, label: p.name }))]}
+              value={filterSpecialty !== '' ? parseInt(filterSpecialty, 10) : ''}
+              onChange={(val) => handleFilterChange(setFilterSpecialty, val === '' ? '' : String(val))}
+              placeholder="Tất cả chuyên khoa"
+            />
+          </div>
+
+          <div style={{ width: '180px', margin: 0, zIndex: 10 }}>
+            <SearchableSelect
+              options={[
+                { value: '', label: 'Tất cả trạng thái' },
+                { value: '1', label: 'Đang hoạt động' },
+                { value: '0', label: 'Ngưng hoạt động' }
+              ]}
+              value={filterStatus}
+              onChange={(val) => handleFilterChange(setFilterStatus, val)}
+              placeholder="Tất cả trạng thái"
+            />
+          </div>
+          
+          <div className="search-box" style={{ margin: 0, minWidth: '180px' }}>
+            <input
+              type="text"
+              placeholder="Nhập giấy phép..."
+              value={filterLicense}
+              onChange={(e) => handleFilterChange(setFilterLicense, e.target.value)}
+            />
+          </div>
+
+          <div className="search-box" style={{ margin: 0, flex: 1, minWidth: '200px' }}>
+            <Search size={20} />
+            <input
+              type="text"
+              placeholder="Tìm kiếm theo tên hoặc địa chỉ..."
+              value={searchTerm}
+              onChange={(e) => handleFilterChange(setSearchTerm, e.target.value)}
+            />
+          </div>
+        </div>
       </div>
 
       <div className="management-section">
+        <div style={{ marginBottom: '1rem', fontWeight: 600, color: 'var(--gray-700)' }}>
+          Tổng số: {totalDoctors} bác sĩ
+        </div>
+
         {isLoading ? (
           <div style={{ textAlign: 'center', padding: '2rem' }}>Đang tải...</div>
         ) : (
@@ -94,7 +174,6 @@ export default function ClinicList() {
               <table className="specialties-table">
                 <thead>
                   <tr>
-                    <th style={{ width: '5%' }}>ID</th>
                     <th style={{ width: '10%' }}>Ảnh</th>
                     <th style={{ width: '20%' }}>Tên</th>
                     <th style={{ width: '15%' }}>Giấy phép</th>
@@ -107,7 +186,6 @@ export default function ClinicList() {
                 <tbody>
                   {doctors.map((doctor) => (
                     <tr key={doctor.id} className="specialty-row">
-                      <td>{doctor.id}</td>
                       <td>
                         {doctor.picture ? (
                           <img src={doctor.picture} alt="Avatar" style={{ width: 40, height: 40, borderRadius: 4, objectFit: 'cover' }} />
@@ -124,7 +202,7 @@ export default function ClinicList() {
                         {doctor.license || 'Chưa cập nhật'}
                       </td>
                       <td style={{ whiteSpace: 'normal', wordWrap: 'break-word', color: 'var(--gray-600)' }}>
-                        {doctor.specialist_ids || 'Không có'}
+                        {doctor.specialist_names || doctor.specialist_ids || 'Không có'}
                       </td>
                       <td style={{ textAlign: 'center' }}>
                         <span className={`status-badge ${doctor.service === 1 ? 'active' : 'inactive'}`}>

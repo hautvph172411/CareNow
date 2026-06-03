@@ -140,3 +140,61 @@
   button { font-size: var(--text-base); font-weight: var(--font-weight-medium); line-height: 1.5; }
   input { font-size: var(--text-base); font-weight: var(--font-weight-normal); line-height: 1.5; }
 }
+
+/* Nội dung HTML từ TinyMCE — typography gọn cho trang bài cẩm nang */
+.blog-client-article-body {
+  line-height: 1.75;
+  color: #374151;
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+.blog-client-article-body p {
+  margin-bottom: 1rem;
+}
+
+.blog-client-article-body h1,
+.blog-client-article-body h2,
+.blog-client-article-body h3 {
+  font-weight: 700;
+  color: #111827;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.blog-client-article-body h1 { font-size: 1.5rem; }
+.blog-client-article-body h2 { font-size: 1.25rem; }
+.blog-client-article-body h3 { font-size: 1.1rem; }
+
+.blog-client-article-body ul,
+.blog-client-article-body ol {
+  margin: 0 0 1rem 1.25rem;
+  padding-left: 0.25rem;
+}
+
+.blog-client-article-body li {
+  margin-bottom: 0.35rem;
+}
+
+.blog-client-article-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.blog-client-article-body a {
+  color: #3498db;
+  text-decoration: underline;
+}
+
+.blog-client-article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.blog-client-article-body th,
+.blog-client-article-body td {
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem 0.65rem;
+}

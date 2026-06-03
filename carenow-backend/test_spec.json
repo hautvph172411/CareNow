@@ -1,0 +1,572 @@
+{
+  "isIos": false,
+  "cookies": {},
+  "data": {
+    "page": null,
+    "type": "s",
+    "data": {
+      "chuyenkhoa": {
+        "ma": 1,
+        "ten": "Cơ Xương Khớp",
+        "lk": "https://bookingcare.vn/co-xuong-khop-s1",
+        "url": "co-xuong-khop",
+        "description": "Lựa chọn Đặt lịch khám hoặc Tư vấn chữa bệnh với Bác sĩ giỏi - uy tín - đầu ngành Cơ Xương Khớp tại các Phòng khám uy tín tin cậy",
+        "dichvu_ma": 1,
+        "anh": "https://cdn.bookingcare.vn/fo/2023/12/26/101627-co-xuong-khop.png",
+        "content": "<h2 style=\"text-align: justify; line-height: 1;\"><b style=\"color: inherit; font-family: inherit; font-size: 14px;\">Bác sĩ Cơ Xương Khớp giỏi</b></h2><p style=\"text-align: justify; line-height: 1.2;\">Danh sách các bác sĩ uy tín đầu ngành Cơ Xương Khớp tại Việt Nam:</p><ul><li style=\"text-align: justify; line-height: 1.2;\">Các chuyên gia có quá trình đào tạo bài bản, nhiều kinh nghiệm</li><li style=\"text-align: justify; line-height: 1.2;\">Các giáo sư, phó giáo sư đang trực tiếp nghiên cứu và giảng dạy tại Đại học Y khoa Hà Nội</li><li style=\"text-align: justify;\">Các bác sĩ đã, đang công tác tại các bệnh viện hàng đầu Khoa Cơ Xương Khớp - Bệnh viện Bạch Mai, Bệnh viện Hữu nghị Việt Đức,Bệnh Viện E.</li><li style=\"text-align: justify;\">Là thành viên hoặc lãnh đạo các tổ chức chuyên môn như: Hiệp hội Cơ Xương Khớp, Hội Thấp khớp học,...</li><li style=\"text-align: justify;\">Được nhà nước công nhận các danh hiệu Thầy thuốc Nhân dân, Thầy thuốc Ưu tú, Bác sĩ Cao cấp,...</li></ul><h2 style=\"text-align: justify;\"><span style=\"font-size: 14px;\"><b>Bệnh Cơ Xương Khớp</b></span></h2><ul><li style=\"text-align: justify;\">Gout</li><li style=\"text-align: justify;\">Thoái hóa khớp: khớp gối, cột sống thắt lưng, cột sống cổ</li><li style=\"text-align: justify;\">Viêm khớp dạng thấp, Viêm đa khớp, Viêm gân</li><li style=\"text-align: justify;\">Tràn dịch khớp gối, Tràn dịch khớp háng, Tràn dịch khớp khủy, Tràn dịch khớp vai</li><li style=\"text-align: justify;\">Loãng xương, đau nhức xương</li><li style=\"text-align: justify;\">Viêm xương, gai xương</li><li style=\"text-align: justify;\">Viêm cơ, Teo cơ, chứng đau mỏi cơ</li><li style=\"text-align: justify;\">Yếu cơ, Loạn dưỡng cơ</li><li style=\"text-align: justify;\">Các chấn thương về cơ, xương, khớp<br></li><li style=\"text-align: justify;\">...</li></ul>",
+        "schemaEnabled": true,
+        "aiPartnerId": 38,
+        "aiPartnerFloatingButtonOverridden": true
+      },
+      "tinhthanh": [
+        {
+          "ma": 0,
+          "ten": "Toàn quốc",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/co-xuong-khop-s1/",
+          "selected": false
+        },
+        {
+          "ma": 1,
+          "ten": "Hà Nội",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/co-xuong-khop-s1/ha-noi",
+          "selected": false
+        },
+        {
+          "ma": 79,
+          "ten": "Hồ Chí Minh",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/co-xuong-khop-s1/thanh-pho-ho-chi-minh",
+          "selected": false
+        }
+      ],
+      "bs": [
+        {
+          "ma": "4134",
+          "ten": "PGS. TS. BSCKII. TTUT Vũ Văn Hòe",
+          "lk": "https://bookingcare.vn/pgs-ts-bsckii-ttut-vu-van-hoe-d4134.html",
+          "url": "pgs-ts-bsckii-ttut-vu-van-hoe",
+          "address": "",
+          "start_age": "7",
+          "end_age": null,
+          "features": [
+            "highlight"
+          ],
+          "anh": "https://cdn.bookingcare.vn/fo/w256/2024/02/02/144127-bs-hoe1.jpg",
+          "tomtat": "Bác sĩ có 35 năm kinh nghiệm về vực Cột sống, thần kinh, cơ xương khớp<br />\r\nPhó chủ tịch hội Phẫu thuật cột sống Việt Nam <br />\r\nBác sĩ nhận khám từ 7 tuổi trở lên ",
+          "dichvu_ma": 1,
+          "uutien": 1,
+          "tinhthanh": "Hà Nội",
+          "chuyenkhoa": [
+            {
+              "ma": 1,
+              "ten": "Cơ Xương Khớp",
+              "lk": "https://bookingcare.vn/co-xuong-khop-s1",
+              "url": "co-xuong-khop",
+              "type": 1
+            }
+          ],
+          "chuyenkhoa_ma": "1",
+          "chuyen_cosoyte": 0,
+          "code": "",
+          "showHotline": true,
+          "quickConsultation": true,
+          "aiPartnerId": 36
+        },
+        {
+          "ma": "4367",
+          "ten": "ThS.BS Nguyễn Trần Trung",
+          "lk": "https://bookingcare.vn/thsbs-nguyen-tran-trung-d4367.html",
+          "url": "thsbs-nguyen-tran-trung",
+          "address": "",
+          "start_age": "15",
+          "end_age": null,
+          "features": [
+            "highlight"
+          ],
+          "anh": "https://cdn.bookingcare.vn/fo/w256/2024/08/29/114134-bs-nguyen-tran-trung1.jpg",
+          "tomtat": "Bác sĩ có nhiều năm kinh nghiệm trong khám và điều trị Cơ xương khớp <br />\r\nPhó trưởng khoa Cơ Xương Khớp Bệnh viện E<br />\r\nBác sĩ nhận khám từ 15 tuổi trở lên ",
+          "dichvu_ma": 1,
+          "uutien": 1,
+          "tinhthanh": "Hà Nội",
+          "chuyenkhoa": [
+            {
+              "ma": 1,
+              "ten": "Cơ Xương Khớp",
+              "lk": "https://bookingcare.vn/co-xuong-khop-s1",
+              "url": "co-xuong-khop",
+              "type": 1
+            }
+          ],
+          "chuyenkhoa_ma": "1",
+          "chuyen_cosoyte": 0,
+          "code": "",
+          "showHotline": true,
+          "quickConsultation": true,
+          "aiPartnerId": 36
+        },
+        {
+          "ma": "3164",
+          "ten": "Bác sĩ Chuyên khoa II Trần Trọng Thắng",
+          "lk": "https://bookingcare.vn/bac-si-chuyen-khoa-ii-tran-trong-thang-d3164.html",
+          "url": "bac-si-chuyen-khoa-ii-tran-trong-thang",
+          "address": "",
+          "start_age": null,
+          "end_age": null,
+          "features": [
+            "highlight"
+          ],
+          "anh": "https://cdn.bookingcare.vn/fo/w256/2022/12/13/173222-1bac-si-thang-1.png",
+          "tomtat": "Gần 30 năm kinh nghiệm lĩnh vực Cơ xương khớp<br />\nTừng công tác tại Bệnh viện Xanh Pôn, Bệnh viện Phục hồi chức năng Hà Nội<br />\nBác sĩ nhận khám tất cả các độ tuổi",
+          "dichvu_ma": 1,
+          "uutien": 1,
+          "tinhthanh": "Hà Nội",
+          "chuyenkhoa": [
+            {
+              "ma": 1,
+              "ten": "Cơ Xương Khớp",
+              "lk": "https://bookingcare.vn/co-xuong-khop-s1",
+              "url": "co-xuong-khop",
+              "type": 1
+            }
+          ],
+          "chuyenkhoa_ma": "1",
+          "chuyen_cosoyte": 0,
+          "code": "",
+          "showHotline": true,
+          "quickConsultation": true,
+          "aiPartnerId": 36
+        },
+        {
+          "ma": "1721",
+          "ten": "TTUT. BSCKII Dương Minh Trí",
+          "lk": "https://bookingcare.vn/ttut-bsckii-duong-minh-tri-d1721.html",
+          "url": "ttut-bsckii-duong-minh-tri",
+          "address": "",
+          "start_age": "16",
+          "end_age": null,
+          "features": [
+            "highlight"
+          ],
+          "anh": "https://cdn.bookingcare.vn/fo/w256/2024/11/28/162900-bs-duong-minh-tri1.jpg",
+          "tomtat": "Trưởng khoa Nội Cơ Xương Khớp, Bệnh viện Nhân dân Gia Định<br />\r\nNhiều năm kinh nghiệm trong khám và điều trị bệnh lý về Nội Cơ xương khớp<br />\r\nBác sĩ nhận khám cho bệnh nhân từ 16 tuổi trở lên",
+          "dichvu_ma": 1,
+          "uutien": 1,
+          "tinhthanh": "Thành phố Hồ Chí Minh",
+          "chuyenkhoa": [
+            {
+              "ma": 1,
+              "ten": "Cơ Xương Khớp",
+              "lk": "https://bookingcare.vn/co-xuong-khop-s1",
+              "url": "co-xuong-khop",
+              "type": 1
+            }
+          ],
+          "chuyenkhoa_ma": "1",
+          "chuyen_cosoyte": 0,
+          "code": "",
+          "showHotline": false,
+          "quickConsultation": false,
+          "aiPartnerId": 36
+        },
+        {
+          "ma": "1672",
+          "ten": "Tiến sĩ, Bác sĩ chuyên khoa II Lê Quốc Việt",
+          "lk": "https://bookingcare.vn/tien-si-bac-si-chuyen-khoa-ii-le-quoc-viet-d1672.html",
+          "url": "tien-si-bac-si-chuyen-khoa-ii-le-quoc-viet",
+          "address": "",
+          "start_age": "4",
+          "end_age": null,
+          "features": null,
+          "anh": "https://cdn.bookingcare.vn/fo/w256/2025/08/14/152953-anh-bs-4.png",
+          "tomtat": "Gần 40 năm kinh nghiệm khám và điều trị các bệnh nội cơ xương khớp, nội khoa và sức khỏe tổng quát<br />\nNhiều năm kinh nghiệm điều trị bệnh gout, thoái hóa khớp, cột sống, tiêm collagen, tiêm chất nhờn, phát hiện sớm các bệnh cơ xương khớp tiềm ẩn như viêm khớp dạng thấp, lupus, loãng xương,...<br />\nNguyên Phó Giám đốc Bệnh viện E",
+          "dichvu_ma": 1,
+          "uutien": 1,
+          "tinhthanh": "Hà Nội",
+          "chuyenkhoa": [
+            {
+              "ma": 1,
+              "ten": "Cơ Xương Khớp",
+              "lk": "https://bookingcare.vn/co-xuong-khop-s1",
+              "url": "co-xuong-khop",
+              "type": 1
+            }
+          ],
+          "chuyenkhoa_ma": "1",
+          "chuyen_cosoyte": 0,
+          "code": "",
+          "showHotline": true,
+          "quickConsultation": true,
+          "aiPartnerId": 36
+        },
+        {
+          "ma": "428",
+          "ten": "Phó Giáo sư, Tiến sĩ Đinh Ngọc Sơn ",
+          "lk": "https://bookingcare.vn/pho-giao-su-tien-si-dinh-ngoc-son-d428.html",
+          "url": "pho-giao-su-tien-si-dinh-ngoc-son",
+          "address": "",
+          "start_age": "7",
+          "end_age": null,
+          "features": "",
+          "anh": "https://cdn.bookingcare.vn/fo/w256/2018/06/07/112614pho-giao-su-tien-si-dinh-ngoc-son.jpg",
+          "tomtat": "Bác sĩ có 25 năm kinh nghiệm về bệnh lý liên quan cột sống <br />\r\nHiện là Trưởng khoa Phẫu thuật Cột sống, Bệnh viện Việt Đức <br />\r\nBác sĩ nhận khám từ 7 tuổi trở lên ",
+          "dichvu_ma": 1,
+          "uutien": 1,
+          "tinhthanh": "Hà Nội",
+          "chuyenkhoa": [
+            {
+              "ma": 1,
+              "ten": "Cơ Xương Khớp",
+              "lk": "https://bookingcare.vn/co-xuong-khop-s1",
+              "url": "co-xuong-khop",
+              "type": 1
+            }
+          ],
+          "chuyenkhoa_ma": "1",
+          "chuyen_cosoyte": 0,
+          "code": "",
+          "showHotline": true,
+          "quickConsultation": true,
+          "aiPartnerId": 36
+        },
+        {
+          "ma": "597",
+          "ten": "Tiến sĩ, Bác sĩ Trương Thị Như Ý",
+          "lk": "https://bookingcare.vn/tien-si-bac-si-truong-thi-nhu-y-d597.html",
+          "url": "tien-si-bac-si-truong-thi-nhu-y",
+          "address": "",
+          "start_age": "18",
+          "end_age": null,
+          "features": null,
+          "anh": "https://cdn.bookingcare.vn/fo/w256/2018/09/05/091247thac-si-bac-si-truong-thi-nhu-y.jpg",
+          "tomtat": "Hiện đang là Giám Đốc Trung tâm Khám chữa bệnh thêo yêu cầu và quốc tế, Bệnh viện Lão khoa Trung ương<br />\nNhiều năm kinh nghiệm trong khám và điều trị các bệnh lý Cơ xương khớp <br />\nBác sĩ nhận khám bệnh nhân từ 18 tuổi trở lên",
+          "dichvu_ma": 1,
+          "uutien": 0,
+          "tinhthanh": "Hà Nội",
+          "chuyenkhoa": [
+            {
+              "ma": 1,
+              "ten": "Cơ Xương Khớp",
+              "lk": "https://bookingcare.vn/co-xuong-khop-s1",
+              "url": "co-xuong-khop",
+              "type": 1
+            }
+          ],
+          "chuyenkhoa_ma": "1",
+          "chuyen_cosoyte": 0,
+          "code": "",
+          "showHotline": false,
+          "quickConsultation": false,
+          "aiPartnerId": 36
+        },
+        {
+          "ma": "1962",
+          "ten": "Bác sĩ Chuyên khoa II Võ Văn Mẫn",
+          "lk": "https://bookingcare.vn/bac-si-chuyen-khoa-ii-vo-van-man-d1962.html",
+          "url": "bac-si-chuyen-khoa-ii-vo-van-man",
+          "address": "",
+          "start_age": null,
+          "end_age": null,
+          "features": null,
+          "anh": "https://cdn.bookingcare.vn/fo/w256/2025/08/14/153243-anh-bs-5.png",
+          "tomtat": "Bác sĩ có hơn 30 năm kinh nghiệm trong lĩnh vực Chấn thương Chỉnh hình<br />\r\nBác sĩ có chuyên môn sâu trong chẩn đoán, điều trị và phẫu thuật các bệnh lý Cơ Xương Khớp như: thoái hóa khớp, viêm khớp dạng thấp, loãng xương và các bệnh lý do chấn thương<br />\r\nTrưởng khoa Chấn thương Chỉnh hình, Y học Thể thao, Bệnh viện Đa khoa Nam Sài Gòn",
+          "dichvu_ma": 1,
+          "uutien": 0,
+          "tinhthanh": "Thành phố Hồ Chí Minh",
+          "chuyenkhoa": [
+            {
+              "ma": 1,
+              "ten": "Cơ Xương Khớp",
+              "lk": "https://bookingcare.vn/co-xuong-khop-s1",
+              "url": "co-xuong-khop",
+              "type": 1
+            }
+          ],
+          "chuyenkhoa_ma": "1",
+          "chuyen_cosoyte": 0,
+          "code": "",
+          "showHotline": true,
+          "quickConsultation": true,
+          "aiPartnerId": 36
+        },
+        {
+          "ma": "3633",
+          "ten": "Khám Cơ xương khớp tại Bệnh viện Hồng Đức III",
+          "lk": "https://bookingcare.vn/kham-co-xuong-khop-tai-benh-vien-hong-duc-iii-d3633.html",
+          "url": "kham-co-xuong-khop-tai-benh-vien-hong-duc-iii",
+          "address": "",
+          "start_age": null,
+          "end_age": null,
+          "features": null,
+          "anh": "https://cdn.bookingcare.vn/fo/w256/2024/02/19/120839-thiet-ke-chua-co-ten-1.png",
+          "tomtat": "Đội ngũ bác sĩ giàu kinh nghiệm trong khám và điều trị các bệnh lý về Cơ xương khớp, Chấn thương chỉnh hình<br />\nBệnh viện được trang bị những máy móc khám và điều trị hiện đại<br />\nGiảm thời gian chờ đợi, ưu tiên khám nhanh",
+          "dichvu_ma": 1,
+          "uutien": 0,
+          "tinhthanh": "Thành phố Hồ Chí Minh",
+          "chuyenkhoa": [
+            {
+              "ma": 1,
+              "ten": "Cơ Xương Khớp",
+              "lk": "https://bookingcare.vn/co-xuong-khop-s1",
+              "url": "co-xuong-khop",
+              "type": 1
+            }
+          ],
+          "chuyenkhoa_ma": "1",
+          "chuyen_cosoyte": 0,
+          "code": "",
+          "showHotline": true,
+          "quickConsultation": true,
+          "aiPartnerId": 36
+        },
+        {
+          "ma": "4679",
+          "ten": "BSCKII Nguyễn Tường Vân",
+          "lk": "https://bookingcare.vn/bsckii-nguyen-tuong-van-d4679.html",
+          "url": "bsckii-nguyen-tuong-van",
+          "address": "",
+          "start_age": "35",
+          "end_age": "80",
+          "features": null,
+          "anh": "https://cdn.bookingcare.vn/fo/w256/2025/07/01/105213-bs-tuong-van.png",
+          "tomtat": "Bác sĩ có nhiều năm kinh trong khám và điều trị bệnh lý Lão khoa - cơ xương khớp như: Loãng xương, Thoái hóa khớp, Viêm khớp dạng thấp, Thoát vị đĩa đệm, viêm đa khớp tự miễn...<br />\r\nTrưởng khoa Lão khoa - Cơ xương khớp<br />\r\nBác sĩ nhận khám từ 35 - 80 tuổi",
+          "dichvu_ma": 1,
+          "uutien": 0,
+          "tinhthanh": "Quảng Ninh",
+          "chuyenkhoa": [
+            {
+              "ma": 1,
+              "ten": "Cơ Xương Khớp",
+              "lk": "https://bookingcare.vn/co-xuong-khop-s1",
+              "url": "co-xuong-khop",
+              "type": 1
+            }
+          ],
+          "chuyenkhoa_ma": "1",
+          "chuyen_cosoyte": 0,
+          "code": "",
+          "showHotline": true,
+          "quickConsultation": true,
+          "aiPartnerId": 36
+        }
+      ],
+      "phanloai": []
+    },
+    "provinces": [
+      {
+        "ma": 0,
+        "ten": "Toàn quốc",
+        "url": "/dich-vu-y-te/kham-chuyen-khoa/co-xuong-khop-s1/",
+        "selected": false
+      },
+      {
+        "ma": 1,
+        "ten": "Hà Nội",
+        "url": "/dich-vu-y-te/kham-chuyen-khoa/co-xuong-khop-s1/ha-noi",
+        "selected": false
+      },
+      {
+        "ma": 79,
+        "ten": "Hồ Chí Minh",
+        "url": "/dich-vu-y-te/kham-chuyen-khoa/co-xuong-khop-s1/thanh-pho-ho-chi-minh",
+        "selected": false
+      },
+      {
+        "ma": 74,
+        "ten": "Bình Dương",
+        "url": "/dich-vu-y-te/kham-chuyen-khoa/co-xuong-khop-s1/binh-duong",
+        "selected": false
+      },
+      {
+        "ma": 22,
+        "ten": "Quảng Ninh",
+        "url": "/dich-vu-y-te/kham-chuyen-khoa/co-xuong-khop-s1/quang-ninh",
+        "selected": false
+      }
+    ],
+    "districts": null,
+    "selectedProvince": null,
+    "selectedDistrict": null,
+    "wday": null,
+    "stat": {
+      "pageId": 1,
+      "pageModule": "specialist"
+    },
+    "seo": {
+      "title": "Cơ Xương Khớp",
+      "nofollow": false,
+      "noindex": false,
+      "defaultTitle": "Chuyên khoa",
+      "description": "Lựa chọn Đặt lịch khám hoặc Tư vấn chữa bệnh với Bác sĩ giỏi - uy tín - đầu ngành Cơ Xương Khớp tại các Phòng khám uy tín tin cậy",
+      "canonical": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/co-xuong-khop-s1",
+      "openGraph": {
+        "title": "Cơ Xương Khớp",
+        "url": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/co-xuong-khop-s1",
+        "images": [
+          {
+            "url": "https://cdn.bookingcare.vn/og/fo/2023/12/26/3130313632372d636f2d78756f6e672d6b686f70.png",
+            "alt": "Cơ Xương Khớp",
+            "width": 1200,
+            "height": 628
+          }
+        ]
+      },
+      "additionalMetaTags": [
+        {
+          "name": "geo.region",
+          "content": "VN"
+        },
+        {
+          "name": "geo.placename",
+          "content": ""
+        },
+        {
+          "name": "primarySpecialties",
+          "content": "Cơ Xương Khớp"
+        }
+      ]
+    },
+    "webPageSchema": {
+      "@type": "WebPage",
+      "id": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/co-xuong-khop-s1",
+      "dataArray": [
+        {
+          "@type": "Physician",
+          "id": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/pgs-ts-bsckii-ttut-vu-van-hoe-i4134",
+          "name": "PGS. TS. BSCKII. TTUT Vũ Văn Hòe",
+          "description": "Bác sĩ có 35 năm kinh nghiệm về vực Cột sống, thần kinh, cơ xương khớp<br />\r\nPhó chủ tịch hội Phẫu thuật cột sống Việt Nam <br />\r\nBác sĩ nhận khám từ 7 tuổi trở lên ",
+          "url": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/pgs-ts-bsckii-ttut-vu-van-hoe-i4134",
+          "image": "https://cdn.bookingcare.vn/fo/w256/2024/02/02/144127-bs-hoe1.jpg",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "Hà Nội",
+            "addressCountry": "VN"
+          }
+        },
+        {
+          "@type": "Physician",
+          "id": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/thsbs-nguyen-tran-trung-i4367",
+          "name": "ThS.BS Nguyễn Trần Trung",
+          "description": "Bác sĩ có nhiều năm kinh nghiệm trong khám và điều trị Cơ xương khớp <br />\r\nPhó trưởng khoa Cơ Xương Khớp Bệnh viện E<br />\r\nBác sĩ nhận khám từ 15 tuổi trở lên ",
+          "url": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/thsbs-nguyen-tran-trung-i4367",
+          "image": "https://cdn.bookingcare.vn/fo/w256/2024/08/29/114134-bs-nguyen-tran-trung1.jpg",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "Hà Nội",
+            "addressCountry": "VN"
+          }
+        },
+        {
+          "@type": "Physician",
+          "id": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/bac-si-chuyen-khoa-ii-tran-trong-thang-i3164",
+          "name": "Bác sĩ Chuyên khoa II Trần Trọng Thắng",
+          "description": "Gần 30 năm kinh nghiệm lĩnh vực Cơ xương khớp<br />\nTừng công tác tại Bệnh viện Xanh Pôn, Bệnh viện Phục hồi chức năng Hà Nội<br />\nBác sĩ nhận khám tất cả các độ tuổi",
+          "url": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/bac-si-chuyen-khoa-ii-tran-trong-thang-i3164",
+          "image": "https://cdn.bookingcare.vn/fo/w256/2022/12/13/173222-1bac-si-thang-1.png",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "Hà Nội",
+            "addressCountry": "VN"
+          }
+        },
+        {
+          "@type": "Physician",
+          "id": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/ttut-bsckii-duong-minh-tri-i1721",
+          "name": "TTUT. BSCKII Dương Minh Trí",
+          "description": "Trưởng khoa Nội Cơ Xương Khớp, Bệnh viện Nhân dân Gia Định<br />\r\nNhiều năm kinh nghiệm trong khám và điều trị bệnh lý về Nội Cơ xương khớp<br />\r\nBác sĩ nhận khám cho bệnh nhân từ 16 tuổi trở lên",
+          "url": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/ttut-bsckii-duong-minh-tri-i1721",
+          "image": "https://cdn.bookingcare.vn/fo/w256/2024/11/28/162900-bs-duong-minh-tri1.jpg",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "Thành phố Hồ Chí Minh",
+            "addressCountry": "VN"
+          }
+        },
+        {
+          "@type": "Physician",
+          "id": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/tien-si-bac-si-chuyen-khoa-ii-le-quoc-viet-i1672",
+          "name": "Tiến sĩ, Bác sĩ chuyên khoa II Lê Quốc Việt",
+          "description": "Gần 40 năm kinh nghiệm khám và điều trị các bệnh nội cơ xương khớp, nội khoa và sức khỏe tổng quát<br />\nNhiều năm kinh nghiệm điều trị bệnh gout, thoái hóa khớp, cột sống, tiêm collagen, tiêm chất nhờn, phát hiện sớm các bệnh cơ xương khớp tiềm ẩn như viêm khớp dạng thấp, lupus, loãng xương,...<br />\nNguyên Phó Giám đốc Bệnh viện E",
+          "url": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/tien-si-bac-si-chuyen-khoa-ii-le-quoc-viet-i1672",
+          "image": "https://cdn.bookingcare.vn/fo/w256/2025/08/14/152953-anh-bs-4.png",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "Hà Nội",
+            "addressCountry": "VN"
+          }
+        },
+        {
+          "@type": "Physician",
+          "id": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/pho-giao-su-tien-si-dinh-ngoc-son-i428",
+          "name": "Phó Giáo sư, Tiến sĩ Đinh Ngọc Sơn ",
+          "description": "Bác sĩ có 25 năm kinh nghiệm về bệnh lý liên quan cột sống <br />\r\nHiện là Trưởng khoa Phẫu thuật Cột sống, Bệnh viện Việt Đức <br />\r\nBác sĩ nhận khám từ 7 tuổi trở lên ",
+          "url": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/pho-giao-su-tien-si-dinh-ngoc-son-i428",
+          "image": "https://cdn.bookingcare.vn/fo/w256/2018/06/07/112614pho-giao-su-tien-si-dinh-ngoc-son.jpg",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "Hà Nội",
+            "addressCountry": "VN"
+          }
+        },
+        {
+          "@type": "Physician",
+          "id": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/tien-si-bac-si-truong-thi-nhu-y-i597",
+          "name": "Tiến sĩ, Bác sĩ Trương Thị Như Ý",
+          "description": "Hiện đang là Giám Đốc Trung tâm Khám chữa bệnh thêo yêu cầu và quốc tế, Bệnh viện Lão khoa Trung ương<br />\nNhiều năm kinh nghiệm trong khám và điều trị các bệnh lý Cơ xương khớp <br />\nBác sĩ nhận khám bệnh nhân từ 18 tuổi trở lên",
+          "url": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/tien-si-bac-si-truong-thi-nhu-y-i597",
+          "image": "https://cdn.bookingcare.vn/fo/w256/2018/09/05/091247thac-si-bac-si-truong-thi-nhu-y.jpg",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "Hà Nội",
+            "addressCountry": "VN"
+          }
+        },
+        {
+          "@type": "Physician",
+          "id": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/bac-si-chuyen-khoa-ii-vo-van-man-i1962",
+          "name": "Bác sĩ Chuyên khoa II Võ Văn Mẫn",
+          "description": "Bác sĩ có hơn 30 năm kinh nghiệm trong lĩnh vực Chấn thương Chỉnh hình<br />\r\nBác sĩ có chuyên môn sâu trong chẩn đoán, điều trị và phẫu thuật các bệnh lý Cơ Xương Khớp như: thoái hóa khớp, viêm khớp dạng thấp, loãng xương và các bệnh lý do chấn thương<br />\r\nTrưởng khoa Chấn thương Chỉnh hình, Y học Thể thao, Bệnh viện Đa khoa Nam Sài Gòn",
+          "url": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/bac-si-chuyen-khoa-ii-vo-van-man-i1962",
+          "image": "https://cdn.bookingcare.vn/fo/w256/2025/08/14/153243-anh-bs-5.png",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "Thành phố Hồ Chí Minh",
+            "addressCountry": "VN"
+          }
+        },
+        {
+          "@type": "Physician",
+          "id": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/kham-co-xuong-khop-tai-benh-vien-hong-duc-iii-i3633",
+          "name": "Khám Cơ xương khớp tại Bệnh viện Hồng Đức III",
+          "description": "Đội ngũ bác sĩ giàu kinh nghiệm trong khám và điều trị các bệnh lý về Cơ xương khớp, Chấn thương chỉnh hình<br />\nBệnh viện được trang bị những máy móc khám và điều trị hiện đại<br />\nGiảm thời gian chờ đợi, ưu tiên khám nhanh",
+          "url": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/kham-co-xuong-khop-tai-benh-vien-hong-duc-iii-i3633",
+          "image": "https://cdn.bookingcare.vn/fo/w256/2024/02/19/120839-thiet-ke-chua-co-ten-1.png",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "Thành phố Hồ Chí Minh",
+            "addressCountry": "VN"
+          }
+        },
+        {
+          "@type": "Physician",
+          "id": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/bsckii-nguyen-tuong-van-i4679",
+          "name": "BSCKII Nguyễn Tường Vân",
+          "description": "Bác sĩ có nhiều năm kinh trong khám và điều trị bệnh lý Lão khoa - cơ xương khớp như: Loãng xương, Thoái hóa khớp, Viêm khớp dạng thấp, Thoát vị đĩa đệm, viêm đa khớp tự miễn...<br />\r\nTrưởng khoa Lão khoa - Cơ xương khớp<br />\r\nBác sĩ nhận khám từ 35 - 80 tuổi",
+          "url": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/bsckii-nguyen-tuong-van-i4679",
+          "image": "https://cdn.bookingcare.vn/fo/w256/2025/07/01/105213-bs-tuong-van.png",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "Quảng Ninh",
+            "addressCountry": "VN"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "id": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/co-xuong-khop-s1",
+          "url": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/co-xuong-khop-s1",
+          "name": "Cơ Xương Khớp",
+          "description": "Lựa chọn Đặt lịch khám hoặc Tư vấn chữa bệnh với Bác sĩ giỏi - uy tín - đầu ngành Cơ Xương Khớp tại các Phòng khám uy tín tin cậy",
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101627-co-xuong-khop.png"
+        }
+      ]
+    }
+  }
+}

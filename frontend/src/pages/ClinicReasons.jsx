@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Edit2, Eye, Plus, Search, Trash2 } from 'lucide-react';
+import { Edit2, Eye, Plus, Search, Trash2, Filter } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import AdminLayout from '../layouts/AdminLayout';
 import Pagination from '../components/Pagination';
@@ -11,6 +11,8 @@ export default function ClinicReasons() {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showSearch, setShowSearch] = useState(false);
+  const [filterStatus, setFilterStatus] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -19,7 +21,7 @@ export default function ClinicReasons() {
   const fetchItems = async (page = 1) => {
     setIsLoading(true);
     try {
-      const res = await getClinicReasons({ page, limit, keyword: searchTerm });
+      const res = await getClinicReasons({ page, limit, keyword: searchTerm, status: filterStatus });
       setItems(res?.data || []);
       setTotalPages(res?.pagination?.totalPages || 1);
     } catch (error) {
@@ -36,7 +38,7 @@ export default function ClinicReasons() {
       fetchItems(1);
     }, 500);
     return () => clearTimeout(timer);
-  }, [searchTerm]);
+  }, [searchTerm, filterStatus]);
 
   useEffect(() => {
     if (searchTerm === '') fetchItems(currentPage);
@@ -67,19 +69,42 @@ export default function ClinicReasons() {
   return (
     <AdminLayout pageTitle="Lý do khám">
       <div className="management-header">
-        <div className="search-box">
-          <Search size={20} />
-          <input
-            type="text"
-            placeholder="Tìm lý do khám..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+        <div style={{ flex: 1 }}></div>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <button className="btn btn-secondary" onClick={() => setShowSearch(!showSearch)} style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <Filter size={18} /> Bộ lọc
+          </button>
+          <button className="btn-primary" onClick={() => navigate('/clinic-reasons/admin/add')}>
+            <Plus size={20} />
+            Thêm lý do khám
+          </button>
         </div>
-        <button className="btn-primary" onClick={() => navigate('/clinic-reasons/admin/add')}>
-          <Plus size={20} />
-          Thêm lý do khám
-        </button>
+      </div>
+
+      <div className={`filter-section ${showSearch ? 'show' : ''}`}>
+        <div className="filter-container">
+          
+          <select 
+            className="form-input" 
+            style={{ width: '180px', margin: 0 }}
+            value={filterStatus}
+            onChange={(e) => setFilterStatus(e.target.value)}
+          >
+            <option value="">Tất cả trạng thái</option>
+            <option value="1">Đang hoạt động</option>
+            <option value="0">Ngưng hoạt động</option>
+          </select>
+
+          <div className="search-box" style={{ margin: 0, flex: 1, minWidth: '250px' }}>
+            <Search size={20} />
+            <input
+              type="text"
+              placeholder="Tìm lý do khám..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+        </div>
       </div>
 
       <div className="management-section">
