@@ -1,4 +1,5 @@
 const repo = require('./clinic_place.repository');
+const pool = require('../../config/database');
 
 /** Chỉ các cột tồn tại trên tbl_clinic_place (schema cốt lõi) */
 const ALLOWED_KEYS = new Set([
@@ -88,10 +89,10 @@ const cleanPayload = (data) => {
       }
     }
     if (!Array.isArray(blocks)) blocks = [];
-    payload.page_content_blocks = blocks.map((b) => ({
+    payload.page_content_blocks = JSON.stringify(blocks.map((b) => ({
       title: typeof b?.title === 'string' ? b.title : '',
       body: typeof b?.body === 'string' ? b.body : '',
-    }));
+    })));
   }
 
   payload.updated_at = Math.floor(Date.now() / 1000);
@@ -289,6 +290,24 @@ exports.updateClinicPlace = async (id, data) => {
 };
 
 exports.deleteClinicPlace = async (id) => {
+  // Check if there are sub-facilities/places belonging to this place as parent
+  const childRes = await pool.query('SELECT COUNT(*) as count FROM tbl_clinic_place WHERE parent_id = $1', [id]);
+  if (parseInt(childRes.rows[0].count, 10) > 0) {
+    throw new Error('CLINIC_PLACE_HAS_CHILDREN');
+  }
+
+  // Check if there are active schedules
+  const scheduleRes = await pool.query('SELECT COUNT(*) as count FROM tbl_appointment_schedule WHERE clinic_place_id = $1', [id]);
+  if (parseInt(scheduleRes.rows[0].count, 10) > 0) {
+    throw new Error('CLINIC_PLACE_HAS_SCHEDULES');
+  }
+
+  // Check if there are patient appointments
+  const apptRes = await pool.query('SELECT COUNT(*) as count FROM tbl_appointment WHERE clinic_place_id = $1', [id]);
+  if (parseInt(apptRes.rows[0].count, 10) > 0) {
+    throw new Error('CLINIC_PLACE_HAS_APPOINTMENTS');
+  }
+
   const deleted = await repo.remove(id);
   if (!deleted) throw new Error('NOT_FOUND');
   return deleted;

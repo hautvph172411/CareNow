@@ -26,8 +26,8 @@ export async function getSpecialtyById(id) {
   return data?.data ?? null;
 }
 
-export async function getClinicById(id) {
-  const { data } = await axios.get(`/clinic/${id}`);
+export async function getClinicById(id, params = {}) {
+  const { data } = await axios.get(`/clinic/${id}`, { params });
   return data?.data ?? null;
 }
 
@@ -39,6 +39,11 @@ export async function getClinicPlaceById(id) {
 /* ── Schedule blocks ───────────────────────────────────────────────────── */
 export async function getScheduleBlocks(params = {}) {
   const { data } = await axios.get("/appointment-schedule/blocks", { params });
+  return data?.data ?? [];
+}
+
+export async function getScheduleOverrides(params = {}) {
+  const { data } = await axios.get("/appointment-schedule/overrides", { params });
   return data?.data ?? [];
 }
 

@@ -1,12 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Sidebar from '../components/Sidebar'
 import Header from '../components/Header'
 import { useAuth } from '../hooks/useAuth'
 
-export default function AdminLayout({ children, pageTitle }) {
+export default function AdminLayout({ children, pageTitle, defaultSidebarCollapsed = false }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(defaultSidebarCollapsed)
   const { logout } = useAuth()
+
+  useEffect(() => {
+    setSidebarCollapsed(defaultSidebarCollapsed)
+  }, [defaultSidebarCollapsed])
 
   const handleMenuClick = () => {
     setSidebarOpen(!sidebarOpen)

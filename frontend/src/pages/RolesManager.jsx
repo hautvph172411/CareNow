@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Shield, Plus, Edit2, Trash2, Search, X, Key } from 'lucide-react';
+import { Shield, Plus, Edit2, Trash2, Search, X, Key, Filter } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import AdminLayout from '../layouts/AdminLayout';
 import {
@@ -16,6 +16,7 @@ export default function RolesManager() {
   const [permCounts, setPermCounts] = useState({}); // { roleName: số quyền }
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showSearch, setShowSearch] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [editingRole, setEditingRole] = useState(null); // null = thêm mới, object = edit
   const [formData, setFormData] = useState({ name: '', description: '' });
@@ -130,18 +131,29 @@ export default function RolesManager() {
       </div>
 
       <div className="management-header">
-        <div className="search-box">
-          <Search size={20} />
-          <input
-            type="text"
-            placeholder="Tìm kiếm vai trò..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+        <div style={{ flex: 1 }}></div>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <button className="btn btn-secondary" onClick={() => setShowSearch(!showSearch)} style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <Filter size={18} /> Bộ lọc
+          </button>
+          <button className="btn btn-primary" onClick={openAddModal}>
+            <Plus size={20} /> Thêm vai trò
+          </button>
         </div>
-        <button className="btn btn-primary" onClick={openAddModal}>
-          <Plus size={20} /> Thêm vai trò
-        </button>
+      </div>
+
+      <div className={`filter-section ${showSearch ? 'show' : ''}`}>
+        <div className="filter-container">
+          <div className="search-box" style={{ margin: 0, flex: 1, minWidth: '250px' }}>
+            <Search size={20} />
+            <input
+              type="text"
+              placeholder="Tìm kiếm vai trò..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+        </div>
       </div>
 
       <div className="management-section">

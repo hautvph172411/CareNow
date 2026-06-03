@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import AppRoutes from "./routes/AppRoutes";
 import { AuthProvider } from "./contexts/AuthContext";
-import SessionWarning from "./components/SessionWarning";
+
 import './styles/globals.css'
 import './styles/login.css'
 import './styles/management.css'
@@ -14,7 +14,6 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <AppRoutes />
-        <SessionWarning />
       </AuthProvider>
     </BrowserRouter>
   );

@@ -1,0 +1,1439 @@
+{
+  "ma": "4141",
+  "ten": "BSCKI Dương Duy Khương",
+  "lk": "https://bookingcare.vn/bscki-duong-duy-khuong-d4141.html",
+  "url": "bscki-duong-duy-khuong",
+  "address": "",
+  "start_age": null,
+  "end_age": null,
+  "features": "",
+  "anh": "https://cdn.bookingcare.vn/fo/w640/2024/03/04/143901-anh-man-hinh-2024-03-04-luc-143852.png",
+  "tomtat": "Nhiều năm kinh nghiệm khám và điều trị các vấn đề Da liễu và Nội tổng quát <br />\r\nBác sĩ từng công tác tại Bệnh viện Nguyễn Tri Phương TP. HCM<br />\r\nBác sĩ nhận khám mọi độ tuổi ",
+  "dichvu_ma": 1,
+  "uutien": 0,
+  "tinhthanh": "Thành phố Hồ Chí Minh",
+  "chuyenkhoa": [
+    {
+      "ma": 11,
+      "ten": "Da liễu",
+      "lk": "https://bookingcare.vn/da-lieu-s11",
+      "url": "da-lieu",
+      "type": 1
+    },
+    {
+      "ma": 72,
+      "ten": "Da liễu thẩm mỹ",
+      "lk": "https://bookingcare.vn/da-lieu-tham-my-s72",
+      "url": "da-lieu-tham-my",
+      "type": 1
+    }
+  ],
+  "chuyen_cosoyte": 0,
+  "code": "",
+  "lichkham": {
+    "1": {
+      "thu": 1,
+      "buoi": {
+        "2": {
+          "buoi": 2,
+          "khuyenmai": "",
+          "tinhtrang": "",
+          "noikham": {
+            "ma": 303,
+            "url": "phong-kham-da-lieu-tao-do",
+            "ten": "Phòng khám Da liễu Táo Đỏ",
+            "diachi": "30/1A Ngô Thời Nhiệm, Phường Xuân Hòa, Thành phố Hồ Chí Minh",
+            "hien_con": false,
+            "promotion": {
+              "content": "",
+              "start_date": "",
+              "end_date": ""
+            },
+            "newPromotion": [],
+            "page_type": 1,
+            "status": 1
+          },
+          "baohiem": [
+            {
+              "ma": 178,
+              "ten": "Bảo hiểm áp dụng ",
+              "mota": "",
+              "ghichu": "Phòng khám có xuất hóa đơn cho phí khám và làm dịch vụ (Khách hàng chịu thêm 10% thuế) ",
+              "congty": []
+            }
+          ],
+          "dichvu": 1,
+          "gia_thapnhat": 130000,
+          "gia_caonhat": null,
+          "gia_chitiet": {
+            "6457": {
+              "ma": 6457,
+              "ten": "Khám da liễu",
+              "chuyenkhoa": "Da liễu, Da liễu thẩm mỹ",
+              "mota": "",
+              "ghichu": "",
+              "dl": [
+                {
+                  "ma": 11649,
+                  "ten": "Khám da liễu",
+                  "chuyenkhoa": "Da liễu, Da liễu thẩm mỹ",
+                  "gia_thapnhat": 130000,
+                  "gia_caonhat": null,
+                  "ghichu": "",
+                  "batbuoc": 1,
+                  "promotion_max": {
+                    "price": null,
+                    "start_date": null,
+                    "end_date": null,
+                    "note": ""
+                  },
+                  "promotion_min": {
+                    "price": null,
+                    "start_date": null,
+                    "end_date": null,
+                    "note": ""
+                  },
+                  "loai": 1
+                }
+              ]
+            }
+          },
+          "promotion_min": {
+            "price": null,
+            "start_date": null,
+            "end_date": null,
+            "note": ""
+          },
+          "promotion_max": {
+            "price": null,
+            "start_date": null,
+            "end_date": null,
+            "note": ""
+          },
+          "hien_gia": 1,
+          "fee": 0,
+          "fee_text": "0đ",
+          "ngaynghi": "1/9/25;16/2/26;17/2/26;18/2/26;19/2/26;20/2/26;21/2/26;22/2/26;26/4/26;30/4/26;1/5/26;2/5/26;3/5/26",
+          "ngaykham_ngoaile": "",
+          "thoigian": [
+            {
+              "ma": "10472966",
+              "thoigian": "13:00 - 13:30",
+              "hienthi": "13:00 - 13:30",
+              "kyhieu": 11300,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/10472966?hide_nav=1",
+              "handat_thu": 1,
+              "handat_gio": "10",
+              "handat_phut": "00",
+              "handat_kyhieu": 11000,
+              "ngayhetlich": "5/1/26",
+              "buoi": 2
+            },
+            {
+              "ma": "20472966",
+              "thoigian": "13:30 - 14:00",
+              "hienthi": "13:30 - 14:00",
+              "kyhieu": 11330,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/20472966?hide_nav=1",
+              "handat_thu": 1,
+              "handat_gio": "10",
+              "handat_phut": "30",
+              "handat_kyhieu": 11030,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "30472966",
+              "thoigian": "14:00 - 14:30",
+              "hienthi": "14:00 - 14:30",
+              "kyhieu": 11400,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/30472966?hide_nav=1",
+              "handat_thu": 1,
+              "handat_gio": "11",
+              "handat_phut": "00",
+              "handat_kyhieu": 11100,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "40472966",
+              "thoigian": "14:30 - 15:00",
+              "hienthi": "14:30 - 15:00",
+              "kyhieu": 11430,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/40472966?hide_nav=1",
+              "handat_thu": 1,
+              "handat_gio": "11",
+              "handat_phut": "30",
+              "handat_kyhieu": 11130,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "50472966",
+              "thoigian": "15:00 - 15:30",
+              "hienthi": "15:00 - 15:30",
+              "kyhieu": 11500,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/50472966?hide_nav=1",
+              "handat_thu": 1,
+              "handat_gio": "12",
+              "handat_phut": "00",
+              "handat_kyhieu": 11200,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "60472966",
+              "thoigian": "15:30 - 16:00",
+              "hienthi": "15:30 - 16:00",
+              "kyhieu": 11530,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/60472966?hide_nav=1",
+              "handat_thu": 1,
+              "handat_gio": "12",
+              "handat_phut": "30",
+              "handat_kyhieu": 11230,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "70472966",
+              "thoigian": "16:00 - 16:30",
+              "hienthi": "16:00 - 16:30",
+              "kyhieu": 11600,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/70472966?hide_nav=1",
+              "handat_thu": 1,
+              "handat_gio": "13",
+              "handat_phut": "00",
+              "handat_kyhieu": 11300,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "80472966",
+              "thoigian": "16:30 - 17:00",
+              "hienthi": "16:30 - 17:00",
+              "kyhieu": 11630,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/80472966?hide_nav=1",
+              "handat_thu": 1,
+              "handat_gio": "13",
+              "handat_phut": "30",
+              "handat_kyhieu": 11330,
+              "ngayhetlich": null,
+              "buoi": 2
+            }
+          ]
+        },
+        "3": {
+          "buoi": 3,
+          "khuyenmai": "",
+          "tinhtrang": "",
+          "noikham": {
+            "ma": 303,
+            "url": "phong-kham-da-lieu-tao-do",
+            "ten": "Phòng khám Da liễu Táo Đỏ",
+            "diachi": "30/1A Ngô Thời Nhiệm, Phường Xuân Hòa, Thành phố Hồ Chí Minh",
+            "hien_con": false,
+            "promotion": {
+              "content": "",
+              "start_date": "",
+              "end_date": ""
+            },
+            "newPromotion": [],
+            "page_type": 1,
+            "status": 1
+          },
+          "baohiem": [
+            {
+              "ma": 178,
+              "ten": "Bảo hiểm áp dụng ",
+              "mota": "",
+              "ghichu": "Phòng khám có xuất hóa đơn cho phí khám và làm dịch vụ (Khách hàng chịu thêm 10% thuế) ",
+              "congty": []
+            }
+          ],
+          "dichvu": 1,
+          "gia_thapnhat": 130000,
+          "gia_caonhat": null,
+          "gia_chitiet": {
+            "6457": {
+              "ma": 6457,
+              "ten": "Khám da liễu",
+              "chuyenkhoa": "Da liễu, Da liễu thẩm mỹ",
+              "mota": "",
+              "ghichu": "",
+              "dl": [
+                {
+                  "ma": 11649,
+                  "ten": "Khám da liễu",
+                  "chuyenkhoa": "Da liễu, Da liễu thẩm mỹ",
+                  "gia_thapnhat": 130000,
+                  "gia_caonhat": null,
+                  "ghichu": "",
+                  "batbuoc": 1,
+                  "promotion_max": {
+                    "price": null,
+                    "start_date": null,
+                    "end_date": null,
+                    "note": ""
+                  },
+                  "promotion_min": {
+                    "price": null,
+                    "start_date": null,
+                    "end_date": null,
+                    "note": ""
+                  },
+                  "loai": 1
+                }
+              ]
+            }
+          },
+          "promotion_min": {
+            "price": null,
+            "start_date": null,
+            "end_date": null,
+            "note": ""
+          },
+          "promotion_max": {
+            "price": null,
+            "start_date": null,
+            "end_date": null,
+            "note": ""
+          },
+          "hien_gia": 1,
+          "fee": 0,
+          "fee_text": "0đ",
+          "ngaynghi": "1/9/25;16/2/26;17/2/26;18/2/26;19/2/26;20/2/26;21/2/26;22/2/26;26/4/26;30/4/26;1/5/26;2/5/26;3/5/26",
+          "ngaykham_ngoaile": "",
+          "thoigian": [
+            {
+              "ma": "10472969",
+              "thoigian": "17:00 - 17:30",
+              "hienthi": "17:00 - 17:30",
+              "kyhieu": 11700,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/10472969?hide_nav=1",
+              "handat_thu": 1,
+              "handat_gio": "15",
+              "handat_phut": "00",
+              "handat_kyhieu": 11500,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "20472969",
+              "thoigian": "17:30 - 18:00",
+              "hienthi": "17:30 - 18:00",
+              "kyhieu": 11730,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/20472969?hide_nav=1",
+              "handat_thu": 1,
+              "handat_gio": "15",
+              "handat_phut": "30",
+              "handat_kyhieu": 11530,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "30472969",
+              "thoigian": "18:00 - 18:30",
+              "hienthi": "18:00 - 18:30",
+              "kyhieu": 11800,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/30472969?hide_nav=1",
+              "handat_thu": 1,
+              "handat_gio": "16",
+              "handat_phut": "00",
+              "handat_kyhieu": 11600,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "40472969",
+              "thoigian": "18:30 - 19:00",
+              "hienthi": "18:30 - 19:00",
+              "kyhieu": 11830,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/40472969?hide_nav=1",
+              "handat_thu": 1,
+              "handat_gio": "16",
+              "handat_phut": "30",
+              "handat_kyhieu": 11630,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "50472969",
+              "thoigian": "19:00 - 19:30",
+              "hienthi": "19:00 - 19:30",
+              "kyhieu": 11900,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/50472969?hide_nav=1",
+              "handat_thu": 1,
+              "handat_gio": "17",
+              "handat_phut": "00",
+              "handat_kyhieu": 11700,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "60472969",
+              "thoigian": "19:30 - 20:00",
+              "hienthi": "19:30 - 20:00",
+              "kyhieu": 11930,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/60472969?hide_nav=1",
+              "handat_thu": 1,
+              "handat_gio": "17",
+              "handat_phut": "30",
+              "handat_kyhieu": 11730,
+              "ngayhetlich": "1/12/25",
+              "buoi": 3
+            }
+          ]
+        }
+      }
+    },
+    "3": {
+      "thu": 3,
+      "buoi": {
+        "2": {
+          "buoi": 2,
+          "khuyenmai": "",
+          "tinhtrang": "",
+          "noikham": {
+            "ma": 303,
+            "url": "phong-kham-da-lieu-tao-do",
+            "ten": "Phòng khám Da liễu Táo Đỏ",
+            "diachi": "30/1A Ngô Thời Nhiệm, Phường Xuân Hòa, Thành phố Hồ Chí Minh",
+            "hien_con": false,
+            "promotion": {
+              "content": "",
+              "start_date": "",
+              "end_date": ""
+            },
+            "newPromotion": [],
+            "page_type": 1,
+            "status": 1
+          },
+          "baohiem": [
+            {
+              "ma": 178,
+              "ten": "Bảo hiểm áp dụng ",
+              "mota": "",
+              "ghichu": "Phòng khám có xuất hóa đơn cho phí khám và làm dịch vụ (Khách hàng chịu thêm 10% thuế) ",
+              "congty": []
+            }
+          ],
+          "dichvu": 1,
+          "gia_thapnhat": 130000,
+          "gia_caonhat": null,
+          "gia_chitiet": {
+            "6457": {
+              "ma": 6457,
+              "ten": "Khám da liễu",
+              "chuyenkhoa": "Da liễu, Da liễu thẩm mỹ",
+              "mota": "",
+              "ghichu": "",
+              "dl": [
+                {
+                  "ma": 11649,
+                  "ten": "Khám da liễu",
+                  "chuyenkhoa": "Da liễu, Da liễu thẩm mỹ",
+                  "gia_thapnhat": 130000,
+                  "gia_caonhat": null,
+                  "ghichu": "",
+                  "batbuoc": 1,
+                  "promotion_max": {
+                    "price": null,
+                    "start_date": null,
+                    "end_date": null,
+                    "note": ""
+                  },
+                  "promotion_min": {
+                    "price": null,
+                    "start_date": null,
+                    "end_date": null,
+                    "note": ""
+                  },
+                  "loai": 1
+                }
+              ]
+            }
+          },
+          "promotion_min": {
+            "price": null,
+            "start_date": null,
+            "end_date": null,
+            "note": ""
+          },
+          "promotion_max": {
+            "price": null,
+            "start_date": null,
+            "end_date": null,
+            "note": ""
+          },
+          "hien_gia": 1,
+          "fee": 0,
+          "fee_text": "0đ",
+          "ngaynghi": "16/2/26;17/2/26;18/2/26;19/2/26;20/2/26;21/2/26;22/2/26;1/1/25;26/4/26;30/4/26;1/5/26;2/5/26;3/5/26",
+          "ngaykham_ngoaile": "",
+          "thoigian": [
+            {
+              "ma": "10472967",
+              "thoigian": "13:00 - 13:30",
+              "hienthi": "13:00 - 13:30",
+              "kyhieu": 31300,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/10472967?hide_nav=1",
+              "handat_thu": 3,
+              "handat_gio": "10",
+              "handat_phut": "00",
+              "handat_kyhieu": 31000,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "20472967",
+              "thoigian": "13:30 - 14:00",
+              "hienthi": "13:30 - 14:00",
+              "kyhieu": 31330,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/20472967?hide_nav=1",
+              "handat_thu": 3,
+              "handat_gio": "10",
+              "handat_phut": "30",
+              "handat_kyhieu": 31030,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "30472967",
+              "thoigian": "14:00 - 14:30",
+              "hienthi": "14:00 - 14:30",
+              "kyhieu": 31400,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/30472967?hide_nav=1",
+              "handat_thu": 3,
+              "handat_gio": "11",
+              "handat_phut": "00",
+              "handat_kyhieu": 31100,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "40472967",
+              "thoigian": "14:30 - 15:00",
+              "hienthi": "14:30 - 15:00",
+              "kyhieu": 31430,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/40472967?hide_nav=1",
+              "handat_thu": 3,
+              "handat_gio": "11",
+              "handat_phut": "30",
+              "handat_kyhieu": 31130,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "50472967",
+              "thoigian": "15:00 - 15:30",
+              "hienthi": "15:00 - 15:30",
+              "kyhieu": 31500,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/50472967?hide_nav=1",
+              "handat_thu": 3,
+              "handat_gio": "12",
+              "handat_phut": "00",
+              "handat_kyhieu": 31200,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "60472967",
+              "thoigian": "15:30 - 16:00",
+              "hienthi": "15:30 - 16:00",
+              "kyhieu": 31530,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/60472967?hide_nav=1",
+              "handat_thu": 3,
+              "handat_gio": "12",
+              "handat_phut": "30",
+              "handat_kyhieu": 31230,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "70472967",
+              "thoigian": "16:00 - 16:30",
+              "hienthi": "16:00 - 16:30",
+              "kyhieu": 31600,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/70472967?hide_nav=1",
+              "handat_thu": 3,
+              "handat_gio": "13",
+              "handat_phut": "00",
+              "handat_kyhieu": 31300,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "80472967",
+              "thoigian": "16:30 - 17:00",
+              "hienthi": "16:30 - 17:00",
+              "kyhieu": 31630,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/80472967?hide_nav=1",
+              "handat_thu": 3,
+              "handat_gio": "13",
+              "handat_phut": "30",
+              "handat_kyhieu": 31330,
+              "ngayhetlich": null,
+              "buoi": 2
+            }
+          ]
+        },
+        "3": {
+          "buoi": 3,
+          "khuyenmai": "",
+          "tinhtrang": "",
+          "noikham": {
+            "ma": 303,
+            "url": "phong-kham-da-lieu-tao-do",
+            "ten": "Phòng khám Da liễu Táo Đỏ",
+            "diachi": "30/1A Ngô Thời Nhiệm, Phường Xuân Hòa, Thành phố Hồ Chí Minh",
+            "hien_con": false,
+            "promotion": {
+              "content": "",
+              "start_date": "",
+              "end_date": ""
+            },
+            "newPromotion": [],
+            "page_type": 1,
+            "status": 1
+          },
+          "baohiem": [
+            {
+              "ma": 178,
+              "ten": "Bảo hiểm áp dụng ",
+              "mota": "",
+              "ghichu": "Phòng khám có xuất hóa đơn cho phí khám và làm dịch vụ (Khách hàng chịu thêm 10% thuế) ",
+              "congty": []
+            }
+          ],
+          "dichvu": 1,
+          "gia_thapnhat": 130000,
+          "gia_caonhat": null,
+          "gia_chitiet": {
+            "6457": {
+              "ma": 6457,
+              "ten": "Khám da liễu",
+              "chuyenkhoa": "Da liễu, Da liễu thẩm mỹ",
+              "mota": "",
+              "ghichu": "",
+              "dl": [
+                {
+                  "ma": 11649,
+                  "ten": "Khám da liễu",
+                  "chuyenkhoa": "Da liễu, Da liễu thẩm mỹ",
+                  "gia_thapnhat": 130000,
+                  "gia_caonhat": null,
+                  "ghichu": "",
+                  "batbuoc": 1,
+                  "promotion_max": {
+                    "price": null,
+                    "start_date": null,
+                    "end_date": null,
+                    "note": ""
+                  },
+                  "promotion_min": {
+                    "price": null,
+                    "start_date": null,
+                    "end_date": null,
+                    "note": ""
+                  },
+                  "loai": 1
+                }
+              ]
+            }
+          },
+          "promotion_min": {
+            "price": null,
+            "start_date": null,
+            "end_date": null,
+            "note": ""
+          },
+          "promotion_max": {
+            "price": null,
+            "start_date": null,
+            "end_date": null,
+            "note": ""
+          },
+          "hien_gia": 1,
+          "fee": 0,
+          "fee_text": "0đ",
+          "ngaynghi": "16/2/26;17/2/26;18/2/26;19/2/26;20/2/26;21/2/26;22/2/26;26/4/26;30/4/26;1/5/26;2/5/26;3/5/26",
+          "ngaykham_ngoaile": "",
+          "thoigian": [
+            {
+              "ma": "10472970",
+              "thoigian": "17:00 - 17:30",
+              "hienthi": "17:00 - 17:30",
+              "kyhieu": 31700,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/10472970?hide_nav=1",
+              "handat_thu": 3,
+              "handat_gio": "15",
+              "handat_phut": "00",
+              "handat_kyhieu": 31500,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "20472970",
+              "thoigian": "17:30 - 18:00",
+              "hienthi": "17:30 - 18:00",
+              "kyhieu": 31730,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/20472970?hide_nav=1",
+              "handat_thu": 3,
+              "handat_gio": "15",
+              "handat_phut": "30",
+              "handat_kyhieu": 31530,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "30472970",
+              "thoigian": "18:00 - 18:30",
+              "hienthi": "18:00 - 18:30",
+              "kyhieu": 31800,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/30472970?hide_nav=1",
+              "handat_thu": 3,
+              "handat_gio": "16",
+              "handat_phut": "00",
+              "handat_kyhieu": 31600,
+              "ngayhetlich": "29/4/26",
+              "buoi": 3
+            },
+            {
+              "ma": "40472970",
+              "thoigian": "18:30 - 19:00",
+              "hienthi": "18:30 - 19:00",
+              "kyhieu": 31830,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/40472970?hide_nav=1",
+              "handat_thu": 3,
+              "handat_gio": "16",
+              "handat_phut": "30",
+              "handat_kyhieu": 31630,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "50472970",
+              "thoigian": "19:00 - 19:30",
+              "hienthi": "19:00 - 19:30",
+              "kyhieu": 31900,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/50472970?hide_nav=1",
+              "handat_thu": 3,
+              "handat_gio": "17",
+              "handat_phut": "00",
+              "handat_kyhieu": 31700,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "60472970",
+              "thoigian": "19:30 - 20:00",
+              "hienthi": "19:30 - 20:00",
+              "kyhieu": 31930,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/60472970?hide_nav=1",
+              "handat_thu": 3,
+              "handat_gio": "17",
+              "handat_phut": "30",
+              "handat_kyhieu": 31730,
+              "ngayhetlich": null,
+              "buoi": 3
+            }
+          ]
+        }
+      }
+    },
+    "4": {
+      "thu": 4,
+      "buoi": {
+        "2": {
+          "buoi": 2,
+          "khuyenmai": "",
+          "tinhtrang": "",
+          "noikham": {
+            "ma": 303,
+            "url": "phong-kham-da-lieu-tao-do",
+            "ten": "Phòng khám Da liễu Táo Đỏ",
+            "diachi": "30/1A Ngô Thời Nhiệm, Phường Xuân Hòa, Thành phố Hồ Chí Minh",
+            "hien_con": false,
+            "promotion": {
+              "content": "",
+              "start_date": "",
+              "end_date": ""
+            },
+            "newPromotion": [],
+            "page_type": 1,
+            "status": 1
+          },
+          "baohiem": [
+            {
+              "ma": 178,
+              "ten": "Bảo hiểm áp dụng ",
+              "mota": "",
+              "ghichu": "Phòng khám có xuất hóa đơn cho phí khám và làm dịch vụ (Khách hàng chịu thêm 10% thuế) ",
+              "congty": []
+            }
+          ],
+          "dichvu": 1,
+          "gia_thapnhat": 130000,
+          "gia_caonhat": null,
+          "gia_chitiet": {
+            "6457": {
+              "ma": 6457,
+              "ten": "Khám da liễu",
+              "chuyenkhoa": "Da liễu, Da liễu thẩm mỹ",
+              "mota": "",
+              "ghichu": "",
+              "dl": [
+                {
+                  "ma": 11649,
+                  "ten": "Khám da liễu",
+                  "chuyenkhoa": "Da liễu, Da liễu thẩm mỹ",
+                  "gia_thapnhat": 130000,
+                  "gia_caonhat": null,
+                  "ghichu": "",
+                  "batbuoc": 1,
+                  "promotion_max": {
+                    "price": null,
+                    "start_date": null,
+                    "end_date": null,
+                    "note": ""
+                  },
+                  "promotion_min": {
+                    "price": null,
+                    "start_date": null,
+                    "end_date": null,
+                    "note": ""
+                  },
+                  "loai": 1
+                }
+              ]
+            }
+          },
+          "promotion_min": {
+            "price": null,
+            "start_date": null,
+            "end_date": null,
+            "note": ""
+          },
+          "promotion_max": {
+            "price": null,
+            "start_date": null,
+            "end_date": null,
+            "note": ""
+          },
+          "hien_gia": 1,
+          "fee": 0,
+          "fee_text": "0đ",
+          "ngaynghi": "16/2/26;17/2/26;18/2/26;19/2/26;20/2/26;21/2/26;22/2/26;18/4/24;26/4/26;30/4/26;1/5/26;2/5/26;3/5/26",
+          "ngaykham_ngoaile": "",
+          "thoigian": [
+            {
+              "ma": "10472972",
+              "thoigian": "16:00 - 16:30",
+              "hienthi": "16:00 - 16:30",
+              "kyhieu": 41600,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/10472972?hide_nav=1",
+              "handat_thu": 4,
+              "handat_gio": "14",
+              "handat_phut": "00",
+              "handat_kyhieu": 41400,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "20472972",
+              "thoigian": "16:30 - 17:00",
+              "hienthi": "16:30 - 17:00",
+              "kyhieu": 41630,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/20472972?hide_nav=1",
+              "handat_thu": 4,
+              "handat_gio": "14",
+              "handat_phut": "30",
+              "handat_kyhieu": 41430,
+              "ngayhetlich": null,
+              "buoi": 2
+            }
+          ]
+        },
+        "3": {
+          "buoi": 3,
+          "khuyenmai": "",
+          "tinhtrang": "",
+          "noikham": {
+            "ma": 303,
+            "url": "phong-kham-da-lieu-tao-do",
+            "ten": "Phòng khám Da liễu Táo Đỏ",
+            "diachi": "30/1A Ngô Thời Nhiệm, Phường Xuân Hòa, Thành phố Hồ Chí Minh",
+            "hien_con": false,
+            "promotion": {
+              "content": "",
+              "start_date": "",
+              "end_date": ""
+            },
+            "newPromotion": [],
+            "page_type": 1,
+            "status": 1
+          },
+          "baohiem": [
+            {
+              "ma": 178,
+              "ten": "Bảo hiểm áp dụng ",
+              "mota": "",
+              "ghichu": "Phòng khám có xuất hóa đơn cho phí khám và làm dịch vụ (Khách hàng chịu thêm 10% thuế) ",
+              "congty": []
+            }
+          ],
+          "dichvu": 1,
+          "gia_thapnhat": 130000,
+          "gia_caonhat": null,
+          "gia_chitiet": {
+            "6457": {
+              "ma": 6457,
+              "ten": "Khám da liễu",
+              "chuyenkhoa": "Da liễu, Da liễu thẩm mỹ",
+              "mota": "",
+              "ghichu": "",
+              "dl": [
+                {
+                  "ma": 11649,
+                  "ten": "Khám da liễu",
+                  "chuyenkhoa": "Da liễu, Da liễu thẩm mỹ",
+                  "gia_thapnhat": 130000,
+                  "gia_caonhat": null,
+                  "ghichu": "",
+                  "batbuoc": 1,
+                  "promotion_max": {
+                    "price": null,
+                    "start_date": null,
+                    "end_date": null,
+                    "note": ""
+                  },
+                  "promotion_min": {
+                    "price": null,
+                    "start_date": null,
+                    "end_date": null,
+                    "note": ""
+                  },
+                  "loai": 1
+                }
+              ]
+            }
+          },
+          "promotion_min": {
+            "price": null,
+            "start_date": null,
+            "end_date": null,
+            "note": ""
+          },
+          "promotion_max": {
+            "price": null,
+            "start_date": null,
+            "end_date": null,
+            "note": ""
+          },
+          "hien_gia": 1,
+          "fee": 0,
+          "fee_text": "0đ",
+          "ngaynghi": "16/2/26;17/2/26;18/2/26;19/2/26;20/2/26;21/2/26;22/2/26;18/4/24;26/4/26;30/4/26;1/5/26;2/5/26;3/5/26",
+          "ngaykham_ngoaile": "",
+          "thoigian": [
+            {
+              "ma": "10472973",
+              "thoigian": "17:00 - 17:30",
+              "hienthi": "17:00 - 17:30",
+              "kyhieu": 41700,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/10472973?hide_nav=1",
+              "handat_thu": 4,
+              "handat_gio": "16",
+              "handat_phut": "00",
+              "handat_kyhieu": 41600,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "20472973",
+              "thoigian": "17:30 - 18:00",
+              "hienthi": "17:30 - 18:00",
+              "kyhieu": 41730,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/20472973?hide_nav=1",
+              "handat_thu": 4,
+              "handat_gio": "16",
+              "handat_phut": "30",
+              "handat_kyhieu": 41630,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "30472973",
+              "thoigian": "18:00 - 18:30",
+              "hienthi": "18:00 - 18:30",
+              "kyhieu": 41800,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/30472973?hide_nav=1",
+              "handat_thu": 4,
+              "handat_gio": "17",
+              "handat_phut": "00",
+              "handat_kyhieu": 41700,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "40472973",
+              "thoigian": "18:30 - 19:00",
+              "hienthi": "18:30 - 19:00",
+              "kyhieu": 41830,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/40472973?hide_nav=1",
+              "handat_thu": 4,
+              "handat_gio": "17",
+              "handat_phut": "30",
+              "handat_kyhieu": 41730,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "50472973",
+              "thoigian": "19:00 - 19:30",
+              "hienthi": "19:00 - 19:30",
+              "kyhieu": 41900,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/50472973?hide_nav=1",
+              "handat_thu": 4,
+              "handat_gio": "18",
+              "handat_phut": "00",
+              "handat_kyhieu": 41800,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "60472973",
+              "thoigian": "19:30 - 20:00",
+              "hienthi": "19:30 - 20:00",
+              "kyhieu": 41930,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/60472973?hide_nav=1",
+              "handat_thu": 4,
+              "handat_gio": "18",
+              "handat_phut": "30",
+              "handat_kyhieu": 41830,
+              "ngayhetlich": null,
+              "buoi": 3
+            }
+          ]
+        }
+      }
+    },
+    "5": {
+      "thu": 5,
+      "buoi": {
+        "2": {
+          "buoi": 2,
+          "khuyenmai": "",
+          "tinhtrang": "",
+          "noikham": {
+            "ma": 303,
+            "url": "phong-kham-da-lieu-tao-do",
+            "ten": "Phòng khám Da liễu Táo Đỏ",
+            "diachi": "30/1A Ngô Thời Nhiệm, Phường Xuân Hòa, Thành phố Hồ Chí Minh",
+            "hien_con": false,
+            "promotion": {
+              "content": "",
+              "start_date": "",
+              "end_date": ""
+            },
+            "newPromotion": [],
+            "page_type": 1,
+            "status": 1
+          },
+          "baohiem": [
+            {
+              "ma": 178,
+              "ten": "Bảo hiểm áp dụng ",
+              "mota": "",
+              "ghichu": "Phòng khám có xuất hóa đơn cho phí khám và làm dịch vụ (Khách hàng chịu thêm 10% thuế) ",
+              "congty": []
+            }
+          ],
+          "dichvu": 1,
+          "gia_thapnhat": 130000,
+          "gia_caonhat": null,
+          "gia_chitiet": {
+            "6457": {
+              "ma": 6457,
+              "ten": "Khám da liễu",
+              "chuyenkhoa": "Da liễu, Da liễu thẩm mỹ",
+              "mota": "",
+              "ghichu": "",
+              "dl": [
+                {
+                  "ma": 11649,
+                  "ten": "Khám da liễu",
+                  "chuyenkhoa": "Da liễu, Da liễu thẩm mỹ",
+                  "gia_thapnhat": 130000,
+                  "gia_caonhat": null,
+                  "ghichu": "",
+                  "batbuoc": 1,
+                  "promotion_max": {
+                    "price": null,
+                    "start_date": null,
+                    "end_date": null,
+                    "note": ""
+                  },
+                  "promotion_min": {
+                    "price": null,
+                    "start_date": null,
+                    "end_date": null,
+                    "note": ""
+                  },
+                  "loai": 1
+                }
+              ]
+            }
+          },
+          "promotion_min": {
+            "price": null,
+            "start_date": null,
+            "end_date": null,
+            "note": ""
+          },
+          "promotion_max": {
+            "price": null,
+            "start_date": null,
+            "end_date": null,
+            "note": ""
+          },
+          "hien_gia": 1,
+          "fee": 0,
+          "fee_text": "0đ",
+          "ngaynghi": "16/2/26;17/2/26;18/2/26;19/2/26;20/2/26;21/2/26;22/2/26;24/1/25;26/4/26;30/4/26;1/5/26;2/5/26;3/5/26",
+          "ngaykham_ngoaile": "",
+          "thoigian": [
+            {
+              "ma": "10472968",
+              "thoigian": "13:00 - 13:30",
+              "hienthi": "13:00 - 13:30",
+              "kyhieu": 51300,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/10472968?hide_nav=1",
+              "handat_thu": 5,
+              "handat_gio": "10",
+              "handat_phut": "00",
+              "handat_kyhieu": 51000,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "20472968",
+              "thoigian": "13:30 - 14:00",
+              "hienthi": "13:30 - 14:00",
+              "kyhieu": 51330,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/20472968?hide_nav=1",
+              "handat_thu": 5,
+              "handat_gio": "10",
+              "handat_phut": "30",
+              "handat_kyhieu": 51030,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "30472968",
+              "thoigian": "14:00 - 14:30",
+              "hienthi": "14:00 - 14:30",
+              "kyhieu": 51400,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/30472968?hide_nav=1",
+              "handat_thu": 5,
+              "handat_gio": "11",
+              "handat_phut": "00",
+              "handat_kyhieu": 51100,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "40472968",
+              "thoigian": "14:30 - 15:00",
+              "hienthi": "14:30 - 15:00",
+              "kyhieu": 51430,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/40472968?hide_nav=1",
+              "handat_thu": 5,
+              "handat_gio": "11",
+              "handat_phut": "30",
+              "handat_kyhieu": 51130,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "50472968",
+              "thoigian": "15:00 - 15:30",
+              "hienthi": "15:00 - 15:30",
+              "kyhieu": 51500,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/50472968?hide_nav=1",
+              "handat_thu": 5,
+              "handat_gio": "12",
+              "handat_phut": "00",
+              "handat_kyhieu": 51200,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "60472968",
+              "thoigian": "15:30 - 16:00",
+              "hienthi": "15:30 - 16:00",
+              "kyhieu": 51530,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/60472968?hide_nav=1",
+              "handat_thu": 5,
+              "handat_gio": "12",
+              "handat_phut": "30",
+              "handat_kyhieu": 51230,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "70472968",
+              "thoigian": "16:00 - 16:30",
+              "hienthi": "16:00 - 16:30",
+              "kyhieu": 51600,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/70472968?hide_nav=1",
+              "handat_thu": 5,
+              "handat_gio": "13",
+              "handat_phut": "00",
+              "handat_kyhieu": 51300,
+              "ngayhetlich": null,
+              "buoi": 2
+            },
+            {
+              "ma": "80472968",
+              "thoigian": "16:30 - 17:00",
+              "hienthi": "16:30 - 17:00",
+              "kyhieu": 51630,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/80472968?hide_nav=1",
+              "handat_thu": 5,
+              "handat_gio": "13",
+              "handat_phut": "30",
+              "handat_kyhieu": 51330,
+              "ngayhetlich": null,
+              "buoi": 2
+            }
+          ]
+        },
+        "3": {
+          "buoi": 3,
+          "khuyenmai": "",
+          "tinhtrang": "",
+          "noikham": {
+            "ma": 303,
+            "url": "phong-kham-da-lieu-tao-do",
+            "ten": "Phòng khám Da liễu Táo Đỏ",
+            "diachi": "30/1A Ngô Thời Nhiệm, Phường Xuân Hòa, Thành phố Hồ Chí Minh",
+            "hien_con": false,
+            "promotion": {
+              "content": "",
+              "start_date": "",
+              "end_date": ""
+            },
+            "newPromotion": [],
+            "page_type": 1,
+            "status": 1
+          },
+          "baohiem": [
+            {
+              "ma": 178,
+              "ten": "Bảo hiểm áp dụng ",
+              "mota": "",
+              "ghichu": "Phòng khám có xuất hóa đơn cho phí khám và làm dịch vụ (Khách hàng chịu thêm 10% thuế) ",
+              "congty": []
+            }
+          ],
+          "dichvu": 1,
+          "gia_thapnhat": 130000,
+          "gia_caonhat": null,
+          "gia_chitiet": {
+            "6457": {
+              "ma": 6457,
+              "ten": "Khám da liễu",
+              "chuyenkhoa": "Da liễu, Da liễu thẩm mỹ",
+              "mota": "",
+              "ghichu": "",
+              "dl": [
+                {
+                  "ma": 11649,
+                  "ten": "Khám da liễu",
+                  "chuyenkhoa": "Da liễu, Da liễu thẩm mỹ",
+                  "gia_thapnhat": 130000,
+                  "gia_caonhat": null,
+                  "ghichu": "",
+                  "batbuoc": 1,
+                  "promotion_max": {
+                    "price": null,
+                    "start_date": null,
+                    "end_date": null,
+                    "note": ""
+                  },
+                  "promotion_min": {
+                    "price": null,
+                    "start_date": null,
+                    "end_date": null,
+                    "note": ""
+                  },
+                  "loai": 1
+                }
+              ]
+            }
+          },
+          "promotion_min": {
+            "price": null,
+            "start_date": null,
+            "end_date": null,
+            "note": ""
+          },
+          "promotion_max": {
+            "price": null,
+            "start_date": null,
+            "end_date": null,
+            "note": ""
+          },
+          "hien_gia": 1,
+          "fee": 0,
+          "fee_text": "0đ",
+          "ngaynghi": "16/2/26;17/2/26;18/2/26;19/2/26;20/2/26;21/2/26;22/2/26;26/4/26;30/4/26;1/5/26;2/5/26;3/5/26",
+          "ngaykham_ngoaile": "",
+          "thoigian": [
+            {
+              "ma": "10472971",
+              "thoigian": "17:00 - 17:30",
+              "hienthi": "17:00 - 17:30",
+              "kyhieu": 51700,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/10472971?hide_nav=1",
+              "handat_thu": 5,
+              "handat_gio": "15",
+              "handat_phut": "00",
+              "handat_kyhieu": 51500,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "20472971",
+              "thoigian": "17:30 - 18:00",
+              "hienthi": "17:30 - 18:00",
+              "kyhieu": 51730,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/20472971?hide_nav=1",
+              "handat_thu": 5,
+              "handat_gio": "15",
+              "handat_phut": "30",
+              "handat_kyhieu": 51530,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "30472971",
+              "thoigian": "18:00 - 18:30",
+              "hienthi": "18:00 - 18:30",
+              "kyhieu": 51800,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/30472971?hide_nav=1",
+              "handat_thu": 5,
+              "handat_gio": "16",
+              "handat_phut": "00",
+              "handat_kyhieu": 51600,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "40472971",
+              "thoigian": "18:30 - 19:00",
+              "hienthi": "18:30 - 19:00",
+              "kyhieu": 51830,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/40472971?hide_nav=1",
+              "handat_thu": 5,
+              "handat_gio": "16",
+              "handat_phut": "30",
+              "handat_kyhieu": 51630,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "50472971",
+              "thoigian": "19:00 - 19:30",
+              "hienthi": "19:00 - 19:30",
+              "kyhieu": 51900,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/50472971?hide_nav=1",
+              "handat_thu": 5,
+              "handat_gio": "17",
+              "handat_phut": "00",
+              "handat_kyhieu": 51700,
+              "ngayhetlich": null,
+              "buoi": 3
+            },
+            {
+              "ma": "60472971",
+              "thoigian": "19:30 - 20:00",
+              "hienthi": "19:30 - 20:00",
+              "kyhieu": 51930,
+              "tinhtrang": 0,
+              "lk": "https://bookingcare.vn/dat-lich-kham/60472971?hide_nav=1",
+              "handat_thu": 5,
+              "handat_gio": "17",
+              "handat_phut": "30",
+              "handat_kyhieu": 51730,
+              "ngayhetlich": "9/1/26",
+              "buoi": 3
+            }
+          ]
+        }
+      }
+    }
+  },
+  "showHotline": false,
+  "quickConsultation": false,
+  "anh_nen": "https://cdn.bookingcare.vn/fo/w1080/2024/03/04/143901-anh-man-hinh-2024-03-04-luc-143852.png",
+  "is_work": 1,
+  "status": 1,
+  "noidung": "<h2>BSCKI Dương Duy Khương</h2>\r\n<ul>\r\n<li>Nhiều năm kinh nghiệm khám và Điều trị các vấn đề Da liễu và Nội tổng quát</li>\r\n<li data-leveltext=\"\" data-font=\"Symbol\" data-listid=\"1\" data-list-defn-props=\"{&quot;335552541&quot;:1,&quot;335559684&quot;:-2,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}\" aria-setsize=\"-1\" data-aria-posinset=\"3\" data-aria-level=\"1\">Bác sĩ từng công tác tại Bệnh viện Nguyễn Tri Phương TP. HCM</li>\r\n<li>Bác sĩ nhận khám mọi độ tuổi</li>\r\n</ul>\r\n<h2>Khám và điều trị</h2>\r\n<ul style=\"font-weight: 400;\">\r\n<li data-leveltext=\"\" data-font=\"Symbol\" data-listid=\"1\" data-list-defn-props=\"{&quot;335552541&quot;:1,&quot;335559684&quot;:-2,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}\" aria-setsize=\"-1\" data-aria-posinset=\"7\" data-aria-level=\"1\"><span data-contrast=\"none\">Các bệnh lý về Da liễu: Mụn trứng cá, Rụng tóc, Mề đay, Viêm da cơ địa, Viêm da dị ứng, Thủy đậu , Herpes, Zona, Nấm, Bệnh lí lây truyền qua đường tình dục (STDs) …..&nbsp;</span><span data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259,&quot;469777462&quot;:[720],&quot;469777927&quot;:[0],&quot;469777928&quot;:[1]}\">&nbsp;</span></li>\r\n<li data-leveltext=\"\" data-font=\"Symbol\" data-listid=\"1\" data-list-defn-props=\"{&quot;335552541&quot;:1,&quot;335559684&quot;:-2,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}\" aria-setsize=\"-1\" data-aria-posinset=\"8\" data-aria-level=\"1\"><span data-contrast=\"none\">Thẩm mỹ Nội khoa không xâm lấn:</span><span data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259,&quot;469777462&quot;:[720],&quot;469777927&quot;:[0],&quot;469777928&quot;:[1]}\">&nbsp;</span></li>\r\n<li data-leveltext=\"\" data-font=\"Symbol\" data-listid=\"3\" data-list-defn-props=\"{&quot;335552541&quot;:1,&quot;335559684&quot;:-2,&quot;335559685&quot;:1440,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}\" aria-setsize=\"-1\" data-aria-posinset=\"9\" data-aria-level=\"2\"><span data-contrast=\"none\">Xóa U tuyến mồ hôi, ban vàng, nốt ruồi, mụn cóc, nám, tàn nhàng, trị sẹo…</span><span data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259,&quot;469777462&quot;:[1440],&quot;469777927&quot;:[0],&quot;469777928&quot;:[1]}\">&nbsp;</span></li>\r\n<li data-leveltext=\"\" data-font=\"Symbol\" data-listid=\"3\" data-list-defn-props=\"{&quot;335552541&quot;:1,&quot;335559684&quot;:-2,&quot;335559685&quot;:1440,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}\" aria-setsize=\"-1\" data-aria-posinset=\"10\" data-aria-level=\"2\"><span data-contrast=\"none\">Trẻ hóa gương mặt, xóa nhăn, nâng cơ chống chảy xệ…</span><span data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259,&quot;469777462&quot;:[1440],&quot;469777927&quot;:[0],&quot;469777928&quot;:[1]}\">&nbsp;</span></li>\r\n<li data-leveltext=\"\" data-font=\"Symbol\" data-listid=\"3\" data-list-defn-props=\"{&quot;335552541&quot;:1,&quot;335559684&quot;:-2,&quot;335559685&quot;:1440,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}\" aria-setsize=\"-1\" data-aria-posinset=\"11\" data-aria-level=\"2\"><span data-contrast=\"none\">Tạo hình nội khoa: cân chỉnh gương mặt, thon gọn hàm, làm đầy thái dương, rãnh cười, tạo hình môi, xóa mỡ nọng cằm,….</span><span data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259,&quot;469777462&quot;:[1440],&quot;469777927&quot;:[0],&quot;469777928&quot;:[1]}\">&nbsp;</span></li>\r\n<li data-leveltext=\"\" data-font=\"Symbol\" data-listid=\"3\" data-list-defn-props=\"{&quot;335552541&quot;:1,&quot;335559684&quot;:-2,&quot;335559685&quot;:1440,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}\" aria-setsize=\"-1\" data-aria-posinset=\"12\" data-aria-level=\"2\"><span data-contrast=\"none\">Trẻ hóa cổ, bàn tay,….</span><span data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259,&quot;469777462&quot;:[1440],&quot;469777927&quot;:[0],&quot;469777928&quot;:[1]}\">&nbsp;</span></li>\r\n<li><span class=\"TextRun SCXW265984379 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW265984379 BCX0\"><span class=\"TextRun SCXW28469651 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW28469651 BCX0\"><span class=\"EOP SCXW222732972 BCX0\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259}\"><span class=\"EOP SCXW5072788 BCX0\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259}\"><span class=\"TextRun SCXW194899589 BCX0\" lang=\"FR\" xml:lang=\"FR\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW194899589 BCX0\">Kinh nghiệm </span></span><span class=\"TextRun MacChromeBold SCXW194899589 BCX0\" lang=\"FR\" xml:lang=\"FR\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW194899589 BCX0\">Hồi sức cấp cứu</span></span><span class=\"TextRun SCXW194899589 BCX0\" lang=\"FR\" xml:lang=\"FR\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW194899589 BCX0\">: Sốc phản vệ, Ngộ độc</span></span><span class=\"LineBreakBlob BlobObject DragDrop SCXW194899589 BCX0\"><span class=\"SCXW194899589 BCX0\">&nbsp;</span></span><span class=\"TextRun SCXW194899589 BCX0\" lang=\"FR\" xml:lang=\"FR\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW194899589 BCX0\">thuốc tê, cấp cứu cơ bản nâng cao....</span></span><span class=\"LineBreakBlob BlobObject DragDrop SCXW194899589 BCX0\"><span class=\"SCXW194899589 BCX0\">&nbsp;</span><br class=\"SCXW194899589 BCX0\"></span></span></span></span></span></span></span></li>\r\n<li><span class=\"TextRun SCXW265984379 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW265984379 BCX0\"><span class=\"TextRun SCXW28469651 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW28469651 BCX0\"><span class=\"EOP SCXW222732972 BCX0\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259}\"><span class=\"EOP SCXW5072788 BCX0\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259}\"><span class=\"TextRun SCXW194899589 BCX0\" lang=\"FR\" xml:lang=\"FR\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW194899589 BCX0\">Kinh nghiệm xử trí biến chứng, tai biến trong Thẩm mỹ</span></span><span class=\"LineBreakBlob BlobObject DragDrop SCXW194899589 BCX0\"><span class=\"SCXW194899589 BCX0\">&nbsp;N</span></span><span class=\"TextRun SCXW194899589 BCX0\" lang=\"FR\" xml:lang=\"FR\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW194899589 BCX0\">ội và Ngoại khoa</span></span><span class=\"EOP SCXW194899589 BCX0\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259}\">&nbsp;</span></span></span></span></span></span></span></li>\r\n</ul>\r\n<h3><span data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259,&quot;469777462&quot;:[1440],&quot;469777927&quot;:[0],&quot;469777928&quot;:[1]}\">Quá trình công tác</span></h3>\r\n<ul>\r\n<li><span data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259,&quot;469777462&quot;:[1440],&quot;469777927&quot;:[0],&quot;469777928&quot;:[1]}\"><span class=\"TextRun SCXW8844612 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW8844612 BCX0\">Phòng khám Chuyên khoa Da liễu Táo đỏ TP. HCM</span></span><span class=\"EOP SCXW8844612 BCX0\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259}\">&nbsp;(Nay)&nbsp;</span></span></li>\r\n<li><span data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259,&quot;469777462&quot;:[1440],&quot;469777927&quot;:[0],&quot;469777928&quot;:[1]}\"><span class=\"EOP SCXW8844612 BCX0\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259}\"><span class=\"TextRun SCXW1425558 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW1425558 BCX0\"><span class=\"TextRun SCXW171651893 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW171651893 BCX0\">Bệnh viện Đa khoa Tâm Trí Sài gòn</span></span><span class=\"EOP SCXW171651893 BCX0\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259}\">&nbsp;</span></span></span></span></span></li>\r\n<li><span data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259,&quot;469777462&quot;:[1440],&quot;469777927&quot;:[0],&quot;469777928&quot;:[1]}\"><span class=\"TextRun SCXW1425558 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW1425558 BCX0\">Bệnh viện Nguyễn Tri Phương, Bệnh viện Đa khoa Hạng I Thành phố Hồ Chí Minh (<span class=\"TextRun SCXW223775742 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW223775742 BCX0\">2017- 2020)&nbsp;</span></span></span></span></span></li>\r\n</ul>\r\n<h3><span data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259,&quot;469777462&quot;:[1440],&quot;469777927&quot;:[0],&quot;469777928&quot;:[1]}\">Quá trình đào tạo</span></h3>\r\n<ul>\r\n<li><span data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259,&quot;469777462&quot;:[1440],&quot;469777927&quot;:[0],&quot;469777928&quot;:[1]}\">Bác sĩ Chuyên khoa I Da liễu, Đại học Y dược&nbsp;TP. HCM</span></li>\r\n<li><span data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259,&quot;469777462&quot;:[1440],&quot;469777927&quot;:[0],&quot;469777928&quot;:[1]}\">Bác sĩ Đa khoa, Đại học Y dược TP. HCM</span></li>\r\n</ul>\r\n<h3>Chứng chỉ trong và ngoài nước</h3>\r\n<ul>\r\n<li><span class=\"TextRun SCXW265984379 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW265984379 BCX0\">Tiêm chất làm đầy (</span><span class=\"NormalTextRun SpellingErrorV2Themed SCXW265984379 BCX0\">Filler</span><span class=\"NormalTextRun SCXW265984379 BCX0\">) trong thẩm mỹ da, Đại học Y dược Thành phố Hồ Chí Minh</span></span></li>\r\n<li><span class=\"TextRun SCXW265984379 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW265984379 BCX0\"><span class=\"TextRun SCXW28469651 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW28469651 BCX0\">LASER, ánh sáng, sóng cao tầng và siêu âm hội tụ trong Da liễu và Thẩm mỹ da,&nbsp;Đại học Y dược Thành phố Hồ Chí Minh</span></span></span></span></li>\r\n<li><span class=\"TextRun SCXW265984379 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW265984379 BCX0\"><span class=\"TextRun SCXW28469651 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW28469651 BCX0\"><span class=\"TextRun SCXW222732972 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW222732972 BCX0\">Căng chỉ cơ bản trong Thẩm mỹ da, Đại học Y dược Thành phố Hồ Chí Minh</span></span></span></span></span></span></li>\r\n<li><span class=\"TextRun SCXW265984379 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW265984379 BCX0\"><span class=\"TextRun SCXW28469651 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW28469651 BCX0\"><span class=\"EOP SCXW222732972 BCX0\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259}\"><span class=\"TextRun SCXW5072788 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW5072788 BCX0\">Sư phạm Y học cơ bản,&nbsp;<span class=\"TextRun SCXW167774039 BCX0\" lang=\"FR\" xml:lang=\"FR\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW167774039 BCX0\">Đại học Y Hà Nội</span></span><span class=\"EOP SCXW167774039 BCX0\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259}\">&nbsp;</span></span></span></span></span></span></span></span></li>\r\n<li><span class=\"TextRun SCXW265984379 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW265984379 BCX0\"><span class=\"TextRun SCXW28469651 BCX0\" lang=\"VI-VN\" xml:lang=\"VI-VN\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW28469651 BCX0\"><span class=\"EOP SCXW222732972 BCX0\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259}\"><span class=\"EOP SCXW5072788 BCX0\" data-ccp-props=\"{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559738&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:259}\"><span class=\"TextRun SCXW194899589 BCX0\" lang=\"FR\" xml:lang=\"FR\" data-contrast=\"none\"><span class=\"NormalTextRun SCXW194899589 BCX0\">Các chứng chỉ đào tạo liên tục trong Da liễu Thẩm mỹ…</span></span><span class=\"LineBreakBlob BlobObject DragDrop SCXW194899589 BCX0\"><span class=\"SCXW194899589 BCX0\">&nbsp;</span></span></span></span></span></span></span></span></li>\r\n</ul>",
+  "banggia": "",
+  "dulieu_thietbi": [],
+  "feedback": [],
+  "dulieu_goikham": null,
+  "schemaEnabled": true,
+  "aiPartnerId": 36
+}

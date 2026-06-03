@@ -8,7 +8,7 @@ exports.login = async (req, res) => {
 
     const token = jwt.sign(
       { id: user.id, username: user.username, role: user.role },
-      process.env.JWT_SECRET,
+      process.env.JWT_SECRET || 'carenow_secret_key_2024',
       { expiresIn: process.env.JWT_EXPIRES || '8h' }
     );
 
@@ -21,7 +21,8 @@ exports.login = async (req, res) => {
           username: user.username,
           display_name: user.display_name,
           role: user.role,
-          avatar: user.avatar
+          avatar: user.avatar,
+          partner_id: user.partner_id
         }
       }
     });

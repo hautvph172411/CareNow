@@ -24,7 +24,7 @@ const findAll = async (query = {}) => {
   const values = [];
   let count = 1;
 
-  if (query.status !== undefined) {
+  if (query.status !== undefined && query.status !== '') {
     q += ` AND cs.status = $${count}`;
     values.push(query.status);
     count++;
@@ -94,12 +94,21 @@ const remove = async (id) => {
   return result.rows[0];
 };
 
+/** Đếm số bác sĩ đang được gán chuyên khoa có id này */
+const countClinicsUsing = async (specialtyId) => {
+  const r = await pool.query(
+    `SELECT COUNT(*) FROM tbl_clinic WHERE $1::text = ANY(STRING_TO_ARRAY(specialist_ids, ','))`,
+    [String(specialtyId)]
+  );
+  return parseInt(r.rows[0].count, 10);
+};
+
 const count = async (query = {}) => {
   let q = 'SELECT COUNT(*) FROM tbl_clinic_specialist WHERE 1=1';
   const values = [];
   let countParam = 1;
 
-  if (query.status !== undefined) {
+  if (query.status !== undefined && query.status !== '') {
     q += ` AND status = $${countParam}`;
     values.push(query.status);
     countParam++;
@@ -125,5 +134,6 @@ module.exports = {
   findById,
   update,
   remove,
-  count
+  count,
+  countClinicsUsing,
 };

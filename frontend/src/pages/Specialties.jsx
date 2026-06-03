@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Search, Plus, Edit2, Trash2, Eye } from 'lucide-react'
+import { Search, Plus, Edit2, Trash2, Eye, Filter } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import AdminLayout from '../layouts/AdminLayout'
 import { getSpecialties, deleteSpecialty, updateSpecialty } from '../api/specialty.api'
@@ -11,7 +11,9 @@ export default function Specialties() {
     const [specialties, setSpecialties] = useState([])
     const [services, setServices] = useState([])
     const [searchTerm, setSearchTerm] = useState('')
+    const [showSearch, setShowSearch] = useState(false)
     const [serviceFilter, setServiceFilter] = useState('')
+    const [filterStatus, setFilterStatus] = useState('')
     const [isLoading, setIsLoading] = useState(true)
 
     // Pagination
@@ -22,7 +24,7 @@ export default function Specialties() {
     const fetchSpecialties = async (page = 1) => {
         setIsLoading(true);
         try {
-            const params = { page, limit, keyword: searchTerm };
+            const params = { page, limit, keyword: searchTerm, status: filterStatus };
             if (serviceFilter !== '') params.service_id = serviceFilter;
             const res = await getSpecialties(params);
             if (res && res.data) {
@@ -95,36 +97,59 @@ export default function Specialties() {
     return (
         <AdminLayout pageTitle="Quản lý Chuyên Khoa">
             <div className="management-header">
-                <div className="search-box">
-                    <Search size={20} />
-                    <input
-                        type="text"
-                        placeholder="Tìm chuyên khoa..."
-                        value={searchTerm}
-                        onChange={(e) => handleSearch(e.target.value)}
-                    />
+                <div style={{ flex: 1 }}></div>
+                <div style={{ display: 'flex', gap: '10px' }}>
+                    <button className="btn btn-secondary" onClick={() => setShowSearch(!showSearch)} style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                        <Filter size={18} /> Bộ lọc
+                    </button>
+                    <button className="btn-primary" onClick={() => navigate('/specialties/admin/add')}>
+                        <Plus size={20} />
+                        Thêm chuyên khoa
+                    </button>
                 </div>
-                <select
-                    value={serviceFilter}
-                    onChange={(e) => setServiceFilter(e.target.value)}
-                    style={{
-                        padding: '0.6rem 0.8rem',
-                        border: '1px solid #cbd5e1',
-                        borderRadius: 6,
-                        fontSize: 14,
-                        background: '#fff',
-                        minWidth: 200,
-                    }}
-                >
-                    <option value="">Tất cả dịch vụ</option>
-                    {services.map(s => (
-                        <option key={s.id} value={s.id}>{s.name}</option>
-                    ))}
-                </select>
-                <button className="btn-primary" onClick={() => navigate('/specialties/admin/add')}>
-                    <Plus size={20} />
-                    Thêm chuyên khoa
-                </button>
+            </div>
+
+            <div className={`filter-section ${showSearch ? 'show' : ''}`}>
+                <div className="filter-container">
+                    
+          <select 
+            className="form-input" 
+            style={{ width: '180px', margin: 0 }}
+            value={filterStatus}
+            onChange={(e) => setFilterStatus(e.target.value)}
+          >
+            <option value="">Tất cả trạng thái</option>
+            <option value="1">Đang hoạt động</option>
+            <option value="0">Ngưng hoạt động</option>
+          </select>
+
+          <div className="search-box" style={{ margin: 0, flex: 1, minWidth: '250px' }}>
+                        <Search size={20} />
+                        <input
+                            type="text"
+                            placeholder="Tìm chuyên khoa..."
+                            value={searchTerm}
+                            onChange={(e) => handleSearch(e.target.value)}
+                        />
+                    </div>
+                    <select
+                        value={serviceFilter}
+                        onChange={(e) => setServiceFilter(e.target.value)}
+                        style={{
+                            padding: '0.6rem 0.8rem',
+                            border: '1px solid #cbd5e1',
+                            borderRadius: 6,
+                            fontSize: 14,
+                            background: '#fff',
+                            width: '200px'
+                        }}
+                    >
+                        <option value="">Tất cả dịch vụ</option>
+                        {services.map(s => (
+                            <option key={s.id} value={s.id}>{s.name}</option>
+                        ))}
+                    </select>
+                </div>
             </div>
 
             <div className="management-section">

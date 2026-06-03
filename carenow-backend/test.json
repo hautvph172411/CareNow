@@ -1,0 +1,1667 @@
+{
+  "notification": {
+    "enabled": true,
+    "title": "THÔNG BÁO NGHỈ LỄ 30/04 - 01/05",
+    "message": "Hệ thống BookingCare vẫn hoạt động 24/7. Bộ phận CSKH nghỉ từ ngày 30/04 - 03/05. Chúc Quý khách có kỳ nghỉ lễ an vui, hạnh phúc. Xin cảm ơn!",
+    "color": "#8bd0e7",
+    "startDate": 1777460400,
+    "endDate": 1777827599,
+    "image": "https://cdn.bookingcare.vn/fo/w640/2024/08/30/144102-banner-2-thang-9.png"
+  },
+  "tabs": [
+    {
+      "id": 0,
+      "title": "Tất cả",
+      "image": "",
+      "description": "",
+      "active": true
+    },
+    {
+      "id": 17,
+      "title": "Tại nhà",
+      "url": "tai-nha",
+      "image": "2023/11/02/113503-dich-vu-cham-soc-suc-khoe-tai-nha.png",
+      "description": "BookingCare mang đến giải pháp giúp người bệnh chủ động chăm sóc sức khỏe tại nhà nhanh chóng, thuận tiện thông qua việc khám bệnh online từ xa, hỏi đáp bác sĩ và xét nghiệm tại nhà,...",
+      "active": false
+    },
+    {
+      "id": 18,
+      "title": "Tại viện",
+      "url": "tai-vien",
+      "image": "2023/11/02/113502-dat-kham-tai-co-so-y-te.png",
+      "description": " Chủ động đặt trước lịch khám, dịch vụ y tế tại các bệnh viện, phòng khám - Đơn giản, nhanh chóng, tiện lợi",
+      "active": false
+    },
+    {
+      "id": 15,
+      "title": "Sống khỏe",
+      "url": "song-khoe",
+      "image": "2023/11/02/142138-song-khoe-suot-doi-1.png",
+      "description": "Hiểu để Sống khỏe - BookingCare chia sẻ các bài viết bệnh lý chính xác, tin cậy được viết, kiểm duyệt bởi bác sĩ chuyên khoa là nguồn tham khảo hữu ích cho người đọc trong quá trình chăm sóc, điều trị và phòng ngừa.",
+      "active": false
+    }
+  ],
+  "list": [
+    {
+      "type": 0,
+      "header": {
+        "title": ""
+      },
+      "data": [
+        {
+          "id": 0,
+          "image": "",
+          "title": "",
+          "url": ""
+        }
+      ],
+      "navigation": 0,
+      "subtype": 0
+    },
+    {
+      "header": {
+        "title": "Tìm kiếm bác sĩ, bệnh viện, phòng khám, dịch vụ y tế và đặt lịch khám",
+        "subtitle": "Sản phẩm hỗ trợ bởi AI",
+        "textColor": "text-black"
+      },
+      "data": [
+        {
+          "id": 1371,
+          "title": "Tôi không tìm thấy địa chỉ đang ở để đặt lịch?",
+          "image": "https://cdn.bookingcare.vn/fo/2024/07/08/121416-question1.png"
+        },
+        {
+          "id": 1461,
+          "title": "Địa chỉ khám tim mạch tốt ở Hà Nội?",
+          "image": "https://cdn.bookingcare.vn/fo/2024/07/08/121416-question2.png"
+        },
+        {
+          "id": 1360,
+          "title": "Tôi điền sai thông tin số điện thoại trong lịch khám bệnh viện Chợ Rẫy có đổi được không?",
+          "image": "https://cdn.bookingcare.vn/fo/2024/07/08/121416-question3.png"
+        },
+        {
+          "id": 1421,
+          "title": "Tôi lỡ đăng ký khám bệnh có bảo hiểm y tế tại Bệnh viện Chợ Rẫy nhưng tôi không có giấy chuyển viện được không?",
+          "image": "https://cdn.bookingcare.vn/fo/2024/07/08/121416-question1.png"
+        }
+      ],
+      "type": 7,
+      "ctas": [
+        {
+          "title": "Chọn bệnh viện/phòng khám",
+          "url": "/tro-ly-ai/benh-vien-top-dau-i1"
+        },
+        {
+          "title": "Khám chuyên khoa/bác sĩ",
+          "url": "/tro-ly-ai/kham-chuyen-khoa-i27"
+        }
+      ],
+      "placeholder": "Hỏi Trợ lý AI cách đặt lịch khám",
+      "background": "bg-[#49BCE2]",
+      "recaptchaEnabled": false,
+      "aiPartnerIds": [
+        1,
+        32,
+        28,
+        31,
+        35,
+        36
+      ],
+      "aiPartnerList": [
+        {
+          "id": "1",
+          "title": "Trợ lý AI đặt lịch",
+          "description": "Tìm kiếm thông tin bác sĩ, nơi khám và đặt lịch khám",
+          "image": "https://cdn.bookingcare.vn/fo/2025/09/10/164936-datlich.png",
+          "url": "https://bookingcare.vn/tro-ly-ai/dat-lich-i1"
+        },
+        {
+          "id": "36",
+          "title": "Tìm kiếm chuyên sâu",
+          "description": "Công cụ tìm kiếm và tư vấn sâu về bác sĩ và cơ sở y tế",
+          "image": "https://cdn.bookingcare.vn/fo/2026/02/05/191349-deepqa.png",
+          "url": "https://bookingcare.vn/tim-kiem-chuyen-sau"
+        },
+        {
+          "id": "28",
+          "title": "Trợ lý thẩm mỹ",
+          "description": "Tìm kiếm địa chỉ, bác sĩ thẩm mỹ uy tín.",
+          "image": "https://cdn.bookingcare.vn/fo/2025/09/09/142548-phauthuatthammy.png",
+          "url": "https://bookingcare.vn/tro-ly/phau-thuat-tham-my-i28"
+        },
+        {
+          "id": "32",
+          "title": "Trợ lý niềng răng",
+          "description": "Tìm kiếm địa chỉ, bác sĩ niềng răng giàu kinh nghiệm.",
+          "image": "https://cdn.bookingcare.vn/fo/2025/10/01/110619-nieng-rang.png",
+          "url": "https://bookingcare.vn/tro-ly/nieng-rang-i32"
+        },
+        {
+          "id": "31",
+          "title": "Trợ lý trị mụn",
+          "description": "Tìm bác sĩ, dịch vụ, cơ sở chuyên về điều trị mụn.",
+          "image": "https://cdn.bookingcare.vn/fo/2025/09/09/142548-dalieutrimun.png",
+          "url": "https://bookingcare.vn/tro-ly/da-lieu-tri-mun-i31"
+        }
+      ]
+    },
+    {
+      "header": {
+        "title": "Dịch vụ toàn diện"
+      },
+      "data": [
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/06/07/161905-iconkham-chuyen-khoa.png",
+          "title": "Khám\r\nChuyên khoa",
+          "description": "chuyenkhoa",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa",
+          "id": 1
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/06/07/161817-iconkham-tu-xa.png",
+          "title": "Khám\r\ntừ xa",
+          "description": "khamtuxa",
+          "url": "/dich-vu-y-te/kham-tu-xa",
+          "id": 2
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/06/07/161350-iconkham-tong-quan.png",
+          "title": "Khám\r\ntổng quát",
+          "description": "Khám sức khỏe tổng quát định kỳ là biện pháp hữu hiệu giúp tầm soát những bệnh nguy hiểm từ giai đoạn sớm và tư vấn phòng chống những căn bệnh thường gặp, giúp bảo vệ sức khỏe và nâng cao chất lượng sống đồng thời nhìn lại sức khỏe bản thân, tránh được các lo lắng về sức khỏe.",
+          "url": "/dich-vu-y-te/kham-tong-quat",
+          "id": 3
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/06/07/161340-iconxet-nghiem-y-hoc.png",
+          "title": "Xét nghiệm\r\ny học",
+          "description": "xetnghiem",
+          "url": "/dich-vu-y-te/xet-nghiem-y-hoc",
+          "id": 4
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/06/07/161403-iconsuc-khoe-tinh-than.png",
+          "title": "Sức khỏe \r\ntinh thần ",
+          "description": "khamtinhthan",
+          "url": "/dich-vu-y-te/kham-tinh-than",
+          "id": 5
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/06/07/161410-iconkham-nha-khoa.png",
+          "title": "Khám \r\nnha khoa",
+          "description": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/nha-khoa-s33",
+          "url": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/nha-khoa-s33",
+          "id": 6
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/06/07/161421-icongoi-phau-thuat.png",
+          "title": "Gói\r\nPhẫu thuật",
+          "description": "goiphauthuat",
+          "url": "/dich-vu-y-te/goi-phau-thuat",
+          "id": 7
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/09/20/145257-thiet-ke-chua-co-ten-3.png",
+          "title": "Sống khỏe\r\nTiểu đường",
+          "description": "",
+          "url": "/tieu-duong",
+          "id": 16
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/06/07/161442-iconbai-test-suc-khoe2.png",
+          "title": "Bài Test\r\nSức khỏe",
+          "description": "Khám phá hệ thống bài test sức khỏe toàn diện với nhiều chủ đề như trầm cảm, stress, lo âu, sức khỏe tinh thần, răng miệng và nhiều lĩnh vực khác. Các bài test được thiết kế khoa học, dễ thực hiện, giúp bạn tự đánh giá tình trạng sức khỏe, phát hiện sớm các dấu hiệu bất thường và nhận gợi ý chăm sóc phù hợp cho bản thân và gia đình.",
+          "url": "/bai-test",
+          "id": 12
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/07/06/163421-153524-near-home-01.png",
+          "title": "Y tế\r\ngần bạn",
+          "description": "Khám phá tính năng gợi ý dịch vụ y tế gần bạn, giúp bạn tiết kiệm thời gian, dễ dàng tìm kiếm, kết nối với các cơ sở y tế, bác sĩ trong khu vực lân cận.",
+          "url": "/y-te-gan-ban",
+          "id": 14
+        }
+      ],
+      "type": 3,
+      "subtype": 1,
+      "navigation": 1
+    },
+    {
+      "header": {
+        "title": "Chuyên khoa",
+        "cta": {
+          "title": "Xem thêm",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa"
+        }
+      },
+      "data": [
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101627-co-xuong-khop.png",
+          "title": "Cơ Xương Khớp",
+          "description": "Lựa chọn Đặt lịch khám hoặc Tư vấn chữa bệnh với Bác sĩ giỏi - uy tín - đầu ngành Cơ Xương Khớp tại các Phòng khám uy tín tin cậy",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/co-xuong-khop-s1",
+          "id": 1
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101739-than-kinh.png",
+          "title": "Thần kinh",
+          "description": "Lựa chọn Đặt lịch khám hoặc Tư vấn chữa bệnh với Bác sĩ giỏi - uy tín - đầu ngành chuyên khoa Thần Kinh tại các Phòng khám uy tín tin cậy",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/than-kinh-s18",
+          "id": 18
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101713-tieu-hoa.png",
+          "title": "Tiêu hóa",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/tieu-hoa-s22",
+          "id": 22
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101713-tim-mach.png",
+          "title": "Tim mạch",
+          "description": "Lựa chọn đặt lịch khám hoặc tư vấn chữa bệnh với bác sĩ giỏi, chuyên gia đầu ngành Tim Mạch tại các phòng khám uy tín",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/tim-mach-s3",
+          "id": 3
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101713-tai-mui-hong.png",
+          "title": "Tai Mũi Họng",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/tai-mui-hong-s4",
+          "id": 4
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101627-cot-song.png",
+          "title": "Cột sống",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/cot-song-s24",
+          "id": 24
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101739-y-hoc-co-truyen.png",
+          "title": "Y học Cổ truyền",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/y-hoc-co-truyen-s39",
+          "id": 39
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101627-cham-cuu.png",
+          "title": "Châm cứu",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/cham-cuu-s40",
+          "id": 40
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101713-san-phu-khoa.png",
+          "title": "Sản Phụ khoa",
+          "description": "Lịch khám và điều trị của các bác sĩ chuyên gia sản phụ khoa giỏi ở Hà Nội",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/san-phu-khoa-s19",
+          "id": 19
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101713-sieu-am-thai.png",
+          "title": "Siêu âm thai",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/sieu-am-thai-s10",
+          "id": 10
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101655-nhi-khoa.png",
+          "title": "Nhi khoa",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/nhi-khoa-s5",
+          "id": 5
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101638-da-lieu.png",
+          "title": "Da liễu",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/da-lieu-s11",
+          "id": 11
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101739-viem-gan.png",
+          "title": "Bệnh Viêm gan",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/benh-viem-gan-s28",
+          "id": 28
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101713-suc-khoe-tam-than.png",
+          "title": "Sức khỏe tâm thần",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/suc-khoe-tam-than-s27",
+          "id": 27
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101638-di-ung-mien-dich.png",
+          "title": "Dị ứng miễn dịch",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/di-ung-mien-dich-s36",
+          "id": 36
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101638-ho-hap-phoi.png",
+          "title": "Hô hấp - Phổi",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/ho-hap-phoi-s43",
+          "id": 43
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101655-ngoai-than-kinh.png",
+          "title": "Ngoại thần kinh",
+          "description": "Lựa chọn Đặt lịch khám hoặc Tư vấn chữa bệnh với Bác sĩ giỏi - uy tín - đầu ngành chuyên khoa Ngoại Thần Kinh tại các Phòng khám uy tín tin cậy",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/ngoai-than-kinh-s71",
+          "id": 71
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101655-nam-hoc.png",
+          "title": "Nam học",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/nam-hoc-s26",
+          "id": 26
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101638-mat.png",
+          "title": "Chuyên khoa Mắt",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/chuyen-khoa-mat-s29",
+          "id": 29
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101739-than-tiet-nieu.png",
+          "title": "Thận - Tiết niệu",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/than-tiet-nieu-s32",
+          "id": 32
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101655-noi-khoa.png",
+          "title": "Nội khoa",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/noi-khoa-s17",
+          "id": 17
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101655-nha-khoa.png",
+          "title": "Nha khoa",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/nha-khoa-s33",
+          "id": 33
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101713-tieu-duong.png",
+          "title": "Tiểu đường - Nội tiết",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/tieu-duong-noi-tiet-s21",
+          "id": 21
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101713-phuc-hoi-chuc-nang.png",
+          "title": "Phục hồi chức năng",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/phuc-hoi-chuc-nang-s30",
+          "id": 30
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101627-cong-huong-tu.png",
+          "title": "Chụp Cộng hưởng từ",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/chup-cong-huong-tu-s7",
+          "id": 7
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101627-chup-cat-lop.png",
+          "title": "Chụp cắt lớp vi tính",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/chup-cat-lop-vi-tinh-s8",
+          "id": 8
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101655-noi-soi-tieu-hoa.png",
+          "title": "Nội soi Tiêu hóa",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/noi-soi-tieu-hoa-s9",
+          "id": 9
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101739-ung-buou.png",
+          "title": "Ung bướu",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/ung-buou-s15",
+          "id": 15
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101638-da-lieu-tham-my.png",
+          "title": "Da liễu thẩm mỹ",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/da-lieu-tham-my-s72",
+          "id": 72
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101739-truyen-nhiem.png",
+          "title": "Truyền nhiễm",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/truyen-nhiem-s74",
+          "id": 74
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101713-tao-hinh-ham-mat.png",
+          "title": " Phẫu thuật Tạo hình - Thẩm Mỹ",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/phau-thuat-tao-hinh-tham-my-s42",
+          "id": 42
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101739-tu-van-tam-ly.png",
+          "title": "Tư vấn, trị liệu Tâm lý",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/tu-van-tri-lieu-tam-ly-s66",
+          "id": 66
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101739-vo-sinh-hiem-muon.png",
+          "title": "Vô sinh - Hiếm muộn",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/vo-sinh-hiem-muon-s67",
+          "id": 67
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101627-chan-thuong-chinh-hinh.png",
+          "title": "Chấn thương chỉnh hình",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/chan-thuong-chinh-hinh-s73",
+          "id": 73
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101655-nieng-rang.png",
+          "title": "Niềng răng",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/nieng-rang-s105",
+          "id": 105
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101627-boc-rang-su.png",
+          "title": "Bọc răng sứ",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/boc-rang-su-s106",
+          "id": 106
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101739-trong-rang.png",
+          "title": "Trồng răng implant",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/trong-rang-implant-s107",
+          "id": 107
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101655-nho-rang-khon.png",
+          "title": "Nhổ răng khôn",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/nho-rang-khon-s108",
+          "id": 108
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/104709-nha-khoa-tong-quat.png",
+          "title": "Nha khoa tổng quát",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/nha-khoa-tong-quat-s109",
+          "id": 109
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101655-nha-khoa-tre-em.png",
+          "title": "Nha khoa trẻ em",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/nha-khoa-tre-em-s110",
+          "id": 110
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101739-tuyen-giap.png",
+          "title": "Tuyến giáp",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/tuyen-giap-s116",
+          "id": 116
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/10/16/115336-vu.png",
+          "title": "Chuyên khoa Vú",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/chuyen-khoa-vu-s118",
+          "id": 118
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/12/09/094443-ngoai-khoa.png",
+          "title": "Ngoại khoa",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/ngoai-khoa-s119",
+          "id": 119
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/12/18/141654-huyen-icon-chuyen-khoa.png",
+          "title": "Chụp X-quang",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/chup-x-quang-s123",
+          "id": 123
+        }
+      ],
+      "type": 4,
+      "subtype": 1,
+      "navigation": 1
+    },
+    {
+      "header": {
+        "title": "Cơ sở y tế",
+        "cta": {
+          "title": "Xem thêm",
+          "url": "/co-so-y-te/tat-ca"
+        }
+      },
+      "data": [
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2018/06/18/083122lo-go-viet-duc.jpg",
+          "title": "Bệnh viện Hữu nghị Việt Đức",
+          "description": "Từ nay, người bệnh có thể đặt lịch tại Khu khám bệnh theo yêu cầu, Bệnh viện Hữu nghị Việt Đức thông qua hệ thống đặt khám BookingCare",
+          "url": "/co-so-y-te/benh-vien-huu-nghi-viet-duc-p58",
+          "id": 58
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/08/26/092249-doctor-check.jpg",
+          "title": "Doctor Check - Tầm Soát Bệnh Để Sống Thọ Hơn",
+          "description": "Hãy đặt khám với Doctor Check - Tầm Soát Bệnh Để Sống Thọ Hơn trên Nền tảng Y tế Chăm sóc sức khỏe toàn diện BookingCare",
+          "url": "/co-so-y-te/doctor-check--tam-soat-benh-de-song-tho-hon-p450",
+          "id": 450
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/07/14/155206-logo-y-duoc-1.jpg",
+          "title": "Phòng khám Bệnh viện Đại học Y Dược 1",
+          "description": "Từ nay, người bệnh có thể đặt khám Phòng khám Bệnh viện Đại học Y Dược 1 thông qua hệ thống đặt khám BookingCare",
+          "url": "/co-so-y-te/phong-kham-benh-vien-dai-hoc-y-duoc-1-p154",
+          "id": 154
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/05/16/153236-logo-hung-viet.jpg",
+          "title": "Bệnh viện Ung bướu Hưng Việt",
+          "description": "Từ nay, người bệnh có thể đặt khám Bệnh viện Ung bướu Hưng Việt thông qua hệ thống đặt khám BookingCare",
+          "url": "/co-so-y-te/benh-vien-ung-buou-hung-viet-p137",
+          "id": 137
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/08/29/104922-logo-med-tai-ha-noi--01.png",
+          "title": "Hệ thống y tế MEDLATEC",
+          "description": "Hãy đặt lịch với Hệ thống y tế MEDLATEC trên Nền tảng Y tế Chăm sóc sức khỏe toàn diện BookingCare",
+          "url": "/co-so-y-te/he-thong-y-te-medlatec-p481",
+          "id": 481
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/06/16/155430-logo-diag.jpg",
+          "title": "Trung tâm xét nghiệm Diag Laboratories",
+          "description": "Hãy đặt lịch với Trung tâm xét nghiệm Diag Laboratories trên Nền tảng Y tế Chăm sóc sức khỏe toàn diện BookingCare",
+          "url": "/co-so-y-te/trung-tam-xet-nghiem-diag-laboratories-p404",
+          "id": 404
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2021/04/07/103904-logo-thucuc.png",
+          "title": "Hệ thống Y tế Thu Cúc TCI",
+          "description": "Hãy đặt lịch khám với Hệ thống Y tế Thu Cúc TCI trên Nền tảng Y tế Chăm sóc sức khỏe toàn diện BookingCare",
+          "url": "/co-so-y-te/he-thong-y-te-thu-cuc-tci-p313",
+          "id": 313
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/06/18/114326-benh-vien-nam-hoc-va-hiem-muon-ha-noi.png",
+          "title": "Bệnh viện Nam học và Hiếm muộn Hà Nội",
+          "description": "Từ nay, người bệnh có thể đặt khám Bệnh viện Nam Học và Hiếm Muộn Hà Nội thông qua hệ thống đặt khám BookingCare",
+          "url": "/co-so-y-te/benh-vien-nam-hoc-va-hiem-muon-ha-noi-p160",
+          "id": 160
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/01/28/165735-logo-hong-phat.png",
+          "title": "Bệnh viện Đa khoa Hồng Phát",
+          "description": "Từ nay, người bệnh có thể đặt khám tại Bệnh viện Đa khoa Hồng Phát thông qua hệ thống đặt khám BookingCare",
+          "url": "/co-so-y-te/benh-vien-da-khoa-hong-phat-p6",
+          "id": 6
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/07/18/114029-anh1.jpg",
+          "title": "Bệnh viện Đa khoa An Việt",
+          "description": "Từ nay, người bệnh có thể đặt lịch tại Bệnh viện Đa khoa An Việt thông qua hệ thống đặt khám BookingCare",
+          "url": "/co-so-y-te/benh-vien-da-khoa-an-viet-p4",
+          "id": 4
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2020/06/05/160857-791310225786250729637925205413557167980544o.jpg",
+          "title": "Khoa khám bệnh - Bệnh viện Y học cổ truyền Trung ương ",
+          "description": "Từ nay, người bệnh có thể đặt khám tại Bệnh viện Y học Cổ truyền Trung ương thông qua hệ thống đặt khám BookingCare",
+          "url": "/co-so-y-te/khoa-kham-benh--benh-vien-y-hoc-co-truyen-trung-uong--p95",
+          "id": 95
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/12/02/170119-logobaoson.png",
+          "title": "Bệnh viện Đa khoa Bảo Sơn 2",
+          "description": "Từ nay, người bệnh có thể đặt khám tại Bệnh viện Bảo Sơn 2 thông qua hệ thống đặt khám BookingCare",
+          "url": "/co-so-y-te/benh-vien-da-khoa-bao-son-2-p7",
+          "id": 7
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2018/06/18/143606logo-phong-kham-viet-life.png",
+          "title": "Hệ Thống phòng khám Vietlife ",
+          "description": "Từ nay, người bệnh có thể đặt khám tại Hệ thống phòng khám Vietlife thông qua hệ thống đặt khám BookingCare",
+          "url": "/co-so-y-te/he-thong-phong-kham-vietlife--p2",
+          "id": 2
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/05/12/101707-logo-sg.png",
+          "title": "Phòng khám Đa khoa Saigon Healthcare",
+          "description": "Hãy đặt khám với Phòng khám Đa khoa Saigon Healthcare trên Nền tảng Y tế Chăm sóc sức khỏe toàn diện BookingCare",
+          "url": "/co-so-y-te/phong-kham-da-khoa-saigon-healthcare-p252",
+          "id": 252
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2018/07/02/175558benh-vien-lao-khoa-lo-go-1.jpeg",
+          "title": "Bệnh viện Lão khoa Trung ương",
+          "description": "Từ nay, người bệnh có thể đặt lịch tại Khoa khám bệnh theo yêu cầu và Quốc tế, Bệnh viện Lão khoa Trung ương thông qua hệ thống đặt khám BookingCare",
+          "url": "/co-so-y-te/benh-vien-lao-khoa-trung-uong-p101",
+          "id": 101
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2018/05/11/181208mediteclogo.jpeg",
+          "title": "Phòng khám Đa khoa Meditec",
+          "description": "Hãy đặt khám với Phòng khám Đa khoa Meditec trên Nền tảng Y tế Chăm sóc sức khỏe toàn diện BookingCare",
+          "url": "/co-so-y-te/phong-kham-da-khoa-meditec-p27",
+          "id": 27
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/05/09/162239-logo-sto.jpg",
+          "title": "Bệnh viện STO Phương Đông",
+          "description": "Hãy đặt khám với Bệnh viện STO Phương Đông trên Nền tảng Y tế Chăm sóc sức khỏe toàn diện BookingCare",
+          "url": "/co-so-y-te/benh-vien-sto-phuong-dong-p155",
+          "id": 155
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/12/18/094109-anh-bslogo-6.png",
+          "title": "Bệnh viện Mắt quốc tế DND",
+          "description": "Hãy đặt khám với Bệnh viện Mắt quốc tế DND trên Nền tảng Y tế Chăm sóc sức khỏe toàn diện BookingCare",
+          "url": "/co-so-y-te/benh-vien-mat-quoc-te-dnd-p52",
+          "id": 52
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/09/07/091211-logo-dong-do.jpg",
+          "title": "Bệnh viện Đa khoa Đông Đô",
+          "description": "Hãy đặt khám với Bệnh viện Đa khoa Đông Đô trên Nền tảng Y tế Chăm sóc sức khỏe toàn diện BookingCare",
+          "url": "/co-so-y-te/benh-vien-da-khoa-dong-do-p3",
+          "id": 3
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/05/27/161330-an-duc.png",
+          "title": "Phòng khám Phổi quốc tế An Đức",
+          "description": "Hãy đặt khám với Phòng khám Phòng khám Phổi quốc tế An Đức trên Nền tảng Y tế Chăm sóc sức khỏe toàn diện BookingCare",
+          "url": "/co-so-y-te/phong-kham-phoi-quoc-te-an-duc-p182",
+          "id": 182
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/12/05/113007-logo-2.png",
+          "title": "Phòng khám Đa khoa Quốc tế Golden Healthcare",
+          "description": "Từ nay, người bệnh có thể đặt lịch tại Phòng khám Đa khoa Quốc tế Golden Healthcare thông qua hệ thống đặt khám BookingCare",
+          "url": "/co-so-y-te/phong-kham-da-khoa-quoc-te-golden-healthcare-p295",
+          "id": 295
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/12/12/095618-092249-doctor-check-logo.jpg",
+          "title": "Trung Tâm Nội Soi Tiêu Hóa Doctor Check",
+          "description": "",
+          "url": "/co-so-y-te/trung-tam-noi-soi-tieu-hoa-doctor-check-p998",
+          "id": 998
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2021/04/16/111242-logosunnycare.png",
+          "title": "Viện Tư vấn Tâm lý SunnyCare",
+          "description": "Viện Tâm lý SunnyCare là biểu tượng niềm tin hàng đầu về dịch vụ tham vấn, trị liệu tâm lý và huấn luyện kỹ năng thực hành xã hội tại Việt Nam",
+          "url": "/co-so-y-te/vien-tu-van-tam-ly-sunnycare-p317",
+          "id": 317
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/09/16/165334-logoacc.png",
+          "title": "Phòng Khám ACC - Chiropractic Bến Thành (Quận 1) TP.HCM",
+          "description": "Phòng Khám Chuyên Khoa Thần Kinh Cột Sống Hoa Kỳ (ACC) tại Quận 1, Tp Hồ Chí Minh là một trong chuỗi Phòng khám ACC Việt Nam - chuyên sâu về điều trị các bệnh lý thần kinh cột sống",
+          "url": "/co-so-y-te/phong-kham-acc--chiropractic-ben-thanh-quan-1-tphcm-p123",
+          "id": 123
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2018/08/06/110134logo-nhtd.jpg",
+          "title": "Bệnh viện Bệnh Nhiệt đới Trung ương",
+          "description": "Nhằm đáp ứng nhu cầu sử dụng dịch vụ y tế chất lượng cao, Bệnh viện Bệnh Nhiệt đới Trung ương cung cấp dịch vụ khám theo yêu cầu",
+          "url": "/co-so-y-te/benh-vien-benh-nhiet-doi-trung-uong-p111",
+          "id": 111
+        }
+      ],
+      "type": 4,
+      "subtype": 2,
+      "navigation": 1
+    },
+    {
+      "header": {
+        "title": "Ưu đãi HOT trong tháng",
+        "showIcon": true
+      },
+      "data": [
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2026/05/19/104007-banner-ctkm-1500x500px-2.gif",
+          "title": "TUẦN LỄ VÀNG - ƯƠM MẦM HẠNH PHÚC -  \"Chắp cánh ước mơ làm cha mẹ\"",
+          "description": "",
+          "url": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/kham-hiem-muon--ho-tro-sinh-san-benh-vien-nam-hoc-va-hiem-muon-ha-noi-i915?nk=160",
+          "id": "146",
+          "expiredAt": 1782579600
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2026/04/02/161414-dnd.png",
+          "title": " Ưu đãi phẫu thuật mắt hấp dẫn tại Bệnh viện mắt DND",
+          "description": "",
+          "url": "https://bookingcare.vn/cam-nang/phau-thuat-tat-khuc-xa-voi-gia-uu-dai-nhat-nam-tai-benh-vien-mat-dnd-p2773.html?utm_medium=mainbanner&utm_source=home",
+          "id": "106",
+          "expiredAt": 1798650000
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2026/04/02/161704-nipt-medlatec.png",
+          "title": "Hoàn tiền 10% giá gói xét NITP tại Medlatec",
+          "description": "",
+          "url": "https://bookingcare.vn/cam-nang/uu-dai-hoan-ngay-10-phi-xet-nghiem-nipt-tai-medlatec-ha-noi-va-tp-ho-chi-minh-p4651.html",
+          "id": "110",
+          "expiredAt": 1782752400
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2026/04/14/090522-qt-city.png",
+          "title": "GIẢM GIÁ 20% CHẨN ĐOÁN HÌNH ẢNH TẠI BỆNH VIỆN CIH",
+          "description": "",
+          "url": "https://bookingcare.vn/cam-nang/uu-dai-tai-benh-vien-quoc-te-city-giam-20-dich-vu-chan-doan-hinh-anh-p7232.html",
+          "id": "138",
+          "expiredAt": 1782752400
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2026/05/07/103358-mediplus-1.png",
+          "title": "Săn ưu đãi  tháng 5 Cùng Tổ Hợp Y Tế Mediplus",
+          "description": "",
+          "url": "https://bookingcare.vn/cam-nang/uu-dai-cho-khach-hang-cham-soc-suc-khoe-toan-dien-tai-mediplus-p7367.html",
+          "id": "136",
+          "expiredAt": 1780160400
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2026/03/23/163505-mat-anh-sang.png",
+          "title": "Miễn Phí khám Mắt chuyên sâu toàn diện với TS. BS. TTƯT Vũ Thị Thanh",
+          "description": "",
+          "url": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/kham-mat-chuyen-sau-phau-thuat-tat-khuc-xa-voi-ts-bs-ttut-vu-thi-thanh-i5286?nk=1159",
+          "id": "142",
+          "expiredAt": 1782752400
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2026/03/02/170843-mediplus-4.png",
+          "title": "Giảm 50% phí khám với các bác sĩ tại Tổ hợp Y Tế Mediplus",
+          "description": "",
+          "url": "https://bookingcare.vn/dich-vu-y-te/kham-chuyen-khoa/tien-si-bac-si-chuyen-khoa-ii-le-quoc-viet-i1672?nk=330",
+          "id": "117",
+          "expiredAt": 1780160400
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2026/05/07/102059-mediplus.png",
+          "title": "Nội Soi Tiêu hóa: Tặng Gói Kiểm Tra Sức Khỏe Tùy Chọn Tại Tổ Hợp Y Tế Mediplus",
+          "description": "",
+          "url": "https://bookingcare.vn/cam-nang/uu-dai-cho-khach-hang-cham-soc-suc-khoe-toan-dien-tai-mediplus-p7367.html",
+          "id": "137",
+          "expiredAt": 1780160400
+        }
+      ],
+      "type": 1,
+      "subtype": 1,
+      "navigation": 1
+    },
+    {
+      "header": {
+        "title": "Bác sĩ nổi bật",
+        "cta": {
+          "title": "Xem thêm",
+          "url": "/danh-sach/bac-si/noi-bat"
+        }
+      },
+      "data": [
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2019/11/14/103848anh-dai-dien-bs.jpg",
+          "title": "Khám Hiếm muộn - Hỗ trợ sinh sản, Bệnh viện Nam học và Hiếm muộn Hà Nội",
+          "description": "Vô sinh - Hiếm muộn",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/kham-hiem-muon--ho-tro-sinh-san-benh-vien-nam-hoc-va-hiem-muon-ha-noi-i915",
+          "id": 915,
+          "specialistIds": [
+            "67"
+          ]
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/06/23/092155-ts-pham-chi-lang.png",
+          "title": "Tiến sĩ, Bác sĩ Phạm Chí Lăng",
+          "description": "Cơ Xương Khớp,Chấn thương chỉnh hình",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/tien-si-bac-si-pham-chi-lang-i1591",
+          "id": 1591,
+          "specialistIds": [
+            "1",
+            "73"
+          ]
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/06/12/104052-thac-si-bac-si-tran-thi-mai-thy.png",
+          "title": "Thạc sĩ, Bác sĩ Trần Thị Mai Thy",
+          "description": "Thần kinh",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/thac-si-bac-si-tran-thi-mai-thy-i1900",
+          "id": 1900,
+          "specialistIds": [
+            "18"
+          ]
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/08/14/152122-anh-bs.png",
+          "title": "PGs.Ts. Bác sĩ Nguyễn Trọng Hưng ",
+          "description": "Sức khỏe tâm thần",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/pgsts-bac-si-nguyen-trong-hung-i376",
+          "id": 376,
+          "specialistIds": [
+            "27"
+          ]
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/03/18/142152-bs-doanh.png",
+          "title": "Thầy thuốc ưu tú, Tiến sĩ, Bác sĩ Nguyễn Văn Doanh",
+          "description": "Thần kinh",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/thay-thuoc-uu-tu-tien-si-bac-si-nguyen-van-doanh-i221",
+          "id": 221,
+          "specialistIds": [
+            "18"
+          ]
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/08/14/153759-anh-bs-7.png",
+          "title": "Phó Giáo sư, Tiến sĩ, Bác sĩ Nguyễn Thị Hoài An",
+          "description": "Tai Mũi Họng,Nhi khoa",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/pho-giao-su-tien-si-bac-si-nguyen-thi-hoai-an-i100",
+          "id": 100,
+          "specialistIds": [
+            "4",
+            "5"
+          ]
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/08/14/152355-anh-bs-1.png",
+          "title": "Tiến sĩ, Bác sĩ Chuyên khoa II Trà Anh Duy",
+          "description": "Nam học,Thận - Tiết niệu",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/tien-si-bac-si-chuyen-khoa-ii-tra-anh-duy-i3263",
+          "id": 3263,
+          "specialistIds": [
+            "26",
+            "32"
+          ]
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/08/14/152557-anh-bs-2.png",
+          "title": "BS. CKII Lê Hồng Anh",
+          "description": "Hô hấp - Phổi",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/bs-ckii-le-hong-anh-i1128",
+          "id": 1128,
+          "specialistIds": [
+            "43"
+          ]
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/03/26/180435-kham-tieu-hoa.jpg",
+          "title": "Khám Tại Trung Tâm Nội Soi Tiêu Hóa Doctor Check",
+          "description": "Tiêu hóa",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/kham-tai-trung-tam-noi-soi-tieu-hoa-doctor-check-i4206",
+          "id": 4206,
+          "specialistIds": [
+            "22"
+          ]
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/03/18/142438-quynh-pgs.jpg",
+          "title": "Đại tá, Phó giáo sư, Tiến sĩ, Bác sĩ CKII, Thầy thuốc nhân dân Nguyễn Văn Quýnh ",
+          "description": "Tim mạch",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/dai-ta-pho-giao-su-tien-si-bac-si-ckii-thay-thuoc-nhan-dan-nguyen-van-quynh-i290",
+          "id": 290,
+          "specialistIds": [
+            "3"
+          ]
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/06/18/105310-gs-ha-van-quyet.png",
+          "title": "Giáo sư, Tiến sĩ Hà Văn Quyết",
+          "description": "Tiêu hóa,Bệnh Viêm gan",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/giao-su-tien-si-ha-van-quyet-i56",
+          "id": 56,
+          "specialistIds": [
+            "22",
+            "28"
+          ]
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/08/14/152953-anh-bs-4.png",
+          "title": "Tiến sĩ, Bác sĩ chuyên khoa II Lê Quốc Việt",
+          "description": "Cơ Xương Khớp,Nội khoa",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/tien-si-bac-si-chuyen-khoa-ii-le-quoc-viet-i1672",
+          "id": 1672,
+          "specialistIds": [
+            "1",
+            "17"
+          ]
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/08/14/152821-anh-bs-3.png",
+          "title": "Giáo sư, Tiến sĩ, Bác sĩ Kiều Đình Hùng",
+          "description": "Thần kinh,Cột sống,Ngoại thần kinh",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/giao-su-tien-si-bac-si-kieu-dinh-hung-i80",
+          "id": 80,
+          "specialistIds": [
+            "18",
+            "24",
+            "71"
+          ]
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/03/18/142802-bs-thanh.png",
+          "title": "Thầy thuốc ưu tú, Phó giáo sư, Tiến sĩ, Cố vấn chuyên môn Nguyễn Xuân Thành",
+          "description": "Bệnh Viêm gan",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/thay-thuoc-uu-tu-pho-giao-su-tien-si-co-van-chuyen-mon-nguyen-xuan-thanh-i220",
+          "id": 220,
+          "specialistIds": [
+            "28"
+          ]
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/08/14/153243-anh-bs-5.png",
+          "title": "Bác sĩ Chuyên khoa II Võ Văn Mẫn",
+          "description": "Cơ Xương Khớp,Chấn thương chỉnh hình",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/bac-si-chuyen-khoa-ii-vo-van-man-i1962",
+          "id": 1962,
+          "specialistIds": [
+            "1",
+            "73"
+          ]
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/06/18/093038-bs-pham-tien-lang.png",
+          "title": "Thầy thuốc Ưu tú, Bác sĩ CKII Nguyễn Tiến Lãng",
+          "description": "Tiểu đường - Nội tiết,Ung bướu,Tuyến giáp",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/thay-thuoc-uu-tu-bac-si-ckii-nguyen-tien-lang-i1492",
+          "id": 1492,
+          "specialistIds": [
+            "21",
+            "15",
+            "116"
+          ]
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/10/28/093554-01-goi-tieu-chuan.png",
+          "title": "Gói Khám \"Bác Sĩ Khuyến Cáo\" (DC2)  ",
+          "description": "Khám tổng quát,Cơ bản,Nam,Nữ",
+          "url": "/dich-vu-y-te/kham-tong-quat/goi-kham-bac-si-khuyen-cao-dc2-i3758",
+          "id": 3758,
+          "specialistIds": [
+            "31",
+            "81",
+            "75",
+            "76"
+          ]
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/06/20/161055-bs-nguyen-huu-thao-1.png",
+          "title": "Thạc sĩ, Bác sĩ Nội trú Nguyễn Hữu Thảo",
+          "description": "Nam học",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/thac-si-bac-si-noi-tru-nguyen-huu-thao-i632",
+          "id": 632,
+          "specialistIds": [
+            "26"
+          ]
+        }
+      ],
+      "type": 2,
+      "subtype": 2,
+      "navigation": 1,
+      "background": "https://cdn.bookingcare.vn/fo/2023/11/01/140311-background5.png"
+    },
+    {
+      "header": {
+        "title": "Khám từ xa",
+        "cta": {
+          "title": "Xem thêm",
+          "url": "/danh-sach/chuyen-khoa/kham-tu-xa"
+        }
+      },
+      "data": [
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/01/04/160245-tam-ly-tu-xa.png",
+          "title": "Tư vấn, trị liệu Tâm lý từ xa",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-tu-xa/tu-van-tri-lieu-tam-ly-tu-xa-s65",
+          "id": 65
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/01/04/103343-tam-than-tu-xa-1.png",
+          "title": "Sức khỏe tâm thần từ xa",
+          "description": "Bác sĩ chuyên khoa tâm thần, trầm cảm khám tư vấn từ xa",
+          "url": "/dich-vu-y-te/kham-tu-xa/suc-khoe-tam-than-tu-xa-s45",
+          "id": 45
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/01/04/160245-da-lieu-tu--xa.png",
+          "title": "Bác sĩ Da liễu từ xa",
+          "description": "Bác sĩ chuyên khoa da liễu khám từ xa thông qua cuộc gọi có hình Video",
+          "url": "/dich-vu-y-te/kham-tu-xa/bac-si-da-lieu-tu-xa-s44",
+          "id": 44
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/01/04/160245-cxk-tu--xa.png",
+          "title": "Bác sĩ Cơ-Xương-Khớp từ xa",
+          "description": "Bác sĩ chuyên khoa Cơ-Xương-Khớp khám tư vấn từ xa",
+          "url": "/dich-vu-y-te/kham-tu-xa/bac-si-co-xuong-khop-tu-xa-s46",
+          "id": 46
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/01/04/160245-tieu-hoa-tu--xa.png",
+          "title": "Bác sĩ Tiêu hóa từ xa",
+          "description": "Bác sĩ chuyên khoa Tiêu hóa khám tư vấn từ xa",
+          "url": "/dich-vu-y-te/kham-tu-xa/bac-si-tieu-hoa-tu-xa-s48",
+          "id": 48
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/01/04/160245-tim-mach-tu--xa.png",
+          "title": "Bác sĩ Tim mạch từ xa",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-tu-xa/bac-si-tim-mach-tu-xa-s52",
+          "id": 52
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/01/04/160245-tai-mui-hong-tu--xa.png",
+          "title": "Bác sĩ Tai-Mũi-Họng từ xa",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-tu-xa/bac-si-tai-mui-hong-tu-xa-s54",
+          "id": 54
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/01/04/160245-than-kinh-tu-xa.png",
+          "title": "Bác sĩ Thần kinh từ xa",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-tu-xa/bac-si-than-kinh-tu-xa-s56",
+          "id": 56
+        }
+      ],
+      "type": 4,
+      "subtype": 6,
+      "navigation": 1,
+      "background": ""
+    },
+    {
+      "header": {
+        "title": "Gợi ý của BookingCare"
+      },
+      "data": [
+        {
+          "title": "Được quan tâm",
+          "url": "/danh-sach/duoc-quan-tam/tu-khoa/",
+          "image": "https://cdn.bookingcare.vn/fo/w640/2024/01/12/144801-3.png"
+        }
+      ],
+      "type": 2,
+      "subtype": 1,
+      "navigation": 1
+    },
+    {
+      "header": {
+        "title": "Sức khỏe tinh thần"
+      },
+      "data": [
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/11/01/141458-congdongtinhthan.jpeg",
+          "title": "Bài test sức khoẻ",
+          "url": "/bai-test"
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101713-suc-khoe-tam-than.png",
+          "title": "Sức khỏe tâm thần",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/suc-khoe-tam-than-s27",
+          "id": 27
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/01/04/160245-tam-ly-tu-xa.png",
+          "title": "Tư vấn, trị liệu Tâm lý từ xa",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-tu-xa/tu-van-tri-lieu-tam-ly-tu-xa-s65",
+          "id": 65
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/01/04/103343-tam-than-tu-xa-1.png",
+          "title": "Sức khỏe tâm thần từ xa",
+          "description": "Bác sĩ chuyên khoa tâm thần, trầm cảm khám tư vấn từ xa",
+          "url": "/dich-vu-y-te/kham-tu-xa/suc-khoe-tam-than-tu-xa-s45",
+          "id": 45
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/26/101739-tu-van-tam-ly.png",
+          "title": "Tư vấn, trị liệu Tâm lý",
+          "description": "",
+          "url": "/dich-vu-y-te/kham-chuyen-khoa/tu-van-tri-lieu-tam-ly-s66",
+          "id": 66
+        }
+      ],
+      "type": 4,
+      "subtype": 1,
+      "navigation": 1,
+      "background": "https://cdn.bookingcare.vn/fo/2023/11/01/140308-background2.png"
+    },
+    {
+      "header": {
+        "title": "Bác sĩ hỏi đáp"
+      },
+      "data": [
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/11/01/141028-hoidapcongdong.jpeg",
+          "title": "Hỏi bác sĩ miễn phí",
+          "url": "https://bookingcare.vn/cong-dong"
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/04/23/150322-z5375466237591689132201a679526eaab9274b8cd39a9.jpg",
+          "title": "Cẩm nang hỏi đáp",
+          "url": "https://bookingcare.vn/cam-nang/hoi-dap"
+        }
+      ],
+      "type": 4,
+      "subtype": 1,
+      "navigation": 1,
+      "background": ""
+    },
+    {
+      "header": {
+        "title": "Cẩm nang",
+        "cta": {
+          "title": "Xem thêm",
+          "url": "/cam-nang"
+        }
+      },
+      "data": [
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2026/05/12/152236-phau-thuat-lao-thi-benh-vien-mat-quoc-te-dnd.png",
+          "title": "Phẫu thuật lão thị tại Bệnh viện Mắt Quốc tế DND",
+          "description": "Sau tuổi 40, nhiều người bắt đầu gặp tình trạng lão thị, khó nhìn gần và phải phụ thuộc kính. Tại Bệnh viện Mắt Quốc tế DND, phẫu thuật lão thị bằng laser đang mở ra thêm lựa chọn điều trị, giúp cải thiện khả năng nhìn và giảm phụ thuộc kính.",
+          "url": "/cam-nang/phau-thuat-lao-thi-tai-benh-vien-mat-quoc-te-dnd-p7386.html",
+          "id": 7386
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2026/05/12/161007-phau-thuat-khuc-xa-benh-vien-mat-quoc-te-dnd.png",
+          "title": "Phẫu thuật khúc xạ tại Bệnh viện Mắt Quốc tế DND",
+          "description": "Phẫu thuật khúc xạ tại Bệnh viện Mắt Quốc tế DND có gì nổi bật? Cập nhật các phương pháp mổ cận hiện đại, quy trình khám chuyên sâu, chi phí phẫu thuật và ưu đãi mới nhất tại DND.",
+          "url": "/cam-nang/phau-thuat-khuc-xa-tai-benh-vien-mat-quoc-te-dnd-p7387.html",
+          "id": 7387
+        },
+        {
+          "image": "",
+          "title": "Đặt khám Sản phụ khoa cùng top bác sĩ giỏi tại Hà Nội",
+          "description": "",
+          "url": "/cam-nang/dat-kham-san-phu-khoa-cung-top-bac-si-gioi-tai-ha-noi-p7382.html",
+          "id": 7382
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2026/04/14/111355-dia-chi-mo-can-femto-pro-tphcm.png",
+          "title": "Review top 4 địa chỉ mổ cận Femto Pro uy tín tại TP.HCM",
+          "description": "Nếu bạn đang tìm địa chỉ mổ cận Femto Pro uy tín tại TPHCM, đừng bỏ qua bài viết này. BookingCare review thông tin chi tiết về phẫu thuật xóa cận Femto Pro tại các đơn vị có tiếng như Mắt Quốc tế DND, Mắt Sài Gòn, Mắt Việt - Nga,...",
+          "url": "/cam-nang/review-top-4-dia-chi-mo-can-femto-pro-uy-tin-tai-tphcm-p7381.html",
+          "id": 7381
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2026/04/14/104902-mo-can-smartsight-o-dau-tot-tphcm.png",
+          "title": "Review Top địa chỉ mổ cận SmartSight uy tín tại TP.HCM",
+          "description": "Mổ cận SmartSight ở đâu tốt tại TP.HCM? Review top địa chỉ uy tín, bác sĩ giỏi, công nghệ mới và chi phí thực tế giúp bạn dễ dàng lựa chọn.",
+          "url": "/cam-nang/review-top-dia-chi-mo-can-smartsight-uy-tin-tai-tphcm-p7380.html",
+          "id": 7380
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2026/04/07/163348-kham-san-chau-o-dau-tphcm.png",
+          "title": "Khám sàn chậu ở đâu tốt TP.HCM?",
+          "description": "Khám sàn chậu, đặc biệt là khám sàn chậu sau sinh giúp kiểm tra sự tổn thương sau sinh, phát hiện sớm các bệnh lý như sa tạng chậu, tiểu không kiểm soát,,... Tại TP.HCM chị em có thể tham khảo thăm khám sàn chậu tại các bệnh viện dưới đây.",
+          "url": "/cam-nang/kham-san-chau-o-dau-tot-tphcm-p7378.html",
+          "id": 7378
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2026/04/07/180402-thu-hep-am-dao-o-dau-tphcm.png",
+          "title": "Thu hẹp âm đạo ở đâu? Top 3 địa chỉ uy tín tại TP.HCM",
+          "description": "Dịch vụ thu hẹp âm đạo hay tạo hình thẩm mỹ tầng sinh môn được nhiều chị em quan tâm, đặc biệt là sau quá trình sinh nở.Tại TP.HCM, chị em có thể tham khảo thực hiện thu hẹp âm đạo tại một số địa chỉ dưới đây. ",
+          "url": "/cam-nang/thu-hep-am-dao-o-dau-top-3-dia-chi-uy-tin-tai-tphcm-p7379.html",
+          "id": 7379
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2026/03/29/195545-bac-si-dieu-tri-viem-da-co-dia-tphcm.png",
+          "title": "Top 6 bác sĩ Da liễu giỏi chuyên điều trị Viêm da cơ địa TP.HCM",
+          "description": "Xem ngay danh sách 6 bác sĩ da liễu giỏi tại TP.HCM chuyên điều trị viêm da cơ địa hiệu quả, giàu kinh nghiệm, được nhiều bệnh nhân đánh giá cao.",
+          "url": "/cam-nang/top-6-bac-si-da-lieu-gioi-chuyen-dieu-tri-viem-da-co-dia-tphcm-p7377.html",
+          "id": 7377
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/02/13/012040-review--nha-khoa-trong-rang-implant--uy-tin-tai-tp-hcm-phan-2.jpg",
+          "title": "9 Địa chỉ trồng răng uy tín tại TPHCM (phần 2)",
+          "description": "Tiếp nối phần 1, bài viết này là danh sách phần 2 tổng hợp top 9 nha khoa trồng răng implant uy tín tại TP.HCM với thông tin review chi tiết về đội ngũ bác sĩ trồng răng giỏi, ưu điểm nổi bật và bảng giá tham khảo.",
+          "url": "/cam-nang/9-dia-chi-trong-rang-uy-tin-tai-tphcm-phan-2-p3138.html",
+          "id": 3138
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/02/15/140302-trong-rang-implant-bao-nhieu-tien.png",
+          "title": "Trồng răng Implant tại TPHCM giá bao nhiêu 2026? So sánh 9 nha khoa ",
+          "description": "Giá trồng răng Implant tại TP.HCM dao động từ 10 - 55 triệu/răng, toàn hàm từ 100 triệu. Xem bảng giá chi tiết từng loại trụ (Straumann, Nobel, Dentium…) và so sánh  giá tại 10 nha khoa uy tín (Dr. Care, Worldwide, Lạc Việt,...)",
+          "url": "/cam-nang/trong-rang-implant-tai-tphcm-gia-bao-nhieu-2026-so-sanh-9-nha-khoa-p2725.html",
+          "id": 2725
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/03/01/095802-dia-chi-boc-rang-su-tham-my-uy-tin-hcm.png",
+          "title": "Làm răng sứ ở đâu tốt TP.HCM? Top 6 nha khoa bọc răng sứ tốt và uy tín",
+          "description": "Làm răng sứ ở đâu tốt TP.HCM? Tổng hợp 7 nha khoa bọc răng sứ uy tín 2026, thông tin bác sĩ, công nghệ, bảo hành và review thực tế giúp bạn chọn nha khoa phù hợp. ",
+          "url": "/cam-nang/lam-rang-su-o-dau-tot-tphcm-top-6-nha-khoa-boc-rang-su-tot-va-uy-tin-p2553.html",
+          "id": 2553
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2026/01/28/140224-phong-kham-tam-than-bs-uan-3.png",
+          "title": "Phòng khám Tâm thần Bác sĩ Uân - Phòng khám tâm thần uy tín Hà Nội",
+          "description": "Phòng khám Tâm thần Bác sĩ Uân cung cấp dịch vụ thăm khám và điều trị sức khỏe tâm thần chuyên sâu tại Hà Nội. Quy trình khám chữa bệnh được tiến hành bởi đội ngũ bác sĩ trình độ cao, chú trọng vào hiệu quả điều trị, cam kết bảo mật, riêng tư.",
+          "url": "/cam-nang/phong-kham-tam-than-bac-si-uan--phong-kham-tam-than-uy-tin-ha-noi-p7376.html",
+          "id": 7376
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/12/25/162327-bac-si-nang-nguc-gioi-tphcm.png",
+          "title": "Điểm danh: Top 9 bác sĩ nâng ngực giỏi tại TP.HCM",
+          "description": "Chị em đang muốn nâng cấp vòng 1 mà chưa biết nên lựa chọn bác sĩ nào? Dưới đây sẽ là thông tin về top 9 bác sĩ nâng ngực giỏi có tiếng tại TP.HCM để chị em tham khảo.",
+          "url": "/cam-nang/diem-danh-top-9-bac-si-nang-nguc-gioi-tai-tphcm-p6996.html",
+          "id": 6996
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/12/05/172547-mo-phakic-o-tphcm-1.png",
+          "title": "Nên mổ Phakic ở đâu TPHCM? Top 6 bệnh viện mắt chuyên mổ Phakic uy tín, an toàn",
+          "description": "Phakic được biết tới là phương pháp phẫu thuật khúc xạ có chi phí cao nhất hiện nay, vậy nên \"chọn mặt gửi vàng\" - mổ Phakic ở đâu tốt, uy tín tại TPHCM?",
+          "url": "/cam-nang/nen-mo-phakic-o-dau-tphcm-top-6-benh-vien-mat-chuyen-mo-phakic-uy-tin-an-toan-p6957.html",
+          "id": 6957
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/12/19/144721-dan-su-veneer-o-dau-tphcm.png",
+          "title": "Dán răng sứ Veneer ở đâu tốt tại TPHCM? Review top nha khoa uy tín",
+          "description": "Dưới đây là thông tin về top 6 nha khoa uy tín tại TP.HCM có thế mạnh về dịch vụ dán răng sứ veneer. Nội dung review bao gồm: điểm nổi bật, thông tin bác sĩ giỏi, chi phí,...",
+          "url": "/cam-nang/dan-rang-su-veneer-o-dau-tot-tai-tphcm-review-top-nha-khoa-uy-tin-p3002.html",
+          "id": 3002
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2025/12/19/103628-trong-rang-implant-o-dau-tot-ha-noi.png",
+          "title": "8 địa chỉ nha khoa trồng răng Implant uy tín ở Hà Nội ",
+          "description": "Trong bài viết này, BookingCare giới thiệu các địa chỉ nha khoa trồng răng implant uy tín tại Hà Nội. Bạn đọc có thể tham khảo và lựa chọn khi có nhu cầu thăm khám và trồng răng.  ",
+          "url": "/cam-nang/8-dia-chi-nha-khoa-trong-rang-implant-uy-tin-o-ha-noi-p1016.html",
+          "id": 1016
+        }
+      ],
+      "type": 4,
+      "subtype": 4,
+      "navigation": 2
+    },
+    {
+      "header": {
+        "title": "Sống khỏe suốt đời",
+        "cta": {
+          "title": "Xem thêm",
+          "url": "/cam-nang/song-khoe"
+        }
+      },
+      "data": [
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/11/17/154655-dieu-tri-nam-duong-vat.jpg",
+          "title": "Tham khảo ngay: Cách điều trị nấm dương vật ",
+          "description": "Nấm dương vật không chỉ gây khó chịu mà còn ảnh hưởng đến sức khỏe và sự tự tin của người bị bệnh. Hiểu được tầm quan trọng của việc điều trị nấm dương vật, BookingCare xin chia sẻ đến bạn đọc những thông tin hữu ích về cách điều trị hiệu quả.",
+          "url": "/cam-nang/tham-khao-ngay-cach-dieu-tri-nam-duong-vat-p4608.html",
+          "id": 4608
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/01/16/091149-vo-tinh-co-con-duoc-khong-1.png",
+          "title": "Vô tinh ở nam giới có con được hay không?",
+          "description": "Vô tinh là một trong những nguyên nhân gây vô sinh hiếm muộn khá phổ biến ở nam giới. Vậy vô tinh hay không có tinh trùng có con được không chắc hẳn là câu hỏi được nhiều người quan tâm.",
+          "url": "/cam-nang/vo-tinh-o-nam-gioi-co-con-duoc-hay-khong-p5913.html",
+          "id": 5913
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/11/14/154728-dau-hieu-liet-duong.jpg",
+          "title": "TOP 5 dấu hiệu liệt dương mà nam giới cần biết",
+          "description": "Bệnh liệt dương không chỉ là nỗi ám ảnh của nhiều nam giới, nó còn gây ra những ảnh hưởng nhất định đến sức khỏe sinh sản sinh lý người bệnh. Bài viết dưới đây sẽ đề cập đến 5 dấu hiệu liệt dương mà nam giới cần biết.",
+          "url": "/cam-nang/top-5-dau-hieu-liet-duong-ma-nam-gioi-can-biet-p4552.html",
+          "id": 4552
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/03/17/195721-ban-da-hieu-ve-tiem-meso.jpg",
+          "title": "Bạn đã thực sự hiểu về tiêm Meso?",
+          "description": "Hiện nay cùng với sự phát triển của xã hội, nhu cầu làm đẹp ngày càng tăng. Cụm từ tiêm Meso hay Mesotherapy không còn mấy xa lạ, đặc biệt với các chị em phụ nữ. Vậy tiêm Meso là gì và bạn đã thực sự hiểu về tiêm meso hay chưa, hãy cùng tìm hiểu ngay dưới đây. ",
+          "url": "/cam-nang/ban-da-thuc-su-hieu-ve-tiem-meso-p6475.html",
+          "id": 6475
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/18/151040-nguyen-nhan-gay-mun-lung-va-cach-dieu-tri.png",
+          "title": "Mụn lưng: nguyên nhân, triệu chứng và cách điều trị",
+          "description": "Mụn lưng là nỗi ám ảnh với nhiều người. Nếu không được phòng ngừa và điều trị đúng cách, mụn lưng có thể kéo dài dai dẳng, thậm chí sưng viêm, không chỉ gây mất thẩm mỹ mà còn gây đau đớn, khó chịu.",
+          "url": "/cam-nang/mun-lung-nguyen-nhan-trieu-chung-va-cach-dieu-tri-p1988.html",
+          "id": 1988
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/01/08/121642-5-loai-thuoc-thuoc-kich-trung-hien-nay.png",
+          "title": "5 loại thuốc kích trứng phổ biến hiện nay",
+          "description": "Thuốc kích trứng hiện nay có rất nhiều loại trên thị trường và là một phần quan trọng trong công cuộc hỗ trợ sinh sản. Thuốc chứa các hoạt chất giúp trứng phóng noãn hay làm cho noãn trưởng thành. Thuốc hiện nay đang được bào chế dưới dạng tiêm và dạng uống.",
+          "url": "/cam-nang/5-loai-thuoc-kich-trung-pho-bien-hien-nay-p5716.html",
+          "id": 5716
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/19/154902-dieu-tri-tham-mun.png",
+          "title": "Xem ngay: Các phương pháp điều trị thâm mụn hiệu quả",
+          "description": "Thâm mụn có thể được điều trị bằng những phương pháp nào là câu hỏi được nhiều chị em phụ nữ quan tâm. Cùng tìm hiểu cụ thể trong bài viết dưới đây.",
+          "url": "/cam-nang/xem-ngay-cac-phuong-phap-dieu-tri-tham-mun-hieu-qua-p5122.html",
+          "id": 5122
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/03/23/113205-tiem-ha-filler.png",
+          "title": "Chuyên gia giải đáp: Tiêm HA và tiêm filler có giống nhau không?",
+          "description": "Tiêm HA, tiêm filler là hai thuật ngữ được dùng phổ biến. Hãy cùng theo dõi bài viết dưới đây để không bị nhầm lẫn, sáng suốt lựa chọn phương pháp làm đẹp trước những chiêu trò quảng cáo của các cơ sở thẩm mỹ.",
+          "url": "/cam-nang/chuyen-gia-giai-dap-tiem-ha-va-tiem-filler-co-giong-nhau-khong-p6516.html",
+          "id": 6516
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/28/111922-cay-toc-co-hieu-qua-khong.png",
+          "title": "Góc giải đáp: Cấy tóc có hiệu quả không? Cấy tóc ở đâu uy tín?",
+          "description": "Khắc phục tình trạng rụng tóc hoặc hói đầu bằng phương pháp cấy tóc có đem lại hiệu quả hay không là câu hỏi được nhiều người quan tâm. Cùng tìm hiểu cụ thể trong bài viết dưới đây.",
+          "url": "/cam-nang/goc-giai-dap-cay-toc-co-hieu-qua-khong-cay-toc-o-dau-uy-tin-p5296.html",
+          "id": 5296
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/04/02/231546-5-loai-filler-pho-bien.png",
+          "title": "5 loại filler đang được sử dụng phổ biến hiện nay",
+          "description": "Filler hay còn gọi là chất làm đầy được sử dụng trong thẩm mỹ để giúp cải thiện những khuyết điểm trên làn da hay những đường nét khác trên khuôn mặt (mũi, môi, cằm,..). Hãy cùng tìm hiểu những loại filler an toàn và phổ biến nhất hiện nay trong bài viết sau đây.",
+          "url": "/cam-nang/5-loai-filler-dang-duoc-su-dung-pho-bien-hien-nay-p6654.html",
+          "id": 6654
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/03/31/134447-nhung-dieu-can-biet-ve-tiem-profhilo.png",
+          "title": "Những điều cần biết về phương pháp trẻ hóa - tiêm profhilo",
+          "description": "Tiêm profhilo là phương pháp làm đẹp, giúp trẻ hóa nhờ cung cấp độ ẩm và tăng sự đàn hồi của làn da. Profhilo là sản phẩm chứa axit hyaluronic, thúc đẩy da sản sinh collagen và elastin (hai yếu tố duy trì độ săn chắc, đàn hồi và sự láng mịn của da).",
+          "url": "/cam-nang/nhung-dieu-can-biet-ve-phuong-phap-tre-hoa--tiem-profhilo-p6604.html",
+          "id": 6604
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/28/114050-phuong-phap-cay-toc.png",
+          "title": "Những điều cần biết về phương pháp cấy tóc",
+          "description": "Mái tóc thưa, mỏng, hói đầu là mối quan tâm của nhiều người; đặc biệt là với các chị em phụ nữ. Nếu các phương pháp điều trị rụng tóc, hói đầu thông thường không đem lại hiệu quả, hãy thử tìm hiểu về phương pháp cấy tóc.",
+          "url": "/cam-nang/nhung-dieu-can-biet-ve-phuong-phap-cay-toc-p5295.html",
+          "id": 5295
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/03/23/230807-nang-co-hifu.png",
+          "title": "Nâng cơ HIFU: Ưu, nhược điểm và các vấn đề cần lưu ý",
+          "description": "HIFU là một trong những công nghệ trẻ hóa hàng đầu, tiên tiến và hiện đại nhất hiện nay trong thẩm mỹ da. Vậy phương pháp nâng cơ HIFU là gì? Cùng tìm hiểu trong bài viết dưới đây.",
+          "url": "/cam-nang/nang-co-hifu-uu-nhuoc-diem-va-cac-van-de-can-luu-y-p6523.html",
+          "id": 6523
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/03/15/083935-uu-diem-va-nhuoc-diem-cua-cay-mo-tu-than.jpg",
+          "title": "Ưu điểm và nhược điểm của cấy mỡ tự thân, bạn đã biết?",
+          "description": "Cấy mỡ tự thân là một phương pháp làm đẹp đang được nhiều người tin tưởng chọn lựa. Tuy nhiên, không phải ai cũng nắm rõ được ưu điểm và nhược điểm của cấy mỡ tự thân.",
+          "url": "/cam-nang/uu-diem-va-nhuoc-diem-cua-cay-mo-tu-than-ban-da-biet-p6483.html",
+          "id": 6483
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/12/22/115459-cang-chi-da-mat.jpg",
+          "title": "Căng chỉ da mặt và những điều cần biết",
+          "description": "Các chị em phụ nữ hiện nay ưa chuộng phương pháp làm đẹp và trẻ hóa làn da bằng cách căng chỉ da mặt. Tuy nhiên, việc này vừa có những ưu điểm vượt trội và cũng có những biến chứng nếu không thực hiện đúng cách.",
+          "url": "/cam-nang/cang-chi-da-mat-va-nhung-dieu-can-biet-p5252.html",
+          "id": 5252
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/11/10/135912-dau-hieu.jpg",
+          "title": "6 dấu hiệu nhận biết yếu sinh lý ở nam giới",
+          "description": "Yếu sinh lý làm anh em mất tự tin trong “chuyện ấy”. Các dấu hiệu nào cho thấy anh em đang bị yếu sinh lý? Theo dõi bài viết để có thông tin chi tiết. ",
+          "url": "/cam-nang/6-dau-hieu-nhan-biet-yeu-sinh-ly-o-nam-gioi-p4433.html",
+          "id": 4433
+        }
+      ],
+      "type": 4,
+      "subtype": 4,
+      "navigation": 2
+    },
+    {
+      "header": {
+        "title": "Truyền thông nói về BookingCare"
+      },
+      "data": [
+        {
+          "video": "https://www.youtube.com/watch?v=FyDQljKtWnI"
+        },
+        {
+          "image": "https://bookingcare.vn/assets/truyenthong/infonet.png",
+          "title": "Báo điện tử infonet nói về BookingCare",
+          "url": "https://infonet.vietnamnet.vn/da-co-hon-20000-luot-benh-nhan-dat-lich-kham-qua-bookingcare-175080.html"
+        },
+        {
+          "image": "https://bookingcare.vn/assets/truyenthong/vnexpress.png",
+          "title": "Báo vnexpress: BookingCare ra mắt Trợ Lý AI",
+          "url": "https://vnexpress.net/bookingcare-ra-mat-tro-ly-ai-4798819.html"
+        },
+        {
+          "image": "https://bookingcare.vn/assets/truyenthong/suckhoedoisong.png",
+          "title": "Báo sức khỏe đời sống nói về BookingCare",
+          "url": "https://suckhoedoisong.vn/dat-lich-kham-benh-tiet-kiem-thong-minh-va-hieu-qua-169153232.htm"
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2024/10/22/142415-logo-vnnet.jpg",
+          "title": "Báo Vietnamnet:BookingCare ra mắt ứng dụng di động trong tháng 3/2018",
+          "url": "https://vietnamnet.vn/nen-tang-dat-lich-kham-online-bookingcare-muon-tang-truong-nguoi-dung-gap-5-lan-nam-2017-i370270.html"
+        },
+        {
+          "image": "https://bookingcare.vn/assets/truyenthong/vtv1.png",
+          "title": "VTV1 - Cà phê khởi nghiệp 14-11-2018",
+          "url": "https://vtv.vn/video/ca-phe-khoi-nghiep-14-11-2018-334894.htm"
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/11/01/165432-vtcnewslogosvg.png",
+          "title": "VTC News nói về BookingCare",
+          "url": "https://vtc.vn/dat-kham-chuyen-khoa-va-hanh-trinh-ho-tro-cac-benh-vien-qua-tai-ar434101.html"
+        },
+        {
+          "image": "https://bookingcare.vn/assets/truyenthong/vnexpress.png",
+          "title": "VnExpress nói về BookingCare",
+          "url": "https://video.vnexpress.net/cuoc-song-4-0/kham-benh-khong-phai-xep-hang-o-ha-noi-3797126.html"
+        },
+        {
+          "image": "https://bookingcare.vn/assets/truyenthong/vtv1.png",
+          "title": "VTV1 - Cà phê khởi nghiệp 16-08-2018",
+          "url": "https://vtv.vn/video/ca-phe-khoi-nghiep-16-8-2018-317687.htm"
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2023/11/02/110757-dantrilogo.png",
+          "title": "Báo dân trí nói về BookingCare",
+          "url": "https://dantri.com.vn/nhan-tai-dat-viet/san-pham-nen-tang-dat-kham-booking-care-201908201625624751.htm"
+        }
+      ],
+      "type": 5,
+      "subtype": 1,
+      "navigation": 1,
+      "background": "https://cdn.bookingcare.vn/fo/2023/11/01/140309-background3.png"
+    },
+    {
+      "header": {
+        "title": "Dành cho bác sĩ và cơ sở y tế"
+      },
+      "data": [
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/11/13/132939-10x-content-seo-y-te.png",
+          "title": "10X Content là gì? Cách xây dựng Content SEO Y tế theo 10X Content",
+          "description": "Sản xuất nội dung thực sự chất lượng theo 10X Content là cách bệnh viện, phòng khám có thể áp dụng để có được nội dung SEO y tế chất lượng, lên top Google. ",
+          "url": "/cam-nang/10x-content-la-gi-cach-xay-dung-content-seo-y-te-theo-10x-content-p2943.html",
+          "id": 2943
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/11/10/175657-cach-su-dung-google-keyword-planner.png",
+          "title": "Cách sử dụng Google Keyword Planner để chọn từ khóa bài viết",
+          "description": "Với các đơn vị đang muốn sản xuất Content SEO y tế, quan tâm đến việc sử dụng Google Keyword Planner để chọn từ khóa triển khai viết bài có thể tham khảo bài viết dưới đây.",
+          "url": "/cam-nang/cach-su-dung-google-keyword-planner-de-chon-tu-khoa-bai-viet-p2939.html",
+          "id": 2939
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/11/09/172027-module-thiet-ke-website-phong-kham.jpg",
+          "title": "Các Module quan trọng trong thiết kế Website phòng khám",
+          "description": "Bài viết dưới đây sẽ gợi ý cho bạn một số cách triển khai nội dung hướng đến người dùng trên website của bệnh viện, phòng khám.",
+          "url": "/cam-nang/cac-module-quan-trong-trong-thiet-ke-website-phong-kham-p2796.html",
+          "id": 2796
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/11/08/134643-marketing-phong-kham-1.png",
+          "title": "Marketing phòng khám - Phần 1: Chiến lược tập trung vào chất lượng khám chữa bệnh",
+          "description": "Trong Marketing phòng khám, để tạo được lợi thế cạnh tranh với các cơ sở y tế tư nhân khác, thu hút khách hàng hãy bắt đầu từ nâng cao chất lượng khám chữa bệnh. ",
+          "url": "/cam-nang/marketing-phong-kham--phan-1-chien-luoc-tap-trung-vao-chat-luong-kham-chua-benh-p2927.html",
+          "id": 2927
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/11/06/172415-sang-kien-giam-thoi-gian-cho-trong-benh-vien.png",
+          "title": "7 sáng kiến giúp giảm thời gian chờ trong bệnh viện, phòng khám ",
+          "description": "Các đơn vị có thể tham khảo, áp dụng các sáng kiến giảm thời gian chờ trong bệnh viện, phòng khám dưới đây để hạn chế thời gian chờ cho khách hàng, nâng cao trải nghiệm. ",
+          "url": "/cam-nang/7-sang-kien-giup-giam-thoi-gian-cho-trong-benh-vien-phong-kham-p2923.html",
+          "id": 2923
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/11/04/150002-tinh-nang-dung-thu-bookingcare-dx.png",
+          "title": "Dùng thử BookingCare_DX bản miễn phí, có những tính năng gì?",
+          "description": "Để giúp bệnh viện, phòng khám dễ dàng trải nghiệm Giải pháp Chuyển đổi số BookingCare_DX, BookingCare sẵn sàng bản dùng thử miễn phí cho các đơn vị. ",
+          "url": "/cam-nang/dung-thu-bookingcare_dx-ban-mien-phi-co-nhung-tinh-nang-gi-p2921.html",
+          "id": 2921
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/10/13/174911-chuyen-doi-so-bookingcare-dx.png",
+          "title": "4 Lợi ích Giải pháp Chuyển đổi số Phòng khám BookingCare_DX ",
+          "description": "Với Giải pháp Chuyển đổi số Phòng khám BookingCare_DX, đơn vị có thể rút ngắn thời gian chuyển đổi số, đem lại hiệu quả vận hành, kinh doanh. ",
+          "url": "/cam-nang/4-loi-ich-giai-phap-chuyen-doi-so-phong-kham-bookingcare_dx-p2875.html",
+          "id": 2875
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/10/11/120624-lean-startup-marketing-phong-kham.png",
+          "title": "Lean Startup là gì? Ứng dụng trong Marketing phòng khám",
+          "description": "Cùng BookingCare tìm hiểu về Lean Startup là gì? Tại sao bệnh viện, phòng khám nên ứng dụng mô hình này và làm thế nào để áp dụng Lean Startup trong Marketing phòng khám?",
+          "url": "/cam-nang/lean-startup-la-gi-ung-dung-trong-marketing-phong-kham-p2801.html",
+          "id": 2801
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/10/09/160728-content-facebook-phong-kham.png",
+          "title": "Marketing phòng khám trên Facebook: Cách viết Content Facebook thu hút",
+          "description": "Nếu phòng khám đang sử dụng Facebook như một kênh Marketing, việc viết Content Facebook thu hút không chỉ giúp nội dung đến với nhiều khách hàng mà còn thu hút bệnh nhân thăm khám. ",
+          "url": "/cam-nang/marketing-phong-kham-tren-facebook-cach-viet-content-facebook-thu-hut-p2859.html",
+          "id": 2859
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/10/05/164110-san-xuat-content-chuan-seo-y-te.png",
+          "title": "Hướng dẫn chi tiết 7 bước sản xuất Content chuẩn SEO Y tế",
+          "description": "Trong bài viết này cùng BookingCare tìm hiểu cách sản xuất Content chuẩn SEO Y tế, lên top Google giúp các phòng khám thu hút lưu lượng truy cập, tăng lượng khách hàng cho đơn vị. ",
+          "url": "/cam-nang/huong-dan-chi-tiet-7-buoc-san-xuat-content-chuan-seo-y-te-p2852.html",
+          "id": 2852
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/08/23/164710-kenh-online-marketing-benh-vien-phong-kham.png",
+          "title": "Chiến lược Online Marketing phòng khám: Trọn bộ từ A đến Z",
+          "description": "Các kênh Online Marketing không thể thiếu trong chiến lược Marketing bệnh viện, phòng khám. Vậy đâu là kênh Online Marketing hiệu quả cho các cơ sở y tế? Bệnh viện, phòng khám nên đẩy mạnh đa kênh hay tập trung 1 kênh,... ",
+          "url": "/cam-nang/chien-luoc-online-marketing-phong-kham-tron-bo-tu-a-den-z-p2809.html",
+          "id": 2809
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/08/31/160401-seo-y-te.png",
+          "title": "SEO trong Marketing y tế có quan trọng? 5 Lưu ý đặc biệt cho cơ sở y tế",
+          "description": "SEO trong y tế được thực hiện như thế nào? Mời các bạn tham khảo các hướng dẫn chi tiết trong nội dung bài viết của BookingCare.",
+          "url": "/cam-nang/seo-trong-marketing-y-te-co-quan-trong-5-luu-y-dac-biet-cho-co-so-y-te-p2824.html",
+          "id": 2824
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/08/30/154856-nguyen-tac-seo-y-te.png",
+          "title": "Nguyên tắc quan trọng trong SEO Y tế để lên Top Google",
+          "description": "Sẽ có những nguyên tắc quan trọng trong SEO Y tế mà người làm nội dung hay các phòng khám mới đầu đầu tư kênh Website có thể áp dụng để đưa trang lên Top Google. ",
+          "url": "/cam-nang/nguyen-tac-quan-trong-trong-seo-y-te-de-len-top-google-p2823.html",
+          "id": 2823
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/08/28/092553-y-tuong-marketing-phong-kham-1.png",
+          "title": "Gợi ý 5 ý tưởng Marketing phòng khám giúp thu hút khách hàng",
+          "description": "Tham khảo ngay 5 ý tưởng Marketing phòng khám các đơn vị có thể dễ dàng áp dụng để thu hút khách hàng, xây dựng thương hiệu, uy tín cho phòng khám,... ",
+          "url": "/cam-nang/goi-y-5-y-tuong-marketing-phong-kham-giup-thu-hut-khach-hang-p2813.html",
+          "id": 2813
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/08/26/225606-loi-thiet-ke-website-phong-kham.jpg",
+          "title": "5 lỗi cơ bản cần tránh trong thiết kế Website phòng khám ",
+          "description": "Nắm được các lỗi cơ bản trong thiết kế Website phòng khám sẽ giúp đơn vị tránh được những sai lầm có thể ảnh hưởng đến hiệu quả thu hút khách hàng, trải nghiệm khách hàng,... trên Webste.",
+          "url": "/cam-nang/5-loi-co-ban-can-tranh-trong-thiet-ke-website-phong-kham-p2819.html",
+          "id": 2819
+        },
+        {
+          "image": "https://cdn.bookingcare.vn/fo/2022/08/27/090303-thiet-ke-website-phong-kham-chuan-seo.png",
+          "title": "6 nguyên tắc Thiết kế Website phòng khám chuẩn SEO",
+          "description": "",
+          "url": "/cam-nang/6-nguyen-tac-thiet-ke-website-phong-kham-chuan-seo-p2820.html",
+          "id": 2820
+        }
+      ],
+      "type": 4,
+      "subtype": 4,
+      "navigation": 2,
+      "ctas": [
+        {
+          "title": "Bài viết",
+          "url": "/danh-cho-bac-si"
+        },
+        {
+          "title": "Hợp tác",
+          "url": "/hop-tac-voi-bookingcare"
+        },
+        {
+          "title": "Liên hệ",
+          "url": "/hop-tac"
+        }
+      ]
+    }
+  ],
+  "siteLinkSearchSchema": {
+    "url": "https://bookingcare.vn",
+    "name": "BookingCare - Nền tảng y tế sức khỏe toàn diện",
+    "potentialActions": [
+      {
+        "target": "https://bookingcare.vn/timkiem?tukhoa",
+        "queryInput": "search_term_string"
+      }
+    ]
+  },
+  "organizationSchema": {
+    "url": "https://bookingcare.vn",
+    "name": "BookingCare - Nền tảng y tế sức khỏe toàn diện",
+    "logo": "https://cdn.bookingcare.vn/fo/2024/07/09/111026-applogo1-01112-removebg-preview.png",
+    "contactPoints": [
+      {
+        "Telephone": "024 7301 2468",
+        "email": "support@bookingcare.vn",
+        "contactType": "Customer Support",
+        "areaServed": "VN",
+        "availableLanguage": "Vietnamese"
+      }
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "HN",
+      "postalCode": "11310",
+      "addressLocality": "Hà Nội",
+      "addressCountry": "VN",
+      "streetAddress": "Lô B4/D21, Khu đô thị mới Cầu Giấy, Phường Cầu Giấy, Thành phố Hà Nội"
+    }
+  },
+  "medicalWebPageSchema": {
+    "@type": "MedicalWebPage",
+    "id": "https://bookingcare.vn",
+    "headline": "BookingCare - Nền tảng y tế sức khỏe toàn diện",
+    "description": "BookingCare - Nền tảng Y tế chăm sóc sức khỏe toàn diện kết nối người dùng đến với dịch vụ y tế - chăm sóc sức khỏe chất lượng, hiệu quả và tin cậy",
+    "url": "https://bookingcare.vn",
+    "image": "https://cdn.bookingcare.vn/og/fo/2024/10/21/3138303333382d626f6f6b696e6763617265.jpg",
+    "mainContentOfPage": {
+      "@type": "WebPageElement"
+    },
+    "medicalAudience": "Vietnamese",
+    "mainEntityOfPage": "https://bookingcare.vn"
+  }
+}

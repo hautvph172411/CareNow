@@ -3,6 +3,8 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import AppRoutes from "./routes/AppRoutes";
 import { AuthProvider } from "./contexts/AuthContext";
 
+import ChatWidget from "./components/ChatWidget";
+
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "";
 
 function App() {
@@ -11,6 +13,7 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <AppRoutes />
+          <ChatWidget />
         </AuthProvider>
       </BrowserRouter>
     </GoogleOAuthProvider>

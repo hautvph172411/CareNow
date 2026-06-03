@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Search, Plus, Edit2, Trash2, Eye } from 'lucide-react'
+import { Search, Plus, Edit2, Trash2, Eye, Filter } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import AdminLayout from '../layouts/AdminLayout'
 import { getServices, deleteService, updateService } from '../api/service.api'
@@ -9,6 +9,8 @@ export default function Services() {
     const navigate = useNavigate()
     const [services, setServices] = useState([])
     const [searchTerm, setSearchTerm] = useState('')
+    const [filterStatus, setFilterStatus] = useState('')
+    const [showSearch, setShowSearch] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
 
     const [currentPage, setCurrentPage] = useState(1)
@@ -18,7 +20,7 @@ export default function Services() {
     const fetchServices = async (page = 1) => {
         setIsLoading(true);
         try {
-            const res = await getServices({ page, limit, keyword: searchTerm });
+            const res = await getServices({ page, limit, keyword: searchTerm, status: filterStatus });
             if (res && res.data) {
                 setServices(res.data);
                 if (res.pagination) setTotalPages(res.pagination.totalPages);
@@ -37,7 +39,7 @@ export default function Services() {
             setCurrentPage(1);
         }, 500);
         return () => clearTimeout(debounce);
-    }, [searchTerm]);
+    }, [searchTerm, filterStatus]);
 
     useEffect(() => {
         if (searchTerm === '') fetchServices(currentPage);
@@ -69,19 +71,42 @@ export default function Services() {
     return (
         <AdminLayout pageTitle="Quản lý Dịch vụ">
             <div className="management-header">
-                <div className="search-box">
-                    <Search size={20} />
-                    <input
-                        type="text"
-                        placeholder="Tìm dịch vụ..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
+                <div style={{ flex: 1 }}></div>
+                <div style={{ display: 'flex', gap: '10px' }}>
+                    <button className="btn btn-secondary" onClick={() => setShowSearch(!showSearch)} style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                        <Filter size={18} /> Bộ lọc
+                    </button>
+                    <button className="btn-primary" onClick={() => navigate('/services/admin/add')}>
+                        <Plus size={20} />
+                        Thêm dịch vụ
+                    </button>
                 </div>
-                <button className="btn-primary" onClick={() => navigate('/services/admin/add')}>
-                    <Plus size={20} />
-                    Thêm dịch vụ
-                </button>
+            </div>
+
+            <div className={`filter-section ${showSearch ? 'show' : ''}`}>
+                <div className="filter-container">
+                    
+          <select 
+            className="form-input" 
+            style={{ width: '180px', margin: 0 }}
+            value={filterStatus}
+            onChange={(e) => setFilterStatus(e.target.value)}
+          >
+            <option value="">Tất cả trạng thái</option>
+            <option value="1">Đang hoạt động</option>
+            <option value="0">Ngưng hoạt động</option>
+          </select>
+
+          <div className="search-box" style={{ margin: 0, flex: 1, minWidth: '250px' }}>
+                        <Search size={20} />
+                        <input
+                            type="text"
+                            placeholder="Tìm dịch vụ..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                    </div>
+                </div>
             </div>
 
             <div className="management-section">

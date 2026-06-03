@@ -5,9 +5,18 @@ const now = () => Math.floor(Date.now() / 1000);
 const nullIfEmpty = (v) => (v === '' || v === undefined ? null : v);
 
 const parseItemRow = (it) => {
+  const inferredType =
+    String(it.insurer_name || '').toLowerCase().includes('bhyt') ||
+    String(it.insurer_code || '').toLowerCase() === 'bhyt'
+      ? 'public'
+      : 'private';
+  const insuranceType = ['public', 'private'].includes(it.insurance_type)
+    ? it.insurance_type
+    : inferredType;
   const o = {
     clinic_place_id:
       it.clinic_place_id === '' || it.clinic_place_id == null ? null : parseInt(it.clinic_place_id, 10),
+    insurance_type: insuranceType,
     insurer_name: String(it.insurer_name || '').trim(),
     insurer_code: nullIfEmpty(it.insurer_code),
     coverage_note: nullIfEmpty(it.coverage_note),

@@ -13,7 +13,7 @@ import EditSpecialty from "../pages/EditSpecialty";
 import Services from "../pages/Services";
 import AddService from "../pages/AddService";
 import EditService from "../pages/EditService";
-import AppointmentSchedule from "../pages/AppointmentSchedule";
+import AppointmentScheduleV2 from "../pages/AppointmentScheduleV2";
 import AddAppointmentScheduleBlock from "../pages/AddAppointmentScheduleBlock";
 import EditAppointmentScheduleBlock from "../pages/EditAppointmentScheduleBlock";
 import Appointments from "../pages/Appointments";
@@ -37,8 +37,12 @@ import AddPartnerUser from "../pages/AddPartnerUser";
 import EditUser from "../pages/EditUser";
 import RolesManager from "../pages/RolesManager";
 import PermissionsAssignment from "../pages/PermissionsAssignment";
+import Settings from "../pages/Settings";
 import Forbidden from "../pages/Forbidden";
 import Welcome from "../pages/Welcome";
+import Profile from "../pages/Profile";
+import PartnerContacts from "../pages/PartnerContacts";
+import Consultations from "../pages/Consultations";
 import PermissionRoute from "../components/PermissionRoute";
 import "../styles/forbidden.css";
 
@@ -56,6 +60,7 @@ export default function AppRoutes() {
 
       {/* Welcome - landing page cho mọi user đã đăng nhập, không cần permission cụ thể */}
       <Route path="/welcome" element={<Welcome />} />
+      <Route path="/profile" element={<Profile />} />
 
       {/* Dashboard */}
       <Route path="/dashboard" element={
@@ -148,7 +153,7 @@ export default function AppRoutes() {
       } />
 
       <Route path="/appointment-schedule" element={
-        <PermissionRoute permission="manage_appointment_schedule"><AppointmentSchedule /></PermissionRoute>
+        <PermissionRoute permission="manage_appointment_schedule"><AppointmentScheduleV2 /></PermissionRoute>
       } />
       <Route path="/appointment-schedule/blocks/add" element={
         <PermissionRoute permission="manage_appointment_schedule"><AddAppointmentScheduleBlock /></PermissionRoute>
@@ -208,7 +213,23 @@ export default function AppRoutes() {
         <PermissionRoute permission="manage_appointment_schedule"><InsurancePackageEditor /></PermissionRoute>
       } />
 
+      {/* Yêu cầu liên hệ hợp tác */}
+      <Route path="/hop-tac-lien-he" element={
+        <PermissionRoute permission="manage_partner"><PartnerContacts /></PermissionRoute>
+      } />
+
+      {/* Tư vấn thêm */}
+      <Route path="/tu-van-them" element={
+        <PermissionRoute permission="manage_appointment"><Consultations /></PermissionRoute>
+      } />
+
+      {/* Cài đặt */}
+      <Route path="/settings" element={
+        <PermissionRoute permission="manage_admin_user"><Settings /></PermissionRoute>
+      } />
+
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
+
   );
 }

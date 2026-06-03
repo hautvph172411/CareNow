@@ -2,7 +2,11 @@ const clinicService = require('./clinic.service');
 
 exports.getClinics = async (req, res) => {
   try {
-    const data = await clinicService.getClinics(req.query);
+    const query = { ...req.query };
+    if (req.user?.partner_id) {
+      query.partner_id = req.user.partner_id;
+    }
+    const data = await clinicService.getClinics(query);
     res.json({ success: true, ...data });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
@@ -20,7 +24,7 @@ exports.createClinic = async (req, res) => {
 
 exports.getClinicById = async (req, res) => {
   try {
-    const data = await clinicService.getClinicById(req.params.id);
+    const data = await clinicService.getClinicById(req.params.id, req.query);
     if (!data) return res.status(404).json({ success: false, message: 'Không tìm thấy' });
     res.json({ success: true, data });
   } catch (err) {
@@ -43,6 +47,6 @@ exports.deleteClinic = async (req, res) => {
     if (!success) return res.status(404).json({ success: false, message: 'Không tìm thấy' });
     res.json({ success: true, message: 'Xóa thành công' });
   } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
+    res.status(err.status || 500).json({ success: false, message: err.message });
   }
 };

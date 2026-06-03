@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CalendarClock, Plus, Edit2, Trash2, AlertTriangle, Copy } from 'lucide-react';
+import { CalendarClock, Plus, Edit2, Trash2, AlertTriangle, Copy, LayoutGrid, List } from 'lucide-react';
 import AdminLayout from '../layouts/AdminLayout';
 import {
   getScheduleBlocks,
@@ -8,16 +8,26 @@ import {
   getScheduleOverrides,
   createScheduleOverride,
   deleteScheduleOverride,
+  updateScheduleBlock,
+  createScheduleBlock
 } from '../api/appointmentSchedule.api';
 import { getClinics } from '../api/clinic.api';
 import { getPartners } from '../api/partner.api';
 import { getClinicPlaces } from '../api/clinic_place.api';
 import Pagination from '../components/Pagination';
+import ScheduleWeekGrid from '../components/ScheduleWeekGrid';
+import ScheduleQuickModal from '../components/ScheduleQuickModal';
 import { DAY_LABELS, SESSION_LABELS, formatTimeInput } from '../utils/scheduleLabels';
 
 export default function AppointmentSchedule() {
   const navigate = useNavigate();
-  const [tab, setTab] = useState('blocks'); // blocks | overrides
+    const [tab, setTab] = useState('blocks'); // blocks | overrides
+  const [viewMode, setViewMode] = useState('grid');
+  
+  const [quickModalOpen, setQuickModalOpen] = useState(false);
+  const [quickModalMode, setQuickModalMode] = useState('add');
+  const [quickModalData, setQuickModalData] = useState(null);
+
 
   const [blocks, setBlocks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -71,10 +81,13 @@ export default function AppointmentSchedule() {
     })();
   }, [filterPartner]);
 
-  const fetchBlocks = async (p = page) => {
+    const fetchBlocks = async (p = page) => {
     setLoading(true);
     try {
-      const params = { page: p, limit };
+      const params = { 
+        page: viewMode === 'grid' ? 1 : p, 
+        limit: viewMode === 'grid' ? 500 : limit 
+      };
       if (filterClinic) params.clinic_id = filterClinic;
       if (filterPartner) params.partner_id = filterPartner;
       if (filterPlace) params.clinic_place_id = filterPlace;
@@ -106,7 +119,7 @@ export default function AppointmentSchedule() {
   useEffect(() => {
     if (tab !== 'blocks') return;
     fetchBlocks(page);
-  }, [tab, page, filterClinic, filterPartner, filterPlace]);
+  }, [tab, page, filterClinic, filterPartner, filterPlace, viewMode]);
 
   useEffect(() => {
     if (tab !== 'overrides') return;
@@ -152,6 +165,65 @@ export default function AppointmentSchedule() {
 
   const quickAddHref = (b) =>
     `/appointment-schedule/blocks/add?clinic_id=${encodeURIComponent(b.clinic_id)}&partner_id=${encodeURIComponent(b.partner_id)}&clinic_place_id=${encodeURIComponent(b.clinic_place_id)}`;
+
+    const handleOpenQuickAdd = async (clinicId, dayOfWeek) => {
+    let recentPartnerId = '';
+    let recentPlaceId = '';
+    const docBlocks = blocks.filter(b => String(b.clinic_id) === String(clinicId));
+    if (docBlocks.length > 0) {
+      recentPartnerId = docBlocks[0].partner_id;
+      recentPlaceId = docBlocks[0].clinic_place_id;
+    }
+    setQuickModalMode('add');
+    setQuickModalData({
+      clinic_id: clinicId,
+      day_of_week: dayOfWeek,
+      partner_id: recentPartnerId,
+      clinic_place_id: recentPlaceId
+    });
+    setQuickModalOpen(true);
+  };
+
+  const handleOpenQuickEdit = (block) => {
+    setQuickModalMode('edit');
+    setQuickModalData(block);
+    setQuickModalOpen(true);
+  };
+
+  const handleQuickSave = async (formData) => {
+    const { selectedDays, ...blockData } = formData;
+    if (quickModalMode === 'edit') {
+      await updateScheduleBlock(quickModalData.id, blockData);
+    } else {
+      if (selectedDays && selectedDays.length > 0) {
+        await Promise.all(
+          selectedDays.map(day => createScheduleBlock({ ...blockData, day_of_week: day }))
+        );
+      } else {
+        await createScheduleBlock(blockData);
+      }
+    }
+    fetchBlocks(page);
+  };
+
+  const handleQuickDelete = async () => {
+    if (quickModalMode === 'edit' && quickModalData?.id) {
+      await deleteScheduleBlock(quickModalData.id);
+      fetchBlocks(page);
+    }
+  };
+
+  const handleOpenFullForm = () => {
+    if (quickModalMode === 'edit' && quickModalData?.id) {
+      navigate(`/appointment-schedule/blocks/edit/${quickModalData.id}`);
+    } else if (quickModalMode === 'add') {
+      const q = new URLSearchParams();
+      if (quickModalData.clinic_id) q.set('clinic_id', quickModalData.clinic_id);
+      if (quickModalData.partner_id) q.set('partner_id', quickModalData.partner_id);
+      if (quickModalData.clinic_place_id) q.set('clinic_place_id', quickModalData.clinic_place_id);
+      navigate(`/appointment-schedule/blocks/add?${q.toString()}`);
+    }
+  };
 
   const handleDeleteBlock = async (id) => {
     if (!window.confirm('Xóa khung lịch này?')) return;
@@ -228,7 +300,23 @@ export default function AppointmentSchedule() {
 
       {tab === 'blocks' && (
         <>
-          <div className="management-header" style={{ flexWrap: 'wrap', marginTop: 12 }}>
+                    <div className="management-header" style={{ flexWrap: 'wrap', marginTop: 12 }}>
+            <div className="schedule-view-toggle" style={{ marginRight: 'auto' }}>
+              <button 
+                type="button" 
+                className={viewMode === 'grid' ? 'active' : ''} 
+                onClick={() => setViewMode('grid')}
+              >
+                <LayoutGrid size={16} style={{ display: 'inline', marginRight: 4, verticalAlign: 'text-bottom' }}/> Grid
+              </button>
+              <button 
+                type="button" 
+                className={viewMode === 'list' ? 'active' : ''} 
+                onClick={() => setViewMode('list')}
+              >
+                <List size={16} style={{ display: 'inline', marginRight: 4, verticalAlign: 'text-bottom' }}/> List
+              </button>
+            </div>
             <select
               className="form-input"
               style={{ minWidth: 180 }}
@@ -272,9 +360,16 @@ export default function AppointmentSchedule() {
             </button>
           </div>
 
-          <div className="management-section" style={{ marginTop: 16 }}>
+                    <div className="management-section" style={{ marginTop: 16 }}>
             {loading ? (
               <div style={{ padding: '2rem', textAlign: 'center' }}>Đang tải...</div>
+            ) : viewMode === 'grid' ? (
+              <ScheduleWeekGrid 
+                blocks={blocks} 
+                clinics={clinics}
+                onAddBlock={handleOpenQuickAdd}
+                onEditBlock={handleOpenQuickEdit}
+              />
             ) : blocks.length > 0 ? (
               <>
                 <p style={{ fontSize: 14, color: '#64748b', marginBottom: 16 }}>
@@ -461,7 +556,7 @@ export default function AppointmentSchedule() {
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Bác sĩ ID</th>
+                  <th>Bác sĩ</th>
                   <th>Nơi khám</th>
                   <th>Ngày</th>
                   <th>Đóng</th>
@@ -473,7 +568,7 @@ export default function AppointmentSchedule() {
                 {overrides.map((o) => (
                   <tr key={o.id}>
                     <td>{o.id}</td>
-                    <td>{o.clinic_id}</td>
+                    <td>{clinics.find(c => String(c.id) === String(o.clinic_id))?.name || `Bác sĩ #${o.clinic_id}`}</td>
                     <td>{o.place_name || (o.clinic_place_id ? `#${o.clinic_place_id}` : '—')}</td>
                     <td>{o.override_date}</td>
                     <td>{o.is_closed ? 'Có' : 'Không'}</td>
@@ -491,6 +586,18 @@ export default function AppointmentSchedule() {
           </div>
         </div>
       )}
+
+      <ScheduleQuickModal
+        isOpen={quickModalOpen}
+        onClose={() => setQuickModalOpen(false)}
+        mode={quickModalMode}
+        initialData={quickModalData}
+        clinics={clinics}
+        partners={partners}
+        places={places}
+        onSave={handleQuickSave}
+        onDelete={handleQuickDelete}
+        onOpenFullForm={handleOpenFullForm}
+      />
     </AdminLayout>
-  );
-}
+  );}

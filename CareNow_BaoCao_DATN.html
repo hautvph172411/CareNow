@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đồ Án Tốt Nghiệp – CareNow | Trần Văn Hậu – 5240082</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Times New Roman", Times, serif; font-size: 13pt; line-height: 1.7; color: #000; background: #e0e0e0; }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 25mm 25mm 20mm 35mm;
+      margin: 12px auto;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      position: relative;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: 210mm; padding: 25mm 25mm 20mm 35mm; margin: 0; box-shadow: none; page-break-after: always; }
+      .no-print { display: none !important; }
+    }
+
+    /* ====== COVER ====== */
+    .cover { display: flex; flex-direction: column; align-items: center; text-align: center; min-height: 247mm; }
+    .cover .logo-wrapper { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+    .cover .logo-circle { width: 75px; height: 75px; border: 3px solid #003087; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22pt; font-weight: bold; color: #003087; flex-shrink: 0; }
+    .cover .school-info { text-align: left; }
+    .cover .school-name { font-size: 13pt; font-weight: bold; text-transform: uppercase; color: #003087; line-height: 1.3; }
+    .cover .faculty-name { font-size: 12pt; font-weight: bold; color: #003087; }
+    .cover .hr { width: 100%; border: none; border-top: 2px solid #003087; margin: 14px 0; }
+    .cover .title-box { border: 3px double #c00000; padding: 10px 32px; margin: 18px 0 14px; }
+    .cover .title-box span { font-size: 20pt; font-weight: bold; text-transform: uppercase; color: #c00000; letter-spacing: 2px; }
+    .cover .de-tai { font-size: 11pt; font-weight: bold; text-transform: uppercase; color: #555; margin-bottom: 8px; }
+    .cover .project-name { font-size: 24pt; font-weight: bold; text-transform: uppercase; color: #003087; line-height: 1.2; margin-bottom: 6px; }
+    .cover .project-sub { font-size: 14pt; color: #c00000; font-style: italic; margin-bottom: 30px; }
+    .cover table.info { text-align: left; font-size: 13pt; margin-bottom: 30px; }
+    .cover table.info td { padding: 4px 6px; vertical-align: top; }
+    .cover table.info td:first-child { font-weight: bold; white-space: nowrap; color: #222; }
+    .cover .city { font-size: 14pt; font-weight: bold; margin-top: auto; padding-top: 30px; }
+
+    /* ====== HEADINGS ====== */
+    .chap-title { font-size: 15pt; font-weight: bold; text-transform: uppercase; text-align: center; letter-spacing: 1px; margin-bottom: 22px; border-bottom: 2px solid #003087; padding-bottom: 6px; color: #003087; }
+    .sec { font-size: 13pt; font-weight: bold; margin: 18px 0 8px 0; color: #003087; }
+    .subsec { font-size: 12pt; font-weight: bold; margin: 12px 0 6px 0; color: #222; }
+    .roman-header { text-align: right; font-size: 10pt; color: #777; margin-bottom: 8px; font-style: italic; }
+    .page-num { text-align: center; font-size: 10pt; color: #666; margin-top: 20px; padding-top: 8px; border-top: 1px solid #ccc; }
+
+    /* ====== TEXT ====== */
+    p { margin-bottom: 10px; text-align: justify; }
+    ul, ol { padding-left: 26px; margin-bottom: 10px; }
+    li { margin-bottom: 5px; }
+    strong { color: #000; }
+    em { color: #333; }
+
+    /* ====== SIGN ====== */
+    .sign { text-align: center; margin-top: 28px; }
+    .sign .date { font-style: italic; margin-bottom: 6px; }
+    .sign .label { font-weight: bold; margin-bottom: 70px; }
+    .sign .name { font-weight: bold; }
+
+    /* ====== TOC ====== */
+    .toc-h1 { font-size: 13pt; font-weight: bold; margin: 8px 0 2px; }
+    .toc-h2 { font-size: 12pt; padding-left: 18px; margin: 2px 0; }
+    .toc-item { display: flex; justify-content: space-between; border-bottom: 1px dotted #999; padding: 2px 0 2px 0; margin-bottom: 1px; }
+    .toc-item span:first-child { flex: 1; padding-right: 8px; }
+    .toc-item span:last-child { white-space: nowrap; font-style: italic; min-width: 24px; text-align: right; }
+
+    /* ====== TABLE ====== */
+    .tbl { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 11.5pt; }
+    .tbl th { background: #003087; color: #fff; padding: 7px 9px; text-align: center; border: 1px solid #003087; font-size: 11pt; }
+    .tbl td { padding: 6px 9px; border: 1px solid #bbb; vertical-align: top; }
+    .tbl tr:nth-child(even) td { background: #f0f4ff; }
+    .tbl-caption { font-style: italic; font-size: 11pt; text-align: center; margin-bottom: 6px; color: #444; }
+
+    /* ====== CODE ====== */
+    pre { background: #f5f5f5; border: 1px solid #ccc; border-left: 4px solid #003087; padding: 10px 14px; font-family: "Courier New", monospace; font-size: 10pt; white-space: pre-wrap; margin: 10px 0; line-height: 1.5; }
+
+    /* ====== NOTE ====== */
+    .note { background: #fffbe6; border: 1px solid #e6c800; border-left: 4px solid #e6a800; padding: 9px 13px; margin: 12px 0; font-size: 11.5pt; }
+    .note strong { color: #8a6500; }
+
+    /* ====== BOX DIAGRAM ====== */
+    .diagram { border: 2px solid #003087; border-radius: 8px; padding: 14px; margin: 14px 0; background: #f0f4ff; text-align: center; }
+    .diagram .d-title { font-weight: bold; font-size: 11pt; color: #003087; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.5px; }
+    .d-row { display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap; margin: 6px 0; }
+    .d-box { color: #fff; padding: 7px 14px; border-radius: 5px; font-size: 10pt; font-weight: bold; min-width: 90px; text-align: center; line-height: 1.3; }
+    .b-blue  { background: #003087; }
+    .b-green { background: #1a7a1a; }
+    .b-red   { background: #b00020; }
+    .b-org   { background: #b05000; }
+    .b-pur   { background: #5c0078; }
+    .b-teal  { background: #006b6b; }
+    .b-gray  { background: #555; }
+    .b-gold  { background: #8a6500; }
+    .d-arr { font-size: 18pt; color: #003087; margin: 2px 4px; }
+    .d-caption { font-style: italic; font-size: 10pt; color: #555; margin-top: 8px; }
+
+    /* ====== STATUS ====== */
+    .badge { display: inline-block; padding: 1px 9px; border-radius: 10px; font-size: 10pt; font-weight: bold; color: #fff; }
+    .bp { background: #cc8800; } .bc { background: #0066cc; } .bd { background: #1a7a1a; } .bx { background: #b00020; } .bn { background: #555; }
+
+    /* ====== PRINT BUTTON ====== */
+    .print-btn { position: fixed; bottom: 28px; right: 28px; background: #003087; color: #fff; border: none; padding: 13px 22px; font-size: 13pt; border-radius: 7px; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,0.3); z-index: 1000; font-family: inherit; }
+    .print-btn:hover { background: #0055cc; }
+
+    /* ====== CENTER / MISC ====== */
+    .center { text-align: center; }
+    .ok { color: #1a7a1a; font-weight: bold; }
+    .wait { color: #cc8800; font-weight: bold; }
+    code { background: #f0f0f0; padding: 1px 5px; border-radius: 3px; font-family: "Courier New", monospace; font-size: 10.5pt; }
+
+    /* ====== FIGURE PLACEHOLDER ====== */
+    .fig { border: 2px dashed #003087; background: #f0f4ff; padding: 18px 10px; margin: 14px 0; text-align: center; border-radius: 6px; }
+    .fig .fig-title { font-size: 11pt; font-weight: bold; color: #003087; margin-bottom: 6px; }
+    .fig .fig-desc { font-size: 10.5pt; color: #555; }
+    .fig-caption { font-style: italic; font-size: 10.5pt; text-align: center; color: #555; margin-top: 4px; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">🖨️ In / Xuất PDF</button>
+
+<!-- ══════════════════════════════════════ TRANG BÌA ══════════════════════════════════════ -->
+<div class="page">
+  <div class="cover">
+    <div class="logo-wrapper">
+      <div class="logo-circle">UTT</div>
+      <div class="school-info">
+        <div class="school-name">Trường Đại Học Giao Thông Vận Tải</div>
+        <div class="faculty-name">Khoa Công Nghệ Thông Tin</div>
+      </div>
+    </div>
+    <hr class="hr">
+
+    <div class="title-box"><span>Đồ Án Tốt Nghiệp</span></div>
+
+    <div class="de-tai">Đề Tài</div>
+    <div class="project-name">CareNow</div>
+    <div class="project-sub">Hệ Thống Đặt Lịch Khám Bệnh Trực Tuyến</div>
+
+    <table class="info">
+      <tr><td>Giảng viên hướng dẫn&nbsp;&nbsp;:</td><td><strong>TS. [Tên Giảng Viên]</strong></td></tr>
+      <tr><td>Sinh viên thực hiện&nbsp;&nbsp;&nbsp;&nbsp;:</td><td><strong>Trần Văn Hậu</strong></td></tr>
+      <tr><td>Mã sinh viên&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td><td><strong>5240082</strong></td></tr>
+      <tr><td>Lớp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td><td><strong>CNTT LT – K28.1</strong></td></tr>
+    </table>
+
+    <div class="city">Hà Nội – 2026</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ LỜI CẢM ƠN ══════════════════════════════════════ -->
+<div class="page">
+  <div class="roman-header">i</div>
+  <div class="chap-title">Lời Cảm Ơn</div>
+
+  <p>Để hoàn thành đồ án tốt nghiệp này một cách thành công, em đã nhận được sự hỗ trợ và động viên quý báu từ nhiều phía. Em xin gửi lời cảm ơn chân thành và sâu sắc đến tất cả những người đã đồng hành cùng em trong suốt quá trình thực hiện đề tài.</p>
+  <p>Trước hết, em xin gửi lời tri ân đặc biệt đến quý thầy cô tại Trường Đại học Giao Thông Vận Tải, đặc biệt là các thầy cô trong Khoa Công Nghệ Thông Tin, những người đã tận tình truyền đạt kiến thức nền tảng vững chắc trong suốt bốn năm học. Những kiến thức đó chính là hành trang quý giá để em tiếp cận và giải quyết các bài toán thực tiễn trong đề tài này.</p>
+  <p>Em xin bày tỏ lòng biết ơn sâu sắc đến thầy giáo hướng dẫn – người đã dành nhiều thời gian, công sức để định hướng, chỉ bảo tận tình và góp ý chi tiết trong suốt quá trình nghiên cứu và hoàn thiện đồ án. Những lời nhận xét và gợi ý của thầy đã giúp em nắm bắt được tư duy thiết kế phần mềm theo hướng chuyên nghiệp, nhìn nhận bài toán từ góc độ kỹ sư thực tiễn.</p>
+  <p>Em cũng xin chân thành cảm ơn các bạn cùng lớp và nhóm học tập đã luôn sẵn sàng chia sẻ kinh nghiệm, hỗ trợ kỹ thuật và động viên tinh thần trong những lúc gặp khó khăn. Những buổi thảo luận và debug cùng nhau là những kỷ niệm không thể nào quên.</p>
+  <p>Em nhận thức rõ rằng trong quá trình thực hiện, đồ án vẫn còn những hạn chế nhất định do kiến thức và kinh nghiệm còn giới hạn. Em rất mong nhận được sự đánh giá, góp ý từ quý thầy cô và hội đồng phản biện để đồ án ngày càng hoàn thiện hơn.</p>
+  <p>Em xin chân thành cảm ơn!</p>
+
+  <div class="sign">
+    <div class="date">Hà Nội, Ngày 31 Tháng 5 Năm 2026</div>
+    <div class="label">Sinh viên thực hiện</div>
+    <div class="name">Trần Văn Hậu</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ LỜI MỞ ĐẦU ══════════════════════════════════════ -->
+<div class="page">
+  <div class="roman-header">ii</div>
+  <div class="chap-title">Lời Mở Đầu</div>
+
+  <p>Trong thời đại chuyển đổi số đang diễn ra mạnh mẽ trên mọi lĩnh vực, nhu cầu về các dịch vụ y tế thông minh, tiện lợi và minh bạch đang ngày càng trở nên cấp thiết. Người dân không chỉ mong muốn được tiếp cận dịch vụ y tế chất lượng cao, mà còn cần chủ động trong việc lựa chọn bác sĩ, cơ sở y tế và đặt lịch khám một cách dễ dàng, không phải xếp hàng chờ đợi hàng giờ đồng hồ như truyền thống.</p>
+
+  <p>Thực tế tại Việt Nam hiện nay, mặc dù hệ thống y tế không ngừng được cải thiện, việc tiếp cận thông tin về bác sĩ, lịch khám, giá dịch vụ và chính sách bảo hiểm vẫn còn rất phân tán và thiếu minh bạch. Người bệnh thường phải gọi điện đến nhiều nơi, hỏi thăm người quen hoặc đến trực tiếp cơ sở y tế chỉ để tìm hiểu xem bác sĩ mình cần có lịch khám hay không. Đây là bài toán thiết thực cần được giải quyết bằng công nghệ.</p>
+
+  <p>Xuất phát từ thực tiễn đó, đồ án tốt nghiệp <strong>"CareNow – Hệ Thống Đặt Lịch Khám Bệnh Trực Tuyến"</strong> được nghiên cứu và xây dựng nhằm kết nối bệnh nhân và cơ sở y tế thông qua một nền tảng số thống nhất. Hệ thống cho phép bệnh nhân tra cứu thông tin bác sĩ, xem lịch làm việc theo thời gian thực, đặt lịch hẹn trực tuyến, tra cứu giá dịch vụ và thông tin bảo hiểm; đồng thời cung cấp công cụ quản lý toàn diện cho ban quản trị và các đối tác y tế.</p>
+
+  <p>Nội dung đồ án được trình bày gồm ba chương chính:</p>
+  <ul>
+    <li><strong>Chương 1:</strong> Tổng quan về đề tài – phân tích thực trạng, bài toán cần giải quyết, mục tiêu và công nghệ nền tảng.</li>
+    <li><strong>Chương 2:</strong> Phân tích và thiết kế hệ thống – kiến trúc kỹ thuật, cơ sở dữ liệu, phân quyền RBAC và thiết kế module.</li>
+    <li><strong>Chương 3:</strong> Cài đặt hệ thống – hướng dẫn triển khai, cài đặt từng thành phần, quy trình vận hành và kết quả đạt được.</li>
+  </ul>
+
+  <p>Mặc dù đã nỗ lực tối đa trong quá trình nghiên cứu và phát triển, do giới hạn về thời gian và kinh nghiệm, đồ án vẫn còn một số điểm có thể cải thiện trong tương lai. Em rất mong nhận được sự đóng góp từ thầy cô và hội đồng để sản phẩm ngày càng hoàn thiện hơn.</p>
+</div>
+
+<!-- ══════════════════════════════════════ MỤC LỤC ══════════════════════════════════════ -->
+<div class="page">
+  <div class="roman-header">iii</div>
+  <div class="chap-title">Mục Lục</div>
+
+  <div class="toc-h1"><div class="toc-item"><span>ĐỒ ÁN TỐT NGHIỆP</span><span>Bìa</span></div></div>
+  <div class="toc-h1"><div class="toc-item"><span>LỜI CẢM ƠN</span><span>i</span></div></div>
+  <div class="toc-h1"><div class="toc-item"><span>LỜI MỞ ĐẦU</span><span>ii</span></div></div>
+  <div class="toc-h1"><div class="toc-item"><span>MỤC LỤC</span><span>iii</span></div></div>
+  <div class="toc-h1"><div class="toc-item"><span>DANH MỤC BẢNG BIỂU</span><span>v</span></div></div>
+  <div class="toc-h1"><div class="toc-item"><span>DANH MỤC HÌNH ẢNH</span><span>vi</span></div></div>
+
+  <br>
+  <div class="toc-h1"><div class="toc-item"><span>CHƯƠNG 1: TỔNG QUAN VỀ ĐỀ TÀI</span><span>1</span></div></div>
+  <div class="toc-h2">
+    <div class="toc-item"><span>1.1 Bối cảnh và thực trạng y tế số tại Việt Nam</span><span>1</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;1.1.1 Thực trạng khám chữa bệnh truyền thống</span><span>1</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;1.1.2 Xu hướng ứng dụng công nghệ trong y tế (HealthTech)</span><span>2</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;1.1.3 Vai trò của nền tảng đặt lịch trực tuyến</span><span>2</span></div>
+    <div class="toc-item"><span>1.2 Giới thiệu dự án CareNow</span><span>3</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;1.2.1 Tên và ý nghĩa dự án</span><span>3</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;1.2.2 Mục tiêu hệ thống</span><span>3</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;1.2.3 Phạm vi và giới hạn</span><span>4</span></div>
+    <div class="toc-item"><span>1.3 Công nghệ nền tảng sử dụng</span><span>4</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;1.3.1 Node.js và Express</span><span>4</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;1.3.2 PostgreSQL</span><span>5</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;1.3.3 React và Vite</span><span>5</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;1.3.4 Cloudinary</span><span>5</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;1.3.5 Google OAuth 2.0 và JWT</span><span>5</span></div>
+  </div>
+
+  <br>
+  <div class="toc-h1"><div class="toc-item"><span>CHƯƠNG 2: PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG</span><span>7</span></div></div>
+  <div class="toc-h2">
+    <div class="toc-item"><span>2.1 Tổng quan kiến trúc hệ thống CareNow</span><span>7</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;2.1.1 Kiến trúc đa tầng (Multi-Tier Architecture)</span><span>7</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;2.1.2 Sơ đồ tổng thể hệ thống</span><span>8</span></div>
+    <div class="toc-item"><span>2.2 Phân tích chi tiết các thành phần hệ thống</span><span>9</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;2.2.1 Backend Server (carenow-backend / partner-backend)</span><span>9</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;2.2.2 Frontend Client (Presentation Layer)</span><span>10</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;2.2.3 Database Layer (PostgreSQL)</span><span>10</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;2.2.4 Media Storage (Cloudinary)</span><span>11</span></div>
+    <div class="toc-item"><span>2.3 Mô hình luồng dữ liệu</span><span>11</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;2.3.1 Luồng đặt lịch hẹn</span><span>11</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;2.3.2 Luồng xác thực người dùng</span><span>12</span></div>
+    <div class="toc-item"><span>2.4 Thiết kế cơ sở dữ liệu</span><span>12</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;2.4.1 Danh sách các bảng chính</span><span>12</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;2.4.2 Cấu trúc bảng tbl_appointment</span><span>14</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;2.4.3 Cấu trúc bảng tbl_appointment_schedule</span><span>14</span></div>
+    <div class="toc-item"><span>2.5 Thiết kế hệ thống phân quyền RBAC</span><span>15</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;2.5.1 Mô hình RBAC</span><span>15</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;2.5.2 Danh sách vai trò và quyền</span><span>16</span></div>
+    <div class="toc-item"><span>2.6 Thiết kế module Backend</span><span>17</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;2.6.1 Danh sách module và API</span><span>17</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;2.6.2 Pattern Controller–Service–Repository</span><span>18</span></div>
+    <div class="toc-item"><span>2.7 Thiết kế Frontend</span><span>19</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;2.7.1 Frontend bệnh nhân (carenow-client)</span><span>19</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;2.7.2 Frontend quản trị (frontend – admin)</span><span>20</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;2.7.3 Frontend đối tác (frontend-partner)</span><span>20</span></div>
+  </div>
+
+  <br>
+  <div class="toc-h1"><div class="toc-item"><span>CHƯƠNG 3: CÀI ĐẶT HỆ THỐNG</span><span>21</span></div></div>
+  <div class="toc-h2">
+    <div class="toc-item"><span>3.1 Quy trình cài đặt – Tiền đề và môi trường</span><span>21</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;3.1.1 Yêu cầu phần cứng và phần mềm</span><span>21</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;3.1.2 Cài đặt Node.js</span><span>22</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;3.1.3 Cài đặt PostgreSQL</span><span>23</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;3.1.4 Cấu hình biến môi trường (.env)</span><span>24</span></div>
+    <div class="toc-item"><span>3.2 Cài đặt Backend (carenow-backend)</span><span>25</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;3.2.1 Clone dự án và cài đặt dependencies</span><span>25</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;3.2.2 Chạy migration cơ sở dữ liệu</span><span>26</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;3.2.3 Cấu hình Cloudinary</span><span>26</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;3.2.4 Khởi chạy server backend</span><span>27</span></div>
+    <div class="toc-item"><span>3.3 Cài đặt Frontend</span><span>28</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;3.3.1 Frontend quản trị (frontend)</span><span>28</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;3.3.2 Frontend bệnh nhân (carenow-client)</span><span>29</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;3.3.3 Frontend đối tác (frontend-partner)</span><span>29</span></div>
+    <div class="toc-item"><span>3.4 Quy trình vận hành</span><span>30</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;3.4.1 Khởi động toàn bộ hệ thống</span><span>30</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;3.4.2 Đồng bộ quyền và khởi tạo dữ liệu mẫu</span><span>31</span></div>
+    <div class="toc-item"><span>3.5 Kết quả triển khai và demo giao diện</span><span>32</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;3.5.1 Giao diện bệnh nhân (carenow-client)</span><span>32</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;3.5.2 Giao diện quản trị (Admin)</span><span>34</span></div>
+    <div class="toc-item"><span>&nbsp;&nbsp;&nbsp;3.5.3 Giao diện đối tác (Partner Portal)</span><span>36</span></div>
+  </div>
+
+  <br>
+  <div class="toc-h1"><div class="toc-item"><span>KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN</span><span>38</span></div></div>
+  <div class="toc-h2">
+    <div class="toc-item"><span>Kết luận</span><span>38</span></div>
+    <div class="toc-item"><span>Về mặt lý thuyết</span><span>38</span></div>
+    <div class="toc-item"><span>Về mặt thực nghiệm</span><span>38</span></div>
+    <div class="toc-item"><span>Hạn chế</span><span>39</span></div>
+    <div class="toc-item"><span>Hướng phát triển</span><span>39</span></div>
+  </div>
+  <div class="toc-h1"><div class="toc-item"><span>TÀI LIỆU THAM KHẢO</span><span>40</span></div></div>
+</div>
+
+<!-- ══════════════════════════ DANH MỤC BẢNG BIỂU ══════════════════════════ -->
+<div class="page">
+  <div class="roman-header">v</div>
+  <div class="chap-title">Danh Mục Bảng Biểu</div>
+
+  <div class="toc-item"><span>Bảng 2.1: Tóm tắt các thành phần hệ thống CareNow</span><span>9</span></div>
+  <div class="toc-item"><span>Bảng 2.2: Danh sách bảng dữ liệu chính (tbl_*)</span><span>12</span></div>
+  <div class="toc-item"><span>Bảng 2.3: Cấu trúc bảng tbl_appointment</span><span>14</span></div>
+  <div class="toc-item"><span>Bảng 2.4: Trạng thái lịch hẹn (appointment status)</span><span>14</span></div>
+  <div class="toc-item"><span>Bảng 2.5: Cấu trúc bảng tbl_appointment_schedule</span><span>15</span></div>
+  <div class="toc-item"><span>Bảng 2.6: Danh sách permission trong hệ thống RBAC</span><span>16</span></div>
+  <div class="toc-item"><span>Bảng 2.7: Danh sách module backend và API prefix</span><span>17</span></div>
+  <div class="toc-item"><span>Bảng 2.8: Danh sách trang Frontend bệnh nhân</span><span>19</span></div>
+  <div class="toc-item"><span>Bảng 3.1: Yêu cầu phần cứng tối thiểu</span><span>21</span></div>
+  <div class="toc-item"><span>Bảng 3.2: Các biến môi trường Backend</span><span>24</span></div>
+  <div class="toc-item"><span>Bảng 3.3: Danh sách file migration cơ sở dữ liệu</span><span>26</span></div>
+  <div class="toc-item"><span>Bảng 3.4: Tổng hợp kết quả đạt được</span><span>37</span></div>
+  <div class="toc-item"><span>Bảng 3.5: Đánh giá theo mục tiêu đề ra</span><span>37</span></div>
+</div>
+
+<!-- ══════════════════════════ DANH MỤC HÌNH ẢNH ══════════════════════════ -->
+<div class="page">
+  <div class="roman-header">vi</div>
+  <div class="chap-title">Danh Mục Hình Ảnh</div>
+
+  <div class="toc-item"><span>Hình 2.1: Sơ đồ kiến trúc tổng thể hệ thống CareNow</span><span>8</span></div>
+  <div class="toc-item"><span>Hình 2.2: Luồng đặt lịch hẹn</span><span>11</span></div>
+  <div class="toc-item"><span>Hình 2.3: Luồng xác thực người dùng (Admin và Bệnh nhân)</span><span>12</span></div>
+  <div class="toc-item"><span>Hình 2.4: Mô hình RBAC hệ thống CareNow</span><span>15</span></div>
+  <div class="toc-item"><span>Hình 3.1: Cài đặt Node.js v20 LTS</span><span>22</span></div>
+  <div class="toc-item"><span>Hình 3.2: Kiểm tra phiên bản Node.js</span><span>22</span></div>
+  <div class="toc-item"><span>Hình 3.3: Cài đặt PostgreSQL</span><span>23</span></div>
+  <div class="toc-item"><span>Hình 3.4: Kết nối PostgreSQL thành công</span><span>23</span></div>
+  <div class="toc-item"><span>Hình 3.5: Cài đặt dependencies (npm install)</span><span>25</span></div>
+  <div class="toc-item"><span>Hình 3.6: Backend server khởi động thành công</span><span>27</span></div>
+  <div class="toc-item"><span>Hình 3.7: Kết nối PostgreSQL xác nhận</span><span>27</span></div>
+  <div class="toc-item"><span>Hình 3.8: Frontend admin khởi động (port 5173)</span><span>28</span></div>
+  <div class="toc-item"><span>Hình 3.9: Frontend bệnh nhân khởi động (port 5174)</span><span>29</span></div>
+  <div class="toc-item"><span>Hình 3.10: Frontend đối tác khởi động (port 5175)</span><span>29</span></div>
+  <div class="toc-item"><span>Hình 3.11: Giao diện trang chủ bệnh nhân</span><span>32</span></div>
+  <div class="toc-item"><span>Hình 3.12: Giao diện tìm kiếm bác sĩ</span><span>32</span></div>
+  <div class="toc-item"><span>Hình 3.13: Giao diện chi tiết bác sĩ</span><span>33</span></div>
+  <div class="toc-item"><span>Hình 3.14: Giao diện đặt lịch hẹn (SchedulePicker)</span><span>33</span></div>
+  <div class="toc-item"><span>Hình 3.15: Giao diện trang "Lịch hẹn của tôi"</span><span>33</span></div>
+  <div class="toc-item"><span>Hình 3.16: Giao diện đăng nhập Admin</span><span>34</span></div>
+  <div class="toc-item"><span>Hình 3.17: Dashboard thống kê admin</span><span>34</span></div>
+  <div class="toc-item"><span>Hình 3.18: Danh sách bác sĩ (Clinic List)</span><span>34</span></div>
+  <div class="toc-item"><span>Hình 3.19: Quản lý lịch làm việc (Schedule Week Grid)</span><span>35</span></div>
+  <div class="toc-item"><span>Hình 3.20: Quản lý đơn đặt khám (Appointments)</span><span>35</span></div>
+  <div class="toc-item"><span>Hình 3.21: Trang Phân quyền (Permissions Assignment)</span><span>35</span></div>
+  <div class="toc-item"><span>Hình 3.22: Giao diện Welcome – Partner Portal</span><span>36</span></div>
+  <div class="toc-item"><span>Hình 3.23: Quản lý lịch hẹn đối tác (Partner Appointments)</span><span>36</span></div>
+  <div class="toc-item"><span>Hình 3.24: Cổng quản lý lịch đối tác (Partner Schedule)</span><span>36</span></div>
+</div>
+
+<!-- ══════════════════════════════════════ CHƯƠNG 1 ══════════════════════════════════════ -->
+<div class="page">
+  <div class="chap-title">Chương 1: Tổng Quan Về Đề Tài</div>
+
+  <div class="sec">1.1 Bối Cảnh Và Thực Trạng Y Tế Số Tại Việt Nam</div>
+
+  <div class="subsec">1.1.1 Thực Trạng Khám Chữa Bệnh Truyền Thống</div>
+  <p>Hệ thống khám chữa bệnh tại Việt Nam đang phải đối mặt với nhiều thách thức nghiêm trọng. Tình trạng quá tải bệnh viện, đặc biệt là các bệnh viện tuyến trung ương tại Hà Nội và TP. Hồ Chí Minh, là vấn đề mang tính hệ thống kéo dài nhiều năm. Người bệnh thường phải đến từ 4–5 giờ sáng để xếp hàng lấy số thứ tự, chờ đợi hàng tiếng đồng hồ để được khám trong vài phút. Tình trạng "đặt chỗ hộ" hay mua số thứ tự gây ra sự bất công và thiếu minh bạch trong tiếp cận dịch vụ y tế.</p>
+  <p>Bên cạnh đó, thông tin về bác sĩ, chuyên khoa, lịch làm việc và giá dịch vụ hiện nay cực kỳ phân tán. Mỗi cơ sở y tế có website riêng (nếu có), thông tin không đồng nhất và thường xuyên lỗi thời. Người bệnh không thể biết bác sĩ mình muốn gặp có lịch khám vào ngày hôm đó hay không nếu không gọi điện trực tiếp.</p>
+
+  <div class="subsec">1.1.2 Xu Hướng Ứng Dụng Công Nghệ Trong Y Tế (HealthTech)</div>
+  <p>Trên thế giới, các nền tảng HealthTech như <strong>Zocdoc</strong> (Mỹ), <strong>Practo</strong> (Ấn Độ), <strong>Doctolib</strong> (Pháp) đã cách mạng hóa cách người dân tiếp cận dịch vụ y tế. Tại Việt Nam, <strong>BookingCare</strong> và <strong>Medpro</strong> là những tiên phong trong lĩnh vực này, nhưng thị trường vẫn còn rất nhiều dư địa để phát triển, đặc biệt ở phân khúc phục vụ đối tác bệnh viện/phòng khám tư nhân vừa và nhỏ.</p>
+  <p>Sự phát triển của điện thoại thông minh, tốc độ Internet ngày càng cao và thói quen số hóa của người dùng tạo ra điều kiện lý tưởng để triển khai giải pháp đặt lịch y tế trực tuyến. Theo thống kê năm 2024, tỷ lệ người Việt Nam sử dụng Internet vượt 73% dân số – đây là nền tảng người dùng sẵn sàng đón nhận các dịch vụ y tế số.</p>
+
+  <div class="subsec">1.1.3 Vai Trò Của Nền Tảng Đặt Lịch Trực Tuyến</div>
+  <p>Một nền tảng đặt lịch y tế trực tuyến hiệu quả mang lại lợi ích cho ba nhóm đối tượng:</p>
+  <ul>
+    <li><strong>Với bệnh nhân:</strong> Tiết kiệm thời gian, chủ động lựa chọn bác sĩ/thời gian, tra cứu giá dịch vụ và bảo hiểm trước khi quyết định.</li>
+    <li><strong>Với cơ sở y tế:</strong> Giảm tải công việc đặt lịch thủ công, quản lý lịch hẹn theo thời gian thực, hạn chế bệnh nhân bỏ lịch (no-show).</li>
+    <li><strong>Với hệ thống y tế:</strong> Phân phối bệnh nhân đồng đều hơn giữa các cơ sở, giảm áp lực bệnh viện tuyến trung ương.</li>
+  </ul>
+
+  <div class="sec">1.2 Giới Thiệu Dự Án CareNow</div>
+
+  <div class="subsec">1.2.1 Tên Và Ý Nghĩa Dự Án</div>
+  <p><strong>CareNow</strong> – tên dự án mang ý nghĩa "<em>Chăm sóc sức khỏe ngay bây giờ</em>". Từ "<em>Care</em>" thể hiện sự quan tâm và chăm sóc sức khỏe; "<em>Now</em>" nhấn mạnh tính tức thời, tiện lợi. Cái tên phản ánh đúng triết lý cốt lõi: mang dịch vụ y tế đến tay người dùng nhanh chóng, không chờ đợi, không rào cản.</p>
+
+  <div class="subsec">1.2.2 Mục Tiêu Hệ Thống</div>
+  <p>Đồ án CareNow đặt ra các mục tiêu cụ thể:</p>
+  <ul>
+    <li>Xây dựng nền tảng cho phép bệnh nhân tìm kiếm bác sĩ, phòng khám theo nhiều tiêu chí (chuyên khoa, dịch vụ, địa điểm, bảo hiểm).</li>
+    <li>Cung cấp hệ thống đặt lịch hẹn trực tuyến với mã booking duy nhất, theo dõi trạng thái thời gian thực.</li>
+    <li>Xây dựng hệ thống quản lý toàn diện cho ban quản trị với phân quyền RBAC chi tiết.</li>
+    <li>Cung cấp cổng đối tác (Partner Portal) để bệnh viện/phòng khám tự quản lý lịch bác sĩ và lịch hẹn.</li>
+    <li>Tích hợp thông tin giá dịch vụ và bảo hiểm y tế (công lập + tư nhân) minh bạch.</li>
+    <li>Tích hợp Google OAuth 2.0 cho bệnh nhân đăng nhập nhanh.</li>
+  </ul>
+
+  <div class="subsec">1.2.3 Phạm Vi Và Giới Hạn</div>
+  <p>Trong phạm vi đồ án, hệ thống CareNow tập trung vào:</p>
+  <ul>
+    <li>Quản lý bác sĩ, chuyên khoa, dịch vụ y tế; cơ sở y tế đa cấp.</li>
+    <li>Hệ thống lịch làm việc bác sĩ theo tuần với các buổi sáng/chiều/tối.</li>
+    <li>Đặt lịch hẹn cho khách vãng lai (guest) lẫn bệnh nhân đăng nhập.</li>
+    <li>Gói giá và gói bảo hiểm (BHYT công lập + tư nhân).</li>
+  </ul>
+  <p>Hệ thống <strong>chưa</strong> triển khai: thanh toán trực tuyến, thông báo SMS/email tự động, ứng dụng mobile native, tích hợp HIS bệnh viện.</p>
+  <div class="page-num">— 1 —</div>
+</div>
+
+<!-- ══════════════════════════════════════ CHƯƠNG 1 (tiếp) ══════════════════════════════════════ -->
+<div class="page">
+  <div class="sec">1.3 Công Nghệ Nền Tảng Sử Dụng</div>
+
+  <div class="subsec">1.3.1 Node.js Và Express v5</div>
+  <p><strong>Node.js</strong> là môi trường chạy JavaScript phía server, nổi tiếng với mô hình I/O bất đồng bộ (non-blocking event-driven), rất phù hợp cho các ứng dụng cần xử lý nhiều kết nối đồng thời như hệ thống đặt lịch y tế. Kết hợp với <strong>Express v5</strong> – framework web tối giản nhưng linh hoạt – đội phát triển có thể nhanh chóng xây dựng RESTful API đầy đủ tính năng.</p>
+  <p>CareNow sử dụng hai backend Node.js độc lập: <code>carenow-backend</code> phục vụ admin và bệnh nhân, <code>partner-backend</code> phục vụ riêng cho đối tác y tế.</p>
+
+  <div class="subsec">1.3.2 PostgreSQL</div>
+  <p><strong>PostgreSQL</strong> là hệ quản trị cơ sở dữ liệu quan hệ mã nguồn mở mạnh mẽ, được lựa chọn vì khả năng xử lý kiểu dữ liệu JSONB (lưu metadata linh hoạt), mảng, và hỗ trợ aggregate phức tạp cần thiết cho các query thống kê lịch hẹn, giá dịch vụ và bảo hiểm. Kết nối qua thư viện <code>pg</code> (node-postgres) với cơ chế Pool để tái sử dụng kết nối hiệu quả.</p>
+
+  <div class="subsec">1.3.3 React Và Vite</div>
+  <p><strong>React</strong> là thư viện UI phổ biến nhất hiện nay, cho phép xây dựng giao diện theo mô hình component-based, dễ tái sử dụng và bảo trì. CareNow sử dụng <strong>Vite</strong> làm build tool vì tốc độ build nhanh vượt trội nhờ cơ chế ES modules native. Dự án có ba frontend hoàn toàn độc lập phục vụ ba nhóm người dùng khác nhau.</p>
+
+  <div class="subsec">1.3.4 Cloudinary</div>
+  <p><strong>Cloudinary</strong> là dịch vụ lưu trữ và quản lý media trên cloud, được tích hợp để xử lý upload ảnh cho hồ sơ bác sĩ, ảnh cơ sở y tế, bài viết cẩm nang và logo đối tác. Cloudinary cung cấp CDN toàn cầu giúp ảnh tải nhanh, đồng thời hỗ trợ tự động nén và resize. Backend sử dụng <code>multer</code> + <code>multer-storage-cloudinary</code> để upload trực tiếp lên Cloudinary.</p>
+
+  <div class="subsec">1.3.5 Google OAuth 2.0 Và JWT</div>
+  <p>Hệ thống sử dụng hai cơ chế xác thực song song:</p>
+  <ul>
+    <li><strong>JWT (JSON Web Token):</strong> Cho tài khoản admin/partner – đăng nhập bằng username/password, server ký JWT thời hạn 8 giờ, client lưu localStorage và gửi kèm header <code>Authorization: Bearer &lt;token&gt;</code>.</li>
+    <li><strong>Google OAuth 2.0:</strong> Cho bệnh nhân – sử dụng <code>@react-oauth/google</code> phía frontend và <code>google-auth-library</code> phía backend để verify Google ID token, tự động tạo tài khoản bệnh nhân nếu chưa có.</li>
+  </ul>
+
+  <div class="note">
+    <strong>Lưu ý bảo mật:</strong> Mật khẩu admin được hash bằng <code>bcrypt</code> trước khi lưu database. Hệ thống thực hiện soft delete (status = -1) thay vì xóa vật lý để đảm bảo tính toàn vẹn dữ liệu lịch sử. Tất cả query đều dùng parameterized query để phòng chống SQL injection.
+  </div>
+
+  <div class="page-num">— 5 —</div>
+</div>
+
+<!-- ══════════════════════════════════════ CHƯƠNG 2 ══════════════════════════════════════ -->
+<div class="page">
+  <div class="chap-title">Chương 2: Phân Tích Và Thiết Kế Hệ Thống</div>
+
+  <div class="sec">2.1 Tổng Quan Kiến Trúc Hệ Thống CareNow</div>
+
+  <div class="subsec">2.1.1 Kiến Trúc Đa Tầng (Multi-Tier Architecture)</div>
+  <p>CareNow được xây dựng theo kiến trúc đa tầng rõ ràng: tầng Trình bày (Presentation – ba frontend), tầng Nghiệp vụ (Application Logic – hai backend) và tầng Dữ liệu (Data – PostgreSQL + Cloudinary). Kiến trúc này đảm bảo tính mô-đun, dễ bảo trì và mở rộng độc lập từng tầng.</p>
+
+  <div class="subsec">2.1.2 Sơ Đồ Tổng Thể Hệ Thống</div>
+
+  <div class="diagram">
+    <div class="d-title">Hình 2.1: Sơ Đồ Kiến Trúc Tổng Thể CareNow</div>
+    <div class="d-row">
+      <div class="d-box b-teal">Bệnh nhân<br><small>carenow-client<br>:5174</small></div>
+      <div class="d-box b-green">Admin<br><small>frontend<br>:5173</small></div>
+      <div class="d-box b-pur">Đối tác<br><small>frontend-partner<br>:5175</small></div>
+    </div>
+    <div class="d-row"><span class="d-arr">↓</span><span class="d-arr">↓</span><span class="d-arr">↓</span></div>
+    <div class="d-row">
+      <div class="d-box b-blue">carenow-backend<br><small>Node.js/Express<br>:5000 | /api/*</small></div>
+      <div style="font-size:16pt;color:#555">◀ ▶</div>
+      <div class="d-box b-org">partner-backend<br><small>Node.js/Express<br>:5001 | /api/*</small></div>
+    </div>
+    <div class="d-row"><span class="d-arr">↓</span>&nbsp;&nbsp;&nbsp;<span class="d-arr">↓</span>&nbsp;&nbsp;&nbsp;<span class="d-arr">↓</span></div>
+    <div class="d-row">
+      <div class="d-box b-gray">PostgreSQL<br><small>tbl_* tables</small></div>
+      <div class="d-box b-org">Cloudinary<br><small>Media CDN</small></div>
+      <div class="d-box" style="background:#0f9d58">Google OAuth<br><small>Patient Auth</small></div>
+    </div>
+  </div>
+
+  <div class="tbl-caption">Bảng 2.1: Tóm tắt các thành phần hệ thống CareNow</div>
+  <table class="tbl">
+    <thead><tr><th>Sub-project</th><th>Port</th><th>Vai trò</th><th>Stack</th></tr></thead>
+    <tbody>
+      <tr><td>carenow-backend</td><td>5000</td><td>API chính cho Admin + Bệnh nhân</td><td>Node.js, Express v5, PostgreSQL</td></tr>
+      <tr><td>partner-backend</td><td>5001</td><td>API riêng cho Đối tác</td><td>Node.js, Express v5, PostgreSQL</td></tr>
+      <tr><td>frontend (admin)</td><td>5173</td><td>Portal quản trị hệ thống</td><td>React, Vite, Vanilla CSS</td></tr>
+      <tr><td>carenow-client</td><td>5174</td><td>Ứng dụng bệnh nhân</td><td>React, Vite, Google OAuth</td></tr>
+      <tr><td>frontend-partner</td><td>5175</td><td>Portal đối tác y tế</td><td>React, Vite, Vanilla CSS</td></tr>
+    </tbody>
+  </table>
+  <div class="page-num">— 7 —</div>
+</div>
+
+<!-- ══════════════════════════════════════ CHƯƠNG 2 (tiếp) – Components ══════════════════════════════════════ -->
+<div class="page">
+  <div class="sec">2.2 Phân Tích Chi Tiết Các Thành Phần Hệ Thống</div>
+
+  <div class="subsec">2.2.1 Backend Server (carenow-backend / partner-backend)</div>
+  <p>Hai backend server có cấu trúc giống nhau và chia sẻ cùng cơ sở dữ liệu PostgreSQL. Mỗi server được tổ chức theo mô hình MVC mở rộng gồm 20 module nghiệp vụ, mỗi module gồm 4 file: <code>controller.js</code> → <code>service.js</code> → <code>repository.js</code> → <code>router.js</code>.</p>
+  <ul>
+    <li><strong>Controller:</strong> Xử lý HTTP request/response, gọi service và trả kết quả.</li>
+    <li><strong>Service:</strong> Chứa toàn bộ business logic, validation, bắt lỗi nghiệp vụ.</li>
+    <li><strong>Repository:</strong> Chỉ tương tác với database qua parameterized SQL query.</li>
+    <li><strong>Router:</strong> Định nghĩa endpoint và gán middleware xác thực.</li>
+  </ul>
+  <p>Sự tách biệt này giúp code dễ test, dễ bảo trì và thay thế từng lớp độc lập.</p>
+
+  <div class="subsec">2.2.2 Frontend Client (Presentation Layer)</div>
+  <p>Ba ứng dụng React/Vite độc lập phục vụ ba nhóm người dùng:</p>
+  <ul>
+    <li><strong>carenow-client (5174):</strong> Bệnh nhân – tìm kiếm bác sĩ, đặt lịch, xem lịch hẹn cá nhân.</li>
+    <li><strong>frontend – Admin (5173):</strong> Quản trị viên – toàn quyền quản lý hệ thống với 43 trang.</li>
+    <li><strong>frontend-partner (5175):</strong> Đối tác y tế – quản lý lịch bác sĩ và lịch hẹn của cơ sở mình với 47 trang.</li>
+  </ul>
+  <p>Cả ba dùng <strong>React Router DOM</strong> để điều hướng, <strong>Axios</strong> để gọi API (đã cài sẵn Bearer token interceptor), và <strong>Vanilla CSS</strong> chia theo module trong thư mục <code>src/styles/</code>.</p>
+
+  <div class="subsec">2.2.3 Database Layer (PostgreSQL)</div>
+  <p>PostgreSQL chạy như dịch vụ duy nhất được chia sẻ bởi cả hai backend. Kết nối qua <code>pg.Pool</code> – cơ chế pool cho phép tái sử dụng kết nối, tránh tạo kết nối mới cho mỗi query. Smoke test kết nối (<code>SELECT 1</code>) được thực hiện khi khởi động server để phát hiện lỗi kết nối sớm.</p>
+
+  <div class="subsec">2.2.4 Media Storage (Cloudinary)</div>
+  <p>Mọi hình ảnh trong hệ thống (ảnh bác sĩ, ảnh cơ sở y tế, logo đối tác, ảnh bài viết) đều được lưu trên <strong>Cloudinary</strong> thay vì server nội bộ. Điều này giúp:</p>
+  <ul>
+    <li>Không chiếm dung lượng ổ đĩa server.</li>
+    <li>Phân phối ảnh nhanh qua CDN toàn cầu của Cloudinary.</li>
+    <li>Tự động nén, resize ảnh theo kích thước yêu cầu.</li>
+  </ul>
+
+  <div class="sec">2.3 Mô Hình Luồng Dữ Liệu</div>
+
+  <div class="subsec">2.3.1 Luồng Đặt Lịch Hẹn</div>
+  <div class="diagram">
+    <div class="d-title">Hình 2.2: Luồng Đặt Lịch Hẹn CareNow</div>
+    <div class="d-row">
+      <div class="d-box b-teal">① Tìm kiếm<br><small>Bác sĩ / Cơ sở</small></div>
+      <span class="d-arr">→</span>
+      <div class="d-box b-green">② Chọn slot<br><small>SchedulePicker</small></div>
+      <span class="d-arr">→</span>
+      <div class="d-box b-blue">③ Điền thông tin<br><small>Tên, SĐT, ghi chú</small></div>
+    </div>
+    <div class="d-row"><span class="d-arr">↓</span></div>
+    <div class="d-row">
+      <div class="d-box b-red">⑥ Admin/Đối tác<br><small>Cập nhật trạng thái</small></div>
+      <span class="d-arr">←</span>
+      <div class="d-box b-gold">⑤ Lịch pending<br><small>Chờ xác nhận</small></div>
+      <span class="d-arr">←</span>
+      <div class="d-box b-green">④ POST /appointments<br><small>Booking code: BKYYMMDDxxxx</small></div>
+    </div>
+    <div class="d-caption">Hình 2.2: Luồng xử lý đặt lịch hẹn</div>
+  </div>
+
+  <div class="subsec">2.3.2 Luồng Xác Thực Người Dùng</div>
+  <div class="diagram">
+    <div class="d-title">Hình 2.3: Luồng Xác Thực (Admin vs. Bệnh Nhân)</div>
+    <div class="d-row">
+      <div class="d-box b-blue">Admin/Partner<br><small>username + password</small></div>
+      <span class="d-arr">→</span>
+      <div class="d-box b-gray">POST /api/users/login<br><small>bcrypt verify</small></div>
+      <span class="d-arr">→</span>
+      <div class="d-box b-green">JWT Token (8h)<br><small>lưu localStorage</small></div>
+    </div>
+    <div style="margin:10px 0; font-size:11pt; color:#555;">─────────────────────────────────────</div>
+    <div class="d-row">
+      <div class="d-box b-teal">Bệnh nhân<br><small>Google Account</small></div>
+      <span class="d-arr">→</span>
+      <div class="d-box b-gray">POST /api/auth/client/google<br><small>verify Google ID token</small></div>
+      <span class="d-arr">→</span>
+      <div class="d-box b-green">JWT Patient Token<br><small>tạo/update tbl_patient</small></div>
+    </div>
+    <div class="d-caption">Hình 2.3: Luồng xác thực người dùng hệ thống</div>
+  </div>
+  <div class="page-num">— 11 —</div>
+</div>
+
+<!-- ══════════════════════════════════════ CHƯƠNG 2 – Database ══════════════════════════════════════ -->
+<div class="page">
+  <div class="sec">2.4 Thiết Kế Cơ Sở Dữ Liệu</div>
+
+  <div class="subsec">2.4.1 Danh Sách Các Bảng Chính</div>
+  <p>Hệ thống sử dụng convention đặt tên bảng với tiền tố <code>tbl_</code>. Tổng cộng có hơn 18 bảng với 18 file migration SQL quản lý theo thứ tự thời gian.</p>
+
+  <div class="tbl-caption">Bảng 2.2: Danh sách bảng dữ liệu chính của CareNow</div>
+  <table class="tbl">
+    <thead><tr><th>Tên bảng</th><th>Vai trò</th><th>Trường quan trọng</th></tr></thead>
+    <tbody>
+      <tr><td><code>tbl_user</code></td><td>Tài khoản admin/partner</td><td>username, email, role (int), partner_id, status</td></tr>
+      <tr><td><code>tbl_clinic</code></td><td>Bác sĩ / Chuyên gia</td><td>name, specialist_ids (CSV), place_ids (CSV), partner_ids (CSV), rank, sponsor</td></tr>
+      <tr><td><code>tbl_clinic_specialist</code></td><td>Thông tin chuyên gia</td><td>name, title, picture, specialties</td></tr>
+      <tr><td><code>tbl_clinic_place</code></td><td>Cơ sở y tế</td><td>name, display_name, partner_id, parent_id, metadata (JSONB)</td></tr>
+      <tr><td><code>tbl_partner</code></td><td>Đối tác bệnh viện</td><td>name, short_name, logo, contact_info</td></tr>
+      <tr><td><code>tbl_patient</code></td><td>Bệnh nhân đã đăng ký</td><td>google_sub, phone, dob, full_name, address</td></tr>
+      <tr><td><code>tbl_appointment</code></td><td>Lịch hẹn đặt khám</td><td>booking_code, status (1–6), appt_date, appt_time, patient_id</td></tr>
+      <tr><td><code>tbl_appointment_schedule</code></td><td>Lịch làm việc bác sĩ</td><td>day_of_week, session_type, start_time, end_time, slot_step_minutes</td></tr>
+      <tr><td><code>tbl_appt_schedule_day_override</code></td><td>Override ngày nghỉ/đặc biệt</td><td>clinic_id, override_date, is_closed, session_type</td></tr>
+      <tr><td><code>tbl_appt_schedule_log</code></td><td>Nhật ký thay đổi lịch</td><td>action_type, user_id, user_email, old_data, new_data</td></tr>
+      <tr><td><code>tbl_specialty</code></td><td>Chuyên khoa y tế</td><td>name, description, icon, parent_id</td></tr>
+      <tr><td><code>tbl_service</code></td><td>Dịch vụ y tế</td><td>name, description, specialty_ids</td></tr>
+      <tr><td><code>tbl_clinic_price_package</code></td><td>Gói giá dịch vụ</td><td>clinic_id, name, rank, status</td></tr>
+      <tr><td><code>tbl_clinic_price_item</code></td><td>Chi tiết item giá</td><td>price_package_id, label, amount_vnd, effective_from, effective_to</td></tr>
+      <tr><td><code>tbl_clinic_insurance_package</code></td><td>Gói bảo hiểm</td><td>clinic_id, partner_id, name</td></tr>
+      <tr><td><code>tbl_clinic_insurance_item</code></td><td>Chi tiết item bảo hiểm</td><td>insurance_type (public/private), insurer_name, coverage_note</td></tr>
+      <tr><td><code>tbl_auth_item</code></td><td>Vai trò và quyền (RBAC)</td><td>name, type (1=role, 2=permission)</td></tr>
+      <tr><td><code>tbl_auth_assignment</code></td><td>Gán quyền cho user</td><td>item_name, user_id</td></tr>
+      <tr><td><code>tbl_blog_public</code></td><td>Bài viết cẩm nang</td><td>title, content, category_id, status</td></tr>
+      <tr><td><code>tbl_blog_category</code></td><td>Danh mục cẩm nang</td><td>name, slug, parent_id</td></tr>
+    </tbody>
+  </table>
+
+  <div class="subsec">2.4.2 Cấu Trúc Bảng tbl_appointment</div>
+  <div class="tbl-caption">Bảng 2.3: Cấu trúc bảng tbl_appointment</div>
+  <table class="tbl">
+    <thead><tr><th>Cột</th><th>Kiểu dữ liệu</th><th>Mô tả</th></tr></thead>
+    <tbody>
+      <tr><td>id</td><td>SERIAL PK</td><td>Khóa chính tự tăng</td></tr>
+      <tr><td>booking_code</td><td>VARCHAR(20)</td><td>Mã đặt lịch: BK + YYMMDD + id:0&gt;4</td></tr>
+      <tr><td>clinic_id</td><td>INTEGER FK</td><td>Bác sĩ</td></tr>
+      <tr><td>clinic_place_id</td><td>INTEGER FK</td><td>Cơ sở y tế</td></tr>
+      <tr><td>specialist_id</td><td>INTEGER FK</td><td>Chuyên gia khám</td></tr>
+      <tr><td>schedule_block_id</td><td>INTEGER FK</td><td>Block lịch làm việc</td></tr>
+      <tr><td>price_package_id</td><td>INTEGER FK</td><td>Gói giá áp dụng</td></tr>
+      <tr><td>insurance_package_id</td><td>INTEGER FK</td><td>Gói bảo hiểm áp dụng</td></tr>
+      <tr><td>appt_date</td><td>DATE</td><td>Ngày khám</td></tr>
+      <tr><td>appt_time</td><td>TIME</td><td>Giờ khám</td></tr>
+      <tr><td>session_type</td><td>INTEGER</td><td>1=Sáng, 2=Chiều, 3=Tối, 4=Cả ngày</td></tr>
+      <tr><td>status</td><td>INTEGER</td><td>1=pending, 2=confirmed, 3=completed, 4=cancelled_user, 5=cancelled_clinic, 6=no_show</td></tr>
+      <tr><td>patient_id</td><td>INTEGER FK</td><td>NULL nếu khách vãng lai</td></tr>
+      <tr><td>patient_name</td><td>VARCHAR</td><td>Tên bệnh nhân</td></tr>
+      <tr><td>patient_phone</td><td>VARCHAR</td><td>Số điện thoại</td></tr>
+      <tr><td>patient_email</td><td>VARCHAR</td><td>Email liên lạc</td></tr>
+      <tr><td>patient_notes</td><td>TEXT</td><td>Ghi chú của bệnh nhân</td></tr>
+      <tr><td>admin_notes</td><td>TEXT</td><td>Ghi chú của admin/đối tác</td></tr>
+      <tr><td>amount_vnd</td><td>BIGINT</td><td>Số tiền dự kiến (VND)</td></tr>
+      <tr><td>cancelled_at</td><td>TIMESTAMP</td><td>Thời gian hủy lịch</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tbl-caption">Bảng 2.4: Trạng thái lịch hẹn</div>
+  <table class="tbl">
+    <thead><tr><th>Mã</th><th>Tên trạng thái</th><th>Mô tả</th><th>Hành động hủy</th></tr></thead>
+    <tbody>
+      <tr><td class="center">1</td><td><span class="badge bp">pending</span></td><td>Chờ xác nhận (trạng thái ban đầu)</td><td>Được phép hủy</td></tr>
+      <tr><td class="center">2</td><td><span class="badge bc">confirmed</span></td><td>Đã xác nhận bởi cơ sở y tế</td><td>Được phép hủy</td></tr>
+      <tr><td class="center">3</td><td><span class="badge bd">completed</span></td><td>Đã khám xong</td><td>Không thể hủy</td></tr>
+      <tr><td class="center">4</td><td><span class="badge bx">cancelled_user</span></td><td>Bệnh nhân hủy</td><td>Đã hủy</td></tr>
+      <tr><td class="center">5</td><td><span class="badge bx">cancelled_clinic</span></td><td>Cơ sở y tế hủy</td><td>Đã hủy</td></tr>
+      <tr><td class="center">6</td><td><span class="badge bn">no_show</span></td><td>Bệnh nhân không đến</td><td>Đã kết thúc</td></tr>
+    </tbody>
+  </table>
+  <div class="page-num">— 13 —</div>
+</div>
+
+<!-- RBAC page -->
+<div class="page">
+  <div class="subsec">2.4.3 Cấu Trúc Bảng tbl_appointment_schedule</div>
+  <div class="tbl-caption">Bảng 2.5: Cấu trúc bảng tbl_appointment_schedule (block lịch)</div>
+  <table class="tbl">
+    <thead><tr><th>Cột</th><th>Kiểu dữ liệu</th><th>Mô tả</th></tr></thead>
+    <tbody>
+      <tr><td>id</td><td>SERIAL PK</td><td>Khóa chính</td></tr>
+      <tr><td>clinic_id</td><td>INTEGER FK</td><td>Bác sĩ</td></tr>
+      <tr><td>partner_id</td><td>INTEGER FK</td><td>Đối tác quản lý block này</td></tr>
+      <tr><td>clinic_place_id</td><td>INTEGER FK</td><td>Cơ sở y tế khám</td></tr>
+      <tr><td>day_of_week</td><td>INTEGER</td><td>0=CN, 1=T2, 2=T3, 3=T4, 4=T5, 5=T6, 6=T7</td></tr>
+      <tr><td>session_type</td><td>INTEGER</td><td>1=Sáng, 2=Chiều, 3=Tối, 4=Cả ngày</td></tr>
+      <tr><td>start_time</td><td>TIME</td><td>Giờ bắt đầu block</td></tr>
+      <tr><td>end_time</td><td>TIME</td><td>Giờ kết thúc block</td></tr>
+      <tr><td>slot_step_minutes</td><td>INTEGER</td><td>Bước slot (mặc định 30 phút)</td></tr>
+      <tr><td>appointment_duration_minutes</td><td>INTEGER</td><td>Thời gian mỗi cuộc hẹn (mặc định 30 phút)</td></tr>
+      <tr><td>cutoff_minutes_before_slot</td><td>INTEGER</td><td>Thời gian cutoff trước slot (mặc định 30 phút)</td></tr>
+      <tr><td>valid_from</td><td>DATE</td><td>Ngày hiệu lực bắt đầu (NULL = không giới hạn)</td></tr>
+      <tr><td>valid_to</td><td>DATE</td><td>Ngày hiệu lực kết thúc (NULL = không giới hạn)</td></tr>
+      <tr><td>default_price_package_id</td><td>INTEGER FK</td><td>Gói giá mặc định cho block</td></tr>
+      <tr><td>default_insurance_package_id</td><td>INTEGER FK</td><td>Gói bảo hiểm mặc định</td></tr>
+      <tr><td>status</td><td>INTEGER</td><td>1=Hoạt động, 0=Tắt</td></tr>
+      <tr><td>rank</td><td>INTEGER</td><td>Thứ tự hiển thị</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec">2.5 Thiết Kế Hệ Thống Phân Quyền RBAC</div>
+
+  <div class="subsec">2.5.1 Mô Hình RBAC</div>
+  <div class="diagram">
+    <div class="d-title">Hình 2.4: Mô Hình RBAC Hệ Thống CareNow</div>
+    <div class="d-row">
+      <div class="d-box b-gray">tbl_user<br><small>id, username<br>role (int)</small></div>
+      <span class="d-arr">→</span>
+      <div class="d-box b-pur">tbl_auth_assignment<br><small>user_id<br>item_name</small></div>
+      <span class="d-arr">→</span>
+      <div class="d-box b-red">tbl_auth_item<br><small>name, type<br>1=role | 2=perm</small></div>
+    </div>
+    <div class="d-row">
+      <div class="d-box b-blue" style="min-width:200px">tbl_auth_item_child<br><small>parent → child (role → permission)</small></div>
+    </div>
+    <div class="d-caption">Roles mặc định: super_admin | admin | staff. Super admin (role=2) bypass toàn bộ check.</div>
+  </div>
+
+  <div class="subsec">2.5.2 Danh Sách Vai Trò Và Quyền</div>
+  <div class="tbl-caption">Bảng 2.6: Danh sách 17 permission trong hệ thống</div>
+  <table class="tbl">
+    <thead><tr><th>Permission</th><th>Nhóm</th><th>Mô tả</th></tr></thead>
+    <tbody>
+      <tr><td><code>view_dashboard</code></td><td>Tổng quan</td><td>Xem bảng điều khiển thống kê</td></tr>
+      <tr><td><code>manage_clinic</code></td><td>Danh mục</td><td>Quản lý bác sĩ (thêm/sửa/xóa)</td></tr>
+      <tr><td><code>manage_clinic_place</code></td><td>Danh mục</td><td>Quản lý cơ sở y tế</td></tr>
+      <tr><td><code>manage_specialty</code></td><td>Danh mục</td><td>Quản lý chuyên khoa</td></tr>
+      <tr><td><code>manage_service</code></td><td>Danh mục</td><td>Quản lý dịch vụ y tế</td></tr>
+      <tr><td><code>manage_appointment_schedule</code></td><td>Danh mục</td><td>Cấu hình lịch làm việc + gói giá + bảo hiểm</td></tr>
+      <tr><td><code>toggle_all_doctors_schedule</code></td><td>Đặc biệt</td><td>Bật/tắt hàng loạt lịch tất cả bác sĩ</td></tr>
+      <tr><td><code>manage_appointment</code></td><td>Danh mục</td><td>Xem và cập nhật đơn đặt khám</td></tr>
+      <tr><td><code>manage_blog</code></td><td>Danh mục</td><td>Quản lý bài cẩm nang y tế</td></tr>
+      <tr><td><code>manage_blog_category</code></td><td>Danh mục</td><td>Quản lý danh mục cẩm nang</td></tr>
+      <tr><td><code>manage_clinic_reason</code></td><td>Danh mục</td><td>Quản lý lý do khám</td></tr>
+      <tr><td><code>manage_partner</code></td><td>Danh mục</td><td>Quản lý đối tác y tế</td></tr>
+      <tr><td><code>manage_partner_portal</code></td><td>Danh mục</td><td>Truy cập cổng đối tác</td></tr>
+      <tr><td><code>manage_admin_user</code></td><td>Người dùng</td><td>Quản lý tài khoản quản trị</td></tr>
+      <tr><td><code>manage_partner_user</code></td><td>Người dùng</td><td>Quản lý tài khoản đối tác</td></tr>
+      <tr><td><code>manage_role</code></td><td>Phân quyền</td><td>Quản lý vai trò</td></tr>
+      <tr><td><code>manage_permission</code></td><td>Phân quyền</td><td>Gán quyền cho vai trò</td></tr>
+    </tbody>
+  </table>
+  <div class="page-num">— 15 —</div>
+</div>
+
+<!-- Module & Frontend -->
+<div class="page">
+  <div class="sec">2.6 Thiết Kế Module Backend</div>
+
+  <div class="subsec">2.6.1 Danh Sách Module Và API Endpoint</div>
+  <div class="tbl-caption">Bảng 2.7: Danh sách 20 module backend và API prefix</div>
+  <table class="tbl">
+    <thead><tr><th>Module</th><th>API Prefix</th><th>Chức năng chính</th></tr></thead>
+    <tbody>
+      <tr><td>location</td><td>/api/location</td><td>Tỉnh/thành, quận/huyện</td></tr>
+      <tr><td>clinic_place</td><td>/api/clinic_place</td><td>CRUD cơ sở y tế, tìm kiếm phân trang</td></tr>
+      <tr><td>clinic</td><td>/api/clinic</td><td>CRUD bác sĩ, filter đa điều kiện, giá/bảo hiểm</td></tr>
+      <tr><td>user</td><td>/api/users</td><td>Login, CRUD user admin/partner, phân trang</td></tr>
+      <tr><td>specialty</td><td>/api/specialties</td><td>Chuyên khoa y tế</td></tr>
+      <tr><td>service</td><td>/api/services</td><td>Dịch vụ y tế</td></tr>
+      <tr><td>appointment_schedule</td><td>/api/appointment-schedule</td><td>Blocks lịch, overrides, logs audit</td></tr>
+      <tr><td>clinic_price</td><td>/api/clinic-price</td><td>Gói giá và items</td></tr>
+      <tr><td>clinic_insurance</td><td>/api/clinic-insurance</td><td>Gói bảo hiểm và items</td></tr>
+      <tr><td>partner</td><td>/api/partner</td><td>CRUD đối tác y tế</td></tr>
+      <tr><td>auth (RBAC)</td><td>/api/auth</td><td>Roles, permissions, assignment, sync</td></tr>
+      <tr><td>upload</td><td>/api/upload</td><td>Upload ảnh lên Cloudinary</td></tr>
+      <tr><td>blog_category</td><td>/api/blog-categories</td><td>Danh mục cẩm nang</td></tr>
+      <tr><td>clinic_reason</td><td>/api/clinic-reasons</td><td>Lý do khám, bác sĩ liên quan</td></tr>
+      <tr><td>blog_public</td><td>/api/blog-public</td><td>Bài cẩm nang y tế</td></tr>
+      <tr><td>patient (auth)</td><td>/api/auth/client</td><td>Google OAuth bệnh nhân</td></tr>
+      <tr><td>patient</td><td>/api/patient</td><td>Hồ sơ bệnh nhân, cập nhật</td></tr>
+      <tr><td>appointment</td><td>/api/appointments</td><td>Đặt lịch, xem, hủy, cập nhật trạng thái</td></tr>
+      <tr><td>settings</td><td>/api/settings</td><td>Cài đặt hệ thống</td></tr>
+      <tr><td>dashboard</td><td>/api/dashboard</td><td>Thống kê tổng quan</td></tr>
+    </tbody>
+  </table>
+
+  <div class="subsec">2.6.2 Pattern Controller–Service–Repository</div>
+  <p>Toàn bộ backend áp dụng nhất quán pattern ba lớp:</p>
+<pre>// Controller: chỉ nhận request, gọi service, trả response
+exports.getUsers = async (req, res) => {
+  try {
+    const data = await service.getUsers(req.query);
+    res.json({ success: true, data });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+// Service: business logic, validation, format dữ liệu
+exports.getUsers = async (query) => {
+  const page  = parseInt(query.page,  10) || 1;
+  const limit = parseInt(query.limit, 10) || 50;
+  const [data, total] = await Promise.all([
+    repo.getAll({ ...query, limit, offset: (page-1)*limit }),
+    repo.countAll(query),
+  ]);
+  return { data, pagination: { total, page, limit } };
+};
+
+// Repository: chỉ tương tác database (parameterized query)
+exports.getAll = async (query = {}) => {
+  let q = 'SELECT ... FROM tbl_user WHERE status != -1';
+  const values = []; let idx = 1;
+  if (query.keyword) {
+    q += ` AND (username ILIKE $${idx} OR email ILIKE $${idx})`;
+    values.push(`%${query.keyword}%`); idx++;
+  }
+  q += ' ORDER BY id DESC LIMIT $' + idx;
+  values.push(query.limit); idx++;
+  const result = await db.query(q, values);
+  return result.rows;
+};</pre>
+  <div class="page-num">— 17 —</div>
+</div>
+
+<!-- Frontend design page -->
+<div class="page">
+  <div class="sec">2.7 Thiết Kế Frontend</div>
+
+  <div class="subsec">2.7.1 Frontend Bệnh Nhân (carenow-client – Port 5174)</div>
+  <div class="tbl-caption">Bảng 2.8: Danh sách trang chính của carenow-client</div>
+  <table class="tbl">
+    <thead><tr><th>Trang</th><th>Route</th><th>Chức năng chính</th><th>Kích thước</th></tr></thead>
+    <tbody>
+      <tr><td>Home</td><td>/</td><td>Trang chủ, tìm kiếm nhanh, banner</td><td>~48KB</td></tr>
+      <tr><td>Search</td><td>/search</td><td>Tìm kiếm bác sĩ/cơ sở theo bộ lọc</td><td>~17KB</td></tr>
+      <tr><td>PlaceDetail</td><td>/place/:id</td><td>Chi tiết cơ sở, danh sách bác sĩ, giá/bảo hiểm</td><td>~29KB</td></tr>
+      <tr><td>DoctorDetail</td><td>/doctor/:id</td><td>Hồ sơ bác sĩ, lịch khám, đặt lịch</td><td>~25KB</td></tr>
+      <tr><td>Booking</td><td>/booking</td><td>Form đặt lịch đầy đủ với SchedulePicker</td><td>~35KB</td></tr>
+      <tr><td>SpecialtyDetail</td><td>/specialty/:id</td><td>Chuyên khoa và danh sách bác sĩ</td><td>~27KB</td></tr>
+      <tr><td>ServiceDetail</td><td>/service/:id</td><td>Chi tiết dịch vụ y tế</td><td>~14KB</td></tr>
+      <tr><td>MyAppointments</td><td>/my-appointments</td><td>Lịch hẹn cá nhân (yêu cầu đăng nhập)</td><td>~20KB</td></tr>
+      <tr><td>HealthGuide</td><td>/health-guide</td><td>Cẩm nang y tế, duyệt theo danh mục</td><td>~12KB</td></tr>
+      <tr><td>BlogArticleDetail</td><td>/blog/:id</td><td>Chi tiết bài viết cẩm nang</td><td>~18KB</td></tr>
+      <tr><td>Profile</td><td>/profile</td><td>Hồ sơ và cập nhật thông tin cá nhân</td><td>~18KB</td></tr>
+      <tr><td>Login</td><td>/login</td><td>Đăng nhập Google OAuth</td><td>~6KB</td></tr>
+    </tbody>
+  </table>
+
+  <div class="subsec">2.7.2 Frontend Quản Trị (frontend – Admin, Port 5173)</div>
+  <p>Frontend admin cung cấp bộ công cụ quản lý toàn diện với giao diện dạng bảng điều khiển, sidebar điều hướng theo RBAC. Gồm <strong>43 trang</strong> phân chia theo module nghiệp vụ. Các component nổi bật:</p>
+  <ul>
+    <li><strong>DoctorPanel.jsx (~52KB):</strong> Component lớn nhất, quản lý toàn bộ thông tin bác sĩ với tab.</li>
+    <li><strong>ScheduleWeekGrid.jsx:</strong> Lịch tuần dạng grid, bật/tắt từng slot theo ngày.</li>
+    <li><strong>ScheduleQuickModal.jsx:</strong> Modal nhanh thêm/sửa block lịch không rời trang.</li>
+    <li><strong>ScheduleLogsTab.jsx:</strong> Audit trail – lịch sử thay đổi với người thực hiện.</li>
+    <li><strong>MediaLibraryModal.jsx:</strong> Thư viện ảnh Cloudinary tích hợp vào form.</li>
+    <li><strong>PermissionRoute.jsx:</strong> HOC bảo vệ route, tự redirect <code>/403</code> nếu thiếu quyền.</li>
+  </ul>
+
+  <div class="subsec">2.7.3 Frontend Đối Tác (frontend-partner, Port 5175)</div>
+  <p>Frontend đối tác kế thừa toàn bộ giao diện admin nhưng bổ sung thêm <strong>4 trang đặc thù</strong> cho đối tác:</p>
+  <ul>
+    <li><strong>PartnerAppointments.jsx (~26KB):</strong> Lịch hẹn được tự động lọc theo <code>partner_id</code>.</li>
+    <li><strong>PartnerSchedule.jsx (~21KB):</strong> Quản lý lịch làm việc bác sĩ thuộc partner.</li>
+    <li><strong>AddPartnerScheduleBlock / EditPartnerScheduleBlock:</strong> Tạo/sửa block với constraint partner nghiêm ngặt.</li>
+    <li><strong>Welcome.jsx (~13KB):</strong> Landing page đặc biệt với thống kê tổng quan riêng cho đối tác.</li>
+  </ul>
+
+  <div class="page-num">— 19 —</div>
+</div>
+
+<!-- ══════════════════════════════════════ CHƯƠNG 3 ══════════════════════════════════════ -->
+<div class="page">
+  <div class="chap-title">Chương 3: Cài Đặt Hệ Thống</div>
+
+  <div class="sec">3.1 Quy Trình Cài Đặt – Tiền Đề Và Môi Trường</div>
+
+  <div class="subsec">3.1.1 Yêu Cầu Phần Cứng Và Phần Mềm</div>
+  <p>Trước khi thực hiện cài đặt, cần chuẩn bị đầy đủ môi trường phát triển.</p>
+
+  <div class="tbl-caption">Bảng 3.1: Yêu cầu phần cứng tối thiểu</div>
+  <table class="tbl">
+    <thead><tr><th>STT</th><th>Thành phần</th><th>Yêu cầu tối thiểu</th><th>Khuyến nghị</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>CPU</td><td>2 Cores</td><td>4 Cores trở lên</td></tr>
+      <tr><td>2</td><td>RAM</td><td>4 GB</td><td>8 GB trở lên</td></tr>
+      <tr><td>3</td><td>Disk</td><td>10 GB trống</td><td>50 GB SSD</td></tr>
+      <tr><td>4</td><td>OS</td><td>macOS 12 / Ubuntu 20.04 / Windows 10</td><td>macOS 14 / Ubuntu 22.04</td></tr>
+      <tr><td>5</td><td>Node.js</td><td>v18 LTS</td><td>v20 LTS</td></tr>
+      <tr><td>6</td><td>PostgreSQL</td><td>v14</td><td>v16</td></tr>
+      <tr><td>7</td><td>npm</td><td>v9</td><td>v10</td></tr>
+    </tbody>
+  </table>
+
+  <p>Các phần mềm hỗ trợ cần cài đặt:</p>
+  <ul>
+    <li><strong>Git:</strong> Để clone source code từ repository.</li>
+    <li><strong>pgAdmin 4 / DBeaver:</strong> Công cụ quản lý PostgreSQL với giao diện đồ họa.</li>
+    <li><strong>VS Code:</strong> IDE phát triển với extensions ESLint, Prettier.</li>
+    <li><strong>Postman / Insomnia:</strong> Công cụ test API endpoint.</li>
+  </ul>
+
+  <div class="subsec">3.1.2 Cài Đặt Node.js</div>
+  <p>Tải Node.js LTS từ trang chủ <code>https://nodejs.org</code> hoặc dùng NVM (Node Version Manager) để quản lý nhiều phiên bản:</p>
+
+<pre># Cài NVM (macOS/Linux)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+# Cài và dùng Node.js 20 LTS
+nvm install 20
+nvm use 20
+
+# Kiểm tra phiên bản
+node --version   # Output: v20.x.x
+npm --version    # Output: 10.x.x</pre>
+
+  <div class="fig">
+    <div class="fig-title">🖥️ Hình 3.1: Kiểm tra phiên bản Node.js sau khi cài đặt</div>
+    <div class="fig-desc">Terminal hiển thị: <code>node --version → v20.x.x</code> &nbsp;|&nbsp; <code>npm --version → 10.x.x</code></div>
+  </div>
+  <div class="fig-caption">Hình 3.1: Cài đặt và kiểm tra Node.js v20 LTS</div>
+
+  <div class="subsec">3.1.3 Cài Đặt PostgreSQL</div>
+  <p>Tải PostgreSQL từ <code>https://www.postgresql.org/download/</code>. Sau khi cài đặt, tạo database cho dự án:</p>
+
+<pre># Truy cập PostgreSQL shell
+psql -U postgres
+
+# Tạo database
+CREATE DATABASE "CareNow";
+
+# Tạo user riêng (tùy chọn)
+CREATE USER carenow_user WITH PASSWORD 'your_password';
+GRANT ALL PRIVILEGES ON DATABASE "CareNow" TO carenow_user;
+
+# Thoát psql
+\q</pre>
+
+  <div class="fig">
+    <div class="fig-title">🖥️ Hình 3.3: Tạo database CareNow trong PostgreSQL</div>
+    <div class="fig-desc">pgAdmin hoặc psql hiển thị: <em>CREATE DATABASE</em> thành công. Database "CareNow" xuất hiện trong danh sách.</div>
+  </div>
+  <div class="fig-caption">Hình 3.3: Cài đặt PostgreSQL và tạo database CareNow</div>
+
+  <div class="page-num">— 21 —</div>
+</div>
+
+<!-- Install .env page -->
+<div class="page">
+  <div class="subsec">3.1.4 Cấu Hình Biến Môi Trường (.env)</div>
+  <p>Tạo file <code>.env</code> trong thư mục gốc của từng sub-project bằng cách copy từ file mẫu <code>.env.example</code>:</p>
+
+<pre>cp carenow-backend/.env.example carenow-backend/.env
+cp partner-backend/.env.example partner-backend/.env
+cp carenow-client/.env.example carenow-client/.env</pre>
+
+  <div class="tbl-caption">Bảng 3.2: Các biến môi trường Backend (carenow-backend/.env)</div>
+  <table class="tbl">
+    <thead><tr><th>Biến</th><th>Mô tả</th><th>Ví dụ</th></tr></thead>
+    <tbody>
+      <tr><td><code>DB_HOST</code></td><td>Host PostgreSQL</td><td>localhost</td></tr>
+      <tr><td><code>DB_PORT</code></td><td>Port PostgreSQL</td><td>5432</td></tr>
+      <tr><td><code>DB_NAME</code></td><td>Tên database</td><td>CareNow</td></tr>
+      <tr><td><code>DB_USER</code></td><td>Tên user DB</td><td>postgres</td></tr>
+      <tr><td><code>DB_PASSWORD</code></td><td>Mật khẩu DB</td><td>your_password</td></tr>
+      <tr><td><code>JWT_SECRET</code></td><td>Khóa ký JWT</td><td>carenow_secret_key_2024</td></tr>
+      <tr><td><code>JWT_EXPIRES</code></td><td>Thời hạn JWT</td><td>8h</td></tr>
+      <tr><td><code>CLOUDINARY_CLOUD_NAME</code></td><td>Tên cloud Cloudinary</td><td>your_cloud_name</td></tr>
+      <tr><td><code>CLOUDINARY_API_KEY</code></td><td>API Key Cloudinary</td><td>123456789012345</td></tr>
+      <tr><td><code>CLOUDINARY_API_SECRET</code></td><td>API Secret Cloudinary</td><td>aBcDeFgHiJkLmN</td></tr>
+    </tbody>
+  </table>
+
+  <p>File <code>.env</code> cho carenow-client:</p>
+<pre># carenow-client/.env
+VITE_API_URL=http://localhost:5000/api
+VITE_GOOGLE_CLIENT_ID=your_google_client_id.apps.googleusercontent.com
+
+# frontend/.env (admin)
+VITE_API_URL=http://localhost:5000/api
+
+# frontend-partner/.env
+VITE_API_URL=http://localhost:5001/api</pre>
+
+  <div class="sec">3.2 Cài Đặt Backend (carenow-backend)</div>
+
+  <div class="subsec">3.2.1 Clone Dự Án Và Cài Đặt Dependencies</div>
+<pre># Clone toàn bộ monorepo
+git clone https://github.com/your-repo/carenow.git
+cd carenow
+
+# Cài đặt backend chính
+cd carenow-backend
+npm install
+
+# Cài đặt partner backend
+cd ../partner-backend
+npm install</pre>
+
+  <div class="fig">
+    <div class="fig-title">🖥️ Hình 3.5: Cài đặt dependencies với npm install</div>
+    <div class="fig-desc">Terminal hiển thị quá trình npm tải về packages. Kết thúc với thông báo <em>"added X packages in Ys"</em>. Thư mục <code>node_modules/</code> được tạo.</div>
+  </div>
+  <div class="fig-caption">Hình 3.5: Cài đặt dependencies dự án bằng npm install</div>
+
+  <div class="subsec">3.2.2 Chạy Migration Cơ Sở Dữ Liệu</div>
+  <p>Hệ thống quản lý schema qua 18 file SQL migration đặt tên theo thứ tự thời gian trong <code>src/config/migrations/</code>. Chạy theo thứ tự bằng psql:</p>
+
+<pre># Chạy schema RBAC trước
+psql -U postgres -d CareNow \
+  -f carenow-backend/src/config/schema_auth.sql
+
+# Chạy các migration theo thứ tự thời gian
+for file in carenow-backend/src/config/migrations/*.sql; do
+  echo "Running $file..."
+  psql -U postgres -d CareNow -f "$file"
+done</pre>
+
+  <div class="tbl-caption">Bảng 3.3: Danh sách file migration cơ sở dữ liệu</div>
+  <table class="tbl">
+    <thead><tr><th>File migration</th><th>Nội dung</th></tr></thead>
+    <tbody>
+      <tr><td>2026_05_02_create_service.sql</td><td>Tạo bảng tbl_service</td></tr>
+      <tr><td>2026_05_02_patient_location_fk.sql</td><td>FK địa chỉ bệnh nhân</td></tr>
+      <tr><td>2026_05_02_seed_services_specialties.sql</td><td>Seed dữ liệu dịch vụ và chuyên khoa</td></tr>
+      <tr><td>2026_05_03_appointment_schedule_pricing_insurance.sql</td><td>Tạo bảng lịch hẹn, giá, bảo hiểm</td></tr>
+      <tr><td>2026_05_08_create_appointment.sql</td><td>Tạo bảng tbl_appointment</td></tr>
+      <tr><td>2026_05_12_blog_public_clinic_reason.sql</td><td>Tạo bảng blog và lý do khám</td></tr>
+      <tr><td>2026_06_01_insurance_item_type.sql</td><td>Thêm cột insurance_type</td></tr>
+      <tr><td>2026_06_02_seed_private_insurance_companies.sql</td><td>Seed công ty bảo hiểm tư nhân</td></tr>
+      <tr><td>... (18 files tổng cộng)</td><td>...</td></tr>
+    </tbody>
+  </table>
+  <div class="page-num">— 24 —</div>
+</div>
+
+<!-- Start backend page -->
+<div class="page">
+  <div class="subsec">3.2.3 Cấu Hình Cloudinary</div>
+  <p>Đăng ký tài khoản miễn phí tại <code>https://cloudinary.com</code>. Sau khi đăng nhập vào Dashboard, copy các thông tin <em>Cloud Name</em>, <em>API Key</em>, <em>API Secret</em> vào file <code>.env</code> của backend. Kiểm tra cấu hình bằng cách upload một ảnh test qua Postman:</p>
+
+<pre>POST http://localhost:5000/api/upload/image
+Authorization: Bearer your_jwt_token
+Content-Type: multipart/form-data
+Body: file = [chọn file ảnh]</pre>
+
+  <p>Nếu trả về URL Cloudinary (bắt đầu bằng <code>https://res.cloudinary.com/...</code>) là cấu hình thành công.</p>
+
+  <div class="subsec">3.2.4 Khởi Chạy Server Backend</div>
+<pre># Khởi động carenow-backend (development mode)
+cd carenow-backend
+npm run dev
+# Output mong đợi:
+# [nodemon] starting `node src/server.js`
+# ✅ PostgreSQL connected
+# 🚀 Server đang chạy tại http://localhost:5000
+
+# Khởi động partner-backend
+cd ../partner-backend
+npm run dev
+# Output mong đợi:
+# ✅ PostgreSQL connected
+# 🚀 Server đang chạy tại http://localhost:5001</pre>
+
+  <div class="fig">
+    <div class="fig-title">🖥️ Hình 3.6: Backend server khởi động thành công</div>
+    <div class="fig-desc">Terminal hiển thị hai dòng xanh: <em>✅ PostgreSQL connected</em> và <em>🚀 Server đang chạy tại http://localhost:5000</em></div>
+  </div>
+  <div class="fig-caption">Hình 3.6: Backend server (carenow-backend) khởi động thành công trên port 5000</div>
+
+  <div class="sec">3.3 Cài Đặt Frontend</div>
+
+  <div class="subsec">3.3.1 Frontend Quản Trị (frontend – Admin, Port 5173)</div>
+<pre>cd frontend
+npm install
+npm run dev
+# Output: VITE v5.x.x  ready in XXXms
+#   ➜  Local:   http://localhost:5173/</pre>
+
+  <p>Truy cập <code>http://localhost:5173</code>. Trang đăng nhập admin hiện ra. Đăng nhập với tài khoản super admin được seed trong migration.</p>
+
+  <div class="fig">
+    <div class="fig-title">🖥️ Hình 3.8: Frontend Admin đã sẵn sàng trên port 5173</div>
+    <div class="fig-desc">Trình duyệt hiển thị trang đăng nhập CareNow Admin với form username/password. Gradient xanh dương đặc trưng của hệ thống.</div>
+  </div>
+  <div class="fig-caption">Hình 3.8: Giao diện đăng nhập Admin (frontend – port 5173)</div>
+
+  <div class="subsec">3.3.2 Frontend Bệnh Nhân (carenow-client, Port 5174)</div>
+<pre>cd carenow-client
+npm install
+npm run dev
+# Output:
+#   ➜  Local:   http://localhost:5174/</pre>
+
+  <div class="note">
+    <strong>Lưu ý:</strong> Đảm bảo đã cấu hình đúng <code>VITE_GOOGLE_CLIENT_ID</code> trong <code>carenow-client/.env</code> trước khi chạy, vì component <code>GoogleOAuthProvider</code> cần Client ID hợp lệ để khởi tạo.
+  </div>
+
+  <div class="subsec">3.3.3 Frontend Đối Tác (frontend-partner, Port 5175)</div>
+<pre>cd frontend-partner
+npm install
+npm run dev
+# Output:
+#   ➜  Local:   http://localhost:5175/</pre>
+
+  <p>Partner frontend kết nối với <code>partner-backend</code> (port 5001). Đảm bảo <code>VITE_API_URL</code> trong <code>frontend-partner/.env</code> trỏ đến <code>http://localhost:5001/api</code>.</p>
+  <div class="page-num">— 27 —</div>
+</div>
+
+<!-- Operation page -->
+<div class="page">
+  <div class="sec">3.4 Quy Trình Vận Hành</div>
+
+  <div class="subsec">3.4.1 Khởi Động Toàn Bộ Hệ Thống</div>
+  <p>Hệ thống CareNow gồm 5 tiến trình cần chạy đồng thời. Sử dụng 5 terminal riêng biệt hoặc công cụ như <code>concurrently</code>:</p>
+
+<pre># Terminal 1: Backend chính
+cd carenow-backend && npm run dev
+# Port 5000 | Phục vụ Admin + Bệnh nhân
+
+# Terminal 2: Backend đối tác
+cd partner-backend && npm run dev
+# Port 5001 | Phục vụ Partner Portal
+
+# Terminal 3: Frontend Admin
+cd frontend && npm run dev
+# Port 5173 | http://localhost:5173
+
+# Terminal 4: Frontend Bệnh nhân
+cd carenow-client && npm run dev
+# Port 5174 | http://localhost:5174
+
+# Terminal 5: Frontend Đối tác
+cd frontend-partner && npm run dev
+# Port 5175 | http://localhost:5175</pre>
+
+  <p>Sau khi khởi động, trạng thái bình thường sẽ có 5 tiến trình chạy song song, tất cả không có lỗi trong console.</p>
+
+  <div class="subsec">3.4.2 Đồng Bộ Quyền Và Khởi Tạo Dữ Liệu Mẫu</div>
+  <p>Bước đầu tiên sau khi hệ thống lên là đồng bộ danh sách permission từ frontend config lên database. Đăng nhập admin với tài khoản super admin, vào trang <strong>Phân quyền</strong> → nhấn nút <strong>"Đồng bộ tính năng"</strong>. Thao tác này gọi <code>POST /api/auth/items/sync-features</code> để upsert toàn bộ 17 permissions vào <code>tbl_auth_item</code>.</p>
+
+<pre>POST http://localhost:5000/api/auth/items/sync-features
+Authorization: Bearer {super_admin_token}
+Content-Type: application/json
+
+# Response mong đợi:
+{
+  "success": true,
+  "message": "Đã đồng bộ 17 tính năng",
+  "synced": 17
+}</pre>
+
+  <p>Tiếp theo, tạo tài khoản cho admin/staff và gán quyền phù hợp qua trang <strong>Vai trò</strong> và <strong>Phân quyền</strong>.</p>
+
+  <div class="sec">3.5 Kết Quả Triển Khai Và Demo Giao Diện</div>
+
+  <div class="subsec">3.5.1 Giao Diện Bệnh Nhân (carenow-client)</div>
+  <p>Sau khi triển khai thành công, trang chủ bệnh nhân tại <code>http://localhost:5174</code> hiển thị đầy đủ:</p>
+
+  <div class="fig">
+    <div class="fig-title">🖥️ Hình 3.11: Giao diện trang chủ bệnh nhân</div>
+    <div class="fig-desc">Trang Home với banner tìm kiếm, danh sách chuyên khoa nổi bật, danh sách bác sĩ được đề xuất và footer thông tin. Thiết kế hiện đại, responsive.</div>
+  </div>
+  <div class="fig-caption">Hình 3.11: Giao diện trang chủ (Home) của carenow-client</div>
+
+  <div class="fig">
+    <div class="fig-title">🖥️ Hình 3.12: Giao diện tìm kiếm bác sĩ</div>
+    <div class="fig-desc">Trang Search với bộ lọc theo chuyên khoa, dịch vụ, địa điểm tỉnh/thành. Danh sách bác sĩ hiển thị dạng card với ảnh, thông tin chuyên khoa và khoảng giá.</div>
+  </div>
+  <div class="fig-caption">Hình 3.12: Giao diện tìm kiếm bác sĩ/cơ sở y tế</div>
+
+  <div class="fig">
+    <div class="fig-title">🖥️ Hình 3.14: Giao diện đặt lịch hẹn (SchedulePicker)</div>
+    <div class="fig-desc">Component SchedulePicker hiển thị lịch theo tuần, các slot còn trống được highlight. Bệnh nhân chọn ngày → chọn giờ → điền thông tin → đặt lịch.</div>
+  </div>
+  <div class="fig-caption">Hình 3.14: Giao diện đặt lịch hẹn với SchedulePicker component</div>
+
+  <div class="page-num">— 32 —</div>
+</div>
+
+<!-- Admin UI page -->
+<div class="page">
+  <div class="subsec">3.5.2 Giao Diện Quản Trị (Admin – frontend)</div>
+
+  <div class="fig">
+    <div class="fig-title">🖥️ Hình 3.16: Giao diện đăng nhập Admin</div>
+    <div class="fig-desc">Form đăng nhập với username/password. Background gradient xanh dương đặc trưng, logo CareNow. Sau đăng nhập redirect về /welcome hoặc /dashboard.</div>
+  </div>
+  <div class="fig-caption">Hình 3.16: Giao diện đăng nhập hệ thống Admin</div>
+
+  <div class="fig">
+    <div class="fig-title">🖥️ Hình 3.17: Dashboard thống kê admin</div>
+    <div class="fig-desc">Dashboard hiển thị: tổng số lịch hẹn, lịch hẹn hôm nay, tỷ lệ xác nhận, biểu đồ theo tuần/tháng. Sidebar trái với menu điều hướng theo permission.</div>
+  </div>
+  <div class="fig-caption">Hình 3.17: Giao diện Dashboard thống kê cho Admin</div>
+
+  <div class="fig">
+    <div class="fig-title">🖥️ Hình 3.19: Quản lý lịch làm việc (Schedule Week Grid)</div>
+    <div class="fig-desc">Component ScheduleWeekGrid hiển thị lịch theo thứ trong tuần. Mỗi ô là một block lịch với màu sắc phân biệt buổi sáng/chiều/tối. Admin bật/tắt từng block trực tiếp.</div>
+  </div>
+  <div class="fig-caption">Hình 3.19: Quản lý lịch làm việc bác sĩ theo week grid</div>
+
+  <div class="fig">
+    <div class="fig-title">🖥️ Hình 3.20: Quản lý đơn đặt khám</div>
+    <div class="fig-desc">Bảng danh sách lịch hẹn với filter theo ngày, trạng thái, bác sĩ. Mỗi dòng hiển thị booking_code, tên bệnh nhân, SĐT, ngày giờ khám, trạng thái badge màu sắc.</div>
+  </div>
+  <div class="fig-caption">Hình 3.20: Quản lý đơn đặt khám (Appointments) với filter đa chiều</div>
+
+  <div class="fig">
+    <div class="fig-title">🖥️ Hình 3.21: Trang Phân quyền (Permissions Assignment)</div>
+    <div class="fig-desc">Trang PermissionsAssignment với bảng ma trận vai trò × quyền. Admin tích checkbox gán quyền cho từng vai trò. Nút "Đồng bộ tính năng" sync permissions từ features.js lên DB.</div>
+  </div>
+  <div class="fig-caption">Hình 3.21: Trang phân quyền RBAC – gán permission cho vai trò</div>
+
+  <div class="subsec">3.5.3 Giao Diện Đối Tác (Partner Portal)</div>
+
+  <div class="fig">
+    <div class="fig-title">🖥️ Hình 3.22: Giao diện Welcome – Partner Portal</div>
+    <div class="fig-desc">Landing page đặc biệt của đối tác với thống kê nhanh: số lịch hẹn hôm nay, tuần này, tổng cộng. Logo đối tác và thông tin tổ chức. Nút nhanh đến các chức năng chính.</div>
+  </div>
+  <div class="fig-caption">Hình 3.22: Giao diện Welcome Dashboard của Partner Portal</div>
+
+  <div class="fig">
+    <div class="fig-title">🖥️ Hình 3.23: Quản lý lịch hẹn đối tác (PartnerAppointments)</div>
+    <div class="fig-desc">Trang lịch hẹn được tự động lọc theo partner_id của user đang đăng nhập. Đối tác chỉ thấy lịch hẹn thuộc cơ sở của mình. Có thể cập nhật trạng thái confirmed/completed.</div>
+  </div>
+  <div class="fig-caption">Hình 3.23: Quản lý lịch hẹn tự động lọc theo đối tác</div>
+  <div class="page-num">— 35 —</div>
+</div>
+
+<!-- Results summary page -->
+<div class="page">
+  <div class="tbl-caption">Bảng 3.4: Tổng hợp kết quả đạt được</div>
+  <table class="tbl">
+    <thead><tr><th>Hạng mục</th><th>Số lượng / Kết quả</th><th>Ghi chú</th></tr></thead>
+    <tbody>
+      <tr><td>Backend API server</td><td>2 server</td><td>carenow-backend + partner-backend</td></tr>
+      <tr><td>API Modules</td><td>20 modules</td><td>Mỗi module: controller, service, repository, router</td></tr>
+      <tr><td>API Endpoints</td><td>&gt; 80 endpoints</td><td>GET/POST/PUT/DELETE đầy đủ</td></tr>
+      <tr><td>Database Tables</td><td>20+ bảng</td><td>PostgreSQL, 18 migrations</td></tr>
+      <tr><td>Frontend Applications</td><td>3 apps</td><td>Client, Admin, Partner</td></tr>
+      <tr><td>Trang Admin (frontend)</td><td>43 trang</td><td>Đầy đủ CRUD theo module</td></tr>
+      <tr><td>Trang Partner (frontend-partner)</td><td>47 trang</td><td>Mở rộng từ Admin + 4 trang riêng</td></tr>
+      <tr><td>Trang Client (carenow-client)</td><td>14 trang</td><td>UX bệnh nhân tối ưu</td></tr>
+      <tr><td>Hệ thống RBAC</td><td>17 permissions</td><td>4 nhóm quyền, 3 roles mặc định</td></tr>
+      <tr><td>Phương thức xác thực</td><td>2 phương thức</td><td>JWT (admin) + Google OAuth (patient)</td></tr>
+      <tr><td>Tích hợp Cloudinary</td><td>✓</td><td>Upload + Media Library modal</td></tr>
+      <tr><td>Audit Log lịch</td><td>✓</td><td>CREATE/UPDATE/TOGGLE/DELETE</td></tr>
+      <tr><td>ChatWidget AI</td><td>✓</td><td>Hỗ trợ bệnh nhân tìm kiếm</td></tr>
+      <tr><td>Scraper dữ liệu mẫu</td><td>✓</td><td>Cheerio scrape từ nguồn ngoài</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tbl-caption">Bảng 3.5: Đánh giá kết quả theo mục tiêu đề ra</div>
+  <table class="tbl">
+    <thead><tr><th>Mục tiêu</th><th>Trạng thái</th></tr></thead>
+    <tbody>
+      <tr><td>Đặt lịch trực tuyến cho bệnh nhân (guest + đăng nhập)</td><td class="ok">✓ Hoàn thành</td></tr>
+      <tr><td>Tìm kiếm bác sĩ/phòng khám đa tiêu chí</td><td class="ok">✓ Hoàn thành</td></tr>
+      <tr><td>Hệ thống quản trị đầy đủ với RBAC 17 quyền</td><td class="ok">✓ Hoàn thành</td></tr>
+      <tr><td>Portal đối tác độc lập (partner-backend + frontend-partner)</td><td class="ok">✓ Hoàn thành</td></tr>
+      <tr><td>Thông tin giá dịch vụ minh bạch</td><td class="ok">✓ Hoàn thành</td></tr>
+      <tr><td>Tích hợp bảo hiểm y tế (công lập + tư nhân)</td><td class="ok">✓ Hoàn thành</td></tr>
+      <tr><td>Google OAuth 2.0 cho bệnh nhân</td><td class="ok">✓ Hoàn thành</td></tr>
+      <tr><td>Cẩm nang y tế với rich text editor</td><td class="ok">✓ Hoàn thành</td></tr>
+      <tr><td>Audit log thay đổi lịch làm việc</td><td class="ok">✓ Hoàn thành</td></tr>
+      <tr><td>Thanh toán trực tuyến (VNPay/Momo)</td><td class="wait">⏳ Chưa triển khai</td></tr>
+      <tr><td>Thông báo SMS/Email tự động</td><td class="wait">⏳ Chưa triển khai</td></tr>
+      <tr><td>Ứng dụng mobile (React Native)</td><td class="wait">⏳ Chưa triển khai</td></tr>
+    </tbody>
+  </table>
+  <div class="page-num">— 37 —</div>
+</div>
+
+<!-- ══════════════════════════════════════ KẾT LUẬN ══════════════════════════════════════ -->
+<div class="page">
+  <div class="chap-title">Kết Luận Và Hướng Phát Triển</div>
+
+  <div class="sec">Kết Luận</div>
+
+  <p>Sau quá trình nghiên cứu và thực hiện đề tài <strong>"CareNow – Hệ Thống Đặt Lịch Khám Bệnh Trực Tuyến"</strong>, đồ án đã đạt được những kết quả cụ thể sau:</p>
+
+  <div class="subsec">Về Mặt Lý Thuyết</div>
+  <ul>
+    <li>Hiểu rõ kiến trúc tổng thể của một nền tảng HealthTech và vai trò của việc kết nối bệnh nhân – cơ sở y tế thông qua công nghệ số trong bối cảnh chuyển đổi số ngành y tế Việt Nam.</li>
+    <li>Nắm vững kiến thức về thiết kế và triển khai hệ thống backend theo mô hình RESTful API với Node.js/Express, bao gồm pattern Controller–Service–Repository và các best practices bảo mật (parameterized query, bcrypt, JWT).</li>
+    <li>Hiểu sâu sắc mô hình RBAC (Role-Based Access Control) và cách triển khai phân quyền động trên cả frontend (PermissionRoute) lẫn backend (middleware JWT + filter partner_id).</li>
+    <li>Nắm được nguyên lý thiết kế cơ sở dữ liệu quan hệ PostgreSQL với các tính năng nâng cao: JSONB, CTE (Common Table Expression), aggregate phức tạp cho query giá/bảo hiểm.</li>
+  </ul>
+
+  <div class="subsec">Về Mặt Thực Nghiệm</div>
+  <ul>
+    <li>Xây dựng thành công hệ thống backend với <strong>20 module nghiệp vụ</strong>, hơn <strong>80 API endpoints</strong> phục vụ đầy đủ các chức năng của nền tảng y tế.</li>
+    <li>Triển khai <strong>3 frontend hoàn chỉnh</strong> với tổng cộng hơn <strong>100 trang giao diện</strong>, sử dụng React/Vite và Vanilla CSS theo chuẩn thiết kế nhất quán.</li>
+    <li>Thiết kế và hiện thực hệ thống phân quyền RBAC với <strong>17 permissions</strong> thuộc 4 nhóm chức năng, tích hợp liền mạch giữa frontend PermissionRoute và backend middleware.</li>
+    <li>Tích hợp thành công <strong>Google OAuth 2.0</strong> cho bệnh nhân và <strong>JWT</strong> cho admin/partner với cơ chế tự động làm mới phiên đăng nhập.</li>
+    <li>Xây dựng module lịch làm việc bác sĩ phức tạp với block lịch theo tuần, override ngày đặc biệt và <strong>audit log</strong> đầy đủ mọi thay đổi.</li>
+    <li>Cung cấp thông tin giá dịch vụ và bảo hiểm y tế (BHYT + tư nhân) minh bạch, truy xuất hiệu quả qua CTE query tối ưu.</li>
+    <li>Hệ thống sau khi triển khai đã vận hành trơn tru, đáp ứng được các luồng nghiệp vụ chính từ tìm kiếm bác sĩ đến đặt lịch và quản lý.</li>
+  </ul>
+
+  <div class="subsec">Hạn Chế</div>
+  <ul>
+    <li><strong>Chưa có thanh toán trực tuyến:</strong> Bệnh nhân thanh toán trực tiếp tại cơ sở, chưa tích hợp VNPay, Momo hay ZaloPay.</li>
+    <li><strong>Thiếu notification tự động:</strong> Sau đặt lịch, bệnh nhân không nhận SMS/email xác nhận hay nhắc lịch. Đây là tính năng quan trọng để giảm tỷ lệ no-show.</li>
+    <li><strong>Chưa có real-time:</strong> Admin/partner phải refresh thủ công để thấy lịch hẹn mới, chưa có WebSocket/SSE.</li>
+    <li><strong>Chưa có unit test tự động:</strong> Thiếu bộ test cho backend API và frontend components, tiềm ẩn rủi ro khi refactor.</li>
+    <li><strong>Data phụ thuộc scraping:</strong> Phần lớn dữ liệu bác sĩ và cơ sở y tế hiện tại được scrape từ nguồn ngoài, cần được thay thế bằng dữ liệu thực từ đối tác.</li>
+  </ul>
+
+  <div class="subsec">Hướng Phát Triển</div>
+  <ul>
+    <li><strong>Tích hợp cổng thanh toán nội địa:</strong> Tích hợp VNPay/ZaloPay để bệnh nhân thanh toán đặt cọc hoặc toàn bộ chi phí khám trước khi đến.</li>
+    <li><strong>Hệ thống thông báo đa kênh:</strong> Thêm Email (SendGrid), SMS (Esms.vn/Twilio) và Push Notification qua Firebase để nhắc lịch tự động 24h và 1h trước giờ khám.</li>
+    <li><strong>Real-time với WebSocket:</strong> Triển khai Socket.io để admin/partner nhận cập nhật lịch hẹn mới ngay lập tức, không cần refresh.</li>
+    <li><strong>Ứng dụng mobile (React Native):</strong> Phát triển app mobile kết nối API sẵn có, cung cấp trải nghiệm native trên iOS và Android.</li>
+    <li><strong>AI gợi ý bác sĩ:</strong> Tích hợp AI/ML để gợi ý bác sĩ phù hợp dựa trên triệu chứng mô tả của bệnh nhân và lịch sử khám.</li>
+    <li><strong>Hệ thống đánh giá:</strong> Cho phép bệnh nhân đánh giá và nhận xét bác sĩ sau mỗi lần khám, giúp xây dựng uy tín và cải thiện chất lượng dịch vụ.</li>
+    <li><strong>Container hóa (Docker):</strong> Đóng gói toàn bộ hệ thống vào Docker containers, dễ dàng triển khai lên cloud và scale khi cần thiết.</li>
+  </ul>
+
+  <div class="sign">
+    <div class="date">Hà Nội, Ngày 31 Tháng 5 Năm 2026</div>
+    <div class="label">Sinh viên thực hiện</div>
+    <br><br><br>
+    <div class="name">Trần Văn Hậu</div>
+  </div>
+  <div class="page-num">— 38 —</div>
+</div>
+
+<!-- ══════════════════════════════════════ TÀI LIỆU THAM KHẢO ══════════════════════════════════════ -->
+<div class="page">
+  <div class="chap-title">Tài Liệu Tham Khảo</div>
+
+  <ol style="line-height:2.1; font-size:12pt;">
+    <li>Node.js Foundation (2024). <em>Node.js v20 LTS – Official Documentation.</em> Truy xuất từ: https://nodejs.org/en/docs</li>
+    <li>Express.js Team (2024). <em>Express v5.x API Reference.</em> Truy xuất từ: https://expressjs.com/en/5x/api.html</li>
+    <li>PostgreSQL Global Development Group (2024). <em>PostgreSQL 16 Documentation.</em> Truy xuất từ: https://www.postgresql.org/docs/16/</li>
+    <li>React Team (2024). <em>React – The library for web and native user interfaces.</em> Truy xuất từ: https://react.dev</li>
+    <li>Vite Team (2024). <em>Vite – Next Generation Frontend Tooling.</em> Truy xuất từ: https://vitejs.dev/guide/</li>
+    <li>Cloudinary (2024). <em>Node.js SDK Documentation – Upload and transform media.</em> Truy xuất từ: https://cloudinary.com/documentation/node_integration</li>
+    <li>Google Identity Platform (2024). <em>OAuth 2.0 for Web Server Applications.</em> Truy xuất từ: https://developers.google.com/identity/protocols/oauth2/web-server</li>
+    <li>Auth0 (2023). <em>Introduction to JSON Web Tokens (JWT).</em> Truy xuất từ: https://jwt.io/introduction</li>
+    <li>Sandhu, R. S., Coyne, E. J., Feinstein, H. L., &amp; Youman, C. E. (1996). <em>Role-Based Access Control Models.</em> IEEE Computer, 29(2), 38–47.</li>
+    <li>Fowler, M. (2002). <em>Patterns of Enterprise Application Architecture.</em> Addison-Wesley Professional.</li>
+    <li>node-postgres Contributors (2024). <em>node-postgres (pg) – PostgreSQL client for Node.js.</em> Truy xuất từ: https://node-postgres.com</li>
+    <li>bcrypt.js Contributors (2024). <em>bcrypt – Password Hashing for Node.js.</em> Truy xuất từ: https://www.npmjs.com/package/bcrypt</li>
+    <li>Multer Contributors (2024). <em>Multer – Node.js middleware for handling multipart/form-data.</em> Truy xuất từ: https://github.com/expressjs/multer</li>
+    <li>React Router Team (2024). <em>React Router v6 Documentation.</em> Truy xuất từ: https://reactrouter.com/en/main</li>
+    <li>Axios Contributors (2024). <em>Axios – Promise based HTTP client.</em> Truy xuất từ: https://axios-http.com/docs/intro</li>
+    <li>Bộ Y tế Việt Nam (2023). <em>Báo cáo tổng kết công tác y tế và chuyển đổi số y tế năm 2023.</em> Hà Nội: NXB Y học.</li>
+    <li>Bộ Thông tin và Truyền thông (2024). <em>Báo cáo Việt Nam Digital 2024 – Tỷ lệ sử dụng Internet.</em> Hà Nội.</li>
+    <li>BookingCare Vietnam (2024). <em>Nền tảng đặt khám trực tuyến BookingCare.</em> Truy xuất từ: https://bookingcare.vn</li>
+  </ol>
+
+  <div class="page-num">— 40 —</div>
+</div>
+
+</body>
+</html>

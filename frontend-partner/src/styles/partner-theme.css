@@ -1,0 +1,62 @@
+/* partner-theme.css — Minimal overrides only, no !important layout hacks */
+
+/* Subtle page background texture */
+body {
+  background-image:
+    radial-gradient(ellipse 60% 40% at 15% 10%, rgba(14, 165, 233, 0.04), transparent),
+    radial-gradient(ellipse 50% 50% at 90% 80%, rgba(37, 99, 235, 0.04), transparent);
+}
+
+/* Sidebar gradient active item */
+.sidebar-menu-item.active {
+  background: linear-gradient(90deg, var(--primary-50), rgba(14, 165, 233, 0.06));
+}
+
+/* Sidebar logo hover glow */
+.sidebar-logo {
+  transition: box-shadow 0.3s ease;
+}
+.sidebar-logo:hover {
+  box-shadow: 0 4px 16px rgba(14, 165, 233, 0.45);
+}
+
+/* Glassmorphism for top bar on scroll */
+.dashboard-top-bar {
+  transition: box-shadow 0.2s ease;
+}
+
+/* Smooth page transition feel */
+.dashboard-content > * {
+  animation: fadeUp 0.25s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Card hover lift */
+.dashboard-section,
+.management-section,
+.form-page-content {
+  transition: box-shadow 0.2s ease;
+}
+.dashboard-section:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Primary gradient buttons glow on hover */
+.btn-primary:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Smooth table row hover */
+.management-table tbody tr,
+.specialties-table tbody tr {
+  transition: background 0.15s ease;
+}

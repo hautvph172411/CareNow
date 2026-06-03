@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, User as UserIcon } from 'lucide-react';
 import AdminLayout from '../layouts/AdminLayout';
 import { getUserById, updateUser } from '../api/user.api';
 import { getPartners } from '../api/partner.api';
 import { getAuthItems, getUserAssignments, assignToUser } from '../api/auth_item.api';
+import { useAuth } from '../hooks/useAuth';
 import SearchableSelect from '../components/SearchableSelect';
 import ImageUpload from '../components/ImageUpload';
 import '../styles/UserForm.css';
@@ -12,6 +13,7 @@ import '../styles/UserForm.css';
 export default function EditUser() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { user, updateUserSession } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [userType, setUserType] = useState('admin');
   const [partners, setPartners] = useState([]);
@@ -27,6 +29,7 @@ export default function EditUser() {
     email: '',
     password: '',
     confirmPassword: '',
+    partner_role: 'staff',
     avatar: ''
   });
 
@@ -76,6 +79,7 @@ export default function EditUser() {
     e.preventDefault();
     if (formData.password && formData.password !== formData.confirmPassword) {
       setErrors({ confirmPassword: 'Mật khẩu xác nhận không khớp' });
+      alert("Vui lòng kiểm tra lại các thông tin bắt buộc!");
       return;
     }
 
@@ -92,6 +96,15 @@ export default function EditUser() {
         updateUser(id, payload),
         assignToUser(id, selectedRole ? [selectedRole] : [])
       ]);
+
+      if (user?.id === parseInt(id, 10) || user?.id === id) {
+        updateUserSession({
+          display_name: payload.display_name,
+          email: payload.email,
+          phone: payload.phone,
+          avatar: payload.avatar,
+        });
+      }
 
       alert('Cập nhật tài khoản thành công!');
       navigate(userType === 'admin' ? '/users/admin' : '/users/partner');
@@ -139,11 +152,18 @@ export default function EditUser() {
 
                 <div className="form-group">
                   <label>Quyền hạn (Vai trò) *</label>
-                  <SearchableSelect 
-                    options={roleOptions}
-                    value={formData.role_name}
-                    onChange={(val) => setFormData(p => ({ ...p, role_name: val }))}
-                  />
+                  {userType === 'partner' ? (
+                    <select name="partner_role" value={formData.partner_role} onChange={handleChange} className="form-input" required>
+                      <option value="staff">Nhân viên (Chỉ xem/xử lý lịch)</option>
+                      <option value="manager">Quản lý (Toàn quyền đối tác)</option>
+                    </select>
+                  ) : (
+                    <SearchableSelect 
+                      options={roleOptions}
+                      value={formData.role_name}
+                      onChange={(val) => setFormData(p => ({ ...p, role_name: val }))}
+                    />
+                  )}
                 </div>
 
                 <div className="form-group">

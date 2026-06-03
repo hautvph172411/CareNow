@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Plus, Trash2 } from 'lucide-react';
 import AdminLayout from '../layouts/AdminLayout';
 import {
@@ -26,8 +26,10 @@ const emptyItem = () => ({
 
 export default function PricePackageEditor() {
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const isEdit = Boolean(id);
+  const clinicIdFromQuery = searchParams.get('clinic_id') || '';
 
   const [clinics, setClinics] = useState([]);
   const [places, setPlaces] = useState([]);
@@ -35,7 +37,7 @@ export default function PricePackageEditor() {
   const [saving, setSaving] = useState(false);
 
   const [pkg, setPkg] = useState({
-    clinic_id: '',
+    clinic_id: clinicIdFromQuery,
     name: '',
     description: '',
     status: 1,

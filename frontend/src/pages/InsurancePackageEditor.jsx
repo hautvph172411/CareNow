@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Plus, Trash2 } from 'lucide-react';
 import AdminLayout from '../layouts/AdminLayout';
 import {
@@ -14,6 +14,7 @@ import { getClinicPlaces } from '../api/clinic_place.api';
 const emptyItem = () => ({
   key: Math.random().toString(36).slice(2),
   clinic_place_id: '',
+  insurance_type: 'private',
   insurer_name: '',
   insurer_code: '',
   coverage_note: '',
@@ -25,8 +26,10 @@ const emptyItem = () => ({
 
 export default function InsurancePackageEditor() {
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const isEdit = Boolean(id);
+  const clinicIdFromQuery = searchParams.get('clinic_id') || '';
 
   const [clinics, setClinics] = useState([]);
   const [partners, setPartners] = useState([]);
@@ -35,7 +38,7 @@ export default function InsurancePackageEditor() {
   const [saving, setSaving] = useState(false);
 
   const [pkg, setPkg] = useState({
-    clinic_id: '',
+    clinic_id: clinicIdFromQuery,
     partner_id: '',
     name: '',
     description: '',
@@ -82,6 +85,7 @@ export default function InsurancePackageEditor() {
             d.items.map((it) => ({
               key: String(it.id),
               clinic_place_id: it.clinic_place_id != null ? String(it.clinic_place_id) : '',
+              insurance_type: it.insurance_type === 'public' ? 'public' : 'private',
               insurer_name: it.insurer_name || '',
               insurer_code: it.insurer_code || '',
               coverage_note: it.coverage_note || '',
@@ -120,6 +124,7 @@ export default function InsurancePackageEditor() {
     rank: parseInt(pkg.rank, 10),
     items: items.map((it) => ({
       clinic_place_id: it.clinic_place_id,
+      insurance_type: it.insurance_type,
       insurer_name: it.insurer_name,
       insurer_code: it.insurer_code,
       coverage_note: it.coverage_note,
@@ -226,6 +231,7 @@ export default function InsurancePackageEditor() {
                 <thead>
                   <tr>
                     <th>Nơi khám</th>
+                    <th>Loại BH</th>
                     <th>Tên BH *</th>
                     <th>Mã</th>
                     <th>Phạm vi</th>
@@ -244,6 +250,17 @@ export default function InsurancePackageEditor() {
                           {places.map((pl) => (
                             <option key={pl.id} value={pl.id}>{pl.short_name || pl.name}</option>
                           ))}
+                        </select>
+                      </td>
+                      <td>
+                        <select
+                          className="form-input"
+                          style={{ minWidth: 130 }}
+                          value={it.insurance_type}
+                          onChange={(e) => updateItem(it.key, 'insurance_type', e.target.value)}
+                        >
+                          <option value="public">BH nhà nước</option>
+                          <option value="private">BH tư nhân</option>
                         </select>
                       </td>
                       <td>

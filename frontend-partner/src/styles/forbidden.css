@@ -1,0 +1,99 @@
+.forbidden-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+  padding: 2rem;
+}
+
+.forbidden-card {
+  max-width: 520px;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.forbidden-icon {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  color: #dc2626;
+}
+
+.forbidden-code {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0;
+  letter-spacing: -0.05em;
+}
+
+.forbidden-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #334155;
+  margin: 0.5rem 0 1rem;
+}
+
+.forbidden-desc {
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.forbidden-desc strong {
+  color: #3b82f6;
+}
+
+.forbidden-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.forbidden-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.forbidden-actions .btn-secondary {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.forbidden-actions .btn-secondary:hover {
+  background: #e2e8f0;
+}
+
+.forbidden-actions .btn-primary {
+  background: #3b82f6;
+  color: white;
+}
+
+.forbidden-actions .btn-primary:hover {
+  background: #2563eb;
+}
+
+/* Tiện ích: xoay liên tục dùng cho icon đồng bộ */
+.spin {
+  animation: spin 1s linear infinite;
+}

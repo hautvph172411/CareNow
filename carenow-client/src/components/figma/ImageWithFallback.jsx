@@ -10,6 +10,25 @@ export function ImageWithFallback(props) {
 
   const { src, alt, style, className, ...rest } = props;
 
+  // Xử lý ảnh chất lượng cao và đường dẫn tương đối từ BookingCare
+  const getFullUrl = (url) => {
+    if (!url) return url;
+    let resolvedUrl = url;
+    
+    // Nếu là đường dẫn tương đối (không bắt đầu bằng http, data:, hoặc /)
+    if (!resolvedUrl.startsWith('http') && !resolvedUrl.startsWith('data:') && !resolvedUrl.startsWith('/')) {
+      resolvedUrl = 'https://cdn.bookingcare.vn/fo/' + resolvedUrl;
+    } else if (resolvedUrl.startsWith('/fo/')) {
+      resolvedUrl = 'https://cdn.bookingcare.vn' + resolvedUrl;
+    }
+
+    // Chuyển sang ảnh chất lượng cao (loại bỏ /w120/, /w256/, /w480/, /w640/...)
+    resolvedUrl = resolvedUrl.replace(/\/w\d+(\_\w+)?\//g, '/');
+    return resolvedUrl;
+  };
+
+  const finalSrc = getFullUrl(src);
+
   return didError ? (
     <div
       className={`inline-block bg-gray-100 text-center align-middle ${className ?? ''}`}
@@ -21,7 +40,7 @@ export function ImageWithFallback(props) {
     </div>
   ) : (
     <img
-      src={src}
+      src={finalSrc}
       alt={alt}
       className={className}
       style={style}

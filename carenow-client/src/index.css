@@ -1,3 +1,17 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import './styles/theme.css';
+
+/* Force object-fit behavior to prevent stretching/distortion */
+.object-cover, img.object-cover {
+  object-fit: cover !important;
+}
+
+.object-contain, img.object-contain {
+  object-fit: contain !important;
+}
+
+.object-top, img.object-top {
+  object-position: top !important;
+}
+

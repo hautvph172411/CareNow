@@ -1,8 +1,8 @@
 import { useEffect, useState, useMemo } from "react";
 import { Calendar, Clock, Loader2, AlertCircle } from "lucide-react";
-import { getScheduleBlocks } from "../api/catalog.api";
+import { getScheduleBlocks, getScheduleOverrides } from "../api/catalog.api";
 import {
-  getNext14Days, getActiveDaysOfWeek, getSlotsForDate,
+  getNext14Days, getActiveDates, getSlotsForDate,
   DOW_SHORT, SESSION_LABEL, toISODate, toDisplayDate,
 } from "../utils/scheduleUtils";
 
@@ -24,6 +24,7 @@ export function SchedulePicker({
   compact = false,
 }) {
   const [blocks,  setBlocks]  = useState([]);
+  const [overrides, setOverrides] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error,   setError]   = useState("");
 
@@ -34,8 +35,16 @@ export function SchedulePicker({
     setLoading(true);
     setError("");
 
-    getScheduleBlocks({ clinic_id: clinicId, status: 1, limit: 100 })
-      .then((data) => { if (!cancelled) setBlocks(data); })
+    Promise.all([
+      getScheduleBlocks({ clinic_id: clinicId, status: 1, limit: 100 }),
+      getScheduleOverrides({ clinic_id: clinicId, limit: 200 })
+    ])
+      .then(([blocksData, overridesData]) => { 
+        if (!cancelled) {
+          setBlocks(blocksData); 
+          setOverrides(overridesData);
+        }
+      })
       .catch(() => { if (!cancelled) setError("Không tải được lịch khám"); })
       .finally(() => { if (!cancelled) setLoading(false); });
 
@@ -43,21 +52,21 @@ export function SchedulePicker({
   }, [clinicId]);
 
   const days14      = useMemo(() => getNext14Days(), []);
-  const activeDows  = useMemo(() => getActiveDaysOfWeek(blocks), [blocks]);
+  const activeDates = useMemo(() => getActiveDates(blocks, overrides, days14), [blocks, overrides, days14]);
 
   /* Ngày đang chọn hoặc default là ngày đầu tiên có lịch */
   const pickedDate = useMemo(() => {
     if (selectedDate) return selectedDate;
     if (blocks.length === 0) return null;
-    const first = days14.find((d) => activeDows.has(d.getDay()));
+    const first = days14.find((d) => activeDates.has(toISODate(d)));
     return first ? toISODate(first) : null;
-  }, [selectedDate, blocks, activeDows, days14]);
+  }, [selectedDate, blocks, activeDates, days14]);
 
   /* Slots cho ngày đang chọn */
   const slots = useMemo(() => {
     if (!pickedDate || blocks.length === 0) return { morning: [], afternoon: [], evening: [], all: [] };
-    return getSlotsForDate(blocks, pickedDate);
-  }, [pickedDate, blocks]);
+    return getSlotsForDate(blocks, overrides, pickedDate);
+  }, [pickedDate, blocks, overrides]);
 
   const hasSlots = slots.all.length > 0;
 
@@ -100,25 +109,25 @@ export function SchedulePicker({
             <Calendar className="size-4 text-blue-500" /> Chọn ngày khám
           </div>
         )}
-        <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
-          {days14.map((d) => {
-            const iso     = toISODate(d);
-            const dow     = d.getDay();
-            const hasDay  = activeDows.has(dow);
+        <div className="flex gap-2 overflow-x-auto pb-2 custom-scrollbar">
+          {days14.map((d, i) => {
+            const iso = toISODate(d);
+            const active = activeDates.has(iso);
+            const dow = d.getDay();
             const isToday = iso === toISODate(new Date());
             const isPicked = iso === pickedDate;
 
             return (
               <button
                 key={iso}
-                onClick={() => hasDay && onSelect(iso, "")}
-                disabled={!hasDay}
+                onClick={() => active && onSelect(iso, "")}
+                disabled={!active}
                 className={`
                   flex-none flex flex-col items-center rounded-xl border-2 transition-all
                   ${compact ? "w-12 py-1.5 text-[11px]" : "w-14 py-2 text-xs"}
                   ${isPicked
                     ? "border-blue-500 bg-blue-500 text-white shadow-md"
-                    : hasDay
+                    : active
                       ? "border-gray-200 bg-white text-gray-700 hover:border-blue-300 hover:bg-blue-50 cursor-pointer"
                       : "border-dashed border-gray-100 bg-gray-50 text-gray-300 cursor-not-allowed opacity-60"
                   }
@@ -131,7 +140,7 @@ export function SchedulePicker({
                 {isToday && !isPicked && (
                   <span className="text-[9px] font-semibold text-blue-500 mt-0.5">Hôm nay</span>
                 )}
-                {hasDay && !isPicked && (
+                {active && !isPicked && (
                   <span className="size-1 rounded-full bg-blue-400 mt-0.5" />
                 )}
               </button>
