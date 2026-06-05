@@ -126,8 +126,7 @@ export default function Login() {
             <div className="flex items-start gap-2 text-xs text-gray-500">
               <ShieldCheck className="size-4 shrink-0 mt-0.5 text-green-600" />
               <p>
-                CareNow sử dụng Google Sign-In để đảm bảo bảo mật. Chúng tôi chỉ lưu thông tin cơ
-                bản (tên, email, ảnh đại diện) để tạo tài khoản cho bạn.
+                CareNow sử dụng Google Sign-In để xác thực tài khoản an toàn và thuận tiện. Hệ thống chỉ lưu các thông tin cơ bản như họ tên, email và ảnh đại diện nhằm tạo hồ sơ người dùng và hỗ trợ quá trình đặt lịch khám.
               </p>
             </div>
           </div>

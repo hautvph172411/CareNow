@@ -16,6 +16,7 @@ import { PlaceDetail } from "../pages/PlaceDetail";
 import { ServiceDetail } from "../pages/ServiceDetail";
 import { SearchPage } from "../pages/Search";
 import { PartnerContact } from "../pages/PartnerContact";
+import VisitGuide from "../pages/VisitGuide";
 
 export default function AppRoutes() {
   return (
@@ -52,6 +53,7 @@ export default function AppRoutes() {
         <Route path="cam-nang-y-te" element={<HealthGuide />} />
         <Route path="cam-nang-y-te/bai/:id" element={<BlogArticleDetail />} />
         <Route path="hop-tac" element={<PartnerContact />} />
+        <Route path="huong-dan-di-kham/:bookingCode" element={<VisitGuide />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

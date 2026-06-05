@@ -101,7 +101,7 @@ export function SchedulePicker({
   }
 
   return (
-    <div className={compact ? "space-y-3" : "space-y-4"}>
+    <div className={compact ? "space-y-2.5" : "space-y-4"}>
       {/* ── Thanh chọn ngày ──────────────────────────────────────────── */}
       <div>
         {!compact && (
@@ -109,7 +109,7 @@ export function SchedulePicker({
             <Calendar className="size-4 text-blue-500" /> Chọn ngày khám
           </div>
         )}
-        <div className="flex gap-2 overflow-x-auto pb-2 custom-scrollbar">
+        <div className={`${compact ? "flex gap-1.5 overflow-x-auto pb-1.5 custom-scrollbar" : "flex gap-2 overflow-x-auto pb-2 custom-scrollbar"}`}>
           {days14.map((d, i) => {
             const iso = toISODate(d);
             const active = activeDates.has(iso);
@@ -124,7 +124,7 @@ export function SchedulePicker({
                 disabled={!active}
                 className={`
                   flex-none flex flex-col items-center rounded-xl border-2 transition-all
-                  ${compact ? "w-12 py-1.5 text-[11px]" : "w-14 py-2 text-xs"}
+                  ${compact ? "w-11 py-1.5 text-[10px]" : "w-14 py-2 text-xs"}
                   ${isPicked
                     ? "border-blue-500 bg-blue-500 text-white shadow-md"
                     : active
@@ -133,7 +133,7 @@ export function SchedulePicker({
                   }
                 `}
               >
-                <span className={`font-bold ${compact ? "text-base" : "text-lg"} leading-none`}>
+                <span className={`font-bold ${compact ? "text-sm" : "text-lg"} leading-none`}>
                   {d.getDate()}
                 </span>
                 <span className="font-medium mt-0.5">{DOW_SHORT[dow]}</span>
@@ -164,7 +164,7 @@ export function SchedulePicker({
           {!hasSlots ? (
             <p className="text-sm text-gray-400 py-2">Không có giờ khám cho ngày này.</p>
           ) : (
-            <div className="space-y-3">
+            <div className={compact ? "space-y-2.5" : "space-y-3"}>
               {[
                 { key: "morning",   slots: slots.morning,   label: "Buổi sáng",  color: "#f59e0b" },
                 { key: "afternoon", slots: slots.afternoon, label: "Buổi chiều", color: "#3498db" },
@@ -178,7 +178,7 @@ export function SchedulePicker({
                         {label}
                       </p>
                     )}
-                    <div className="flex flex-wrap gap-2">
+                    <div className={compact ? "flex flex-wrap gap-1.5" : "flex flex-wrap gap-2"}>
                       {s.map((time) => {
                         const isPicked = pickedDate === selectedDate && time === selectedTime;
                         return (
@@ -187,7 +187,7 @@ export function SchedulePicker({
                             onClick={() => onSelect(pickedDate, time)}
                             className={`
                               rounded-lg border-2 font-semibold transition-all
-                              ${compact ? "px-2.5 py-1 text-xs" : "px-3 py-1.5 text-sm"}
+                              ${compact ? "px-2 py-1 text-[11px]" : "px-3 py-1.5 text-sm"}
                               ${isPicked
                                 ? "text-white border-blue-500 bg-blue-500 shadow-sm"
                                 : "text-gray-700 border-gray-200 bg-white hover:border-blue-300 hover:bg-blue-50"

@@ -342,3 +342,33 @@ exports.remove = async (id) => {
 exports.cancel = async (id) => {
   return exports.updateStatus(id, 4, { cancelled_at: new Date() });
 };
+
+/* ── Lấy chi tiết lịch hẹn theo booking_code (công khai cho Visit Guide) ── */
+exports.findByBookingCode = async (bookingCode) => {
+  const { rows } = await pool.query(
+    `SELECT
+      a.*,
+      c.name    AS clinic_name,
+      c.picture AS clinic_picture,
+      cp.name   AS place_name,
+      cp.address AS place_address,
+      cp.patient_guide AS place_patient_guide,
+      cp.address_guide AS place_address_guide,
+      cs.name   AS specialist_name,
+      cs.title  AS specialist_title,
+      cs.picture AS specialist_picture,
+      sv.name   AS service_name,
+      pp.name   AS price_package_name,
+      ip.name   AS insurance_package_name
+    FROM tbl_appointment a
+    LEFT JOIN tbl_clinic            c  ON c.id  = a.clinic_id
+    LEFT JOIN tbl_clinic_place      cp ON cp.id = a.clinic_place_id
+    LEFT JOIN tbl_clinic_specialist cs ON cs.id = a.specialist_id
+    LEFT JOIN tbl_service           sv ON sv.id = a.service_id
+    LEFT JOIN tbl_clinic_price_package pp ON pp.id = a.price_package_id
+    LEFT JOIN tbl_clinic_insurance_package ip ON ip.id = a.insurance_package_id
+    WHERE a.booking_code = $1`,
+    [bookingCode]
+  );
+  return rows[0] || null;
+};

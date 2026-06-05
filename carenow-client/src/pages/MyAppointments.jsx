@@ -207,11 +207,20 @@ function AppointmentCard({ appt, onCancel, cancelling, isLocal, onViewDetails })
         <div className="flex gap-2 pt-3 border-t border-gray-50">
           <button
             onClick={() => onViewDetails?.(appt)}
-            className="flex-1 text-white py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-all flex items-center justify-center gap-1"
-            style={{ backgroundColor: "#3498db" }}
+            className="flex-1 text-blue-600 bg-blue-50 py-2 rounded-xl text-sm font-semibold hover:bg-blue-100 transition-all flex items-center justify-center gap-1"
           >
-            Xem chi tiết <ChevronRight className="size-4" />
+            <Info className="size-4" /> Chi tiết
           </button>
+          {appt.booking_code && (
+            <Link
+              to={`/huong-dan-di-kham/${appt.booking_code}`}
+              target="_blank"
+              className="flex-1 text-white py-2 rounded-xl text-sm font-semibold hover:opacity-90 transition-all flex items-center justify-center gap-1"
+              style={{ backgroundColor: "#3498db" }}
+            >
+              Hướng dẫn đi khám <ChevronRight className="size-4" />
+            </Link>
+          )}
           {!isLocal && onCancel && (
             <button
               onClick={() => setShowCancelForm((v) => !v)}

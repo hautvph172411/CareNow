@@ -195,7 +195,7 @@ export default function ClinicList() {
                       </td>
                       <td className="name-cell">
                         <span className="specialty-title" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>
-                          {doctor.name}
+                          {doctor.title ? `${doctor.title} ` : ''}{doctor.name}
                         </span>
                       </td>
                       <td style={{ whiteSpace: 'normal', wordWrap: 'break-word', color: 'var(--gray-600)' }}>

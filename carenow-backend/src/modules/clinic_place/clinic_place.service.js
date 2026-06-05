@@ -270,6 +270,43 @@ exports.createClinicPlace = async (data) => {
   const raw = { ...data };
   mergePlaceKindIntoMetadata(raw);
   if (!raw.created_at) raw.created_at = Math.floor(Date.now() / 1000);
+
+  /* ── Auto-generate Hướng dẫn bệnh nhân nếu chưa có ─────────────────── */
+  if (!raw.patient_guide) {
+    const hotline = raw.phone || '1900 0091';
+    raw.patient_guide = [
+      '<p><strong>Lưu ý:</strong></p>',
+      '<ul>',
+      '<li>Khám với <strong>{{bac_si}}</strong> tại {{noi_kham}}</li>',
+      '<li>Bạn nên mang theo các loại giấy tờ tùy thân khi đi khám:',
+      '<ul>',
+      '<li>Thẻ bảo hiểm y tế</li>',
+      '<li>Thẻ bảo hiểm nhân thọ/phi nhân thọ</li>',
+      '<li>Chứng minh thư nhân dân hoặc giấy khai sinh (trẻ em)</li>',
+      '</ul>',
+      '</li>',
+      `<li>Nếu cần giải đáp thắc mắc, bạn vui lòng liên hệ <strong>${hotline} </strong>để được hỗ trợ</li>`,
+      '</ul>',
+    ].join('\n');
+  }
+
+  /* ── Auto-generate Hướng dẫn đường đi nếu chưa có ──────────────────── */
+  if (!raw.address_guide && raw.name) {
+    const addr = raw.address || '';
+    raw.address_guide = [
+      `<p style="text-align: justify;">Dưới đây là <strong>hướng dẫn đường đi và hướng dẫn làm thủ tục</strong> cho khách hàng đặt khám qua CareNow tại ${raw.name}</p>`,
+      '<ul>',
+      `<li style="text-align: justify;">Địa chỉ: <strong>${addr}</strong></li>`,
+      '</ul>',
+      '<p>Lưu ý nơi gửi xe:</p>',
+      '<ul>',
+      '<li>Xe máy: bạn có thể gửi tại trước cửa cơ sở y tế</li>',
+      '<li style="text-align: justify;">Ô tô: Bạn có thể hỏi bảo vệ để được hướng dẫn chỗ gửi xe</li>',
+      '</ul>',
+      '<p>Bạn vào quầy tiếp đón (tầng 1) và <strong>báo đã đặt khám qua CareNow</strong> để được ưu tiên hỗ trợ.</p>',
+    ].join('\n');
+  }
+
   const payload = cleanPayload(raw);
   const row = await repo.create(payload);
   return attachPlaceKindForResponse(row);

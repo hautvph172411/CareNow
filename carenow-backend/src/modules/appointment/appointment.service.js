@@ -72,7 +72,24 @@ const createAppointment = async (payload, patientId = null) => {
   data.patient_id = patientId;
 
   const appt = await repository.create(data);
-  return formatAppointment(appt);
+  const formatted = formatAppointment(appt);
+
+  // Send confirmation email synchronously so we can return its status
+  let emailSent = false;
+  if (appt.booking_code && appt.patient_email) {
+    try {
+      const emailService = require('../notification/email.service');
+      const fullAppt = await repository.findByBookingCode(appt.booking_code);
+      if (fullAppt) {
+        const result = await emailService.sendAppointmentConfirmation(fullAppt);
+        emailSent = result.sent;
+      }
+    } catch (err) {
+      console.error('Failed to send confirmation email:', err);
+    }
+  }
+
+  return { ...formatted, email_sent: emailSent };
 };
 
 /* ── Lịch sử / sắp tới của bệnh nhân ────────────────────────────────────── */
@@ -117,6 +134,45 @@ const getAppointmentById = async (id, requesterId, isAdmin) => {
     throw new Error('FORBIDDEN');
   }
   return formatAppointment(appt);
+};
+
+/* ── Chi tiết Hướng dẫn đi khám (công khai qua link) ─────────────────────── */
+const getVisitGuideByBookingCode = async (bookingCode) => {
+  if (!bookingCode) throw new Error('NOT_FOUND');
+  const appt = await repository.findByBookingCode(bookingCode);
+  if (!appt) throw new Error('NOT_FOUND');
+
+  // Xác định bác sĩ khám thực tế (specialist_name ưu tiên, fallback clinic_name)
+  const doctorName = appt.specialist_name || appt.clinic_name || '';
+
+  // Xác định nơi khám (place_name + address)
+  const placeName    = appt.place_name || '';
+  const placeAddress = appt.place_address || '';
+  const placeDisplay = [placeName, placeAddress].filter(Boolean).join(' - ');
+
+  // Thay thế các placeholder trong patient_guide
+  let processedGuide = appt.place_patient_guide || '';
+  if (processedGuide) {
+    // {{bac_si}} → tên bác sĩ thực tế
+    if (doctorName) {
+      processedGuide = processedGuide.replace(
+        /\{\{bac_si\}\}/gi,
+        `<strong>${doctorName}</strong>`
+      );
+    }
+    // {{noi_kham}} → tên nơi khám + địa chỉ
+    if (placeDisplay) {
+      processedGuide = processedGuide.replace(
+        /\{\{noi_kham\}\}/gi,
+        `<strong>${placeDisplay}</strong>`
+      );
+    }
+  }
+
+  const result = formatAppointment(appt);
+  result.place_patient_guide = processedGuide;
+  result.doctor_name = doctorName;
+  return result;
 };
 
 /* ── Bệnh nhân hủy lịch ─────────────────────────────────────────────────── */
@@ -250,4 +306,5 @@ module.exports = {
   updateAppointmentStatus,
   updateAppointment,
   deleteAppointment,
+  getVisitGuideByBookingCode,
 };

@@ -246,6 +246,7 @@ function buildLocations(places) {
       rawName: p.name,
       address: p.address || "—",
       type: p.short_name || p.title || "Cơ sở y tế",
+      logo: p.logo || "",
       rating: 4.8,
       distance: "—",
       open: "—",
@@ -847,21 +848,29 @@ export function Home() {
             </span>
           </div>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 items-stretch">
             {locSlice.map((loc) => (
               <div
                 key={loc.id}
-                className="group bg-white rounded-2xl border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all p-5 cursor-pointer"
+                className="group bg-white rounded-2xl border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all p-5 cursor-pointer h-full flex flex-col"
                 onClick={() => navigate(getPlaceDetailPath(loc))}
               >
                 <div className="flex items-start justify-between mb-3 gap-2">
                   <div className="flex items-start gap-3 flex-1 min-w-0">
                     <Link
                       to={getPlaceDetailPath(loc)}
-                      className="size-10 rounded-xl flex items-center justify-center shrink-0 mt-0.5 hover:scale-105 transition-transform"
+                      className="size-12 rounded-xl border border-blue-50 bg-white flex items-center justify-center shrink-0 mt-0.5 hover:scale-105 transition-transform overflow-hidden shadow-sm"
                       style={{ backgroundColor: "#e8f4fd" }}
                     >
-                      <Building2 className="size-5" style={{ color: "#3498db" }} />
+                      {loc.logo ? (
+                        <ImageWithFallback
+                          src={loc.logo}
+                          alt={`Logo ${loc.name}`}
+                          className="w-full h-full object-contain p-1.5 bg-white"
+                        />
+                      ) : (
+                        <Building2 className="size-5" style={{ color: "#3498db" }} />
+                      )}
                     </Link>
                     <div className="min-w-0">
                       <Link
@@ -872,7 +881,7 @@ export function Home() {
                           display_name: loc.display_name,
                           short_name: loc.short_name,
                         })}
-                        className="font-bold text-gray-800 text-sm leading-snug block hover:text-blue-600 transition-colors"
+                        className="font-bold text-gray-800 text-sm leading-snug block hover:text-blue-600 transition-colors line-clamp-2 min-h-[2.45rem]"
                       >
                         {loc.name}
                       </Link>
@@ -892,10 +901,10 @@ export function Home() {
                   </span>
                 </div>
 
-                <div className="space-y-1.5 mb-4">
-                  <p className="text-xs text-gray-500 flex items-start gap-1.5">
+                <div className="space-y-1.5 mb-4 flex-1">
+                  <p className="text-xs text-gray-500 flex items-start gap-1.5 min-h-[2.5rem]">
                     <MapPin className="size-3.5 text-gray-400 shrink-0 mt-0.5" />
-                    {loc.address}
+                    <span className="line-clamp-2">{loc.address}</span>
                   </p>
                   <div className="flex items-center gap-3">
                     <p className="text-xs text-gray-500 flex items-center gap-1.5">

@@ -42,6 +42,7 @@ function buildAppointmentHtml(appt) {
       <li><b>Địa chỉ:</b> ${fullAddress}</li>
       <li><b>Số điện thoại:</b> ${appt.patient_phone || '-'}</li>
     </ul>
+    <p><b><a href="http://localhost:5174/huong-dan-di-kham/${appt.booking_code}" style="color:#2563eb;text-decoration:none">→ Thông tin hướng dẫn đi khám vui lòng click vào đây</a></b></p>
     <p>Vui lòng đến sớm 10-15 phút trước giờ hẹn để làm thủ tục.</p>
     <p>Trân trọng,<br/>CareNow</p>
   </div>
@@ -128,7 +129,8 @@ exports.sendAppointmentConfirmation = async (appt) => {
       `Giờ khám: ${appt.appt_time ? String(appt.appt_time).slice(0, 5) : '-'}\n` +
       `Lý do khám: ${cleanReasonText || '-'}\n` +
       `Địa chỉ: ${fullAddress || appt.patient_address || '-'}\n` +
-      `SĐT: ${appt.patient_phone || '-'}`,
+      `SĐT: ${appt.patient_phone || '-'}\n\n` +
+      `Thông tin hướng dẫn đi khám vui lòng click vào đây: http://localhost:5174/huong-dan-di-kham/${appt.booking_code}`,
     html: buildAppointmentHtml(finalAppt),
   });
 

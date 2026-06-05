@@ -9,6 +9,7 @@ const roleCheck    = require('../middlewares/role');
 /* ── Routes công khai (guest có thể đặt lịch) ─────────────────────────────── */
 // softAuth: parse JWT nếu có → req.patient, không bắt buộc
 router.post('/', softAuth, controller.createAppointment);
+router.get('/visit-guide/:bookingCode', controller.getVisitGuide);
 
 /* ── Routes yêu cầu đăng nhập bệnh nhân ──────────────────────────────────── */
 router.get('/my',         authClient, controller.getMyAppointments);

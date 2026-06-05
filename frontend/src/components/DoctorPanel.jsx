@@ -1509,7 +1509,7 @@ export default function DoctorPanel({ doctor, partners, onRefresh }) {
       <div className="doctor-panel-header">
         <div className="doctor-panel-avatar">{initials}</div>
         <div className="doctor-panel-info">
-          <h4>{doctor?.name}</h4>
+          <h4>{doctor?.title ? `${doctor.title} ` : ''}{doctor?.name}</h4>
           <span>ID: {doctor?.id} {doctor?.specialty_name ? `· ${doctor.specialty_name}` : ''}</span>
         </div>
       </div>
