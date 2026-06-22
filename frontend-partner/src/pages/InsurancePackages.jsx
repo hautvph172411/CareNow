@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Plus, Edit2, Trash2, Shield } from 'lucide-react';
+import { Search, Plus, Edit2, Trash2, Shield, Filter } from 'lucide-react';
 import AdminLayout from '../layouts/AdminLayout';
 import { getInsurancePackages, deleteInsurancePackage } from '../api/clinicInsurance.api';
 import { getClinics } from '../api/clinic.api';
@@ -12,6 +12,8 @@ export default function InsurancePackages() {
   const [clinics, setClinics] = useState([]);
   const [filterClinic, setFilterClinic] = useState('');
   const [keyword, setKeyword] = useState('');
+  const [showSearch, setShowSearch] = useState(false);
+  const [filterStatus, setFilterStatus] = useState('');
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -34,6 +36,7 @@ export default function InsurancePackages() {
       const params = { page: p, limit };
       if (filterClinic) params.clinic_id = filterClinic;
       if (keyword) params.keyword = keyword;
+      if (filterStatus !== '') params.status = filterStatus;
       const res = await getInsurancePackages(params);
       if (res?.data) {
         setRows(res.data);
@@ -50,7 +53,7 @@ export default function InsurancePackages() {
   useEffect(() => {
     fetchList(1);
     setPage(1);
-  }, [filterClinic]);
+  }, [filterClinic, filterStatus]);
 
   useEffect(() => {
     const t = setTimeout(() => {
@@ -77,23 +80,42 @@ export default function InsurancePackages() {
   return (
     <AdminLayout pageTitle="Gói bảo hiểm">
       <div className="management-header" style={{ flexWrap: 'wrap', gap: 10 }}>
-        <button type="button" className="btn-secondary" onClick={() => navigate('/appointment-schedule')}>
+        <button type="button" className="btn-secondary" onClick={() => navigate('/schedule')}>
           ← Lịch hẹn
         </button>
-        <div className="search-box">
-          <Search size={20} />
-          <input placeholder="Tìm tên gói..." value={keyword} onChange={(e) => setKeyword(e.target.value)} />
+        <div style={{ flex: 1 }}></div>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <button type="button" className="btn-secondary" onClick={() => setShowSearch(!showSearch)} style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <Filter size={18} /> Bộ lọc
+          </button>
         </div>
-        <select className="form-input" style={{ minWidth: 200 }} value={filterClinic} onChange={(e) => { setFilterClinic(e.target.value); setPage(1); }}>
-          <option value="">Tất cả bác sĩ</option>
-          {clinics.map((c) => (
-            <option key={c.id} value={c.id}>{c.name}</option>
-          ))}
-        </select>
-        <button type="button" className="btn-primary" onClick={() => navigate('/appointment-schedule/insurance-packages/add')}>
-          <Plus size={18} />
-          Thêm gói BH
-        </button>
+      </div>
+
+      <div className={`filter-section ${showSearch ? 'show' : ''}`}>
+        <div className="filter-container">
+          
+          <select 
+            className="form-input" 
+            style={{ width: '180px', margin: 0 }}
+            value={filterStatus}
+            onChange={(e) => setFilterStatus(e.target.value)}
+          >
+            <option value="">Tất cả trạng thái</option>
+            <option value="1">Đang hoạt động</option>
+            <option value="0">Ngưng hoạt động</option>
+          </select>
+
+          <div className="search-box" style={{ margin: 0, flex: 1, minWidth: '250px' }}>
+            <Search size={20} />
+            <input placeholder="Tìm tên gói..." value={keyword} onChange={(e) => setKeyword(e.target.value)} />
+          </div>
+          <select className="form-input" style={{ width: '200px', height: '42px', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '0 12px' }} value={filterClinic} onChange={(e) => { setFilterClinic(e.target.value); setPage(1); }}>
+            <option value="">Tất cả bác sĩ</option>
+            {clinics.map((c) => (
+              <option key={c.id} value={c.id}>{c.name}</option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div className="management-section" style={{ marginTop: 16 }}>
@@ -128,11 +150,8 @@ export default function InsurancePackages() {
                       <td>{r.status === 1 ? 'Bật' : 'Tắt'}</td>
                       <td>
                         <div className="action-buttons">
-                          <button type="button" className="btn-action edit" onClick={() => navigate(`/appointment-schedule/insurance-packages/edit/${r.id}`)}>
+                          <button type="button" className="btn-action edit" onClick={() => navigate(`/schedule/insurance-packages/edit/${r.id}`)}>
                             <Edit2 size={16} />
-                          </button>
-                          <button type="button" className="btn-action delete" onClick={() => handleDelete(r.id)}>
-                            <Trash2 size={16} />
                           </button>
                         </div>
                       </td>

@@ -25,7 +25,7 @@ export default function PartnerUserList() {
     setLoading(true);
     try {
       const [uRes, pRes] = await Promise.all([
-        getUsers({ type: 'partner', page, limit: ITEMS_PER_PAGE, keyword }),
+        getUsers({ type: 'partner', page, limit: ITEMS_PER_PAGE, keyword, status, partner_role: role }),
         getPartners()
       ]);
       

@@ -6,6 +6,7 @@ import { Booking } from "../pages/Booking";
 import { MyAppointments } from "../pages/MyAppointments";
 import { HealthGuide } from "../pages/HealthGuide";
 import { BlogArticleDetail } from "../pages/BlogArticleDetail";
+import { BlogCategoryDetail } from "../pages/BlogCategoryDetail";
 import { Profile } from "../pages/Profile";
 import { NotFound } from "../pages/NotFound";
 import Login from "../pages/Login";
@@ -16,6 +17,8 @@ import { PlaceDetail } from "../pages/PlaceDetail";
 import { ServiceDetail } from "../pages/ServiceDetail";
 import { SearchPage } from "../pages/Search";
 import { PartnerContact } from "../pages/PartnerContact";
+import VisitGuide from "../pages/VisitGuide";
+import { AllClinics } from "../pages/AllClinics";
 
 export default function AppRoutes() {
   return (
@@ -31,6 +34,7 @@ export default function AppRoutes() {
         <Route path="chuyen-khoa/:slugRef" element={<SpecialtyDetail />} />
         <Route path="bac-si/:slugRef" element={<DoctorDetail />} />
         <Route path="noi-kham/:slugRef" element={<PlaceDetail />} />
+        <Route path="co-so-y-te" element={<AllClinics />} />
         <Route path="tim-kiem" element={<SearchPage />} />
         <Route path="dat-lich" element={<Booking />} />
         <Route
@@ -50,8 +54,10 @@ export default function AppRoutes() {
           }
         />
         <Route path="cam-nang-y-te" element={<HealthGuide />} />
+        <Route path="cam-nang-y-te/danh-muc/:id" element={<BlogCategoryDetail />} />
         <Route path="cam-nang-y-te/bai/:id" element={<BlogArticleDetail />} />
         <Route path="hop-tac" element={<PartnerContact />} />
+        <Route path="huong-dan-di-kham/:bookingCode" element={<VisitGuide />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

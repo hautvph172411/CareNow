@@ -10,6 +10,15 @@ import EditPartnerScheduleBlock from '../pages/EditPartnerScheduleBlock';
 import Forbidden from "../pages/Forbidden";
 import Welcome from "../pages/Welcome";
 import Profile from "../pages/Profile";
+import PartnerClinicPlace from '../pages/PartnerClinicPlace';
+import PartnerDoctorList from '../pages/PartnerDoctorList';
+import PartnerAddDoctor from '../pages/PartnerAddDoctor';
+import PartnerEditDoctor from '../pages/PartnerEditDoctor';
+import PartnerPermissions from '../pages/PartnerPermissions';
+import PricePackages from "../pages/PricePackages";
+import PricePackageEditor from "../pages/PricePackageEditor";
+import InsurancePackages from "../pages/InsurancePackages";
+import InsurancePackageEditor from "../pages/InsurancePackageEditor";
 import PermissionRoute from "../components/PermissionRoute";
 import "../styles/forbidden.css";
 
@@ -39,6 +48,33 @@ export default function AppRoutes() {
       <Route path="/schedule/edit/:id" element={
         <PermissionRoute managerOnly={true}><EditPartnerScheduleBlock /></PermissionRoute>
       } />
+      <Route path="/schedule/price-packages" element={
+        <PermissionRoute><PricePackages /></PermissionRoute>
+      } />
+      <Route path="/schedule/price-packages/add" element={
+        <PermissionRoute><PricePackageEditor /></PermissionRoute>
+      } />
+      <Route path="/schedule/price-packages/edit/:id" element={
+        <PermissionRoute><PricePackageEditor /></PermissionRoute>
+      } />
+      <Route path="/schedule/insurance-packages" element={
+        <PermissionRoute><InsurancePackages /></PermissionRoute>
+      } />
+      <Route path="/schedule/insurance-packages/edit/:id" element={
+        <PermissionRoute><InsurancePackageEditor /></PermissionRoute>
+      } />
+      <Route path="/clinic-place" element={
+        <PermissionRoute><PartnerClinicPlace /></PermissionRoute>
+      } />
+      <Route path="/doctors" element={
+        <PermissionRoute><PartnerDoctorList /></PermissionRoute>
+      } />
+      <Route path="/doctors/add" element={
+        <PermissionRoute><PartnerAddDoctor /></PermissionRoute>
+      } />
+      <Route path="/doctors/edit/:id" element={
+        <PermissionRoute><PartnerEditDoctor /></PermissionRoute>
+      } />
 
       {/* Manager only */}
       <Route path="/team" element={
@@ -49,6 +85,9 @@ export default function AppRoutes() {
       } />
       <Route path="/team/edit/:id" element={
         <PermissionRoute managerOnly={true}><EditPartnerUser /></PermissionRoute>
+      } />
+      <Route path="/permissions" element={
+        <PermissionRoute managerOnly={true}><PartnerPermissions /></PermissionRoute>
       } />
 
       <Route path="*" element={<Navigate to="/" replace />} />

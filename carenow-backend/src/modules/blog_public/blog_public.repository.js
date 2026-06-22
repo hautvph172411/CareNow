@@ -46,6 +46,7 @@ const baseSelect = `
   SELECT
     bp.*,
     cr.name AS reason_name,
+    cr.clinic_id AS reason_clinic_ids,
     c.name AS suggest_doctor_name,
     s.name AS suggest_specialist_name
   FROM ${TABLE} bp

@@ -342,7 +342,7 @@ export default function AppointmentScheduleV2() {
                         {doctor.name.split(' ').slice(-1)[0]?.[0] || '?'}
                       </div>
                       <div>
-                        <div style={{ fontWeight: 600, color: '#1e293b' }}>{doctor.name}</div>
+                        <div style={{ fontWeight: 600, color: '#1e293b' }}>{doctor.title ? `${doctor.title} ` : ''}{doctor.name}</div>
                         <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
                           ID: {doctor.id}
                         </div>
@@ -441,7 +441,7 @@ export default function AppointmentScheduleV2() {
           padding: '0.5rem 1.5rem', background: '#eff6ff', borderBottom: '1px solid #bfdbfe', fontSize: '0.8125rem', color: '#2563eb',
         }}>
           {selectedClinic
-            ? `Đang xem lịch: ${selectedClinic.name}`
+            ? `Đang xem lịch: ${selectedClinic.title ? `${selectedClinic.title} ` : ''}${selectedClinic.name}`
             : `Danh sách bác sĩ (Trang ${currentPage}/${totalPages})`
           }
         </div>

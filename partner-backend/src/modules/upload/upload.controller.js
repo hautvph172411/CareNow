@@ -7,6 +7,9 @@ const { cloudinary } = require('../../config/cloudinary');
 exports.getMedia = async (req, res) => {
   try {
     let folderPath = 'carenow';
+    const partnerPrefix = req.user?.partner_id ? `/partner_${req.user.partner_id}` : '';
+    folderPath += partnerPrefix;
+
     if (req.query.folder) {
       folderPath += '/' + req.query.folder;
     }
@@ -15,9 +18,10 @@ exports.getMedia = async (req, res) => {
     let folders = [];
     try {
       const folderRes = await cloudinary.api.sub_folders(folderPath);
+      const baseLen = ('carenow' + partnerPrefix + '/').length;
       folders = folderRes.folders.map(f => ({
         name: f.name,
-        path: f.path.replace('carenow/', '') // path relative to carenow
+        path: f.path.substring(baseLen) // path relative to partner base
       }));
     } catch (err) {
       // Bỏ qua lỗi nếu folder không tồn tại hoặc không có subfolder
@@ -63,7 +67,8 @@ exports.createFolder = async (req, res) => {
     if (!req.body.path) {
       return res.status(400).json({ success: false, message: 'Thiếu tên thư mục' });
     }
-    const fullPath = 'carenow/' + req.body.path;
+    const partnerPrefix = req.user?.partner_id ? `/partner_${req.user.partner_id}` : '';
+    const fullPath = 'carenow' + partnerPrefix + '/' + req.body.path;
     await cloudinary.api.create_folder(fullPath);
     return res.status(200).json({ success: true, message: 'Tạo thư mục thành công' });
   } catch (error) {
@@ -139,7 +144,8 @@ exports.deleteFolder = async (req, res) => {
     if (!folderPath) {
       return res.status(400).json({ success: false, message: 'Thiếu đường dẫn thư mục' });
     }
-    const fullPath = 'carenow/' + folderPath;
+    const partnerPrefix = req.user?.partner_id ? `/partner_${req.user.partner_id}` : '';
+    const fullPath = 'carenow' + partnerPrefix + '/' + folderPath;
     const result = await deleteFolderRecursively(fullPath);
     return res.status(200).json({ success: true, message: 'Xóa thư mục thành công', data: result });
   } catch (error) {

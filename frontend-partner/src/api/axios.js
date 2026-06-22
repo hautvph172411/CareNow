@@ -18,17 +18,6 @@ instance.interceptors.request.use((config) => {
       if (user && user.partner_id) {
         // Query params for GET
         config.params = { ...config.params, partner_id: user.partner_id };
-        
-        // Body payload for POST, PUT, PATCH
-        if (config.method !== 'get' && config.method !== 'delete') {
-          if (config.data instanceof FormData) {
-            config.data.append('partner_id', user.partner_id);
-          } else if (typeof config.data === 'object' && config.data !== null) {
-            config.data = { ...config.data, partner_id: user.partner_id };
-          } else if (!config.data) {
-            config.data = { partner_id: user.partner_id };
-          }
-        }
       }
     }
   } catch (e) {

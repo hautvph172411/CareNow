@@ -246,6 +246,7 @@ function buildLocations(places) {
       rawName: p.name,
       address: p.address || "—",
       type: p.short_name || p.title || "Cơ sở y tế",
+      logo: p.logo || "",
       rating: 4.8,
       distance: "—",
       open: "—",
@@ -803,8 +804,7 @@ export function Home() {
                     <Link
                       to={getDoctorDetailPath(doctor)}
                       onClick={(e) => e.stopPropagation()}
-                      className="w-full flex items-center justify-center gap-2 text-white py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90"
-                      style={{ backgroundColor: "#3498db" }}
+                      className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors mt-2"
                     >
                       <Calendar className="size-4" /> Đặt lịch khám
                     </Link>
@@ -837,31 +837,50 @@ export function Home() {
               <p className="text-sm font-medium mb-1" style={{ color: "#3498db" }}>
                 ── Hệ thống cơ sở
               </p>
-              <h2 className="text-3xl font-bold text-gray-800">Nơi Khám Gần Bạn</h2>
+              <h2 className="text-3xl font-bold text-gray-800">
+                Cơ sở y tế nổi bật
+              </h2>
               <p className="text-gray-500 mt-1">
                 Các cơ sở y tế CareNow trên hệ thống đặt lịch
               </p>
             </div>
-            <span className="hidden md:inline-flex items-center gap-1.5 text-xs text-gray-400 bg-gray-50 px-3 py-1.5 rounded-full border border-gray-100">
-              <Building2 className="size-3.5" /> {locationCards.length} cơ sở
-            </span>
+            <div className="hidden md:flex flex-col items-end gap-3">
+              <Link
+                to="/co-so-y-te"
+                className="text-sm font-bold px-5 py-2.5 rounded-xl text-white transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                style={{ backgroundColor: "#3498db" }}
+              >
+                Xem danh sách
+              </Link>
+              <span className="inline-flex items-center gap-1.5 text-xs text-gray-500 bg-gray-50 px-3 py-1.5 rounded-full border border-gray-200">
+                <Building2 className="size-3.5" /> {locationCards.length} cơ sở
+              </span>
+            </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 items-stretch">
             {locSlice.map((loc) => (
               <div
                 key={loc.id}
-                className="group bg-white rounded-2xl border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all p-5 cursor-pointer"
+                className="group bg-white rounded-2xl border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all p-5 cursor-pointer h-full flex flex-col"
                 onClick={() => navigate(getPlaceDetailPath(loc))}
               >
                 <div className="flex items-start justify-between mb-3 gap-2">
                   <div className="flex items-start gap-3 flex-1 min-w-0">
                     <Link
                       to={getPlaceDetailPath(loc)}
-                      className="size-10 rounded-xl flex items-center justify-center shrink-0 mt-0.5 hover:scale-105 transition-transform"
+                      className="size-12 rounded-xl border border-blue-50 bg-white flex items-center justify-center shrink-0 mt-0.5 hover:scale-105 transition-transform overflow-hidden shadow-sm"
                       style={{ backgroundColor: "#e8f4fd" }}
                     >
-                      <Building2 className="size-5" style={{ color: "#3498db" }} />
+                      {loc.logo ? (
+                        <ImageWithFallback
+                          src={loc.logo}
+                          alt={`Logo ${loc.name}`}
+                          className="w-full h-full object-contain p-1.5 bg-white"
+                        />
+                      ) : (
+                        <Building2 className="size-5" style={{ color: "#3498db" }} />
+                      )}
                     </Link>
                     <div className="min-w-0">
                       <Link
@@ -872,7 +891,7 @@ export function Home() {
                           display_name: loc.display_name,
                           short_name: loc.short_name,
                         })}
-                        className="font-bold text-gray-800 text-sm leading-snug block hover:text-blue-600 transition-colors"
+                        className="font-bold text-gray-800 text-sm leading-snug block hover:text-blue-600 transition-colors line-clamp-2 min-h-[2.45rem]"
                       >
                         {loc.name}
                       </Link>
@@ -892,10 +911,10 @@ export function Home() {
                   </span>
                 </div>
 
-                <div className="space-y-1.5 mb-4">
-                  <p className="text-xs text-gray-500 flex items-start gap-1.5">
+                <div className="space-y-1.5 mb-4 flex-1">
+                  <p className="text-xs text-gray-500 flex items-start gap-1.5 min-h-[2.5rem]">
                     <MapPin className="size-3.5 text-gray-400 shrink-0 mt-0.5" />
-                    {loc.address}
+                    <span className="line-clamp-2">{loc.address}</span>
                   </p>
                   <div className="flex items-center gap-3">
                     <p className="text-xs text-gray-500 flex items-center gap-1.5">
@@ -917,8 +936,7 @@ export function Home() {
                 <Link
                   to={getPlaceDetailPath(loc)}
                   onClick={(e) => e.stopPropagation()}
-                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90"
-                  style={{ backgroundColor: "#3498db" }}
+                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors"
                 >
                   <Calendar className="size-4" /> Đặt lịch tại đây
                 </Link>
@@ -1004,10 +1022,19 @@ export function Home() {
               <h2 className="text-3xl font-bold text-gray-800">Cẩm Nang Y Tế</h2>
               <p className="text-gray-500 mt-1">Thông tin sức khỏe tin cậy từ chuyên gia CareNow</p>
             </div>
-            <span className="hidden md:inline-flex items-center gap-1.5 text-xs text-gray-400 bg-white px-3 py-1.5 rounded-full border border-gray-100">
-              <BookOpen className="size-3.5" />{" "}
-              {guideArticles.length ? `${guideArticles.length} bài viết` : "Đang cập nhật"}
-            </span>
+            <div className="hidden md:flex flex-col items-end gap-3">
+              <Link
+                to="/cam-nang-y-te"
+                className="text-sm font-bold px-5 py-2.5 rounded-xl text-white transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                style={{ backgroundColor: "#3498db" }}
+              >
+                Xem tất cả
+              </Link>
+              <span className="inline-flex items-center gap-1.5 text-xs text-gray-500 bg-white px-3 py-1.5 rounded-full border border-gray-200">
+                <BookOpen className="size-3.5" />{" "}
+                {guideArticles.length ? `${guideArticles.length} bài viết` : "Đang cập nhật"}
+              </span>
+            </div>
           </div>
 
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">

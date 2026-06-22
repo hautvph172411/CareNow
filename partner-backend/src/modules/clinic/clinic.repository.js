@@ -120,6 +120,11 @@ exports.count = async (query = {}) => {
     values.push(query.service_id);
     idx++;
   }
+  if (query.partner_id) {
+    q += ` AND $${idx} = ANY(STRING_TO_ARRAY(partner_ids, ','))`;
+    values.push(String(query.partner_id));
+    idx++;
+  }
 
   const result = await pool.query(q, values);
   return parseInt(result.rows[0].count, 10);
@@ -129,8 +134,9 @@ exports.create = async (data) => {
   const fields = Object.keys(data);
   const values = Object.values(data);
   const placeholders = fields.map((_, i) => `$${i + 1}`).join(', ');
+  const escapedFields = fields.map(f => `"${f}"`).join(', ');
   
-  const query = `INSERT INTO tbl_clinic (${fields.join(', ')}) VALUES (${placeholders}) RETURNING *`;
+  const query = `INSERT INTO tbl_clinic (${escapedFields}) VALUES (${placeholders}) RETURNING *`;
   const result = await pool.query(query, values);
   return result.rows[0];
 };
@@ -143,7 +149,7 @@ exports.findById = async (id) => {
 exports.update = async (id, data) => {
   const fields = Object.keys(data);
   const values = Object.values(data);
-  const assignments = fields.map((field, i) => `${field} = $${i + 1}`).join(', ');
+  const assignments = fields.map((field, i) => `"${field}" = $${i + 1}`).join(', ');
   
   const query = `UPDATE tbl_clinic SET ${assignments} WHERE id = $${fields.length + 1} RETURNING *`;
   values.push(id);

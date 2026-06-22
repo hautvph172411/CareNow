@@ -50,7 +50,18 @@ export default function ScheduleWeekGrid({
   // Group blocks by clinic_id
   const clinicMap = new Map();
   
-  // Initialize with all clinics that have blocks, or all clinics if we want to show empty rows
+  // Initialize with all clinics to show empty rows for doctors without blocks
+  if (clinics && clinics.length > 0) {
+    clinics.forEach(c => {
+      clinicMap.set(String(c.id), {
+        clinicId: c.id,
+        clinicName: c.name || `Bác sĩ #${c.id}`,
+        days: { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 0: [] }
+      });
+    });
+  }
+
+  // Populate blocks
   blocks.forEach(b => {
     const cid = String(b.clinic_id);
     if (!clinicMap.has(cid)) {

@@ -47,3 +47,12 @@ exports.remove = async (req, res) => {
     res.status(400).json({ success: false, message: e.message });
   }
 };
+
+exports.listInsurers = async (req, res) => {
+  try {
+    const data = await service.getAllPublishedInsurers();
+    res.json({ success: true, data });
+  } catch (e) {
+    res.status(400).json({ success: false, message: e.message });
+  }
+};

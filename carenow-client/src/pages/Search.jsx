@@ -83,6 +83,8 @@ function buildLocations(places) {
       short_name: p.short_name,
       display_name: p.display_name,
       rawName: p.name,
+      logo: p.logo,
+      images: p.images,
       address: p.address || "—",
       type: p.short_name || p.title || "Cơ sở y tế",
       rating: 4.8,
@@ -304,7 +306,11 @@ export function SearchPage() {
                       <div className="flex items-start justify-between mb-3 gap-2">
                         <div className="flex items-start gap-3 flex-1 min-w-0">
                           <Link to={buildPlacePath({ id: loc.id, name: loc.rawName, url: loc.url })} className="size-12 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center shrink-0 overflow-hidden">
-                            <Building2 className="size-6 text-gray-400" />
+                            {loc.logo ? (
+                              <ImageWithFallback src={loc.logo} alt={loc.name} className="w-full h-full object-contain p-1" />
+                            ) : (
+                              <Building2 className="size-6 text-gray-400" />
+                            )}
                           </Link>
                           <div className="min-w-0">
                             <Link to={buildPlacePath({ id: loc.id, name: loc.rawName, url: loc.url })} className="block font-bold text-gray-800 text-sm hover:text-blue-600 truncate">{loc.name}</Link>

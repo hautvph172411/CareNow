@@ -18,6 +18,9 @@ const storage = new CloudinaryStorage({
   cloudinary,
   params: async (req, file) => {
     let folder = process.env.CLOUDINARY_FOLDER || 'carenow';
+    if (req.user && req.user.partner_id) {
+      folder += '/partner_' + req.user.partner_id;
+    }
     if (req.query.folder) {
       folder += '/' + req.query.folder;
     }

@@ -24,3 +24,8 @@ export const deleteInsurancePackage = async (id) => {
   const res = await axios.delete(`/clinic-insurance/packages/${id}`);
   return res.data;
 };
+
+export const getAllPublishedInsurers = async () => {
+  const res = await axios.get('/clinic-insurance/packages/insurers');
+  return res.data;
+};

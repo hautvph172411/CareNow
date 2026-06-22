@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   LogOut, ChevronLeft, ChevronRight, LayoutDashboard,
-  CalendarClock, CalendarCheck, Users, Stethoscope,
+  CalendarClock, CalendarCheck, Users, Stethoscope, Shield
 } from 'lucide-react';
 import { useAuth } from "../hooks/useAuth";
 import { getAllSettings } from "../api/settings.api";
@@ -14,7 +14,10 @@ const MAIN_MENU = [
 const PARTNER_MENU = [
   { icon: CalendarCheck,  label: 'Lịch hẹn',       to: '/appointments', managerOnly: false },
   { icon: CalendarClock,  label: 'Lịch làm việc',   to: '/schedule',     managerOnly: false },
+  { icon: Stethoscope,    label: 'Bác sĩ',          to: '/doctors',      managerOnly: false },
+  { icon: LayoutDashboard,label: 'Nơi khám',        to: '/clinic-place', managerOnly: false },
   { icon: Users,          label: 'Tài khoản nhóm',  to: '/team',         managerOnly: true  },
+  { icon: Shield,         label: 'Phân quyền',      to: '/permissions',  managerOnly: true  },
 ];
 
 export default function Sidebar({ isOpen, isCollapsed = false, onClose, onToggleCollapse }) {

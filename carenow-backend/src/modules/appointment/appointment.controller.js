@@ -14,6 +14,9 @@ const createAppointment = async (req, res) => {
   try {
     // req.patient được set bởi softAuthClient nếu có token; null nếu guest
     const patientId = req.patient?.id ?? null;
+    if (req.patient && !req.body.patient_email) {
+      req.body.patient_email = req.patient.email || req.patient.google_email || undefined;
+    }
     const appt = await service.createAppointment(req.body, patientId);
     return res.status(201).json({ message: 'Đặt lịch thành công', data: appt });
   } catch (err) {
@@ -61,6 +64,16 @@ const getAppointmentById = async (req, res) => {
     const patientId = req.patient?.id ?? null;
     const isAdmin   = req.user?.role === 1;
     const appt = await service.getAppointmentById(req.params.id, patientId, isAdmin);
+    return res.status(200).json({ message: 'Success', data: appt });
+  } catch (err) {
+    return handleError(res, err);
+  }
+};
+
+/* ── GET /appointments/visit-guide/:bookingCode — Hướng dẫn đi khám (công khai) ─ */
+const getVisitGuide = async (req, res) => {
+  try {
+    const appt = await service.getVisitGuideByBookingCode(req.params.bookingCode);
     return res.status(200).json({ message: 'Success', data: appt });
   } catch (err) {
     return handleError(res, err);
@@ -120,4 +133,5 @@ module.exports = {
   updateAppointmentStatus,
   updateAppointment,
   deleteAppointment,
+  getVisitGuide,
 };

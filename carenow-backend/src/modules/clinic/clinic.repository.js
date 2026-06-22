@@ -144,8 +144,9 @@ exports.create = async (data) => {
   const fields = Object.keys(data);
   const values = Object.values(data);
   const placeholders = fields.map((_, i) => `$${i + 1}`).join(', ');
+  const escapedFields = fields.map(f => `"${f}"`).join(', ');
   
-  const query = `INSERT INTO tbl_clinic (${fields.join(', ')}) VALUES (${placeholders}) RETURNING *`;
+  const query = `INSERT INTO tbl_clinic (${escapedFields}) VALUES (${placeholders}) RETURNING *`;
   const result = await pool.query(query, values);
   return result.rows[0];
 };
@@ -314,7 +315,7 @@ exports.getInsuranceSummariesByClinicIds = async (clinicIds = [], placeId = null
 exports.update = async (id, data) => {
   const fields = Object.keys(data);
   const values = Object.values(data);
-  const assignments = fields.map((field, i) => `${field} = $${i + 1}`).join(', ');
+  const assignments = fields.map((field, i) => `"${field}" = $${i + 1}`).join(', ');
   
   const query = `UPDATE tbl_clinic SET ${assignments} WHERE id = $${fields.length + 1} RETURNING *`;
   values.push(id);

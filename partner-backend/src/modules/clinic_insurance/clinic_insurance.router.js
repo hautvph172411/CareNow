@@ -4,6 +4,7 @@ const ctrl = require('./clinic_insurance.controller');
 const auth = require('../middlewares/auth');
 const roleCheck = require('../middlewares/role');
 
+router.get('/packages/insurers', ctrl.listInsurers);
 router.get('/packages', ctrl.list);
 router.get('/packages/:id', ctrl.detail);
 router.post('/packages', auth, roleCheck(1), ctrl.create);

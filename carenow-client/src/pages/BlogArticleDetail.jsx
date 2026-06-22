@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import parse from "html-react-parser";
 import DOMPurify from "dompurify";
 import {
@@ -12,12 +12,21 @@ import {
   Stethoscope,
   Sparkles,
   CalendarPlus,
+  Star,
+  MapPin,
+  Users,
 } from "lucide-react";
 import { getBlogPublicById } from "../api/blogPublic.api";
 import { getBlogCategories } from "../api/blogCategory.api";
+import { getClinics } from "../api/catalog.api";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { htmlToPlain } from "../utils/htmlToPlain";
 import { buildDoctorPath, buildSpecialtyPath } from "../utils/catalogPath";
+import { SchedulePicker } from "../components/SchedulePicker";
+import DoctorPriceInsuranceInfo, {
+  getDefaultInsurancePackageId,
+  getDefaultPricePackageId,
+} from "../components/DoctorPriceInsuranceInfo";
 
 function formatEpochVN(sec) {
   if (sec == null || sec === "") return "";
@@ -83,12 +92,128 @@ function splitTags(raw) {
     .filter(Boolean);
 }
 
+function getDoctorDescription(doctor) {
+  const raw = doctor.summary || doctor.description || doctor.content || "";
+  const text = htmlToPlain(raw).replace(/\s+/g, " ").trim();
+  if (!text) return "Bác sĩ thuộc hệ thống CareNow, hỗ trợ tư vấn và đặt lịch khám theo khung giờ còn trống tại cơ sở.";
+  return text.length > 150 ? `${text.slice(0, 150).trim()}...` : text;
+}
+
+function DoctorScheduleCard({ doctor, onBook, viewPath }) {
+  const [selDate, setSelDate] = useState("");
+  const [selTime, setSelTime] = useState("");
+  const [selectedPricePackageId, setSelectedPricePackageId] = useState("");
+  const [selectedInsurancePackageId, setSelectedInsurancePackageId] = useState("");
+  const hasFinance =
+    doctor.price_min ||
+    doctor.price_summary?.min ||
+    (Array.isArray(doctor.insurance_summary?.items) && doctor.insurance_summary.items.length > 0);
+
+  useEffect(() => {
+    setSelectedPricePackageId(getDefaultPricePackageId(doctor.price_summary));
+    setSelectedInsurancePackageId(getDefaultInsurancePackageId(doctor.insurance_summary));
+  }, [doctor.id, doctor.price_summary, doctor.insurance_summary]);
+
+  return (
+    <>
+      {hasFinance && (
+        <div className="mb-3 border-y border-gray-200 py-2 text-sm">
+          <DoctorPriceInsuranceInfo
+            priceSummary={doctor.price_summary}
+            insuranceSummary={doctor.insurance_summary}
+            legacyPriceMin={doctor.price_min}
+            defaultExpanded={false}
+            selectable
+            selectedPricePackageId={selectedPricePackageId}
+            selectedInsurancePackageId={selectedInsurancePackageId}
+            onSelectPricePackage={setSelectedPricePackageId}
+            onSelectInsurancePackage={setSelectedInsurancePackageId}
+            radioGroupName={`blog-doctor-${doctor.id}`}
+          />
+        </div>
+      )}
+
+      <div className="mb-3">
+        <h4 className="text-[13px] font-bold text-gray-800 mb-2.5 flex items-center gap-2">
+          <Calendar className="size-4 text-blue-600" /> Chọn lịch khám
+        </h4>
+        <SchedulePicker
+          clinicId={doctor?.id}
+          selectedDate={selDate}
+          selectedTime={selTime}
+          onSelect={(date, time) => { setSelDate(date); setSelTime(time); }}
+          compact
+        />
+      </div>
+
+      {selDate && selTime && (
+        <div className="mb-4 bg-green-50 rounded-xl p-3 border border-green-200">
+          <div className="text-xs text-gray-600 mb-1">Lịch đã chọn</div>
+          <div className="font-semibold text-green-700 text-sm">
+            {new Date(selDate + "T00:00:00").toLocaleDateString("vi-VN", {
+              weekday: "short", day: "numeric", month: "short",
+            })} — {selTime}
+          </div>
+        </div>
+      )}
+
+      <div className="flex flex-col sm:flex-row gap-2.5">
+        <button
+          onClick={() => onBook(doctor, selDate, selTime, {
+            pricePackageId: selectedPricePackageId,
+            insurancePackageId: selectedInsurancePackageId,
+          })}
+          className="flex-1 flex items-center justify-center gap-2 text-white py-2.5 rounded-xl font-semibold hover:opacity-90 transition-all text-[13px]"
+          style={{ backgroundColor: "#3498db" }}
+        >
+          <Calendar className="size-4" /> Đặt lịch ngay
+        </button>
+        <Link
+          to={viewPath}
+          className="flex-1 flex items-center justify-center gap-2 border-2 border-gray-200 text-gray-700 py-2.5 rounded-xl font-semibold hover:bg-gray-50 transition-colors text-[13px]"
+        >
+          Xem hồ sơ
+        </Link>
+      </div>
+    </>
+  );
+}
+
 export function BlogArticleDetail() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [article, setArticle] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [categoryName, setCategoryName] = useState("");
+  const [categoryId, setCategoryId] = useState(null);
+  const [relatedDoctors, setRelatedDoctors] = useState([]);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    if (article?.reason_clinic_ids) {
+      const doctorIds = String(article.reason_clinic_ids).split(',').map(id => id.trim());
+      getClinics({ limit: 500, status: 1 }).then(res => {
+        const clinics = res?.data || [];
+        const related = clinics.filter(c => doctorIds.includes(String(c.id)));
+        setRelatedDoctors(related);
+      }).catch(console.error);
+    } else {
+      setRelatedDoctors([]);
+    }
+  }, [article?.reason_clinic_ids]);
 
   useEffect(() => {
     let cancelled = false;
@@ -126,10 +251,13 @@ export function BlogArticleDetail() {
           const firstCat = catIds.length ? categoryById.get(catIds[0]) : null;
           if (firstCat) {
             setCategoryName(firstCat.name);
+            setCategoryId(firstCat.id);
           } else if (row.reason_name) {
             setCategoryName("Bài viết");
+            setCategoryId(null);
           } else {
             setCategoryName("");
+            setCategoryId(null);
           }
         }
       } catch (e) {
@@ -216,7 +344,7 @@ export function BlogArticleDetail() {
             Trang chủ
           </Link>
           <span>/</span>
-          <Link to="/cam-nang-y-te" className="hover:text-[#3498db] transition-colors">
+          <Link to={categoryId ? `/cam-nang-y-te/danh-muc/${categoryId}` : "/cam-nang-y-te"} className="hover:text-[#3498db] transition-colors">
             {categoryName || "Bài viết"}
           </Link>
           <span>/</span>
@@ -226,7 +354,7 @@ export function BlogArticleDetail() {
         </div>
 
         <Link
-          to="/cam-nang-y-te"
+          to={categoryId ? `/cam-nang-y-te/danh-muc/${categoryId}` : "/cam-nang-y-te"}
           className="inline-flex items-center gap-2 text-sm text-[#3498db] font-medium mb-6 hover:underline"
         >
           <ArrowLeft className="size-4" /> Danh sách cẩm nang
@@ -350,14 +478,89 @@ export function BlogArticleDetail() {
               </div>
             ) : null}
 
-            <div className="flex flex-wrap justify-center gap-3 pb-4">
-              <Link
-                to="/dat-lich"
+            {relatedDoctors.length > 0 && (
+              <div id="related-doctors-section" className="mt-8 border-t border-gray-100 pt-6 scroll-mt-24">
+                <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                  <Users className="size-7 text-[#3498db]" /> Bác sĩ liên quan
+                </h3>
+                <div className="space-y-6">
+                  {relatedDoctors.map(doctor => {
+                    const docName = [doctor.title, doctor.name].filter(Boolean).join(" ").trim() || doctor.name;
+                    const doctorDescription = getDoctorDescription(doctor);
+                    return (
+                      <div key={doctor.id} className="border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition-all bg-white">
+                        <div className="md:flex items-center gap-5 p-5 md:p-6">
+                          <Link
+                            to={buildDoctorPath(doctor)}
+                            className="block w-24 h-24 md:w-28 md:h-28 rounded-full border-2 border-gray-100 relative bg-gray-50 shrink-0 overflow-hidden mx-auto md:mx-0 shadow-sm group"
+                          >
+                            <ImageWithFallback
+                              src={doctor.picture || "https://images.unsplash.com/photo-1622902046580-2b47f47f5471?w=400&q=80"}
+                              alt={docName}
+                              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                            />
+                          </Link>
+
+                          <div className="flex-1 min-w-0 mt-4 md:mt-0 text-center md:text-left">
+                            <h3 className="text-lg font-bold text-gray-800 mb-1.5">
+                              <Link to={buildDoctorPath(doctor)} className="hover:text-[#3498db] transition-colors">
+                                {docName}
+                              </Link>
+                            </h3>
+
+                            <p className="text-sm leading-relaxed text-gray-600 mb-3 line-clamp-2">
+                              {doctorDescription}
+                            </p>
+
+                            <div className="flex flex-wrap items-center justify-center md:justify-start gap-2.5 text-xs text-gray-600">
+                              {doctor.sponsor === 1 && (
+                                <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-red-100 text-red-600">Nổi bật</span>
+                              )}
+                              <div className="flex items-center gap-1 bg-yellow-50 px-2 py-0.5 rounded-full">
+                                <Star className="size-3.5 fill-yellow-400 text-yellow-400" />
+                                <span className="text-xs font-bold text-gray-800">4.8</span>
+                              </div>
+                              {doctor.address && (
+                                <div className="flex items-center gap-1">
+                                  <MapPin className="size-3.5 text-gray-400" /> <span className="line-clamp-1">{doctor.address}</span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="border-t border-gray-100 px-5 pb-5 md:px-6 md:pb-6">
+                          <DoctorScheduleCard
+                            doctor={doctor}
+                            onBook={(doc, date, time) => {
+                              if (!date || !time) { alert("Vui lòng chọn ngày và giờ khám!"); return; }
+                              navigate(`/dat-lich?clinicId=${doc.id}&date=${date}&time=${time}`);
+                            }}
+                            viewPath={buildDoctorPath(doctor)}
+                          />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            <div className="flex flex-wrap justify-center gap-3 pb-4 mt-8">
+              <button
+                onClick={() => {
+                  if (relatedDoctors.length > 0) {
+                    const el = document.getElementById('related-doctors-section');
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  } else {
+                    navigate('/dat-lich');
+                  }
+                }}
                 className="inline-flex items-center justify-center gap-2 rounded-xl px-8 py-3 text-white font-semibold bg-[#3498db] hover:opacity-95 transition-opacity"
               >
                 <CalendarPlus className="size-5" />
                 Đặt lịch khám
-              </Link>
+              </button>
               <Link
                 to="/cam-nang-y-te"
                 className="inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold border-2 border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors"
@@ -447,17 +650,37 @@ export function BlogArticleDetail() {
                 </p>
               ) : null}
 
-              <Link
-                to="/dat-lich"
+              <button
+                onClick={() => {
+                  if (relatedDoctors.length > 0) {
+                    const el = document.getElementById('related-doctors-section');
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  } else {
+                    navigate('/dat-lich');
+                  }
+                }}
                 className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl font-semibold text-white bg-[#3498db] hover:opacity-95 transition-opacity shadow-sm mt-4"
               >
                 <CalendarPlus className="size-5" />
                 Đặt lịch ngay
-              </Link>
+              </button>
             </div>
           </aside>
         </div>
       </div>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 bg-blue-500 hover:bg-blue-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all hover:-translate-y-1 z-50 focus:outline-none"
+          title="Lên đầu trang"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+          </svg>
+        </button>
+      )}
     </article>
   );
 }

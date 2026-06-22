@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Plus, Trash2 } from 'lucide-react';
 import AdminLayout from '../layouts/AdminLayout';
 import {
@@ -14,6 +14,7 @@ import { getClinicPlaces } from '../api/clinic_place.api';
 const emptyItem = () => ({
   key: Math.random().toString(36).slice(2),
   clinic_place_id: '',
+  insurance_type: 'private',
   insurer_name: '',
   insurer_code: '',
   coverage_note: '',
@@ -25,8 +26,10 @@ const emptyItem = () => ({
 
 export default function InsurancePackageEditor() {
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const isEdit = Boolean(id);
+  const clinicIdFromQuery = searchParams.get('clinic_id') || '';
 
   const [clinics, setClinics] = useState([]);
   const [partners, setPartners] = useState([]);
@@ -35,7 +38,7 @@ export default function InsurancePackageEditor() {
   const [saving, setSaving] = useState(false);
 
   const [pkg, setPkg] = useState({
-    clinic_id: '',
+    clinic_id: clinicIdFromQuery,
     partner_id: '',
     name: '',
     description: '',
@@ -48,7 +51,7 @@ export default function InsurancePackageEditor() {
     (async () => {
       const [c, p] = await Promise.all([
         getClinics({ limit: 500, page: 1 }),
-        getPartners({ limit: 500, page: 1 }),
+        getPartners({ limit: 500, page: 1 }).catch(() => ({ data: [] })),
       ]);
       if (c?.data) setClinics(c.data);
       if (p?.data) setPartners(p.data);
@@ -82,6 +85,7 @@ export default function InsurancePackageEditor() {
             d.items.map((it) => ({
               key: String(it.id),
               clinic_place_id: it.clinic_place_id != null ? String(it.clinic_place_id) : '',
+              insurance_type: it.insurance_type === 'public' ? 'public' : 'private',
               insurer_name: it.insurer_name || '',
               insurer_code: it.insurer_code || '',
               coverage_note: it.coverage_note || '',
@@ -97,7 +101,7 @@ export default function InsurancePackageEditor() {
       } catch (e) {
         console.error(e);
         alert('Không tải được gói');
-        navigate('/appointment-schedule/insurance-packages');
+        navigate('/schedule/insurance-packages');
       } finally {
         setLoading(false);
       }
@@ -120,6 +124,7 @@ export default function InsurancePackageEditor() {
     rank: parseInt(pkg.rank, 10),
     items: items.map((it) => ({
       clinic_place_id: it.clinic_place_id,
+      insurance_type: it.insurance_type,
       insurer_name: it.insurer_name,
       insurer_code: it.insurer_code,
       coverage_note: it.coverage_note,
@@ -137,7 +142,7 @@ export default function InsurancePackageEditor() {
       if (isEdit) await updateInsurancePackage(id, buildPayload());
       else await createInsurancePackage(buildPayload());
       alert('Đã lưu');
-      navigate('/appointment-schedule/insurance-packages');
+      navigate('/schedule/insurance-packages');
     } catch (err) {
       alert(err.response?.data?.message || err.message || 'Lỗi');
     } finally {
@@ -157,7 +162,7 @@ export default function InsurancePackageEditor() {
     <AdminLayout pageTitle={isEdit ? `Sửa gói BH #${id}` : 'Thêm gói BH'}>
       <div className="form-page-container">
         <div className="form-page-header">
-          <button type="button" className="btn-back" onClick={() => navigate('/appointment-schedule/insurance-packages')}>
+          <button type="button" className="btn-back" onClick={() => navigate('/schedule/insurance-packages')}>
             <ArrowLeft size={20} />
             Quay lại
           </button>
@@ -173,7 +178,7 @@ export default function InsurancePackageEditor() {
                 <select
                   className="form-input"
                   value={pkg.clinic_id}
-                  onChange={(e) => setPkg((p) => ({ ...p, clinic_id: e.target.value }))}
+                  disabled onChange={(e) => setPkg((p) => ({ ...p, clinic_id: e.target.value }))}
                   required
                   disabled={isEdit}
                 >
@@ -185,7 +190,7 @@ export default function InsurancePackageEditor() {
               </div>
               <div className="form-group">
                 <label>Đối tác (tuỳ chọn)</label>
-                <select className="form-input" value={pkg.partner_id} onChange={(e) => setPkg((p) => ({ ...p, partner_id: e.target.value }))}>
+                <select className="form-input" value={pkg.partner_id} disabled onChange={(e) => setPkg((p) => ({ ...p, partner_id: e.target.value }))}>
                   <option value="">— Không gắn —</option>
                   {partners.map((x) => (
                     <option key={x.id} value={x.id}>{x.name}</option>
@@ -194,22 +199,22 @@ export default function InsurancePackageEditor() {
               </div>
               <div className="form-group full-width">
                 <label>Tên gói *</label>
-                <input className="form-input" value={pkg.name} onChange={(e) => setPkg((p) => ({ ...p, name: e.target.value }))} required />
+                <input className="form-input" value={pkg.name} disabled onChange={(e) => setPkg((p) => ({ ...p, name: e.target.value }))} required />
               </div>
               <div className="form-group full-width">
                 <label>Mô tả</label>
-                <textarea className="form-input textarea" rows={2} value={pkg.description} onChange={(e) => setPkg((p) => ({ ...p, description: e.target.value }))} />
+                <textarea className="form-input textarea" rows={2} value={pkg.description} disabled onChange={(e) => setPkg((p) => ({ ...p, description: e.target.value }))} />
               </div>
               <div className="form-group">
                 <label>Trạng thái</label>
-                <select className="form-input" value={pkg.status} onChange={(e) => setPkg((p) => ({ ...p, status: e.target.value }))}>
+                <select className="form-input" value={pkg.status} disabled onChange={(e) => setPkg((p) => ({ ...p, status: e.target.value }))}>
                   <option value={1}>Bật</option>
                   <option value={0}>Tắt</option>
                 </select>
               </div>
               <div className="form-group">
                 <label>Hạng</label>
-                <input type="number" className="form-input" value={pkg.rank} onChange={(e) => setPkg((p) => ({ ...p, rank: e.target.value }))} />
+                <input type="number" className="form-input" value={pkg.rank} disabled onChange={(e) => setPkg((p) => ({ ...p, rank: e.target.value }))} />
               </div>
             </div>
           </div>
@@ -226,6 +231,7 @@ export default function InsurancePackageEditor() {
                 <thead>
                   <tr>
                     <th>Nơi khám</th>
+                    <th>Loại BH</th>
                     <th>Tên BH *</th>
                     <th>Mã</th>
                     <th>Phạm vi</th>
@@ -244,6 +250,17 @@ export default function InsurancePackageEditor() {
                           {places.map((pl) => (
                             <option key={pl.id} value={pl.id}>{pl.short_name || pl.name}</option>
                           ))}
+                        </select>
+                      </td>
+                      <td>
+                        <select
+                          className="form-input"
+                          style={{ minWidth: 130 }}
+                          value={it.insurance_type}
+                          onChange={(e) => updateItem(it.key, 'insurance_type', e.target.value)}
+                        >
+                          <option value="public">BH nhà nước</option>
+                          <option value="private">BH tư nhân</option>
                         </select>
                       </td>
                       <td>
@@ -283,7 +300,7 @@ export default function InsurancePackageEditor() {
           </div>
 
           <div className="form-actions">
-            <button type="button" className="btn btn-secondary" onClick={() => navigate('/appointment-schedule/insurance-packages')}>Hủy</button>
+            <button type="button" className="btn btn-secondary" onClick={() => navigate('/schedule/insurance-packages')}>Hủy</button>
             <button type="submit" className="btn btn-primary" disabled={saving}>{saving ? 'Đang lưu...' : 'Lưu'}</button>
           </div>
         </form>

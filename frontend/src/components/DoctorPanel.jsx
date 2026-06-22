@@ -737,6 +737,38 @@ const cleanInsurancePackageName = (pkg) => {
 };
 
 const MASTER_INSURANCE_PACKAGE_NAME = 'Danh mục công ty bảo hiểm';
+const DEFAULT_INSURANCE_COMPANIES = [
+  { name: 'Bảo hiểm Bảo Việt', status: 1 },
+  { name: 'Bảo hiểm PVI', status: 1 },
+  { name: 'Bảo hiểm Bưu điện PTI', status: 1 },
+  { name: 'Bảo hiểm Bảo Minh', status: 1 },
+  { name: 'Bảo hiểm Quân đội MIC', status: 1 },
+  { name: 'Bảo hiểm PJICO', status: 1 },
+  { name: 'Bảo hiểm VBI', status: 1 },
+  { name: 'Bảo hiểm VietinBank VBI', status: 1 },
+  { name: 'Bảo hiểm BIDV BIC', status: 1 },
+  { name: 'Bảo hiểm Liberty', status: 1 },
+  { name: 'Bảo hiểm AIA', status: 1 },
+  { name: 'Bảo hiểm Manulife Việt Nam', status: 1 },
+  { name: 'Bảo hiểm Prudential Việt Nam', status: 1 },
+  { name: 'Bảo hiểm Sun Life Việt Nam', status: 1 },
+  { name: 'Bảo hiểm Dai-ichi Life Việt Nam', status: 1 },
+  { name: 'Bảo hiểm FWD Việt Nam', status: 1 },
+  { name: 'Bảo hiểm Chubb Life Việt Nam', status: 1 },
+  { name: 'Bảo hiểm Generali Việt Nam', status: 1 },
+  { name: 'Bảo hiểm Hanwha Life Việt Nam', status: 1 },
+  { name: 'Bảo hiểm MB Ageas Life', status: 1 },
+  { name: 'Bảo hiểm Tokio Marine Việt Nam', status: 1 },
+  { name: 'Bảo hiểm Pacific Cross Việt Nam', status: 1 },
+  { name: 'Bảo hiểm Fullerton Health Việt Nam', status: 1 },
+  { name: 'Bảo hiểm Insmart', status: 1 },
+  { name: 'Bảo hiểm CarePlus', status: 1 },
+  { name: 'South Asia Services', status: 1 },
+  { name: 'AXA Assistance', status: 1 },
+  { name: 'LUMA Care', status: 1 },
+  { name: 'April International', status: 1 },
+  { name: 'Bảo hiểm MSIG Việt Nam', status: 1 }
+];
 const isMasterInsurancePackage = (pkg) => String(pkg?.name || '').trim().toLowerCase() === MASTER_INSURANCE_PACKAGE_NAME.toLowerCase();
 
 const insuranceDetailToForm = (pkg, clinicId) => ({
@@ -790,6 +822,17 @@ function InsuranceTypeModal({ form, saving, onChange, onSave, onDelete, onClose 
             <div className="price-form-field full">
               <label>Tên loại *</label>
               <input value={form.name} onChange={(e) => update('name', e.target.value)} placeholder="Tên loại" />
+            </div>
+            <div className="price-form-field full">
+              <label>Hiển thị danh sách công ty bảo hiểm</label>
+              <div className="inline-radio-row">
+                <label>
+                  <input type="radio" checked={type === 'private'} onChange={() => update('insurance_type', 'private')} /> Có
+                </label>
+                <label>
+                  <input type="radio" checked={type !== 'private'} onChange={() => update('insurance_type', 'public')} /> Không
+                </label>
+              </div>
             </div>
             <div className="price-form-field full">
               <label>Mô tả</label>
@@ -1232,7 +1275,7 @@ function InsuranceTab({ clinicId }) {
           .map((it) => [String(it.insurer_name || '').trim(), it])
           .filter(([name]) => Boolean(name))
       );
-      const companySource = masterCompanies.length ? masterCompanies : fallbackMasterCompanies;
+      const companySource = masterCompanies.length ? masterCompanies : (fallbackMasterCompanies.length ? fallbackMasterCompanies : DEFAULT_INSURANCE_COMPANIES);
       const selectableNames = new Set(
         companySource.filter((c) => Number(c.status) === 1).map((c) => c.name)
       );
@@ -1264,7 +1307,7 @@ function InsuranceTab({ clinicId }) {
   };
 
   const privatePackage = appliedPackages.find((pkg) => packageInsuranceType(pkg) === 'private');
-  const companySource = masterCompanies.length ? masterCompanies : fallbackMasterCompanies;
+  const companySource = masterCompanies.length ? masterCompanies : (fallbackMasterCompanies.length ? fallbackMasterCompanies : DEFAULT_INSURANCE_COMPANIES);
   const filteredCompanySource = companySource.filter((company) => {
     const isVisible = Number(company.status) === 1;
     if (companyStatusFilter === 'visible' && !isVisible) return false;
@@ -1435,7 +1478,7 @@ function InsuranceTab({ clinicId }) {
                   <Plus size={18} />
                 </button>
                 {(pkg.items || []).filter((item) => {
-                  const source = masterCompanies.length ? masterCompanies : fallbackMasterCompanies;
+                  const source = masterCompanies.length ? masterCompanies : (fallbackMasterCompanies.length ? fallbackMasterCompanies : DEFAULT_INSURANCE_COMPANIES);
                   const ref = source.find((c) => c.name === String(item.insurer_name || '').trim());
                   return ref ? Number(ref.status) === 1 : false;
                 }).map((item) => (
@@ -1509,7 +1552,7 @@ export default function DoctorPanel({ doctor, partners, onRefresh }) {
       <div className="doctor-panel-header">
         <div className="doctor-panel-avatar">{initials}</div>
         <div className="doctor-panel-info">
-          <h4>{doctor?.name}</h4>
+          <h4>{doctor?.title ? `${doctor.title} ` : ''}{doctor?.name}</h4>
           <span>ID: {doctor?.id} {doctor?.specialty_name ? `· ${doctor.specialty_name}` : ''}</span>
         </div>
       </div>

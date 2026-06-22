@@ -24,7 +24,7 @@ exports.createUser = async (user) => {
   const query = `
     INSERT INTO tbl_user (${fields.join(', ')})
     VALUES (${placeholders})
-    RETURNING id, username, email, phone, display_name, role, status, partner_id, created_at
+    RETURNING id, username, email, phone, display_name, role, partner_role, status, partner_id, created_at
   `;
 
   const result = await db.query(query, values);
@@ -42,7 +42,7 @@ exports.updateUser = async (id, data) => {
   const query = `
     UPDATE tbl_user SET ${assignments} 
     WHERE id = $${fields.length + 1} 
-    RETURNING id, username, email, phone, display_name, role, status, partner_id, created_at
+    RETURNING id, username, email, phone, display_name, role, partner_role, status, partner_id, created_at
   `;
 
   const result = await db.query(query, values);
@@ -50,7 +50,7 @@ exports.updateUser = async (id, data) => {
 };
 
 exports.getAll = async (query = {}) => {
-  let q = 'SELECT id, username, email, phone, display_name, role, status, partner_id, created_at FROM tbl_user WHERE status != -1';
+  let q = 'SELECT id, username, email, phone, display_name, role, partner_role, status, partner_id, created_at FROM tbl_user WHERE status != -1';
   const values = [];
   let idx = 1;
 
@@ -60,7 +60,11 @@ exports.getAll = async (query = {}) => {
     idx++;
   }
 
-
+  if (query.partner_role) {
+    q += ` AND partner_role = $${idx}`;
+    values.push(query.partner_role);
+    idx++;
+  }
   if (query.status !== undefined && query.status !== '') {
     q += ` AND status = $${idx}`;
     values.push(query.status);
@@ -104,6 +108,12 @@ exports.countAll = async (query = {}) => {
   if (query.role) {
     q += ` AND role = $${idx}`;
     values.push(query.role);
+    idx++;
+  }
+
+  if (query.partner_role) {
+    q += ` AND partner_role = $${idx}`;
+    values.push(query.partner_role);
     idx++;
   }
 

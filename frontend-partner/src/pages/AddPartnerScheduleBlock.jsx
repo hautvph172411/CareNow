@@ -60,7 +60,11 @@ export default function AddPartnerScheduleBlock() {
         ]);
         if (c?.data) setClinics(c.data);
         if (sp?.data) setSpecialties(sp.data);
-        if (pl?.data) setPlaces(pl.data);
+        if (pl?.data && pl.data.length > 0) {
+          setPlaces(pl.data);
+          // Auto select the first (and only) place for partner
+          setForm(prev => ({ ...prev, clinic_place_id: String(pl.data[0].id) }));
+        }
       } catch (e) {
         console.error(e);
       }
@@ -122,11 +126,13 @@ export default function AddPartnerScheduleBlock() {
     
     const c = searchParams.get('clinic_id');
     const pl = searchParams.get('clinic_place_id');
-    if (c || pl) {
+    const d = searchParams.get('day_of_week');
+    if (c || pl || d) {
       setForm((prev) => ({
         ...prev,
         ...(c && { clinic_id: c }),
         ...(pl && { clinic_place_id: pl }),
+        ...(d && { day_of_week: d }),
       }));
     }
   }, [fromBlockId, searchParams]);
@@ -245,16 +251,7 @@ export default function AddPartnerScheduleBlock() {
                     placeholder="— Chọn bác sĩ —"
                   />
                 </div>
-                <div className="form-group">
-                  <label>Nơi khám *</label>
-                  <SearchableSelect
-                    name="clinic_place_id"
-                    options={places.map(pl => ({ label: pl.display_name || pl.name, value: pl.id }))}
-                    value={form.clinic_place_id}
-                    onChange={(val) => handleChange({ target: { name: 'clinic_place_id', value: val } })}
-                    placeholder="— Chọn chi nhánh / nơi khám —"
-                  />
-                </div>
+                {/* Nơi khám is hidden for partners as they only have 1 place, auto-selected on load */}
               </div>
             </div>
 

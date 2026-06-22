@@ -171,11 +171,15 @@ export default function EditClinic() {
             <div className="form-section">
               <h2 className="form-section-title">Thông tin chính</h2>
               <div className="form-grid">
-                <div className="form-group full-width">
+                <div className="form-group half-width">
+                  <label>Chức danh (VD: ThS, BS, PGS, TS...)</label>
+                  <input type="text" name="title" value={formData.title || ''} onChange={handleChange}
+                    placeholder="VD: PGS. TS. Bác sĩ" className="form-input" />
+                </div>
+                <div className="form-group half-width">
                   <label>Họ tên (name) *</label>
                   <input type="text" name="name" value={formData.name} onChange={handleChange}
-                    placeholder="Dr. Nguyễn Văn A"
-                    className={errors.name ? 'form-input error' : 'form-input'} />
+                    placeholder="Nguyễn Văn A" className={errors.name ? 'form-input error' : 'form-input'} />
                   {errors.name && <span className="form-error">{errors.name}</span>}
                 </div>
 
@@ -357,11 +361,7 @@ export default function EditClinic() {
                       <input type="text" name="url" value={formData.url || ''} onChange={handleChange}
                         placeholder="bac-si-nguyen-van-a" className="form-input" />
                     </div>
-                    <div className="form-group">
-                      <label>Tiêu đề SEO (Title)</label>
-                      <input type="text" name="title" value={formData.title || ''} onChange={handleChange}
-                        placeholder="Tiêu đề hiển thị..." className="form-input" />
-                    </div>
+
                     <div className="form-group">
                       <label>Từ khóa tìm kiếm (Search Text)</label>
                       <input type="text" name="search_text" value={formData.search_text || ''} onChange={handleChange}
