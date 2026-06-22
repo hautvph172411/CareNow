@@ -157,4 +157,16 @@ exports.createPackageWithItems = async (pkgPayload, itemsPayload) => {
   }
 };
 
+exports.findAllPublishedInsurers = async () => {
+  const r = await pool.query(
+    `SELECT DISTINCT insurer_name
+     FROM tbl_clinic_insurance_item
+     WHERE status = 1
+       AND insurer_name IS NOT NULL
+       AND TRIM(insurer_name) != ''
+     ORDER BY insurer_name`
+  );
+  return r.rows.map(row => ({ name: row.insurer_name, status: 1 }));
+};
+
 module.exports = exports;

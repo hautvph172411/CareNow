@@ -34,7 +34,11 @@ exports.getClinicPlaceById = async (req, res) => {
 
 exports.createClinicPlace = async (req, res) => {
   try {
-    const data = await service.createClinicPlace(req.body);
+    const payload = { ...req.body };
+    if (req.user?.partner_id) {
+      payload.partner_id = req.user.partner_id;
+    }
+    const data = await service.createClinicPlace(payload);
     res.status(201).json({ success: true, data, message: 'Thêm thành công' });
   } catch (err) {
     res.status(400).json({ success: false, message: err.message });
@@ -43,6 +47,14 @@ exports.createClinicPlace = async (req, res) => {
 
 exports.updateClinicPlace = async (req, res) => {
   try {
+    // Validate ownership if partner user
+    if (req.user?.partner_id) {
+      const existing = await service.getClinicPlaceById(req.params.id);
+      if (!existing) return res.status(404).json({ success: false, message: 'Không tìm thấy' });
+      if (String(existing.partner_id) !== String(req.user.partner_id)) {
+        return res.status(403).json({ success: false, message: 'Không có quyền chỉnh sửa nơi khám này' });
+      }
+    }
     const data = await service.updateClinicPlace(req.params.id, req.body);
     res.json({ success: true, data, message: 'Cập nhật thành công' });
   } catch (err) {

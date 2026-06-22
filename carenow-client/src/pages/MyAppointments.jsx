@@ -628,7 +628,7 @@ export function MyAppointments() {
               <p><strong>Số điện thoại:</strong> {detailAppt.patient_phone || "—"}</p>
               <p><strong>Ngày khám:</strong> {formatDate(detailAppt.appt_date)}</p>
               <p><strong>Giờ khám:</strong> {detailAppt.appt_time ? String(detailAppt.appt_time).slice(0, 5) : "—"}</p>
-              <p><strong>Bác sĩ khám:</strong> {detailAppt.specialist_name || "—"}</p>
+              <p><strong>Bác sĩ khám:</strong> {detailAppt.specialist_name || detailAppt.clinic_name || "—"}</p>
               <p><strong>Nơi khám:</strong> {detailAppt.place_name || detailAppt.clinic_name || "—"}</p>
               <p><strong>Địa chỉ nơi khám:</strong> {detailAppt.place_address || "—"}</p>
               <p><strong>Lý do khám:</strong> {detailMeta.reason || "—"}</p>

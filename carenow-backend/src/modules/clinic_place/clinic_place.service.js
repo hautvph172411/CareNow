@@ -273,38 +273,12 @@ exports.createClinicPlace = async (data) => {
 
   /* ── Auto-generate Hướng dẫn bệnh nhân nếu chưa có ─────────────────── */
   if (!raw.patient_guide) {
-    const hotline = raw.phone || '1900 0091';
-    raw.patient_guide = [
-      '<p><strong>Lưu ý:</strong></p>',
-      '<ul>',
-      '<li>Khám với <strong>{{bac_si}}</strong> tại {{noi_kham}}</li>',
-      '<li>Bạn nên mang theo các loại giấy tờ tùy thân khi đi khám:',
-      '<ul>',
-      '<li>Thẻ bảo hiểm y tế</li>',
-      '<li>Thẻ bảo hiểm nhân thọ/phi nhân thọ</li>',
-      '<li>Chứng minh thư nhân dân hoặc giấy khai sinh (trẻ em)</li>',
-      '</ul>',
-      '</li>',
-      `<li>Nếu cần giải đáp thắc mắc, bạn vui lòng liên hệ <strong>${hotline} </strong>để được hỗ trợ</li>`,
-      '</ul>',
-    ].join('\n');
+    raw.patient_guide = '<p>Dưới đây là hướng dẫn làm thủ tục cho khách hàng đặt khám qua CareNow tại <strong>{{noi_kham}}</strong>:</p><ul><li>Khi đến nơi, quý khách vui lòng đi tới Quầy tiếp đón / Lễ tân tầng 1.</li><li>Báo với nhân viên lễ tân: <strong>"Tôi đã đặt lịch khám qua hệ thống CareNow"</strong>.</li><li>Đọc mã đặt lịch hoặc Số điện thoại để nhân viên kiểm tra thông tin trên hệ thống.</li><li>Vui lòng chuẩn bị sẵn các giấy tờ tùy thân (CCCD/CMND) và thẻ BHYT (nếu có).</li><li>Sau khi xác nhận, nhân viên sẽ hướng dẫn quý khách trực tiếp lên phòng khám gặp <strong>{{bac_si}}</strong>.</li></ul><p><em>*Lưu ý: Quý khách nên đến trước giờ hẹn khoảng 15 phút để hoàn tất thủ tục nhẹ nhàng nhất.</em></p>';
   }
 
-  /* ── Auto-generate Hướng dẫn đường đi nếu chưa có ──────────────────── */
-  if (!raw.address_guide && raw.name) {
-    const addr = raw.address || '';
-    raw.address_guide = [
-      `<p style="text-align: justify;">Dưới đây là <strong>hướng dẫn đường đi và hướng dẫn làm thủ tục</strong> cho khách hàng đặt khám qua CareNow tại ${raw.name}</p>`,
-      '<ul>',
-      `<li style="text-align: justify;">Địa chỉ: <strong>${addr}</strong></li>`,
-      '</ul>',
-      '<p>Lưu ý nơi gửi xe:</p>',
-      '<ul>',
-      '<li>Xe máy: bạn có thể gửi tại trước cửa cơ sở y tế</li>',
-      '<li style="text-align: justify;">Ô tô: Bạn có thể hỏi bảo vệ để được hướng dẫn chỗ gửi xe</li>',
-      '</ul>',
-      '<p>Bạn vào quầy tiếp đón (tầng 1) và <strong>báo đã đặt khám qua CareNow</strong> để được ưu tiên hỗ trợ.</p>',
-    ].join('\n');
+  /* ── Auto-generate Hướng dẫn di chuyển nếu chưa có ─────────────────── */
+  if (!raw.address_guide) {
+    raw.address_guide = '<p>Khu vực đỗ xe dành cho khách hàng đến thăm khám tại <strong>{{noi_kham}}</strong>:</p><ul><li><strong>Đối với xe máy:</strong> Quý khách có thể đỗ xe tại bãi gửi xe trong khuôn viên của cơ sở y tế. Vui lòng làm theo hướng dẫn của nhân viên bảo vệ tại cổng.</li><li><strong>Đối với ô tô:</strong> Vui lòng liên hệ nhân viên bảo vệ ngay khi đến cổng để được hướng dẫn vị trí đỗ xe ô tô gần nhất của cơ sở y tế.</li></ul><p>Nếu quý khách gặp khó khăn trong việc tìm đường, vui lòng liên hệ Hotline hỗ trợ của CareNow: <strong>024.7301.2468</strong> hoặc Hotline của phòng khám để được hướng dẫn chi tiết.</p>';
   }
 
   const payload = cleanPayload(raw);

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Plus, Trash2 } from 'lucide-react';
 import AdminLayout from '../layouts/AdminLayout';
 import {
@@ -26,8 +26,10 @@ const emptyItem = () => ({
 
 export default function PricePackageEditor() {
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const isEdit = Boolean(id);
+  const clinicIdFromQuery = searchParams.get('clinic_id') || '';
 
   const [clinics, setClinics] = useState([]);
   const [places, setPlaces] = useState([]);
@@ -35,7 +37,7 @@ export default function PricePackageEditor() {
   const [saving, setSaving] = useState(false);
 
   const [pkg, setPkg] = useState({
-    clinic_id: '',
+    clinic_id: clinicIdFromQuery,
     name: '',
     description: '',
     status: 1,
@@ -88,7 +90,7 @@ export default function PricePackageEditor() {
       } catch (e) {
         console.error(e);
         alert('Không tải được gói');
-        navigate('/appointment-schedule/price-packages');
+        navigate('/schedule/price-packages');
       } finally {
         setLoading(false);
       }
@@ -132,7 +134,7 @@ export default function PricePackageEditor() {
         await createPricePackage(buildPayload());
       }
       alert('Đã lưu');
-      navigate('/appointment-schedule/price-packages');
+      navigate('/schedule/price-packages');
     } catch (err) {
       alert(err.response?.data?.message || err.message || 'Lỗi');
     } finally {
@@ -152,7 +154,7 @@ export default function PricePackageEditor() {
     <AdminLayout pageTitle={isEdit ? `Sửa gói giá #${id}` : 'Thêm gói giá'}>
       <div className="form-page-container">
         <div className="form-page-header">
-          <button type="button" className="btn-back" onClick={() => navigate('/appointment-schedule/price-packages')}>
+          <button type="button" className="btn-back" onClick={() => navigate('/schedule/price-packages')}>
             <ArrowLeft size={20} />
             Quay lại
           </button>
@@ -289,7 +291,7 @@ export default function PricePackageEditor() {
           </div>
 
           <div className="form-actions">
-            <button type="button" className="btn btn-secondary" onClick={() => navigate('/appointment-schedule/price-packages')}>Hủy</button>
+            <button type="button" className="btn btn-secondary" onClick={() => navigate('/schedule/price-packages')}>Hủy</button>
             <button type="submit" className="btn btn-primary" disabled={saving}>{saving ? 'Đang lưu...' : 'Lưu'}</button>
           </div>
         </form>

@@ -1,0 +1,714 @@
+1: LỜI CẢM ƠN
+2: Lời đầu tiên, em xin gửi lời cảm ơn chân thành đến quý thầy cô Khoa Công nghệ Thông tin, Trường Đại 
+3: Em xin cảm ơn giảng viên hướng dẫn đã tận tình góp ý, định hướng phạm vi đề tài và hỗ trợ em trong q
+4: Em cũng xin cảm ơn gia đình, bạn bè và những người đã động viên, hỗ trợ em trong thời gian thực hiện
+6: LỜI MỞ ĐẦU
+7: Trong đời sống hiện nay, nhu cầu chăm sóc sức khỏe ngày càng tăng, nhưng quá trình tìm kiếm bác sĩ, 
+8: Ở phía cơ sở y tế, việc quản lý lịch làm việc của bác sĩ, cập nhật trạng thái lịch hẹn, tiếp nhận yê
+9: Đề tài “Xây dựng website đặt lịch khám bệnh CareNow” được thực hiện nhằm số hóa quy trình đặt lịch k
+10: CareNow được xây dựng trên nền tảng React/Vite ở frontend, Node.js/Express ở backend và PostgreSQL ở
+12: DANH MỤC TỪ VIẾT TẮT
+15: MỤC LỤC
+16: LỜI CẢM ƠN	i
+17: LỜI MỞ ĐẦU	ii
+18: DANH MỤC TỪ VIẾT TẮT	iii
+19: CHƯƠNG 1. TỔNG QUAN ĐỀ TÀI	1
+20: 1.1. Đặt vấn đề	1
+21: 1.2. Mục tiêu đề tài	1
+22: 1.2.1. Mục tiêu chung	1
+23: 1.2.2. Mục tiêu cụ thể	1
+24: 1.3. Phạm vi đề tài	2
+25: 1.4. Đối tượng và phương pháp nghiên cứu	2
+26: 1.4.1. Đối tượng nghiên cứu	2
+27: 1.4.2. Phương pháp nghiên cứu	2
+28: 1.5. Ý nghĩa đề tài	3
+29: 1.6. Bố cục báo cáo	3
+30: CHƯƠNG 2. CƠ SỞ LÝ THUYẾT VÀ CÔNG NGHỆ SỬ DỤNG	4
+31: 2.1. Mô hình MVC (Model - View - Controller)	4
+32: 2.2. JavaScript, Node.js và Express	4
+33: 2.3. React, Vite và CSS	4
+34: 2.4. Hệ quản trị cơ sở dữ liệu PostgreSQL	4
+35: 2.5. REST API, JWT, Google OAuth và RBAC	5
+36: 2.6. Cloudinary, n8n, Nodemailer và Excel	5
+37: 2.7. Công cụ sử dụng trong dự án	5
+38: CHƯƠNG 3. PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG	6
+39: 3.1. Phân tích yêu cầu hệ thống	6
+40: 3.1.1. Yêu cầu chức năng	6
+41: 3.1.2. Yêu cầu phi chức năng	7
+42: 3.2. Danh sách tác nhân	7
+43: 3.3. Sơ đồ Use Case	8
+44: 3.4. Đặc tả chức năng	11
+45: 3.4.1 Đặc tả use case đăng nhập admin/đối tác	11
+46: 3.4.2 Đặc tả use case đăng nhập Google cho bệnh nhân	12
+47: 3.4.3 Đặc tả use case cập nhật hồ sơ bệnh nhân	12
+48: 3.4.4 Đặc tả use case tìm kiếm bác sĩ/nơi khám/chuyên khoa	12
+49: 3.4.5 Đặc tả use case xem chi tiết bác sĩ	13
+50: 3.4.6 Đặc tả use case đặt lịch khám	13
+51: 3.4.7 Đặc tả use case xem lịch của tôi	14
+52: 3.4.8 Đặc tả use case xem lại lịch guest đã lưu cục bộ sau khi đăng nhập	14
+53: 3.4.9 Đặc tả use case hủy lịch khám	15
+54: 3.4.10 Đặc tả use case gửi yêu cầu tư vấn thêm	15
+55: 3.4.11 Đặc tả use case gửi yêu cầu hợp tác	15
+56: 3.4.12 Đặc tả use case sử dụng chatbot hỗ trợ CareNow	16
+57: 3.4.13 Đặc tả use case xem dashboard quản trị	16
+58: 3.4.14 Đặc tả use case quản lý bác sĩ	17
+59: 3.4.15 Đặc tả use case quản lý nơi khám	17
+60: 3.4.16 Đặc tả use case quản lý dịch vụ và chuyên khoa	18
+61: 3.4.17 Đặc tả use case quản lý đối tác	18
+62: 3.4.18 Đặc tả use case quản lý đơn đặt khám	18
+63: 3.4.19 Đặc tả use case quản lý lịch làm việc dạng tuần	19
+64: 3.4.20 Đặc tả use case bật/tắt ca khám/khung lịch làm việc	19
+65: 3.4.21 Đặc tả use case quản lý ngày nghỉ/override	20
+66: 3.4.22 Đặc tả use case quản lý gói giá khám	20
+67: 3.4.23 Đặc tả use case quản lý gói bảo hiểm	21
+68: 3.4.24 Đặc tả use case quản lý bài cẩm nang	21
+69: 3.4.25 Đặc tả use case quản lý yêu cầu tư vấn	21
+70: 3.4.26 Đặc tả use case quản lý yêu cầu hợp tác	22
+71: 3.4.27 Đặc tả use case quản lý media	22
+72: 3.4.28 Đặc tả use case quản lý cài đặt hệ thống	23
+73: 3.4.29 Đặc tả use case phân quyền người dùng	23
+74: 3.4.30 Đặc tả use case đối tác xử lý lịch hẹn và xuất Excel	24
+75: 3.4.31 Đặc tả use case quản lý tài khoản nhóm đối tác	24
+76: 3.5. Sơ đồ hành động	24
+77: 3.5.1 Sơ đồ hành động đăng nhập tài khoản quản trị/đối tác	24
+78: 3.5.2 Sơ đồ hành động đăng nhập Google cho bệnh nhân	26
+79: 3.5.3 Sơ đồ hành động cập nhật hồ sơ bệnh nhân	27
+80: 3.5.4 Sơ đồ hành động tìm kiếm bác sĩ/nơi khám/chuyên khoa	28
+81: 3.5.5 Sơ đồ hành động xem chi tiết bác sĩ	29
+82: 3.5.6 Sơ đồ hành động đặt lịch khám	30
+83: 3.5.7 Sơ đồ hành động xem lịch của tôi	31
+84: 3.5.8 Sơ đồ hành động hủy lịch khám	32
+85: 3.5.9 Sơ đồ hành động gửi yêu cầu tư vấn thêm	33
+86: 3.5.10 Sơ đồ hành động gửi yêu cầu hợp tác	34
+87: 3.5.11 Sơ đồ hành động sử dụng chatbot hỗ trợ CareNow	35
+88: 3.5.12 Sơ đồ hành động quản trị viên xem dashboard quản trị	36
+89: 3.5.13 Sơ đồ hành động quản trị viên quản lý đơn đặt khám	37
+90: 3.5.14 Sơ đồ hành động quản trị viên quản lý lịch làm việc dạng tuần	38
+91: 3.5.15 Sơ đồ hành động bật/tắt ca khám/khung lịch làm việc	39
+92: 3.5.16 Sơ đồ hành động quản lý ngày nghỉ	40
+93: 3.5.17 Sơ đồ hành động quản lý bác sĩ	41
+94: 3.5.18 Sơ đồ hành động quản lý nơi khám	42
+95: 3.5.19 Sơ đồ hành động quản lý gói giá	43
+96: 3.5.20 Sơ đồ hành động quản lý gói bảo hiểm	44
+97: 3.5.21 Sơ đồ hành động quản lý bài cẩm nang	45
+98: 3.5.22 Sơ đồ hành động quản lý yêu cầu tư vấn	46
+99: 3.5.23 Sơ đồ hành động quản lý yêu cầu hợp tác	47
+100: 3.5.24 Sơ đồ hành động đối tác xuất Excel lịch hẹn	48
+101: 3.6. Biểu đồ tuần tự	49
+102: 3.6.1 Biểu đồ tuần tự chức năng đăng nhập tài khoản quản trị/đối tác	49
+103: 3.6.2 Biểu đồ tuần tự chức năng đăng nhập Google cho bệnh nhân	50
+104: 3.6.3 Biểu đồ tuần tự chức năng cập nhật hồ sơ bệnh nhân	51
+105: 3.6.4 Biểu đồ tuần tự chức năng tìm kiếm bác sĩ/nơi khám/chuyên khoa	52
+106: 3.6.5 Biểu đồ tuần tự chức năng xem chi tiết bác sĩ	53
+107: 3.6.6 Biểu đồ tuần tự chức năng đặt lịch khám	54
+108: 3.6.7 Biểu đồ tuần tự chức năng xem lịch của tôi	55
+109: 3.6.8 Biểu đồ tuần tự chức năng hủy lịch khám	56
+110: 3.6.9 Biểu đồ tuần tự chức năng gửi yêu cầu tư vấn	57
+111: 3.6.10 Biểu đồ tuần tự chức năng gửi yêu cầu hợp tác	58
+112: 3.6.11 Biểu đồ tuần tự chức năng chatbot hỗ trợ CareNow qua n8n	59
+113: 3.6.12 Biểu đồ tuần tự chức năng dashboard quản trị	60
+114: 3.6.13 Biểu đồ tuần tự chức năng quản trị viên cập nhật đơn đặt khám	61
+115: 3.6.14 Biểu đồ tuần tự chức năng quản trị viên quản lý lịch làm việc dạng tuần	62
+116: 3.6.15 Biểu đồ tuần tự chức năng bật/tắt ca khám/khung lịch và ghi log	63
+117: 3.6.16 Biểu đồ tuần tự chức năng quản lý ngày nghỉ/override	64
+118: 3.6.17 Biểu đồ tuần tự chức năng quản lý gói giá	65
+119: 3.6.18 Biểu đồ tuần tự chức năng quản lý gói bảo hiểm	66
+120: 3.6.19 Biểu đồ tuần tự chức năng quản lý bài cẩm nang	67
+121: 3.6.20 Biểu đồ tuần tự chức năng upload ảnh Cloudinary	68
+122: 3.6.21 Biểu đồ tuần tự chức năng quản lý cài đặt hệ thống	69
+123: 3.6.22 Biểu đồ tuần tự chức năng phân quyền người dùng	70
+124: 3.6.23 Biểu đồ tuần tự chức năng đối tác xử lý lịch hẹn	71
+125: 3.6.24 Biểu đồ tuần tự chức năng đối tác quản lý lịch làm việc	72
+126: 3.6.25 Biểu đồ tuần tự chức năng quản lý tài khoản nhóm đối tác	73
+127: 3.6.26 Biểu đồ tuần tự chức năng đối tác xuất Excel	74
+128: 3.7. Ma trận phân quyền	74
+129: 3.8. Sơ đồ lớp (Class Diagram)	75
+130: 3.9. Thiết kế cơ sở dữ liệu	77
+131: 3.9.1. Mô hình ERD	77
+132: 3.9.2. Thiết kế chi tiết các bảng	78
+133: CHƯƠNG 4. TRIỂN KHAI VÀ THỰC HIỆN	105
+134: 4.1. Cấu trúc dự án	105
+135: 4.2. Cài đặt và cấu hình	105
+136: 4.3. Triển khai backend	105
+137: 4.3.1. Module xác thực và phân quyền	105
+138: 4.3.2. Module bệnh nhân	106
+139: 4.3.3. Module lịch hẹn	106
+140: 4.3.4. Module lịch làm việc	106
+141: 4.3.5. Module danh mục y tế	106
+142: 4.3.6. Module giá khám và bảo hiểm	106
+143: 4.3.7. Module nội dung	106
+144: 4.3.8. Module tư vấn thêm và liên hệ hợp tác	106
+145: 4.3.9. Module settings, dashboard và upload	106
+146: 4.4. Triển khai frontend	107
+147: 4.4.1. Website bệnh nhân	107
+148: 4.4.2. Quy trình đặt lịch	107
+149: 4.4.3. Trang quản trị admin	107
+150: 4.4.4. Cổng đối tác	107
+151: 4.5. Hệ thống định tuyến	107
+152: 4.6. Hình ảnh giao diện hệ thống	108
+153: CHƯƠNG 5. KẾT QUẢ VÀ THỬ NGHIỆM	129
+154: 5.1. Kết quả đạt được	129
+155: 5.2. Kiểm thử chức năng	130
+156: 5.2.1. Tổng hợp số liệu kiểm thử	130
+157: 5.2.2. Bảng kiểm thử chi tiết	132
+158: 5.3. Kiểm thử giao diện	134
+159: 5.4. Kiểm thử bảo mật	134
+160: 5.5. Đánh giá	134
+161: 5.5.1. Ưu điểm	134
+162: 5.5.2. Hạn chế	134
+163: 5.6. Kết luận và hướng phát triển	134
+164: TÀI LIỆU THAM KHẢO	136
+165: Tài liệu tiếng Việt	136
+166: Tài liệu tiếng Anh	136
+169: CHƯƠNG 1. TỔNG QUAN ĐỀ TÀI
+170: 1.1. Đặt vấn đề
+171: Trong bối cảnh chuyển đổi số đang diễn ra mạnh mẽ, các dịch vụ chăm sóc sức khỏe cần được tổ chức th
+172: Bên cạnh đó, cơ sở y tế và đối tác vận hành cũng cần công cụ để quản lý lịch làm việc của bác sĩ, ti
+173: Xuất phát từ thực trạng trên, đề tài “Xây dựng website đặt lịch khám bệnh CareNow” được lựa chọn nhằ
+174: 1.2. Mục tiêu đề tài
+175: 1.2.1. Mục tiêu chung
+176: Nghiên cứu, phân tích, thiết kế và xây dựng website đặt lịch khám bệnh CareNow với đầy đủ các phân h
+177: 1.2.2. Mục tiêu cụ thể
+178: - Xây dựng website bệnh nhân có giao diện responsive, hỗ trợ xem dịch vụ, chuyên khoa, bác sĩ, nơi k
+179: - Xây dựng quy trình đặt lịch khám theo nhiều bước: chọn dịch vụ, chọn bác sĩ, chọn ngày giờ từ lịch
+180: - Tích hợp Google OAuth để bệnh nhân đăng nhập, cập nhật hồ sơ cá nhân và xem lịch hẹn của mình.
+181: - Xây dựng trang quản trị cho admin để quản lý bác sĩ, nơi khám, dịch vụ, chuyên khoa, đối tác, lịch
+182: - Xây dựng cổng đối tác để đối tác xem và xử lý lịch hẹn, quản lý khung lịch làm việc, quản lý tài k
+183: - Bổ sung nghiệp vụ liên hệ hợp tác dành cho cơ sở y tế và nghiệp vụ tư vấn thêm dành cho bệnh nhân.
+184: - Xây dựng dashboard thống kê, cài đặt hệ thống, media library Cloudinary, chatbot hỗ trợ CareNow qu
+185: 1.3. Phạm vi đề tài
+186: Đề tài tập trung xây dựng hệ thống web phục vụ đặt lịch khám và quản trị dữ liệu y tế cơ bản. Phạm v
+187: - Không triển khai thanh toán trực tuyến thật trong phạm vi đồ án.
+188: - Không xây dựng ứng dụng di động native.
+189: - Không xây dựng hồ sơ bệnh án điện tử đầy đủ như hệ thống bệnh viện.
+190: - Không triển khai production trên hạ tầng cloud thật; hệ thống được đánh giá trong môi trường local
+191: - Một số middleware admin trong backend chính đang có chế độ bypass phục vụ phát triển, cần đóng lại
+192: 1.4. Đối tượng và phương pháp nghiên cứu
+193: 1.4.1. Đối tượng nghiên cứu
+194: - Quy trình đặt lịch khám bệnh trực tuyến.
+195: - Nghiệp vụ quản lý lịch làm việc của bác sĩ theo đối tác và nơi khám.
+196: - Mô hình phân quyền nhiều vai trò: Quản trị viên, Nhân viên, Đối tác, Nhân viên đối tác, Bệnh nhân 
+197: - Kiến trúc web full-stack sử dụng React, Node.js/Express và PostgreSQL.
+198: - Tích hợp dịch vụ ngoài như Google OAuth, Cloudinary và n8n.
+199: 1.4.2. Phương pháp nghiên cứu
+200: - Khảo sát nghiệp vụ đặt lịch khám và các màn hình quản trị cần thiết.
+201: - Phân tích mã nguồn CareNow để xác định module, API, dữ liệu và luồng xử lý.
+202: - Thiết kế mô hình use case, activity, sequence, class/module và ERD.
+203: - Cài đặt và kiểm thử thủ công các chức năng chính trên môi trường local.
+204: - Đánh giá kết quả theo mức độ hoàn thiện chức năng, tính nhất quán dữ liệu, khả năng mở rộng và trả
+205: 1.5. Ý nghĩa đề tài
+206: Về mặt thực tiễn, CareNow giúp người bệnh chủ động hơn trong quá trình tìm kiếm thông tin y tế và đặ
+207: Về mặt kỹ thuật, đề tài minh họa cách xây dựng một hệ thống web nhiều vai trò có kiến trúc module hó
+208: 1.6. Bố cục báo cáo
+209: - Chương 1 trình bày tổng quan đề tài, mục tiêu, phạm vi, phương pháp và ý nghĩa.
+210: - Chương 2 trình bày cơ sở lý thuyết và công nghệ sử dụng.
+211: - Chương 3 phân tích yêu cầu, tác nhân, use case, sơ đồ nghiệp vụ, phân quyền và thiết kế cơ sở dữ l
+212: - Chương 4 mô tả quá trình triển khai backend, frontend, định tuyến và giao diện hệ thống.
+213: - Chương 5 trình bày kết quả đạt được, kiểm thử, đánh giá, kết luận và hướng phát triển.
+215: CHƯƠNG 2. CƠ SỞ LÝ THUYẾT VÀ CÔNG NGHỆ SỬ DỤNG
+216: 2.1. Mô hình MVC (Model - View - Controller)
+217: MVC là mô hình kiến trúc phần mềm phân tách hệ thống thành Model, View và Controller. Model chịu trá
+218: Trong CareNow, backend được tổ chức theo hướng router, controller, service và repository. Frontend đ
+219: 2.2. JavaScript, Node.js và Express
+220: JavaScript được sử dụng cho cả frontend và backend. Node.js cung cấp môi trường thực thi JavaScript 
+221: CareNow sử dụng Express để xây dựng các module API như users, patient, appointments, appointment-sch
+222: 2.3. React, Vite và CSS
+223: React là thư viện xây dựng giao diện theo component, giúp chia nhỏ giao diện thành các khối tái sử d
+224: Hệ thống có ba frontend: website bệnh nhân, trang quản trị admin và cổng đối tác. Các giao diện sử d
+225: 2.4. Hệ quản trị cơ sở dữ liệu PostgreSQL
+226: PostgreSQL là hệ quản trị cơ sở dữ liệu quan hệ mạnh, hỗ trợ khóa chính, khóa ngoại, kiểu JSON/JSONB
+227: Các migration trong dự án tạo các bảng nghiệp vụ chính, bổ sung bảng yêu cầu tư vấn, liên hệ hợp tác
+228: 2.5. REST API, JWT, Google OAuth và RBAC
+229: REST API tổ chức endpoint theo tài nguyên, giúp frontend và backend trao đổi dữ liệu qua JSON. JWT đ
+230: Google OAuth giúp bệnh nhân đăng nhập bằng tài khoản Google, backend xác minh ID token, tạo hoặc liê
+231: 2.6. Cloudinary, n8n, Nodemailer và Excel
+232: Cloudinary được dùng để upload, liệt kê, tạo thư mục và xóa hình ảnh trong media library. n8n được d
+233: Cổng đối tác sử dụng thư viện xlsx để xuất danh sách lịch hẹn ra file Excel, hỗ trợ đối tác đối soát
+234: 2.7. Công cụ sử dụng trong dự án
+237: CHƯƠNG 3. PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG
+238: 3.1. Phân tích yêu cầu hệ thống
+239: 3.1.1. Yêu cầu chức năng
+240: - Đăng nhập Google để chuyển sang vai trò bệnh nhân.
+241: - Gửi yêu cầu hợp tác nếu là đại diện cơ sở y tế.
+242: - Đặt lịch dạng guest và lưu thông tin booking cục bộ để xem lại trong trình duyệt.
+243: - Xem thông tin công khai và tìm kiếm dữ liệu y tế.
+244: f) Khách vãng lai
+245: - Sử dụng chatbot hỗ trợ CareNow sau khi đăng nhập.
+246: - Gửi yêu cầu tư vấn thêm khi chưa biết nên khám ở đâu.
+247: - Xem lịch của tôi, xem lại lịch guest đã lưu cục bộ sau khi đăng nhập và hủy lịch khi còn hợp lệ.
+248: - Đặt lịch khám, chọn ngày giờ từ lịch thật, nhập thông tin người khám, chọn gói giá/bảo hiểm.
+249: - Đăng nhập bằng Google, cập nhật hồ sơ cá nhân và địa chỉ.
+250: - Tìm kiếm bác sĩ, nơi khám/cơ sở y tế và chuyên khoa theo từ khóa.
+251: - Xem trang chủ, dịch vụ, chuyên khoa, bác sĩ, nơi khám và cẩm nang y tế.
+252: e) Bệnh nhân
+253: - Không được truy cập các chức năng chỉ dành cho đối tác quản lý như quản lý team hoặc thêm/sửa lịch
+254: - Xem lịch làm việc đã cấu hình.
+255: - Xem và xử lý lịch hẹn thuộc phạm vi đối tác.
+256: - Đăng nhập cổng đối tác.
+257: d) Nhân viên đối tác
+258: - Quản lý tài khoản nhóm của đối tác.
+259: - Xem lịch sử thao tác lịch làm việc.
+260: - Quản lý khung lịch làm việc, bật/tắt ca khám, sửa nhanh lịch bằng modal.
+261: - Xem, lọc, cập nhật trạng thái và xuất Excel lịch hẹn thuộc phạm vi đối tác.
+262: - Đăng nhập cổng đối tác.
+263: c) Đối tác
+264: - Thực hiện các chức năng quản trị theo quyền được phân quyền, ví dụ xử lý đơn đặt khám, cập nhật da
+265: - Đăng nhập trang quản trị bằng tài khoản được cấp.
+266: b) Nhân viên
+267: - Quản lý thư viện ảnh Cloudinary.
+268: - Quản lý người dùng, vai trò, quyền và cài đặt hệ thống.
+269: - Quản lý yêu cầu tư vấn thêm và yêu cầu liên hệ hợp tác.
+270: - Quản lý bài cẩm nang, danh mục cẩm nang, lý do khám và nội dung gợi ý.
+271: - Quản lý đơn đặt khám, lịch làm việc dạng lưới tuần, ngày nghỉ/override, gói giá và gói bảo hiểm.
+272: - Quản lý dịch vụ, chuyên khoa, bác sĩ, nơi khám, đối tác và danh mục địa điểm.
+273: - Đăng nhập trang quản trị, xem trang chào mừng và dashboard thống kê.
+274: a) Quản trị viên
+275: 3.1.2. Yêu cầu phi chức năng
+276: - Giao diện responsive, rõ ràng trên desktop và mobile.
+277: - API trả JSON nhất quán, có phân trang ở danh sách lớn.
+278: - Dữ liệu quan trọng như mật khẩu được băm trước khi lưu.
+279: - Bệnh nhân và tài khoản quản trị/đối tác sử dụng loại token khác nhau.
+280: - Cơ chế RBAC kiểm soát menu và route trong admin.
+281: - Dữ liệu lịch làm việc có log thao tác để dễ kiểm tra và truy vết.
+282: - Hệ thống có thể mở rộng thêm thanh toán, thông báo SMS/Zalo và hồ sơ bệnh án điện tử.
+283: 3.2. Danh sách tác nhân
+284: Các hệ thống tích hợp ngoài
+286: 3.3. Sơ đồ Use Case
+287: Các sơ đồ use case được tách thành nhóm tổng quát và nhóm theo tác nhân để thể hiện đầy đủ quyền hạn
+289: Hình 3.1: Sơ đồ Use Case tổng quát hệ thống CareNow
+292: Hình 3.2: Sơ đồ Use Case của bệnh nhân và khách vãng lai
+295: Hình 3.3: Sơ đồ Use Case của quản trị viên
+298: Hình 3.4: Sơ đồ Use Case của đối tác
+300: 3.4. Đặc tả chức năng
+301: 3.4.1 Đặc tả use case đăng nhập admin/đối tác
+303: 3.4.2 Đặc tả use case đăng nhập Google cho bệnh nhân
+305: 3.4.3 Đặc tả use case cập nhật hồ sơ bệnh nhân
+307: 3.4.4 Đặc tả use case tìm kiếm bác sĩ/nơi khám/chuyên khoa
+309: 3.4.5 Đặc tả use case xem chi tiết bác sĩ
+311: 3.4.6 Đặc tả use case đặt lịch khám
+313: 3.4.7 Đặc tả use case xem lịch của tôi
+315: 3.4.8 Đặc tả use case xem lại lịch guest đã lưu cục bộ sau khi đăng nhập
+317: 3.4.9 Đặc tả use case hủy lịch khám
+319: 3.4.10 Đặc tả use case gửi yêu cầu tư vấn thêm
+321: 3.4.11 Đặc tả use case gửi yêu cầu hợp tác
+323: 3.4.12 Đặc tả use case sử dụng chatbot hỗ trợ CareNow
+325: 3.4.13 Đặc tả use case xem dashboard quản trị
+327: 3.4.14 Đặc tả use case quản lý bác sĩ
+329: 3.4.15 Đặc tả use case quản lý nơi khám
+331: 3.4.16 Đặc tả use case quản lý dịch vụ và chuyên khoa
+333: 3.4.17 Đặc tả use case quản lý đối tác
+335: 3.4.18 Đặc tả use case quản lý đơn đặt khám
+337: 3.4.19 Đặc tả use case quản lý lịch làm việc dạng tuần
+339: 3.4.20 Đặc tả use case bật/tắt ca khám/khung lịch làm việc
+341: 3.4.21 Đặc tả use case quản lý ngày nghỉ/override
+343: 3.4.22 Đặc tả use case quản lý gói giá khám
+345: 3.4.23 Đặc tả use case quản lý gói bảo hiểm
+347: 3.4.24 Đặc tả use case quản lý bài cẩm nang
+349: 3.4.25 Đặc tả use case quản lý yêu cầu tư vấn
+351: 3.4.26 Đặc tả use case quản lý yêu cầu hợp tác
+353: 3.4.27 Đặc tả use case quản lý media
+355: 3.4.28 Đặc tả use case quản lý cài đặt hệ thống
+357: 3.4.29 Đặc tả use case phân quyền người dùng
+359: 3.4.30 Đặc tả use case đối tác xử lý lịch hẹn và xuất Excel
+361: 3.4.31 Đặc tả use case quản lý tài khoản nhóm đối tác
+363: 3.5. Sơ đồ hành động
+364: 3.5.1 Sơ đồ hành động đăng nhập tài khoản quản trị/đối tác
+367: Hình 3.5: Sơ đồ hành động đăng nhập tài khoản quản trị/đối tác
+368: 3.5.2 Sơ đồ hành động đăng nhập Google cho bệnh nhân
+370: Hình 3.6: Sơ đồ hành động đăng nhập Google cho bệnh nhân
+372: 3.5.3 Sơ đồ hành động cập nhật hồ sơ bệnh nhân
+374: Hình 3.7: Sơ đồ hành động cập nhật hồ sơ bệnh nhân
+376: 3.5.4 Sơ đồ hành động tìm kiếm bác sĩ/nơi khám/chuyên khoa
+378: Hình 3.8: Sơ đồ hành động tìm kiếm bác sĩ/nơi khám/chuyên khoa
+380: 3.5.5 Sơ đồ hành động xem chi tiết bác sĩ
+382: Hình 3.9: Sơ đồ hành động xem chi tiết bác sĩ
+384: 3.5.6 Sơ đồ hành động đặt lịch khám
+386: Hình 3.10: Sơ đồ hành động đặt lịch khám
+388: 3.5.7 Sơ đồ hành động xem lịch của tôi
+390: Hình 3.11: Sơ đồ hành động xem lịch của tôi
+392: 3.5.8 Sơ đồ hành động hủy lịch khám
+394: Hình 3.12: Sơ đồ hành động hủy lịch khám
+395: 3.5.9 Sơ đồ hành động gửi yêu cầu tư vấn thêm
+397: Hình 3.13: Sơ đồ hành động gửi yêu cầu tư vấn thêm
+399: 3.5.10 Sơ đồ hành động gửi yêu cầu hợp tác
+401: Hình 3.14: Sơ đồ hành động gửi yêu cầu hợp tác
+403: 3.5.11 Sơ đồ hành động sử dụng chatbot hỗ trợ CareNow
+405: Hình 3.15: Sơ đồ hành động sử dụng chatbot hỗ trợ CareNow
+407: 3.5.12 Sơ đồ hành động quản trị viên xem dashboard quản trị
+409: Hình 3.16: Sơ đồ hành động quản trị viên xem dashboard quản trị
+411: 3.5.13 Sơ đồ hành động quản trị viên quản lý đơn đặt khám
+413: Hình 3.17: Sơ đồ hành động quản trị viên quản lý đơn đặt khám
+415: 3.5.14 Sơ đồ hành động quản trị viên quản lý lịch làm việc dạng tuần
+417: Hình 3.18: Sơ đồ hành động quản trị viên quản lý lịch làm việc dạng tuần
+419: 3.5.15 Sơ đồ hành động bật/tắt ca khám/khung lịch làm việc
+421: Hình 3.19: Sơ đồ hành động bật/tắt ca khám/khung lịch làm việc
+423: 3.5.16 Sơ đồ hành động quản lý ngày nghỉ
+425: Hình 3.20: Sơ đồ hành động quản lý ngày nghỉ
+427: 3.5.17 Sơ đồ hành động quản lý bác sĩ
+429: Hình 3.21: Sơ đồ hành động quản lý bác sĩ
+431: 3.5.18 Sơ đồ hành động quản lý nơi khám
+433: Hình 3.22: Sơ đồ hành động quản lý nơi khám
+435: 3.5.19 Sơ đồ hành động quản lý gói giá
+437: Hình 3.23: Sơ đồ hành động quản lý gói giá
+439: 3.5.20 Sơ đồ hành động quản lý gói bảo hiểm
+441: Hình 3.24: Sơ đồ hành động quản lý gói bảo hiểm
+443: 3.5.21 Sơ đồ hành động quản lý bài cẩm nang
+445: Hình 3.25: Sơ đồ hành động quản lý bài cẩm nang
+447: 3.5.22 Sơ đồ hành động quản lý yêu cầu tư vấn
+449: Hình 3.26: Sơ đồ hành động quản lý yêu cầu tư vấn
+451: 3.5.23 Sơ đồ hành động quản lý yêu cầu hợp tác
+453: Hình 3.27: Sơ đồ hành động quản lý yêu cầu hợp tác
+455: 3.5.24 Sơ đồ hành động đối tác xuất Excel lịch hẹn
+457: Hình 3.28: Sơ đồ hành động partner xuất Excel lịch hẹn
+459: 3.6. Biểu đồ tuần tự
+460: 3.6.1 Biểu đồ tuần tự chức năng đăng nhập tài khoản quản trị/đối tác
+462: Hình 3.29: Biểu đồ tuần tự chức năng đăng nhập tài khoản quản trị/đối tác
+464: 3.6.2 Biểu đồ tuần tự chức năng đăng nhập Google cho bệnh nhân
+466: Hình 3.30: Biểu đồ tuần tự chức năng đăng nhập Google cho bệnh nhân
+468: 3.6.3 Biểu đồ tuần tự chức năng cập nhật hồ sơ bệnh nhân
+470: Hình 3.31: Biểu đồ tuần tự chức năng cập nhật hồ sơ bệnh nhân
+472: 3.6.4 Biểu đồ tuần tự chức năng tìm kiếm bác sĩ/nơi khám/chuyên khoa
+474: Hình 3.32: Biểu đồ tuần tự chức năng tìm kiếm bác sĩ/nơi khám/chuyên khoa
+476: 3.6.5 Biểu đồ tuần tự chức năng xem chi tiết bác sĩ
+478: Hình 3.33: Biểu đồ tuần tự chức năng xem chi tiết bác sĩ
+480: 3.6.6 Biểu đồ tuần tự chức năng đặt lịch khám
+482: Hình 3.34: Biểu đồ tuần tự chức năng đặt lịch khám
+484: 3.6.7 Biểu đồ tuần tự chức năng xem lịch của tôi
+486: Hình 3.35: Biểu đồ tuần tự chức năng xem lịch của tôi
+488: 3.6.8 Biểu đồ tuần tự chức năng hủy lịch khám
+490: Hình 3.36: Biểu đồ tuần tự chức năng hủy lịch khám
+492: 3.6.9 Biểu đồ tuần tự chức năng gửi yêu cầu tư vấn
+494: Hình 3.37: Biểu đồ tuần tự chức năng gửi yêu cầu tư vấn
+496: 3.6.10 Biểu đồ tuần tự chức năng gửi yêu cầu hợp tác
+498: Hình 3.38: Biểu đồ tuần tự chức năng gửi yêu cầu hợp tác
+500: 3.6.11 Biểu đồ tuần tự chức năng chatbot hỗ trợ CareNow qua n8n
+502: Hình 3.39: Biểu đồ tuần tự chức năng chatbot hỗ trợ CareNow qua n8n
+504: 3.6.12 Biểu đồ tuần tự chức năng dashboard quản trị
+506: Hình 3.40: Biểu đồ tuần tự chức năng dashboard quản trị
+508: 3.6.13 Biểu đồ tuần tự chức năng quản trị viên cập nhật đơn đặt khám
+510: Hình 3.41: Biểu đồ tuần tự chức năng quản trị viên cập nhật đơn đặt khám
+512: 3.6.14 Biểu đồ tuần tự chức năng quản trị viên quản lý lịch làm việc dạng tuần
+514: Hình 3.42: Biểu đồ tuần tự chức năng quản trị viên quản lý lịch làm việc dạng tuần
+516: 3.6.15 Biểu đồ tuần tự chức năng bật/tắt ca khám/khung lịch và ghi log
+518: Hình 3.43: Biểu đồ tuần tự chức năng bật/tắt ca khám/khung lịch và ghi log
+520: 3.6.16 Biểu đồ tuần tự chức năng quản lý ngày nghỉ/override
+522: Hình 3.44: Biểu đồ tuần tự chức năng quản lý ngày nghỉ/override
+524: 3.6.17 Biểu đồ tuần tự chức năng quản lý gói giá
+526: Hình 3.45: Biểu đồ tuần tự chức năng quản lý gói giá
+528: 3.6.18 Biểu đồ tuần tự chức năng quản lý gói bảo hiểm
+530: Hình 3.46: Biểu đồ tuần tự chức năng quản lý gói bảo hiểm
+532: 3.6.19 Biểu đồ tuần tự chức năng quản lý bài cẩm nang
+534: Hình 3.47: Biểu đồ tuần tự chức năng quản lý bài cẩm nang
+536: 3.6.20 Biểu đồ tuần tự chức năng upload ảnh Cloudinary
+538: Hình 3.48: Biểu đồ tuần tự chức năng upload ảnh Cloudinary
+540: 3.6.21 Biểu đồ tuần tự chức năng quản lý cài đặt hệ thống
+542: Hình 3.49: Biểu đồ tuần tự chức năng quản lý cài đặt hệ thống
+544: 3.6.22 Biểu đồ tuần tự chức năng phân quyền người dùng
+546: Hình 3.50: Biểu đồ tuần tự chức năng phân quyền người dùng
+548: 3.6.23 Biểu đồ tuần tự chức năng đối tác xử lý lịch hẹn
+550: Hình 3.51: Biểu đồ tuần tự chức năng đối tác xử lý lịch hẹn
+552: 3.6.24 Biểu đồ tuần tự chức năng đối tác quản lý lịch làm việc
+554: Hình 3.52: Biểu đồ tuần tự chức năng đối tác quản lý lịch làm việc
+556: 3.6.25 Biểu đồ tuần tự chức năng quản lý tài khoản nhóm đối tác
+558: Hình 3.53: Biểu đồ tuần tự chức năng quản lý tài khoản nhóm đối tác
+560: 3.6.26 Biểu đồ tuần tự chức năng đối tác xuất Excel
+562: Hình 3.54: Biểu đồ tuần tự chức năng đối tác xuất Excel
+564: 3.7. Ma trận phân quyền
+565: Nhóm quyền dành cho quản trị và đối tác
+566: Nhóm quyền dành cho bệnh nhân và khách vãng lai
+568: 3.8. Sơ đồ lớp (Class Diagram)
+569: CareNow không dùng ORM mà thao tác SQL qua repository, vì vậy sơ đồ lớp được biểu diễn theo nhóm mod
+572: Hình 3.55: Sơ đồ Class diagram hệ thống CareNow
+574: 3.9. Thiết kế cơ sở dữ liệu
+575: 3.9.1. Mô hình ERD
+576: Cơ sở dữ liệu CareNow được chia thành các nhóm chính: người dùng và phân quyền; bệnh nhân; danh mục 
+579: Hình 3.56: Mô hình ERD tổng quát hệ thống CareNow
+581: 3.9.2. Thiết kế chi tiết các bảng
+582: Bảng tbl_user
+583: Lưu tài khoản quản trị và tài khoản đối tác, gồm thông tin đăng nhập, vai trò, trạng thái và phạm vi
+585: Bảng tbl_patient
+586: Lưu hồ sơ bệnh nhân đăng nhập bằng Google, thông tin cá nhân, địa chỉ, bảo hiểm và thông tin y tế cơ
+589: Bảng tbl_clinic
+590: Lưu hồ sơ bác sĩ/phòng khám, thông tin chuyên môn, nơi khám, đối tác, ảnh đại diện, nội dung giới th
+592: Bảng tbl_clinic_place
+593: Lưu cơ sở y tế/nơi khám, địa chỉ, phân cấp cơ sở, đối tác sở hữu, hình ảnh, nội dung trang và metada
+595: Bảng tbl_service
+596: Lưu nhóm dịch vụ y tế dùng để gom chuyên khoa và điều hướng người dùng trên website.
+598: Bảng tbl_clinic_specialist
+599: Lưu chuyên khoa khám bệnh, slug, mô tả, ảnh, dịch vụ cha và trạng thái hiển thị.
+601: Bảng tbl_partner
+602: Lưu thông tin đối tác y tế, nhóm đối tác, địa chỉ, liên hệ, trạng thái và ghi chú vận hành.
+604: Bảng tbl_location_province
+605: Lưu danh mục tỉnh/thành phố dùng cho địa chỉ bệnh nhân và cơ sở y tế.
+607: Bảng tbl_location_ward
+608: Lưu danh mục phường/xã liên kết với tỉnh/thành phố.
+610: Bảng tbl_appt_schedule_block
+611: Lưu khung lịch làm việc lặp theo tuần của bác sĩ tại một nơi khám thuộc đối tác.
+613: Bảng tbl_appt_schedule_block_specialist
+614: Lưu quan hệ giữa khung lịch và các chuyên khoa được nhận khám trong khung đó.
+616: Bảng tbl_appt_schedule_day_override
+617: Lưu ngày nghỉ hoặc ngoại lệ lịch làm việc theo bác sĩ, nơi khám, ngày và buổi.
+619: Bảng tbl_appt_schedule_logs
+620: Lưu lịch sử thao tác thêm, sửa, xóa, bật/tắt lịch làm việc để phục vụ audit.
+623: Bảng tbl_appointment
+624: Lưu lịch hẹn khám bệnh, thông tin bác sĩ, nơi khám, bệnh nhân, ngày giờ, trạng thái, gói giá và bảo 
+626: Bảng tbl_clinic_price_package
+627: Lưu gói giá khám thuộc bác sĩ/phòng khám.
+629: Bảng tbl_clinic_price_item
+630: Lưu các dòng giá chi tiết theo nơi khám, ngày hiệu lực, thứ trong tuần, buổi và số tiền.
+632: Bảng tbl_clinic_insurance_package
+633: Lưu gói bảo hiểm hoặc phương thức thanh toán áp dụng cho bác sĩ, có thể giới hạn theo đối tác.
+635: Bảng tbl_clinic_insurance_item
+636: Lưu đơn vị bảo hiểm, loại bảo hiểm công/tư, ghi chú chi trả và yêu cầu giấy chuyển tuyến.
+638: Bảng tbl_blog_public
+639: Lưu bài viết cẩm nang y tế, nội dung HTML, danh mục, ảnh, tag, bác sĩ/chuyên khoa gợi ý.
+641: Bảng tbl_blog_category
+642: Lưu danh mục bài viết cẩm nang y tế.
+644: Bảng tbl_clinic_reason
+645: Lưu lý do khám, nội dung gợi ý và liên kết bác sĩ/nơi khám phù hợp.
+647: Bảng tbl_auth_item
+648: Lưu vai trò và quyền trong mô hình RBAC.
+650: Bảng tbl_auth_item_child
+651: Lưu quan hệ cha con giữa vai trò và quyền.
+653: Bảng tbl_auth_assignment
+654: Lưu quyền hoặc vai trò được gán cho từng tài khoản.
+656: Bảng tbl_settings
+657: Lưu cấu hình key-value của hệ thống như logo, tên website, hotline, SEO và footer.
+659: Bảng tbl_consultation
+660: Lưu yêu cầu tư vấn thêm do bệnh nhân gửi từ website client.
+662: Bảng tbl_partner_contact
+663: Lưu yêu cầu liên hệ hợp tác do phòng khám/cơ sở y tế gửi từ website client.
+666: CHƯƠNG 4. TRIỂN KHAI VÀ THỰC HIỆN
+667: 4.1. Cấu trúc dự án
+669: 4.2. Cài đặt và cấu hình
+670: - Backend chạy bằng Node.js/Express, kết nối PostgreSQL qua biến môi trường DB_HOST, DB_PORT, DB_NAM
+671: - Frontend admin, partner và client chạy bằng Vite ở các port khác nhau, gọi API qua Axios.
+672: - Google OAuth yêu cầu cấu hình GOOGLE_CLIENT_ID ở backend và VITE_GOOGLE_CLIENT_ID ở client.
+673: - Cloudinary cần CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET và thư mục upload.
+674: - n8n chatbot sử dụng VITE_N8N_WEBHOOK_URL, có thể cấu hình basic auth nếu cần.
+675: 4.3. Triển khai backend
+676: 4.3.1. Module xác thực và phân quyền
+677: Backend có module user cho đăng nhập tài khoản quản trị/đối tác, bcrypt để băm mật khẩu, JWT để cấp 
+678: 4.3.2. Module bệnh nhân
+679: Module patient hỗ trợ đăng nhập Google, tạo hoặc liên kết hồ sơ bệnh nhân, cập nhật hồ sơ an toàn bằ
+680: 4.3.3. Module lịch hẹn
+681: Module appointment hỗ trợ khách vãng lai đặt lịch, bệnh nhân xem/hủy lịch, xem lại lịch guest đã lưu
+682: 4.3.4. Module lịch làm việc
+683: Module appointment_schedule quản lý khung lịch theo tuần, ngày nghỉ/override, gói giá/bảo hiểm mặc đ
+684: 4.3.5. Module danh mục y tế
+685: Các module clinic, clinic_place, service, specialty và partner quản lý bác sĩ, nơi khám, dịch vụ, ch
+686: 4.3.6. Module giá khám và bảo hiểm
+687: clinic_price và clinic_insurance quản lý package và items. Client sử dụng price_summary và insurance
+688: 4.3.7. Module nội dung
+689: blog_public, blog_category và clinic_reason quản lý cẩm nang y tế, danh mục, lý do khám và nội dung 
+690: 4.3.8. Module tư vấn thêm và liên hệ hợp tác
+691: consultation nhận yêu cầu tư vấn từ bệnh nhân, partner_contact nhận yêu cầu hợp tác từ cơ sở y tế. A
+692: 4.3.9. Module settings, dashboard và upload
+693: settings quản lý logo, tên site, SEO, hotline, footer; dashboard thống kê số bác sĩ, chuyên khoa, lị
+694: 4.4. Triển khai frontend
+695: 4.4.1. Website bệnh nhân
+696: Client có trang chủ, dịch vụ, chuyên khoa, bác sĩ, nơi khám, tìm kiếm, đặt lịch, lịch của tôi, hồ sơ
+697: 4.4.2. Quy trình đặt lịch
+698: Trang Booking có 4 bước chính: chọn dịch vụ, chọn bác sĩ, chọn giờ, nhập thông tin. SchedulePicker l
+699: 4.4.3. Trang quản trị admin
+700: Admin frontend có dashboard, quản lý danh mục, lịch hẹn, lịch tuần V2, giá, bảo hiểm, bài viết, lý d
+701: 4.4.4. Cổng đối tác
+702: Cổng đối tác có trang lịch hẹn, lịch làm việc, team, profile và welcome. Đối tác có quyền thêm/sửa l
+703: 4.5. Hệ thống định tuyến
+705: 4.6. Hình ảnh giao diện hệ thống
+707: Hình 4.1: Giao diện trang chủ CareNow
+709: Hình 4.2: Giao diện danh sách dịch vụ
+712: Hình 4.3: Giao diện tìm kiếm bác sĩ/nơi khám/chuyên khoa
+715: Hình 4.4: Giao diện chi tiết bác sĩ
+718: Hình 4.5: Giao diện chi tiết nơi khám
+721: Hình 4.6: Giao diện đặt lịch tư vấn thêm
+724: Hình 4.7: Giao diện đặt lịch bước chọn bác sĩ
+729: Hình 4.8: Giao diện nhập thông tin người khám
+732: Hình 4.9: Giao diện đặt lịch thành công
+735: Hình 4.10: Giao diện lịch của tôi
+738: Hình 4.11: Giao diện trang hợp tác
+741: Hình 4.12: Giao diện cẩm nang y tế
+744: Hình 4.13: Giao diện chatbot hỗ trợ
+747: Hình 4.14: Giao diện đăng nhập admin
+750: Hình 4.15: Giao diện dashboard admin
+753: Hình 4.16: Giao diện quản lý bác sĩ
+756: Hình 4.17: Giao diện thêm/sửa bác sĩ
+759: Hình 4.18: Giao diện quản lý nơi khám
+762: Hình 4.19: Giao diện quản lý dịch vụ
+765: Hình 4.20: Giao diện quản lý chuyên khoa
+768: Hình 4.21: Giao diện quản lý lịch hẹn
+771: Hình 4.22: Giao diện lịch sử thao tác lịch làm việc
+774: Hình 4.23: Giao diện quản lý đơn đặt khám
+777: Hình 4.24: Giao diện quản lý gói giá khám
+780: Hình 4.25: Giao diện quản lý bảo hiểm
+783: Hình 4.26: Giao diện quản lý bài cẩm nang
+786: Hình 4.27: Giao diện quản lý yêu cầu tư vấn
+789: Hình 4.28: Giao diện quản lý yêu cầu hợp tác
+792: Hình 429: Giao diện phân quyền
+795: Hình 4.30: Giao diện quản lý vai trò
+798: Hình 4.31: Giao diện cài đặt hệ thống
+801: Hình 4.32: Giao diện thư viện ảnh Cloudinary
+804: Hình 4.33: Giao diện đăng nhập đối tác
+807: Hình 4.34: Giao diện trang chủ đối tác
+810: Hình 4.35: Giao diện lịch hẹn đối tác
+814: Hình 4.36: Giao diện xuất Excel lịch hẹn
+817: Hình 4.37: Giao diện lịch làm việc đối tác
+820: Hình 4.38: Giao diện thêm/sửa lịch làm việc đối tác
+823: Hình 4.39: Giao diện lịch sử thao tác trong cổng đối tác
+826: Hình 4.40: Giao diện quản lý tài khoản nhóm đối tác
+829: Hình 4.41: Giao diện hồ sơ tài khoản đối tác
+831: CHƯƠNG 5. KẾT QUẢ VÀ THỬ NGHIỆM
+832: 5.1. Kết quả đạt được
+833: - Hoàn thiện backend Express với các module: user, patient, appointment, schedule, catalog, price, i
+834: - Hoàn thiện website bệnh nhân với tìm kiếm, đặt lịch, lịch của tôi, hồ sơ, tư vấn thêm, hợp tác, cẩ
+835: - Hoàn thiện admin dashboard với quản lý danh mục, lịch hẹn, lịch tuần V2, giá, bảo hiểm, nội dung, 
+836: - Hoàn thiện cổng đối tác với quản lý lịch hẹn, lịch làm việc, team, xuất Excel và phân quyền manage
+837: - Thiết kế cơ sở dữ liệu PostgreSQL phục vụ đầy đủ nghiệp vụ đặt lịch, lịch làm việc, giá, bảo hiểm,
+838: - Tích hợp Google OAuth, Cloudinary, n8n chatbot và cơ chế xuất Excel.
+841: Hình 5.1: Biểu đồ số lượng module/chức năng chính theo phân hệ
+843: 5.2. Kiểm thử chức năng
+844: 5.2.1. Tổng hợp số liệu kiểm thử
+845: Quá trình kiểm thử được thực hiện trên môi trường local/development, tập trung vào các luồng nghiệp 
+848: Hình 5.2: Biểu đồ phân bố test case theo nhóm nghiệp vụ
+851: Hình 5.3: Biểu đồ tổng hợp kết quả kiểm thử chức năng
+853: 5.2.2. Bảng kiểm thử chi tiết
+855: 5.3. Kiểm thử giao diện
+856: Giao diện được kiểm thử thủ công trên các màn hình chính của client, admin và partner portal. Các ti
+857: 5.4. Kiểm thử bảo mật
+858: - Mật khẩu tài khoản quản trị/đối tác được băm bằng bcrypt.
+859: - Token bệnh nhân có type patient và được middleware riêng kiểm tra.
+860: - Cập nhật hồ sơ bệnh nhân dùng whitelist field để tránh sửa trường nhạy cảm.
+861: - Partner portal lọc dữ liệu theo partner_id và phân biệt manager/staff.
+862: - RBAC frontend kiểm soát sidebar và route theo permission.
+863: - Backend chính đang có bypass auth/role ở môi trường phát triển, cần tắt bypass và bật kiểm tra JWT
+864: 5.5. Đánh giá
+865: 5.5.1. Ưu điểm
+866: - Phạm vi nghiệp vụ tương đối đầy đủ cho bài toán đặt lịch khám trực tuyến.
+867: - Tách rõ ba nhóm người dùng: bệnh nhân, quản trị viên và đối tác.
+868: - Lịch làm việc sử dụng dữ liệu thật, có ngày nghỉ, bật/tắt ca và log thao tác.
+869: - Có các module tăng tính thực tế như tư vấn thêm, liên hệ hợp tác, settings, media library, chatbot
+870: - Kiến trúc backend module hóa và frontend component hóa, thuận tiện mở rộng.
+871: 5.5.2. Hạn chế
+872: - Chưa tích hợp thanh toán trực tuyến/đặt cọc lịch khám.
+873: - Chưa có hồ sơ bệnh án điện tử đầy đủ.
+874: - Chưa có hệ thống thông báo SMS/Zalo thực tế.
+875: - Một phần dashboard nâng cao như doanh thu, chuyển đổi, lượt xem bài viết mới ở mức định hướng.
+876: - Middleware admin ở backend chính cần hoàn thiện trước khi triển khai thật.
+877: 5.6. Kết luận và hướng phát triển
+878: Đề tài đã xây dựng được website đặt lịch khám bệnh CareNow với đầy đủ các phân hệ chính: client bệnh
+879: Trong tương lai, hệ thống có thể mở rộng theo các hướng: tích hợp thanh toán trực tuyến, gửi thông b
+881: TÀI LIỆU THAM KHẢO
+882: Tài liệu tiếng Việt
+883: - Tài liệu môn Phân tích thiết kế hệ thống thông tin, Khoa Công nghệ Thông tin, Trường Đại học Giao 
+884: - Tài liệu môn Cơ sở dữ liệu và Công nghệ Web.
+885: - Mã nguồn dự án CareNow tại thư mục /Users/mac/UCT_2024/DATN/CareNow.
+886: Tài liệu tiếng Anh
+887: - Express.js Documentation, https://expressjs.com/
+888: - React Documentation, https://react.dev/
+889: - PostgreSQL Documentation, https://www.postgresql.org/docs/
+890: - JWT Introduction, https://jwt.io/introduction
+891: - Google Identity Documentation, https://developers.google.com/identity
+892: - Cloudinary Documentation, https://cloudinary.com/documentation
+893: - Vite Documentation, https://vite.dev/
+894: - n8n Documentation, https://docs.n8n.io/
+896: DANH MỤC SƠ ĐỒ HÌNH VẼ
+898: Hình 3.1: Sơ đồ Use Case tổng quát hệ thống CareNow	8
+899: Hình 3.2: Sơ đồ Use Case của bệnh nhân và khách vãng lai	9
+900: Hình 3.3: Sơ đồ Use Case của quản trị viên	10
+901: Hình 3.4: Sơ đồ Use Case của đối tác	11
+902: Hình 3.5: Sơ đồ hành động đăng nhập tài khoản quản trị/đối tác	25
+903: Hình 3.6: Sơ đồ hành động đăng nhập Google cho bệnh nhân	26
+904: Hình 3.7: Sơ đồ hành động cập nhật hồ sơ bệnh nhân	27
+905: Hình 3.8: Sơ đồ hành động tìm kiếm bác sĩ/nơi khám/chuyên khoa	28
+906: Hình 3.9: Sơ đồ hành động xem chi tiết bác sĩ	29
+907: Hình 3.10: Sơ đồ hành động đặt lịch khám	30
+908: Hình 3.11: Sơ đồ hành động xem lịch của tôi	31
+909: Hình 3.12: Sơ đồ hành động hủy lịch khám	32
+910: Hình 3.13: Sơ đồ hành động gửi yêu cầu tư vấn thêm	33
+911: Hình 3.14: Sơ đồ hành động gửi yêu cầu hợp tác	34
+912: Hình 3.15: Sơ đồ hành động sử dụng chatbot hỗ trợ CareNow	35
+913: Hình 3.16: Sơ đồ hành động quản trị viên xem dashboard quản trị	36
+914: Hình 3.17: Sơ đồ hành động quản trị viên quản lý đơn đặt khám	37
+915: Hình 3.18: Sơ đồ hành động quản trị viên quản lý lịch làm việc dạng tuần	38
+916: Hình 3.19: Sơ đồ hành động bật/tắt ca khám/khung lịch làm việc	39
+917: Hình 3.20: Sơ đồ hành động quản lý ngày nghỉ	40
+918: Hình 3.21: Sơ đồ hành động quản lý bác sĩ	41
+919: Hình 3.22: Sơ đồ hành động quản lý nơi khám	42
+920: Hình 3.23: Sơ đồ hành động quản lý gói giá	43
+921: Hình 3.24: Sơ đồ hành động quản lý gói bảo hiểm	44
+922: Hình 3.25: Sơ đồ hành động quản lý bài cẩm nang	45
+923: Hình 3.26: Sơ đồ hành động quản lý yêu cầu tư vấn	46
+924: Hình 3.27: Sơ đồ hành động quản lý yêu cầu hợp tác	47
+925: Hình 3.28: Sơ đồ hành động partner xuất Excel lịch hẹn	48
+926: Hình 3.29: Biểu đồ tuần tự chức năng đăng nhập tài khoản quản trị/đối tác	49
+927: Hình 3.30: Biểu đồ tuần tự chức năng đăng nhập Google cho bệnh nhân	50
+928: Hình 3.31: Biểu đồ tuần tự chức năng cập nhật hồ sơ bệnh nhân	51
+929: Hình 3.32: Biểu đồ tuần tự chức năng tìm kiếm bác sĩ/nơi khám/chuyên khoa	52
+930: Hình 3.33: Biểu đồ tuần tự chức năng xem chi tiết bác sĩ	53
+931: Hình 3.34: Biểu đồ tuần tự chức năng đặt lịch khám	54
+932: Hình 3.35: Biểu đồ tuần tự chức năng xem lịch của tôi	55
+933: Hình 3.36: Biểu đồ tuần tự chức năng hủy lịch khám	56
+934: Hình 3.37: Biểu đồ tuần tự chức năng gửi yêu cầu tư vấn	57
+935: Hình 3.38: Biểu đồ tuần tự chức năng gửi yêu cầu hợp tác	58
+936: Hình 3.39: Biểu đồ tuần tự chức năng chatbot hỗ trợ CareNow qua n8n	59
+937: Hình 3.40: Biểu đồ tuần tự chức năng dashboard quản trị	60
+938: Hình 3.41: Biểu đồ tuần tự chức năng quản trị viên cập nhật đơn đặt khám	61
+939: Hình 3.42: Biểu đồ tuần tự chức năng quản trị viên quản lý lịch làm việc dạng tuần	62
+940: Hình 3.43: Biểu đồ tuần tự chức năng bật/tắt ca khám/khung lịch và ghi log	63
+941: Hình 3.44: Biểu đồ tuần tự chức năng quản lý ngày nghỉ/override	64
+942: Hình 3.45: Biểu đồ tuần tự chức năng quản lý gói giá	65
+943: Hình 3.46: Biểu đồ tuần tự chức năng quản lý gói bảo hiểm	66
+944: Hình 3.47: Biểu đồ tuần tự chức năng quản lý bài cẩm nang	67
+945: Hình 3.48: Biểu đồ tuần tự chức năng upload ảnh Cloudinary	68
+946: Hình 3.49: Biểu đồ tuần tự chức năng quản lý cài đặt hệ thống	69
+947: Hình 3.50: Biểu đồ tuần tự chức năng phân quyền người dùng	70
+948: Hình 3.51: Biểu đồ tuần tự chức năng đối tác xử lý lịch hẹn	71
+949: Hình 3.52: Biểu đồ tuần tự chức năng đối tác quản lý lịch làm việc	72
+950: Hình 3.53: Biểu đồ tuần tự chức năng quản lý tài khoản nhóm đối tác	73
+951: Hình 3.54: Biểu đồ tuần tự chức năng đối tác xuất Excel	74
+952: Hình 3.55: Sơ đồ Class diagram hệ thống CareNow	77
+953: Hình 3.56: Mô hình ERD tổng quát hệ thống CareNow	78
+954: Hình 4.1: Giao diện trang chủ CareNow	108
+955: Hình 4.2: Giao diện danh sách dịch vụ	109
+956: Hình 4.3: Giao diện tìm kiếm bác sĩ/nơi khám/chuyên khoa	109
+957: Hình 4.4: Giao diện chi tiết bác sĩ	110
+958: Hình 4.5: Giao diện chi tiết nơi khám	110
+959: Hình 4.6: Giao diện đặt lịch tư vấn thêm	111
+960: Hình 4.7: Giao diện đặt lịch bước chọn bác sĩ	111
+961: Hình 4.8: Giao diện nhập thông tin người khám	112
+962: Hình 4.9: Giao diện đặt lịch thành công	112
+963: Hình 4.10: Giao diện lịch của tôi	113
+964: Hình 4.11: Giao diện trang hợp tác	113
+965: Hình 4.12: Giao diện cẩm nang y tế	114
+966: Hình 4.13: Giao diện chatbot hỗ trợ	114
+967: Hình 4.14: Giao diện đăng nhập admin	115
+968: Hình 4.15: Giao diện dashboard admin	115
+969: Hình 4.16: Giao diện quản lý bác sĩ	116
+970: Hình 4.17: Giao diện thêm/sửa bác sĩ	116
+971: Hình 4.18: Giao diện quản lý nơi khám	117
+972: Hình 4.19: Giao diện quản lý dịch vụ	117
+973: Hình 4.20: Giao diện quản lý chuyên khoa	118
+974: Hình 4.21: Giao diện quản lý lịch hẹn	118
+975: Hình 4.22: Giao diện lịch sử thao tác lịch làm việc	119
+976: Hình 4.23: Giao diện quản lý đơn đặt khám	119
+977: Hình 4.24: Giao diện quản lý gói giá khám	120
+978: Hình 4.25: Giao diện quản lý bảo hiểm	120
+979: Hình 4.26: Giao diện quản lý bài cẩm nang	121
+980: Hình 4.27: Giao diện quản lý yêu cầu tư vấn	121
+981: Hình 4.28: Giao diện quản lý yêu cầu hợp tác	122
+982: Hình 429: Giao diện phân quyền	122
+983: Hình 4.30: Giao diện quản lý vai trò	123
+984: Hình 4.31: Giao diện cài đặt hệ thống	123
+985: Hình 4.32: Giao diện thư viện ảnh Cloudinary	124
+986: Hình 4.33: Giao diện đăng nhập đối tác	124
+987: Hình 4.34: Giao diện trang chủ đối tác	125
+988: Hình 4.35: Giao diện lịch hẹn đối tác	125
+989: Hình 4.36: Giao diện xuất Excel lịch hẹn	126
+990: Hình 4.37: Giao diện lịch làm việc đối tác	126
+991: Hình 4.38: Giao diện thêm/sửa lịch làm việc đối tác	127
+992: Hình 4.39: Giao diện lịch sử thao tác trong cổng đối tác	127
+993: Hình 4.40: Giao diện quản lý tài khoản nhóm đối tác	128
+994: Hình 4.41: Giao diện hồ sơ tài khoản đối tác	128
+995: Hình 5.1: Biểu đồ số lượng module/chức năng chính theo phân hệ	130
+996: Hình 5.2: Biểu đồ phân bố test case theo nhóm nghiệp vụ	131
+997: Hình 5.3: Biểu đồ tổng hợp kết quả kiểm thử chức năng	131

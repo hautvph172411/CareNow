@@ -150,27 +150,23 @@ const getVisitGuideByBookingCode = async (bookingCode) => {
   const placeAddress = appt.place_address || '';
   const placeDisplay = [placeName, placeAddress].filter(Boolean).join(' - ');
 
-  // Thay thế các placeholder trong patient_guide
-  let processedGuide = appt.place_patient_guide || '';
-  if (processedGuide) {
-    // {{bac_si}} → tên bác sĩ thực tế
-    if (doctorName) {
-      processedGuide = processedGuide.replace(
-        /\{\{bac_si\}\}/gi,
-        `<strong>${doctorName}</strong>`
-      );
-    }
-    // {{noi_kham}} → tên nơi khám + địa chỉ
-    if (placeDisplay) {
-      processedGuide = processedGuide.replace(
-        /\{\{noi_kham\}\}/gi,
-        `<strong>${placeDisplay}</strong>`
-      );
-    }
+  // Thay thế các placeholder trong patient_guide và address_guide
+  let processedPatientGuide = appt.place_patient_guide || '';
+  let processedAddressGuide = appt.place_address_guide || '';
+
+  if (doctorName) {
+    processedPatientGuide = processedPatientGuide.replace(/\{\{bac_si\}\}/gi, `<strong>${doctorName}</strong>`);
+    processedAddressGuide = processedAddressGuide.replace(/\{\{bac_si\}\}/gi, `<strong>${doctorName}</strong>`);
+  }
+
+  if (placeDisplay) {
+    processedPatientGuide = processedPatientGuide.replace(/\{\{noi_kham\}\}/gi, `<strong>${placeDisplay}</strong>`);
+    processedAddressGuide = processedAddressGuide.replace(/\{\{noi_kham\}\}/gi, `<strong>${placeDisplay}</strong>`);
   }
 
   const result = formatAppointment(appt);
-  result.place_patient_guide = processedGuide;
+  result.place_patient_guide = processedPatientGuide;
+  result.place_address_guide = processedAddressGuide;
   result.doctor_name = doctorName;
   return result;
 };
@@ -238,13 +234,13 @@ const updateAppointment = async (id, payload = {}) => {
   }
 
   const data = {
-    clinic_id:            toInt(payload.clinic_id),
-    clinic_place_id:      toInt(payload.clinic_place_id),
-    specialist_id:        toInt(payload.specialist_id),
-    service_id:           toInt(payload.service_id),
-    schedule_block_id:    toInt(payload.schedule_block_id),
-    price_package_id:     toInt(payload.price_package_id),
-    insurance_package_id: toInt(payload.insurance_package_id),
+    clinic_id:            payload.clinic_id !== undefined ? toInt(payload.clinic_id) : undefined,
+    clinic_place_id:      payload.clinic_place_id !== undefined ? toInt(payload.clinic_place_id) : undefined,
+    specialist_id:        payload.specialist_id !== undefined ? toInt(payload.specialist_id) : undefined,
+    service_id:           payload.service_id !== undefined ? toInt(payload.service_id) : undefined,
+    schedule_block_id:    payload.schedule_block_id !== undefined ? toInt(payload.schedule_block_id) : undefined,
+    price_package_id:     payload.price_package_id !== undefined ? toInt(payload.price_package_id) : undefined,
+    insurance_package_id: payload.insurance_package_id !== undefined ? toInt(payload.insurance_package_id) : undefined,
     session_type:         payload.session_type !== undefined ? toInt(payload.session_type) : undefined,
     status:               payload.status !== undefined ? Number(payload.status) : undefined,
     amount_vnd:           payload.amount_vnd !== undefined && payload.amount_vnd !== '' ? toInt(payload.amount_vnd) : undefined,
@@ -252,10 +248,10 @@ const updateAppointment = async (id, payload = {}) => {
     appt_time:            payload.appt_time,
     patient_name:         payload.patient_name !== undefined ? String(payload.patient_name).trim() : undefined,
     patient_phone:        payload.patient_phone !== undefined ? String(payload.patient_phone).trim() : undefined,
-    patient_email:        payload.patient_email === '' ? null : payload.patient_email,
-    patient_address:      payload.patient_address === '' ? null : payload.patient_address,
-    patient_notes:        payload.patient_notes === '' ? null : payload.patient_notes,
-    admin_notes:          payload.admin_notes === '' ? null : payload.admin_notes,
+    patient_email:        payload.patient_email !== undefined ? (payload.patient_email === '' ? null : payload.patient_email) : undefined,
+    patient_address:      payload.patient_address !== undefined ? (payload.patient_address === '' ? null : payload.patient_address) : undefined,
+    patient_notes:        payload.patient_notes !== undefined ? (payload.patient_notes === '' ? null : payload.patient_notes) : undefined,
+    admin_notes:          payload.admin_notes !== undefined ? (payload.admin_notes === '' ? null : payload.admin_notes) : undefined,
   };
 
   Object.keys(data).forEach((key) => {

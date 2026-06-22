@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { ChevronDown, ChevronRight, Plus, Edit2, Trash2, Loader, Check, X, Minus } from 'lucide-react';
 import {
   getScheduleBlocks,
@@ -17,9 +18,16 @@ import {
   createInsurancePackage,
   updateInsurancePackage,
   deleteInsurancePackage,
+  getAllPublishedInsurers,
 } from '../api/clinicInsurance.api';
 import { getClinicPlaces } from '../api/clinic_place.api';
 import { SCHEDULE_TIME_PRESETS, formatTimeInput } from '../utils/scheduleLabels';
+
+
+/* ── Modal Portal — escapes overflow:hidden containers ── */
+function ModalPortal({ children }) {
+  return createPortal(children, document.body);
+}
 
 const SESSIONS = [
   { type: 1, label: 'Sáng', defaultStart: '07:00', defaultEnd: '12:00', color: '#3b82f6' },
@@ -424,6 +432,7 @@ function PricePackageModal({ form, saving, onChange, onSave, onClose }) {
   };
 
   return (
+    <ModalPortal>
     <div className="price-modal-backdrop">
       <div className="price-modal">
         <div className="price-modal-header">
@@ -533,6 +542,7 @@ function PricePackageModal({ form, saving, onChange, onSave, onClose }) {
         </div>
       </div>
     </div>
+  </ModalPortal>
   );
 }
 
@@ -737,6 +747,38 @@ const cleanInsurancePackageName = (pkg) => {
 };
 
 const MASTER_INSURANCE_PACKAGE_NAME = 'Danh mục công ty bảo hiểm';
+const DEFAULT_INSURANCE_COMPANIES = [
+  { name: 'Bảo hiểm Bảo Việt', status: 1 },
+  { name: 'Bảo hiểm PVI', status: 1 },
+  { name: 'Bảo hiểm Bưu điện PTI', status: 1 },
+  { name: 'Bảo hiểm Bảo Minh', status: 1 },
+  { name: 'Bảo hiểm Quân đội MIC', status: 1 },
+  { name: 'Bảo hiểm PJICO', status: 1 },
+  { name: 'Bảo hiểm VBI', status: 1 },
+  { name: 'Bảo hiểm VietinBank VBI', status: 1 },
+  { name: 'Bảo hiểm BIDV BIC', status: 1 },
+  { name: 'Bảo hiểm Liberty', status: 1 },
+  { name: 'Bảo hiểm AIA', status: 1 },
+  { name: 'Bảo hiểm Manulife Việt Nam', status: 1 },
+  { name: 'Bảo hiểm Prudential Việt Nam', status: 1 },
+  { name: 'Bảo hiểm Sun Life Việt Nam', status: 1 },
+  { name: 'Bảo hiểm Dai-ichi Life Việt Nam', status: 1 },
+  { name: 'Bảo hiểm FWD Việt Nam', status: 1 },
+  { name: 'Bảo hiểm Chubb Life Việt Nam', status: 1 },
+  { name: 'Bảo hiểm Generali Việt Nam', status: 1 },
+  { name: 'Bảo hiểm Hanwha Life Việt Nam', status: 1 },
+  { name: 'Bảo hiểm MB Ageas Life', status: 1 },
+  { name: 'Bảo hiểm Tokio Marine Việt Nam', status: 1 },
+  { name: 'Bảo hiểm Pacific Cross Việt Nam', status: 1 },
+  { name: 'Bảo hiểm Fullerton Health Việt Nam', status: 1 },
+  { name: 'Bảo hiểm Insmart', status: 1 },
+  { name: 'Bảo hiểm CarePlus', status: 1 },
+  { name: 'South Asia Services', status: 1 },
+  { name: 'AXA Assistance', status: 1 },
+  { name: 'LUMA Care', status: 1 },
+  { name: 'April International', status: 1 },
+  { name: 'Bảo hiểm MSIG Việt Nam', status: 1 }
+];
 const isMasterInsurancePackage = (pkg) => String(pkg?.name || '').trim().toLowerCase() === MASTER_INSURANCE_PACKAGE_NAME.toLowerCase();
 
 const insuranceDetailToForm = (pkg, clinicId) => ({
@@ -779,6 +821,7 @@ function InsuranceTypeModal({ form, saving, onChange, onSave, onDelete, onClose 
   };
 
   return (
+    <ModalPortal>
     <div className="price-modal-backdrop">
       <div className="insurance-type-modal">
         <div className="price-modal-header">
@@ -790,6 +833,17 @@ function InsuranceTypeModal({ form, saving, onChange, onSave, onDelete, onClose 
             <div className="price-form-field full">
               <label>Tên loại *</label>
               <input value={form.name} onChange={(e) => update('name', e.target.value)} placeholder="Tên loại" />
+            </div>
+            <div className="price-form-field full">
+              <label>Hiển thị danh sách công ty bảo hiểm</label>
+              <div className="inline-radio-row">
+                <label>
+                  <input type="radio" checked={type === 'private'} onChange={() => update('insurance_type', 'private')} /> Có
+                </label>
+                <label>
+                  <input type="radio" checked={type !== 'private'} onChange={() => update('insurance_type', 'public')} /> Không
+                </label>
+              </div>
             </div>
             <div className="price-form-field full">
               <label>Mô tả</label>
@@ -820,6 +874,7 @@ function InsuranceTypeModal({ form, saving, onChange, onSave, onDelete, onClose 
         </div>
       </div>
     </div>
+  </ModalPortal>
   );
 }
 
@@ -839,6 +894,7 @@ function InsuranceCompanyModal({
   const companies = Array.isArray(pkg?.items) ? pkg.items : [];
 
   return (
+    <ModalPortal>
     <div className="price-modal-backdrop">
       <div className="insurance-company-manager-modal">
         <div className="price-modal-header">
@@ -919,12 +975,14 @@ function InsuranceCompanyModal({
         </div>
       </div>
     </div>
+  </ModalPortal>
   );
 }
 
 /* ── Insurance Tab ───────────────────────────────────────── */
 function InsuranceTab({ clinicId }) {
   const [packages, setPackages] = useState([]);
+  const [dbInsurers, setDbInsurers] = useState([]); // danh sách công ty từ DB
   const [loading, setLoading] = useState(true);
   const [typeModalOpen, setTypeModalOpen] = useState(false);
   const [companyModalOpen, setCompanyModalOpen] = useState(false);
@@ -978,7 +1036,10 @@ function InsuranceTab({ clinicId }) {
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const r = await getInsurancePackages({ clinic_id: clinicId, limit: 100, page: 1 });
+      const [r, insurersRes] = await Promise.all([
+        getInsurancePackages({ clinic_id: clinicId, limit: 100, page: 1 }),
+        getAllPublishedInsurers().catch(() => ({ data: [] })),
+      ]);
       const list = r?.data || [];
       const detailed = await Promise.all(
         list.map((pkg) =>
@@ -988,6 +1049,9 @@ function InsuranceTab({ clinicId }) {
         )
       );
       setPackages(detailed);
+      if (Array.isArray(insurersRes?.data) && insurersRes.data.length > 0) {
+        setDbInsurers(insurersRes.data);
+      }
     } catch (e) { console.error(e); }
     finally { setLoading(false); }
   }, [clinicId]);
@@ -1044,7 +1108,9 @@ function InsuranceTab({ clinicId }) {
     setForm({
       ...emptyInsuranceForm(clinicId),
       insurance_type: 'public',
-      items: [{ ...emptyInsuranceItem('public'), insurer_name: '' }],
+      name: '',
+      description: '',
+      items: [],
     });
     setTypeModalOpen(true);
   };
@@ -1075,7 +1141,9 @@ function InsuranceTab({ clinicId }) {
   };
 
   const openCompanyPicker = async (pkg) => {
+    const pkgId = pkg?.id;
     await load();
+    // Sau khi load, state chưa update sync trong closure này → dùng pkg gốc (đủ để tick đúng)
     setCompanyPackage(pkg);
     const currentNames = (pkg?.items || [])
       .map((it) => String(it.insurer_name || '').trim())
@@ -1101,17 +1169,19 @@ function InsuranceTab({ clinicId }) {
     setSaving(true);
     try {
       const insuranceType = form.insurance_type || 'public';
+      // Khi tạo mới: public -> 1 item ghi chú; private -> không item (user tự thêm từ picker)
+      // Khi sửa: giữ nguyên items cũ, chỉ cập nhật insurance_type của từng item
+      const existingItems = form.items.filter((it) => String(it.insurer_name || '').trim());
       const next = {
         ...form,
-        items: form.items.length
-          ? form.items.map((it) => ({
+        items: existingItems.length
+          ? existingItems.map((it) => ({
               ...it,
-              insurance_type: it.insurance_type || insuranceType,
-              insurer_name: it.insurer_name || form.name,
+              insurance_type: insuranceType,
             }))
           : insuranceType === 'public'
             ? [{ ...emptyInsuranceItem('public'), insurer_name: form.name }]
-            : [],
+            : [], // private: để trống, user tự thêm qua picker
       };
       const payload = buildPayload(next);
       if (form.id) await updateInsurancePackage(form.id, payload);
@@ -1232,7 +1302,9 @@ function InsuranceTab({ clinicId }) {
           .map((it) => [String(it.insurer_name || '').trim(), it])
           .filter(([name]) => Boolean(name))
       );
-      const companySource = masterCompanies.length ? masterCompanies : fallbackMasterCompanies;
+      const companySource = dbInsurers.length
+        ? dbInsurers
+        : masterCompanies.length ? masterCompanies : (fallbackMasterCompanies.length ? fallbackMasterCompanies : DEFAULT_INSURANCE_COMPANIES);
       const selectableNames = new Set(
         companySource.filter((c) => Number(c.status) === 1).map((c) => c.name)
       );
@@ -1264,7 +1336,9 @@ function InsuranceTab({ clinicId }) {
   };
 
   const privatePackage = appliedPackages.find((pkg) => packageInsuranceType(pkg) === 'private');
-  const companySource = masterCompanies.length ? masterCompanies : fallbackMasterCompanies;
+  const companySource = dbInsurers.length
+    ? dbInsurers
+    : masterCompanies.length ? masterCompanies : (fallbackMasterCompanies.length ? fallbackMasterCompanies : DEFAULT_INSURANCE_COMPANIES);
   const filteredCompanySource = companySource.filter((company) => {
     const isVisible = Number(company.status) === 1;
     if (companyStatusFilter === 'visible' && !isVisible) return false;
@@ -1282,15 +1356,6 @@ function InsuranceTab({ clinicId }) {
       <div className="insurance-tab-toolbar">
         <button className="btn btn-secondary" onClick={openCreateType}>
           Thêm loại
-        </button>
-        <button
-          className="btn btn-secondary"
-          onClick={async () => {
-            const pkg = await ensureMasterPackage();
-            openCompanyManager(pkg || null);
-          }}
-        >
-          Quản lý công ty bảo hiểm
         </button>
       </div>
 
@@ -1329,6 +1394,7 @@ function InsuranceTab({ clinicId }) {
       )}
 
       {companyPickerOpen && (
+        <ModalPortal>
         <div className="price-modal-backdrop">
           <div className="insurance-company-modal">
             <div className="price-modal-header">
@@ -1407,18 +1473,25 @@ function InsuranceTab({ clinicId }) {
             </div>
           </div>
         </div>
+        </ModalPortal>
       )}
 
       {appliedPackages.length === 0 ? (
         <div style={{ textAlign: 'center', color: '#94a3b8', padding: '2rem', fontSize: '0.875rem' }}>
           Chưa có gói bảo hiểm nào.
         </div>
-      ) : appliedPackages.map(pkg => (
+      ) : appliedPackages.map(pkg => {
+        const pkgType = packageInsuranceType(pkg);
+        return (
         <div key={pkg.id} className="insurance-package-card">
           <div className="insurance-package-head">
             <h4>{cleanInsurancePackageName(pkg)}</h4>
             <div className="price-package-actions">
-              <button type="button" title="Sửa loại" onClick={() => openEditType(pkg)}>
+              <button
+                type="button"
+                title="Chỉnh sửa"
+                onClick={() => openEditType(pkg)}
+              >
                 <Edit2 size={16} />
               </button>
             </div>
@@ -1429,16 +1502,19 @@ function InsuranceTab({ clinicId }) {
                 <strong>Ghi chú:</strong> {pkg.description || pkg.items?.[0]?.copay_note || pkg.items?.[0]?.coverage_note}
               </div>
             )}
-            {packageInsuranceType(pkg) === 'private' && (
+            {pkgType === 'private' && (
               <div className="insurance-company-list">
-                <button type="button" className="insurance-company-add" onClick={() => { openCompanyPicker(pkg); }}>
-                  <Plus size={18} />
-                </button>
-                {(pkg.items || []).filter((item) => {
-                  const source = masterCompanies.length ? masterCompanies : fallbackMasterCompanies;
-                  const ref = source.find((c) => c.name === String(item.insurer_name || '').trim());
-                  return ref ? Number(ref.status) === 1 : false;
-                }).map((item) => (
+                <div className="insurance-company-row">
+                  <span style={{ color: 'var(--gray-400)', fontSize: '0.82rem', fontStyle: 'italic' }}>
+                    {(pkg.items || []).filter((item) => String(item.insurer_name || '').trim()).length === 0
+                      ? 'Chưa có công ty bảo hiểm nào'
+                      : `${(pkg.items || []).filter((item) => String(item.insurer_name || '').trim()).length} công ty`}
+                  </span>
+                  <button type="button" title="Thêm công ty bảo hiểm" onClick={() => openCompanyPicker(pkg)}>
+                    <Plus size={16} />
+                  </button>
+                </div>
+                {(pkg.items || []).filter((item) => String(item.insurer_name || '').trim()).map((item) => (
                   <div key={item.id || item.insurer_name} className="insurance-company-row">
                     <span>{item.insurer_name}</span>
                     <button
@@ -1450,25 +1526,15 @@ function InsuranceTab({ clinicId }) {
                     </button>
                   </div>
                 ))}
-                {(pkg.items || []).length === 0 && (
-                  <div className="insurance-company-row muted">
-                    <span>Chưa có công ty bảo hiểm</span>
-                    <button type="button" onClick={() => {
-                      openCompanyManager(pkg);
-                      startNewCompany();
-                    }}>
-                      <Plus size={15} />
-                    </button>
-                  </div>
-                )}
               </div>
             )}
-            {packageInsuranceType(pkg) === 'public' && !(pkg.description || pkg.items?.[0]?.copay_note || pkg.items?.[0]?.coverage_note) && (
+            {pkgType === 'public' && !(pkg.description || pkg.items?.[0]?.copay_note || pkg.items?.[0]?.coverage_note) && (
               <div className="insurance-note muted">Chưa có ghi chú.</div>
             )}
           </div>
         </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
@@ -1548,8 +1614,8 @@ export default function DoctorPanel({ doctor, partners, onRefresh }) {
           )
         )}
 
-        {tab === 'price' && <PriceTab clinicId={doctor?.id} />}
-        {tab === 'insurance' && <InsuranceTab clinicId={doctor?.id} />}
+        {tab === 'price' && <PriceTab key={doctor?.id} clinicId={doctor?.id} />}
+        {tab === 'insurance' && <InsuranceTab key={doctor?.id} clinicId={doctor?.id} />}
       </div>
     </div>
   );

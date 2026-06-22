@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import Select from 'react-select';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import AdminLayout from '../layouts/AdminLayout';
@@ -80,9 +81,12 @@ export default function ClinicReasonEditor() {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
-  const handleDoctorChange = (e) => {
-    const values = Array.from(e.target.selectedOptions).map((option) => option.value);
-    setFormData((prev) => ({ ...prev, clinic_id: values.join(',') }));
+  const doctorOptions = useMemo(() => doctors.map(d => ({ value: String(d.id), label: d.name })), [doctors]);
+  const selectedDoctorOptions = useMemo(() => doctorOptions.filter(opt => selectedDoctorIds.includes(opt.value)), [doctorOptions, selectedDoctorIds]);
+
+  const handleDoctorSelectChange = (selected) => {
+    const ids = selected ? selected.map(opt => opt.value) : [];
+    setFormData((prev) => ({ ...prev, clinic_id: ids.join(',') }));
   };
 
   const handleSubmit = async (e) => {
@@ -184,18 +188,15 @@ export default function ClinicReasonEditor() {
                 </div>
                 <div className="form-group full-width">
                   <label>Bác sĩ liên quan</label>
-                  <select
-                    multiple
-                    value={selectedDoctorIds}
-                    onChange={handleDoctorChange}
-                    className="form-input"
-                    style={{ minHeight: 180 }}
-                  >
-                    {doctors.map((doctor) => (
-                      <option key={doctor.id} value={doctor.id}>{doctor.name}</option>
-                    ))}
-                  </select>
-                  <span style={{ fontSize: 12, color: '#64748b' }}>Giữ Ctrl/Cmd để chọn nhiều bác sĩ.</span>
+                  <Select
+                    isMulti
+                    options={doctorOptions}
+                    value={selectedDoctorOptions}
+                    onChange={handleDoctorSelectChange}
+                    placeholder="Tìm và chọn bác sĩ liên quan..."
+                    className="react-select-container"
+                    classNamePrefix="react-select"
+                  />
                 </div>
                 <div className="form-group full-width">
                   <label>Bác sĩ đã loại bỏ khỏi lý do khám</label>

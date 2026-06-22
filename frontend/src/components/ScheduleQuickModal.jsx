@@ -250,36 +250,40 @@ export default function ScheduleQuickModal({
               </div>
             )}
 
-            <div className="form-group" style={{ marginTop: '0.5rem', borderTop: '1px solid #e2e8f0', paddingTop: '1rem' }}>
-              <label>Đối tác *</label>
-              <select 
-                className="form-input" 
-                value={form.partner_id}
-                onChange={e => setForm(p => ({ ...p, partner_id: e.target.value, clinic_place_id: '' }))}
-                required
-              >
-                <option value="">— Chọn đối tác —</option>
-                {partners.map(p => (
-                  <option key={p.id} value={p.id}>{p.name}</option>
-                ))}
-              </select>
-            </div>
+            {partners && partners.length > 0 && (
+              <div className="form-group" style={{ marginTop: '0.5rem', borderTop: '1px solid #e2e8f0', paddingTop: '1rem' }}>
+                <label>Đối tác</label>
+                <select 
+                  className="form-input" 
+                  value={form.partner_id}
+                  onChange={e => setForm(p => ({ ...p, partner_id: e.target.value, clinic_place_id: '' }))}
+                  disabled={mode === 'edit'}
+                >
+                  <option value="">— Tự động lấy theo bác sĩ —</option>
+                  {partners.map(p => (
+                    <option key={p.id} value={p.id}>{p.name}</option>
+                  ))}
+                </select>
+              </div>
+            )}
 
-            <div className="form-group">
-              <label>Nơi khám *</label>
-              <select 
-                className="form-input" 
-                value={form.clinic_place_id}
-                onChange={e => setForm(p => ({ ...p, clinic_place_id: e.target.value }))}
-                required
-                disabled={!form.partner_id}
-              >
-                <option value="">— Chọn nơi khám —</option>
-                {availablePlaces.map(pl => (
-                  <option key={pl.id} value={pl.id}>{pl.display_name || pl.name}</option>
-                ))}
-              </select>
-            </div>
+            {(!partners || partners.length > 0) && (
+              <div className="form-group">
+                <label>Nơi khám *</label>
+                <select 
+                  className="form-input" 
+                  value={form.clinic_place_id}
+                  onChange={e => setForm(p => ({ ...p, clinic_place_id: e.target.value }))}
+                  required
+                  disabled={mode === 'edit'}
+                >
+                  <option value="">— Chọn chi nhánh —</option>
+                  {places.map(p => (
+                    <option key={p.id} value={p.id}>{p.display_name || p.name}</option>
+                  ))}
+                </select>
+              </div>
+            )}
 
           </div>
 

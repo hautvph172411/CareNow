@@ -1,9 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Bell, CalendarClock, ChevronDown, Phone, Search, User, MessageSquare } from 'lucide-react'
+import { Bell, CalendarClock, ChevronDown, Phone, Search, User, MessageSquare, History } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { getAppointments } from '../api/appointment.api'
 import { getUnreadConsultationsCount } from '../api/consultation.api'
+import { getScheduleLogs } from '../api/appointmentSchedule.api'
+import { getClinics } from '../api/clinic.api'
+import { getPartners } from '../api/partner.api'
 
 const NOTIFICATION_LIMIT = 10
 
@@ -23,6 +26,14 @@ export default function Header({ onMenuClick, onLogout }) {
   const [notificationTotalPages, setNotificationTotalPages] = useState(1)
   const [loadingNotifications, setLoadingNotifications] = useState(false)
   
+  // Schedule Logs Notifications
+  const [showScheduleLogs, setShowScheduleLogs] = useState(false)
+  const [scheduleLogs, setScheduleLogs] = useState([])
+  const [unreadScheduleLogs, setUnreadScheduleLogs] = useState(0)
+  const [loadingScheduleLogs, setLoadingScheduleLogs] = useState(false)
+  const [clinics, setClinics] = useState([])
+  const [partners, setPartners] = useState([])
+
   const [unreadConsultations, setUnreadConsultations] = useState(0)
 
   const navigate = useNavigate()
@@ -65,13 +76,40 @@ export default function Header({ onMenuClick, onLogout }) {
     }
   }, [hasPermission])
 
+  const fetchScheduleLogs = useCallback(async () => {
+    if (!hasPermission('manage_appointment_schedule')) return
+    try {
+      if (clinics.length === 0) {
+        getClinics({ limit: 1000 }).then(res => {
+          if (res?.data) setClinics(res.data);
+        }).catch(err => console.error(err));
+      }
+      if (partners.length === 0) {
+        getPartners({ limit: 1000 }).then(res => {
+          if (res?.data) setPartners(res.data);
+        }).catch(err => console.error(err));
+      }
+      const res = await getScheduleLogs({ user_type: 'partner', action_type: 'TOGGLE_STATUS', limit: 10, page: 1 })
+      if (res?.data?.rows) {
+        setScheduleLogs(res.data.rows)
+        const lastSeenId = parseInt(localStorage.getItem('last_seen_schedule_log_id') || '0', 10)
+        const unreadCount = res.data.rows.filter(log => parseInt(log.id, 10) > lastSeenId).length
+        setUnreadScheduleLogs(unreadCount)
+      }
+    } catch (error) {
+      console.error('Failed to fetch schedule logs:', error)
+    }
+  }, [hasPermission, clinics.length])
+
   useEffect(() => {
     fetchNotifications(1)
     fetchConsultationsCount()
+    fetchScheduleLogs()
     
     const timer = setInterval(() => {
       fetchNotifications(1)
       fetchConsultationsCount()
+      fetchScheduleLogs()
     }, 30000)
     
     window.addEventListener('consultations_updated', fetchConsultationsCount)
@@ -80,7 +118,7 @@ export default function Header({ onMenuClick, onLogout }) {
       clearInterval(timer)
       window.removeEventListener('consultations_updated', fetchConsultationsCount)
     }
-  }, [fetchNotifications, fetchConsultationsCount])
+  }, [fetchNotifications, fetchConsultationsCount, fetchScheduleLogs])
 
   const handleAppointmentSearch = (e) => {
     e.preventDefault()
@@ -90,8 +128,21 @@ export default function Header({ onMenuClick, onLogout }) {
 
   const handleOpenNotifications = () => {
     setShowProfile(false)
+    setShowScheduleLogs(false)
     setShowNotifications((value) => !value)
     fetchNotifications(1)
+  }
+
+  const handleOpenScheduleLogs = () => {
+    setShowProfile(false)
+    setShowNotifications(false)
+    const nextState = !showScheduleLogs
+    setShowScheduleLogs(nextState)
+    if (nextState && scheduleLogs.length > 0) {
+      // Mark as read
+      localStorage.setItem('last_seen_schedule_log_id', String(scheduleLogs[0].id))
+      setUnreadScheduleLogs(0)
+    }
   }
 
   const handleNotificationScroll = (e) => {
@@ -140,6 +191,73 @@ export default function Header({ onMenuClick, onLogout }) {
                 <MessageSquare size={20} />
                 {unreadConsultations > 0 && <span className="notification-badge">{unreadConsultationsLabel}</span>}
               </button>
+            </div>
+          )}
+
+          {/* Schedule Logs Notification */}
+          {hasPermission('manage_appointment_schedule') && (
+            <div className="header-notification">
+              <button className="header-notification-btn" title="Thay đổi lịch từ đối tác" onClick={handleOpenScheduleLogs}>
+                <History size={20} />
+                {unreadScheduleLogs > 0 && <span className="notification-badge">{unreadScheduleLogs > 99 ? '99+' : unreadScheduleLogs}</span>}
+              </button>
+
+              {showScheduleLogs && (
+                <div className="notification-menu" style={{ width: 380 }}>
+                  <div className="notification-menu-header">
+                    <div>
+                      <p className="notification-title">Thay đổi lịch từ Đối tác</p>
+                      <p className="notification-subtitle">10 thao tác Bật/Tắt lịch gần nhất</p>
+                    </div>
+                  </div>
+
+                  <div className="notification-list">
+                    {scheduleLogs.length === 0 && !loadingScheduleLogs ? (
+                      <div className="notification-empty">Không có thay đổi lịch nào.</div>
+                    ) : (
+                      scheduleLogs.map((log) => {
+                        const data = log.new_data || log.old_data;
+                        const isTurnedOn = data?.status === 1;
+                        const sessionMap = { 1: 'Sáng', 2: 'Chiều', 3: 'Tối', 4: 'Đêm' };
+                        const dowMap = { 0: 'CN', 1: 'T2', 2: 'T3', 3: 'T4', 4: 'T5', 5: 'T6', 6: 'T7' };
+                        const clinic = clinics.find(c => String(c.id) === String(data?.clinic_id));
+                        const doctorName = clinic?.name || `Bác sĩ #${data?.clinic_id}`;
+                        const partner = partners.find(p => String(p.id) === String(data?.partner_id));
+                        const partnerName = partner?.name || log.user_email || 'Đối tác';
+                        const formattedDate = log.created_at ? new Date(log.created_at * 1000).toLocaleString('vi-VN', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric' }) : '';
+                        
+                        return (
+                          <button
+                            key={log.id}
+                            type="button"
+                            className="notification-item"
+                            onClick={() => { setShowScheduleLogs(false); navigate('/appointment-schedule'); }}
+                            style={{ cursor: 'pointer', display: 'flex', alignItems: 'flex-start', textAlign: 'left' }}
+                          >
+                            <span className="notification-dot" style={{ background: isTurnedOn ? '#10b981' : '#ef4444' }} />
+                            <span className="notification-content">
+                              <strong>Đối tác {partnerName}</strong>
+                              <span className="notification-meta" style={{ color: isTurnedOn ? '#10b981' : '#ef4444', fontWeight: 600 }}>
+                                {isTurnedOn ? 'Vừa BẬT lịch' : 'Vừa TẮT lịch'}
+                              </span>
+                              {data && (
+                                <span className="notification-meta" style={{ fontSize: 13, marginTop: 4 }}>
+                                  Bác sĩ: <strong>{doctorName}</strong><br/>
+                                  Buổi: <strong>{sessionMap[data.session_type]} {dowMap[data.day_of_week]}</strong> ({data.start_time?.slice(0,5)} - {data.end_time?.slice(0,5)})
+                                </span>
+                              )}
+                              <span className="notification-meta" style={{ fontSize: 11, marginTop: 4, color: '#94a3b8' }}>
+                                Vào lúc: {formattedDate}
+                              </span>
+                            </span>
+                          </button>
+                        )
+                      })
+                    )}
+                    {loadingScheduleLogs && <div className="notification-loading">Đang tải...</div>}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 

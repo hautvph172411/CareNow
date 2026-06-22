@@ -10,7 +10,6 @@ import ScheduleWeekGrid from '../components/ScheduleWeekGrid';
 import DoctorPanel from '../components/DoctorPanel';
 import ScheduleLogsTab from '../components/ScheduleLogsTab';
 import Pagination from '../components/Pagination';
-import ScheduleQuickModal from '../components/ScheduleQuickModal';
 import { useAuth } from '../hooks/useAuth';
 
 export default function PartnerSchedule() {
@@ -48,10 +47,7 @@ export default function PartnerSchedule() {
   // Selected doctor for right panel
   const [selectedClinic, setSelectedClinic] = useState(null);
 
-  // Quick Modal
-  const [quickModalOpen, setQuickModalOpen] = useState(false);
-  const [quickModalMode, setQuickModalMode] = useState('add');
-  const [quickModalData, setQuickModalData] = useState(null);
+
 
   // ── Load reference data (Specialties, Places) ──────────
   useEffect(() => {
@@ -186,19 +182,11 @@ export default function PartnerSchedule() {
   };
 
   const handleAddBlock = (clinicId, d) => { 
-    if (!isManager) return;
     handleSelectDoctor(clinicId);
-    setQuickModalData({ clinic_id: clinicId, day_of_week: String(d) });
-    setQuickModalMode('add');
-    setQuickModalOpen(true);
   };
 
   const handleEditBlock = (block) => { 
-    if (!isManager) return;
     handleSelectDoctor(block.clinic_id);
-    setQuickModalData(block);
-    setQuickModalMode('edit');
-    setQuickModalOpen(true);
   };
 
   const handleToggleBlockStatus = async (block) => {
@@ -251,27 +239,7 @@ export default function PartnerSchedule() {
     }
   };
 
-  // Quick Modal handlers
-  const handleQuickSave = () => {
-    setQuickModalOpen(false);
-    loadGridData();
-  };
 
-  const handleQuickDelete = async (id) => {
-    if (!window.confirm('Xóa ca làm việc này?')) return;
-    try {
-      await deleteScheduleBlock(id);
-      setQuickModalOpen(false);
-      loadGridData();
-    } catch (e) {
-      alert(e.response?.data?.message || 'Xóa thất bại');
-    }
-  };
-
-  const handleOpenFullForm = (clinicId, clinicPlaceId) => {
-    setQuickModalOpen(false);
-    navigate(`/schedule/add?clinic_id=${clinicId}&clinic_place_id=${clinicPlaceId || ''}`);
-  };
 
   return (
     <AdminLayout pageTitle="Lịch & Bảng giá" defaultSidebarCollapsed={true}>
@@ -410,57 +378,54 @@ export default function PartnerSchedule() {
             ))}
           </select>
 
-          {/* Place filter */}
-          <select
-            className="form-input"
-            style={{ width: 'auto', minWidth: 175, fontSize: '0.875rem' }}
-            value={filterPlace}
-            onChange={e => {
-              setFilterPlace(e.target.value);
-              setSearchInput('');
-              setSelectedClinic(null);
-              setCurrentPage(1);
-            }}
-          >
-            <option value="">Tất cả nơi khám</option>
-            {places.map(p => (
-              <option key={p.id} value={p.id}>{p.display_name || p.name}</option>
-            ))}
-          </select>
+
 
           {/* Active filter badges */}
-          {(filterSpecialty || filterPlace) && (
+          {filterSpecialty && (
             <button
               style={{
                 border: '1px solid #fca5a5', background: '#fef2f2', color: '#ef4444',
                 borderRadius: '0.375rem', padding: '0.4rem 0.75rem', fontSize: '0.8125rem',
                 cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', whiteSpace: 'nowrap',
               }}
-              onClick={() => { setFilterSpecialty(''); setFilterPlace(''); setSelectedClinic(null); setCurrentPage(1); }}
+              onClick={() => { setFilterSpecialty(''); setSelectedClinic(null); setCurrentPage(1); }}
             >
               <X size={13} /> Xóa bộ lọc
             </button>
           )}
 
-          {isManager && (
-            <button
-              className="btn btn-primary"
-              style={{ fontSize: '0.875rem', whiteSpace: 'nowrap', marginLeft: 'auto' }}
-              onClick={() => navigate('/schedule/add')}
-            >
-              <Plus size={16} /> Thêm lịch đầy đủ
-            </button>
-          )}
+          <button
+            className="btn btn-primary"
+            style={{ fontSize: '0.875rem', whiteSpace: 'nowrap', marginLeft: 'auto' }}
+            onClick={() => navigate('/schedule/add')}
+          >
+            <Plus size={16} /> Thêm lịch đầy đủ
+          </button>
         </div>
 
         {/* Filter result count */}
         <div style={{
           padding: '0.5rem 1.5rem', background: '#eff6ff', borderBottom: '1px solid #bfdbfe', fontSize: '0.8125rem', color: '#2563eb',
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center'
         }}>
-          {selectedClinic
-            ? `Đang xem lịch: ${selectedClinic.name}`
-            : `Danh sách bác sĩ (Trang ${currentPage}/${totalPages})`
-          }
+          <div>
+            {selectedClinic
+              ? <span>Đang xem lịch: <strong>{selectedClinic.name}</strong></span>
+              : <span>Danh sách bác sĩ (Trang {currentPage}/{totalPages})</span>
+            }
+          </div>
+          {selectedClinic && (
+            <button
+              onClick={handleClearSearch}
+              style={{
+                background: 'white', border: '1px solid #bfdbfe', borderRadius: '4px',
+                padding: '3px 10px', color: '#2563eb', cursor: 'pointer', fontSize: '0.75rem',
+                display: 'flex', alignItems: 'center', gap: '4px', fontWeight: 500
+              }}
+            >
+              <X size={14} /> Quay lại danh sách
+            </button>
+          )}
         </div>
 
         {/* ── Body: split layout ── */}
@@ -535,22 +500,7 @@ export default function PartnerSchedule() {
             )}
           </div>
         </div>
-        
-        {quickModalOpen && (
-          <ScheduleQuickModal
-            isOpen={quickModalOpen}
-            onClose={() => { setQuickModalOpen(false); setQuickModalData(null); }}
-            onSuccess={() => loadGridData()}
-            mode={quickModalMode}
-            initialData={quickModalData}
-            clinics={clinicsOnPage}
-            partners={[]}
-            places={places}
-            onSave={handleQuickSave}
-            onDelete={handleQuickDelete}
-            onOpenFullForm={handleOpenFullForm}
-          />
-        )}
+
         
         </>
         )}

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { uploader } = require('../../config/cloudinary');
 const controller = require('./upload.controller');
+const authMiddleware = require('../middlewares/auth');
 
 // Middleware xử lý lỗi multer (file quá to / sai mimetype) trả JSON gọn.
 const handleMulter = (req, res, next) => {
@@ -17,6 +18,8 @@ const handleMulter = (req, res, next) => {
     next();
   });
 };
+
+router.use(authMiddleware);
 
 router.get('/media', controller.getMedia);
 router.post('/folder', controller.createFolder);

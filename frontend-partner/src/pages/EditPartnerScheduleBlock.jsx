@@ -189,16 +189,7 @@ export default function EditPartnerScheduleBlock() {
                     placeholder="— Chọn bác sĩ —"
                   />
                 </div>
-                <div className="form-group">
-                  <label>Nơi khám *</label>
-                  <SearchableSelect
-                    name="clinic_place_id"
-                    options={places.map(pl => ({ label: pl.display_name || pl.name, value: pl.id }))}
-                    value={form.clinic_place_id}
-                    onChange={(val) => handleChange({ target: { name: 'clinic_place_id', value: val } })}
-                    placeholder="— Chọn chi nhánh / nơi khám —"
-                  />
-                </div>
+                {/* Nơi khám is hidden for partners as they only have 1 place, auto-selected on load or from db */}
               </div>
             </div>
 

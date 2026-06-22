@@ -343,12 +343,8 @@ export function PlaceDetail() {
             {/* Header card with image */}
             <div className="bg-white rounded-2xl overflow-hidden shadow-md">
               <div className="relative bg-gray-100 w-full overflow-hidden">
-                {images[0] ? (
-                  <ImageWithFallback src={images[0]} alt={displayName} className="w-full h-auto max-h-72 md:max-h-80 object-cover block" />
-                ) : row.logo ? (
-                  <div className="w-full h-72 md:h-80 flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100">
-                    <ImageWithFallback src={row.logo} alt={displayName} className="max-h-40 max-w-xs object-contain" />
-                  </div>
+                {images[0] || row.logo ? (
+                  <ImageWithFallback src={images[0] || row.logo} alt={displayName} className="w-full h-auto max-h-72 md:max-h-80 object-cover block" />
                 ) : (
                   <div className="w-full h-72 md:h-80 flex items-center justify-center" style={{ background: "linear-gradient(135deg, #e8f4fd, #bfdbfe)" }}>
                     <Building2 className="size-20 text-blue-300" />

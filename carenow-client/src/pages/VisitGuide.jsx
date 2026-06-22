@@ -1,12 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../api/axios';
+import { getProvinces, getWards } from '../api/catalog.api';
+
+function parseBookingMeta(noteText = "", patientAddress = "") {
+  const text = String(noteText || "");
+  const provinceMatch = text.match(/Tỉnh\/Thành ID:\s*(\d+)/i);
+  const wardMatch = text.match(/Xã\/Phường ID:\s*(\d+)/i);
+  const provinceId = provinceMatch ? String(provinceMatch[1]) : "";
+  const wardId = wardMatch ? String(wardMatch[1]) : "";
+
+  const lines = text.split("\n").map((x) => x.trim()).filter(Boolean);
+  let reason = lines.find(
+    (line) =>
+      !/^Người đi cùng:/i.test(line) &&
+      !/^Tỉnh\/Thành ID:/i.test(line) &&
+      !/^Xã\/Phường ID:/i.test(line)
+  ) || "";
+
+  if (!reason && text) {
+    reason = text
+      .replace(/Tỉnh\/Thành ID:\s*\d+/gi, "")
+      .replace(/Xã\/Phường ID:\s*\d+/gi, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  const detailAddress = String(patientAddress || "").trim();
+  if (detailAddress && reason.endsWith(detailAddress)) {
+    reason = reason.slice(0, reason.length - detailAddress.length).trim();
+  }
+
+  return { reason, provinceId, wardId, detailAddress };
+}
 
 const VisitGuide = () => {
   const { bookingCode } = useParams();
   const [appt, setAppt] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  
+  const [detailProvinceName, setDetailProvinceName] = useState("");
+  const [detailWardName, setDetailWardName] = useState("");
 
   useEffect(() => {
     const fetchGuide = async () => {
@@ -21,6 +56,31 @@ const VisitGuide = () => {
     };
     fetchGuide();
   }, [bookingCode]);
+
+  useEffect(() => {
+    let cancelled = false;
+    const loadLocationNames = async () => {
+      setDetailProvinceName("");
+      setDetailWardName("");
+      const { provinceId, wardId } = parseBookingMeta(appt?.patient_notes, appt?.patient_address);
+      if (!provinceId) return;
+      try {
+        const provinces = await getProvinces();
+        if (cancelled) return;
+        const province = (provinces || []).find((p) => String(p.id) === String(provinceId));
+        setDetailProvinceName(province?.name || "");
+        if (!wardId) return;
+        const wards = await getWards(provinceId);
+        if (cancelled) return;
+        const ward = (wards || []).find((w) => String(w.id) === String(wardId));
+        setDetailWardName(ward?.name || "");
+      } catch {
+        // ignore
+      }
+    };
+    if (appt) loadLocationNames();
+    return () => { cancelled = true; };
+  }, [appt]);
 
   if (loading) {
     return (
@@ -67,7 +127,17 @@ const VisitGuide = () => {
               <div><span className="text-gray-500 block text-sm">Họ và tên</span><strong className="text-base">{appt.patient_name}</strong></div>
               <div><span className="text-gray-500 block text-sm">Số điện thoại</span><strong className="text-base">{appt.patient_phone}</strong></div>
               <div><span className="text-gray-500 block text-sm">Ngày giờ khám</span><strong className="text-base text-blue-600">{dateStr} {timeStr && `- ${timeStr}`}</strong></div>
-              <div><span className="text-gray-500 block text-sm">Lý do khám</span><strong className="text-base">{appt.patient_notes || 'Không có'}</strong></div>
+              <div><span className="text-gray-500 block text-sm">Lý do khám</span><strong className="text-base">{parseBookingMeta(appt?.patient_notes, appt?.patient_address).reason || 'Không có'}</strong></div>
+              <div className="md:col-span-2">
+                <span className="text-gray-500 block text-sm">Địa chỉ cá nhân</span>
+                <strong className="text-base">
+                  {[
+                    parseBookingMeta(appt?.patient_notes, appt?.patient_address).detailAddress,
+                    detailWardName,
+                    detailProvinceName,
+                  ].filter(Boolean).join(", ") || "-"}
+                </strong>
+              </div>
               <div className="md:col-span-2"><span className="text-gray-500 block text-sm">Cơ sở y tế</span><strong className="text-base">{appt.place_name || '-'}</strong></div>
             </div>
           </section>

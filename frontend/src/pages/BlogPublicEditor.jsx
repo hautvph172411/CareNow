@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import AdminLayout from '../layouts/AdminLayout';
 import ImageUpload from '../components/ImageUpload';
 import RichTextEditor from '../components/RichTextEditor';
+import Select from 'react-select';
 import { getBlogCategories } from '../api/blogCategory.api';
 import { createBlogPublic, getBlogPublicById, updateBlogPublic } from '../api/blogPublic.api';
 import { getClinicReasons } from '../api/clinicReason.api';
@@ -203,6 +204,13 @@ export default function BlogPublicEditor() {
   const handleCategoryChange = (e) => {
     const values = Array.from(e.target.selectedOptions).map((option) => option.value);
     setFormData((prev) => ({ ...prev, categories: values.join(',') }));
+  };
+
+  const reasonOptions = useMemo(() => reasons.map(r => ({ value: String(r.id), label: r.name })), [reasons]);
+  const selectedReasonOption = useMemo(() => reasonOptions.find(opt => opt.value === String(formData.reason)) || null, [reasonOptions, formData.reason]);
+
+  const handleReasonSelectChange = (selected) => {
+    setFormData((prev) => ({ ...prev, reason: selected ? selected.value : '' }));
   };
 
   const setBlogUi = (patch) => {
@@ -502,12 +510,15 @@ export default function BlogPublicEditor() {
                   </div>
                   <div className="form-group">
                     <label>Lý do khám</label>
-                    <select name="reason" value={formData.reason || ''} onChange={handleChange} className="form-input">
-                      <option value="">Không chọn</option>
-                      {reasons.map((reason) => (
-                        <option key={reason.id} value={reason.id}>{reason.name}</option>
-                      ))}
-                    </select>
+                    <Select
+                      options={reasonOptions}
+                      value={selectedReasonOption}
+                      onChange={handleReasonSelectChange}
+                      isClearable
+                      placeholder="Tìm và chọn lý do khám..."
+                      className="react-select-container"
+                      classNamePrefix="react-select"
+                    />
                   </div>
                   <div className="form-group">
                     <label>Gợi ý chuyên khoa</label>
